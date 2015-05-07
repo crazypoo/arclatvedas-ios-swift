@@ -233,7 +233,20 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
         
         let label:UILabel = UILabel(frame: rect)
         label.text = (indexPath.row + 1).description
-        label.backgroundColor = UIColor.blueColor()
+        label.backgroundColor = UIColor.grayColor()
+        label.textColor = UIColor.whiteColor()
+        label.textAlignment = .Center
+        
+        
+        label.layer.borderColor = UIColor.darkGrayColor().CGColor
+        label.layer.borderWidth = 1.0;
+        label.layer.cornerRadius = 8;
+        label.clipsToBounds=true;
+
+        
+        label.textAlignment = .Center
+        
+        
         cell.contentView.addSubview(label)
         
         
@@ -242,7 +255,7 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
             let points:Int = vol.getAt(i)
             
             if points >= 0 {
-                let x = 30 + (30 * i)
+                let x = 60 + (30 * i)
                 
                 let rect = CGRect(x: x ,y: 9 ,width: 30, height:21)
                 
@@ -289,7 +302,7 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
         if editingStyle == .Delete {
             if let detail: Tir = self.detailItem {
                 
-                self.context!.deleteObject(detail.volees.objectAtIndex(0) as! NSManagedObject)
+                self.context!.deleteObject(detail.volees.objectAtIndex(indexPath.row) as! NSManagedObject)
                // detail.volees.removeObjectAtIndex(indexPath.row)
                 self.curCount--
                 if self.curCount >= 0 {
@@ -380,7 +393,7 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
         
        
         case 2000 :
-            if curVolee?.getTaille() == NOMBREMAX {
+            if ((curVolee?.getTaille() == NOMBREMAX)  || (curVolee?.getTaille() == 3)) {
                 
                  saveObject(self)
                 

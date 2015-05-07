@@ -582,7 +582,7 @@
                                     <action selector="pressed:" destination="mrY-DS-rPg" eventType="touchUpInside" id="UJt-jb-0NU"/>
                                 </connections>
                             </button>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="250" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="not-0r-TvK">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="250" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="not-0r-TvK">
                                 <rect key="frame" x="16" y="432" width="200" height="160"/>
                                 <color key="backgroundColor" red="0.23529413339999999" green="0.69411766529999996" blue="0.86666673419999996" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>

@@ -7,8 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E14431971AEA88D4006D8577 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14431961AEA88D4006D8577 /* WebViewController.swift */; };
+		E1468FB81AF778C50085223D /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1468FB71AF778C50085223D /* SwiftyJSON.swift */; };
+		E152128E1AEF73370010AEAD /* DetailEditMaterielViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E152128D1AEF73370010AEAD /* DetailEditMaterielViewController.swift */; };
+		E15212901AEF78B00010AEAD /* FlecheCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E152128F1AEF78B00010AEAD /* FlecheCell.swift */; };
+		E15212921AEFC5C30010AEAD /* DetailEditFlecheViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15212911AEFC5C30010AEAD /* DetailEditFlecheViewController.swift */; };
+		E15212941AEFC6C30010AEAD /* DetailEditDistanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15212931AEFC6C30010AEAD /* DetailEditDistanceViewController.swift */; };
+		E15212961AEFCA4A0010AEAD /* DetailEditTirViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15212951AEFCA4A0010AEAD /* DetailEditTirViewController.swift */; };
+		E15212991AF0C94C0010AEAD /* Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15212971AF0C94C0010AEAD /* Distance.swift */; };
+		E152129A1AF0C94C0010AEAD /* Hausse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15212981AF0C94C0010AEAD /* Hausse.swift */; };
+		E16834C81AEE3AAE005E14B6 /* ListeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16834C71AEE3AAE005E14B6 /* ListeViewController.swift */; };
+		E16834CA1AEE6B06005E14B6 /* MatosCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16834C91AEE6B06005E14B6 /* MatosCell.swift */; };
+		E16834CC1AEE6CFB005E14B6 /* DistanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16834CB1AEE6CFB005E14B6 /* DistanceCell.swift */; };
+		E16834CE1AEE6D63005E14B6 /* TirCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16834CD1AEE6D63005E14B6 /* TirCell.swift */; };
+		E1B09EB21AEA320700599185 /* arclatvedas.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1B09EB01AEA320700599185 /* arclatvedas.xcdatamodeld */; };
+		E1C54D6B1AF1057100E7960C /* DistanceCellEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C54D6A1AF1057100E7960C /* DistanceCellEdit.swift */; };
+		E1C54D701AF1289E00E7960C /* Volee.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C54D6D1AF1289E00E7960C /* Volee.swift */; };
+		E1C54D711AF1289E00E7960C /* Tir.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C54D6E1AF1289E00E7960C /* Tir.swift */; };
+		E1C54D741AF22E0B00E7960C /* PseudoHausse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C54D731AF22E0B00E7960C /* PseudoHausse.swift */; };
 		E1D197951AE914E800616F1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D197941AE914E800616F1B /* AppDelegate.swift */; };
-		E1D197981AE914E800616F1B /* arclatvedas.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1D197961AE914E800616F1B /* arclatvedas.xcdatamodeld */; };
 		E1D1979A1AE914E800616F1B /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D197991AE914E800616F1B /* MasterViewController.swift */; };
 		E1D1979C1AE914E800616F1B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1979B1AE914E800616F1B /* DetailViewController.swift */; };
 		E1D1979F1AE914E800616F1B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1D1979D1AE914E800616F1B /* Main.storyboard */; };
@@ -28,10 +45,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E14431961AEA88D4006D8577 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		E1468FB71AF778C50085223D /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		E152128D1AEF73370010AEAD /* DetailEditMaterielViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailEditMaterielViewController.swift; sourceTree = "<group>"; };
+		E152128F1AEF78B00010AEAD /* FlecheCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlecheCell.swift; sourceTree = "<group>"; };
+		E15212911AEFC5C30010AEAD /* DetailEditFlecheViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailEditFlecheViewController.swift; sourceTree = "<group>"; };
+		E15212931AEFC6C30010AEAD /* DetailEditDistanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailEditDistanceViewController.swift; sourceTree = "<group>"; };
+		E15212951AEFCA4A0010AEAD /* DetailEditTirViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailEditTirViewController.swift; sourceTree = "<group>"; };
+		E15212971AF0C94C0010AEAD /* Distance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Distance.swift; sourceTree = "<group>"; };
+		E15212981AF0C94C0010AEAD /* Hausse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hausse.swift; sourceTree = "<group>"; };
+		E16834C71AEE3AAE005E14B6 /* ListeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListeViewController.swift; sourceTree = "<group>"; };
+		E16834C91AEE6B06005E14B6 /* MatosCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatosCell.swift; sourceTree = "<group>"; };
+		E16834CB1AEE6CFB005E14B6 /* DistanceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistanceCell.swift; sourceTree = "<group>"; };
+		E16834CD1AEE6D63005E14B6 /* TirCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TirCell.swift; sourceTree = "<group>"; };
+		E1B09EB11AEA320700599185 /* arclatvedas.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = arclatvedas.xcdatamodel; sourceTree = "<group>"; };
+		E1C54D6A1AF1057100E7960C /* DistanceCellEdit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistanceCellEdit.swift; sourceTree = "<group>"; };
+		E1C54D6D1AF1289E00E7960C /* Volee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Volee.swift; sourceTree = "<group>"; };
+		E1C54D6E1AF1289E00E7960C /* Tir.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tir.swift; sourceTree = "<group>"; };
+		E1C54D731AF22E0B00E7960C /* PseudoHausse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PseudoHausse.swift; sourceTree = "<group>"; };
 		E1D1978F1AE914E800616F1B /* arclatvedas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = arclatvedas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1D197931AE914E800616F1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1D197941AE914E800616F1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E1D197971AE914E800616F1B /* arclatvedas.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = arclatvedas.xcdatamodel; sourceTree = "<group>"; };
 		E1D197991AE914E800616F1B /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		E1D1979B1AE914E800616F1B /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		E1D1979E1AE914E800616F1B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -60,6 +94,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E1C54D721AF129BB00E7960C /* coredata */ = {
+			isa = PBXGroup;
+			children = (
+				E1468FB71AF778C50085223D /* SwiftyJSON.swift */,
+				E1C54D6D1AF1289E00E7960C /* Volee.swift */,
+				E1C54D6E1AF1289E00E7960C /* Tir.swift */,
+				E1B09EB01AEA320700599185 /* arclatvedas.xcdatamodeld */,
+				E15212971AF0C94C0010AEAD /* Distance.swift */,
+				E15212981AF0C94C0010AEAD /* Hausse.swift */,
+				E1C54D731AF22E0B00E7960C /* PseudoHausse.swift */,
+			);
+			name = coredata;
+			sourceTree = "<group>";
+		};
 		E1D197861AE914E800616F1B = {
 			isa = PBXGroup;
 			children = (
@@ -81,13 +129,24 @@
 		E1D197911AE914E800616F1B /* arclatvedas */ = {
 			isa = PBXGroup;
 			children = (
+				E1C54D721AF129BB00E7960C /* coredata */,
 				E1D197941AE914E800616F1B /* AppDelegate.swift */,
+				E16834C71AEE3AAE005E14B6 /* ListeViewController.swift */,
+				E16834C91AEE6B06005E14B6 /* MatosCell.swift */,
+				E16834CB1AEE6CFB005E14B6 /* DistanceCell.swift */,
+				E1C54D6A1AF1057100E7960C /* DistanceCellEdit.swift */,
+				E16834CD1AEE6D63005E14B6 /* TirCell.swift */,
+				E152128F1AEF78B00010AEAD /* FlecheCell.swift */,
 				E1D197991AE914E800616F1B /* MasterViewController.swift */,
 				E1D1979B1AE914E800616F1B /* DetailViewController.swift */,
+				E152128D1AEF73370010AEAD /* DetailEditMaterielViewController.swift */,
+				E15212911AEFC5C30010AEAD /* DetailEditFlecheViewController.swift */,
+				E15212931AEFC6C30010AEAD /* DetailEditDistanceViewController.swift */,
+				E15212951AEFCA4A0010AEAD /* DetailEditTirViewController.swift */,
+				E14431961AEA88D4006D8577 /* WebViewController.swift */,
 				E1D1979D1AE914E800616F1B /* Main.storyboard */,
 				E1D197A01AE914E800616F1B /* Images.xcassets */,
 				E1D197A21AE914E800616F1B /* LaunchScreen.xib */,
-				E1D197961AE914E800616F1B /* arclatvedas.xcdatamodeld */,
 				E1D197921AE914E800616F1B /* Supporting Files */,
 			);
 			path = arclatvedas;
@@ -218,9 +277,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1D197981AE914E800616F1B /* arclatvedas.xcdatamodeld in Sources */,
+				E1C54D701AF1289E00E7960C /* Volee.swift in Sources */,
+				E152129A1AF0C94C0010AEAD /* Hausse.swift in Sources */,
+				E16834CC1AEE6CFB005E14B6 /* DistanceCell.swift in Sources */,
+				E15212941AEFC6C30010AEAD /* DetailEditDistanceViewController.swift in Sources */,
+				E15212901AEF78B00010AEAD /* FlecheCell.swift in Sources */,
 				E1D197951AE914E800616F1B /* AppDelegate.swift in Sources */,
+				E16834CA1AEE6B06005E14B6 /* MatosCell.swift in Sources */,
+				E1C54D711AF1289E00E7960C /* Tir.swift in Sources */,
 				E1D1979A1AE914E800616F1B /* MasterViewController.swift in Sources */,
+				E16834C81AEE3AAE005E14B6 /* ListeViewController.swift in Sources */,
+				E15212921AEFC5C30010AEAD /* DetailEditFlecheViewController.swift in Sources */,
+				E1B09EB21AEA320700599185 /* arclatvedas.xcdatamodeld in Sources */,
+				E1468FB81AF778C50085223D /* SwiftyJSON.swift in Sources */,
+				E1C54D741AF22E0B00E7960C /* PseudoHausse.swift in Sources */,
+				E15212991AF0C94C0010AEAD /* Distance.swift in Sources */,
+				E15212961AEFCA4A0010AEAD /* DetailEditTirViewController.swift in Sources */,
+				E1C54D6B1AF1057100E7960C /* DistanceCellEdit.swift in Sources */,
+				E152128E1AEF73370010AEAD /* DetailEditMaterielViewController.swift in Sources */,
+				E14431971AEA88D4006D8577 /* WebViewController.swift in Sources */,
+				E16834CE1AEE6D63005E14B6 /* TirCell.swift in Sources */,
 				E1D1979C1AE914E800616F1B /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -419,6 +495,7 @@
 				E1D197B51AE914E800616F1B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E1D197B61AE914E800616F1B /* Build configuration list for PBXNativeTarget "arclatvedasTests" */ = {
 			isa = XCConfigurationList;
@@ -427,16 +504,17 @@
 				E1D197B81AE914E800616F1B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		E1D197961AE914E800616F1B /* arclatvedas.xcdatamodeld */ = {
+		E1B09EB01AEA320700599185 /* arclatvedas.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				E1D197971AE914E800616F1B /* arclatvedas.xcdatamodel */,
+				E1B09EB11AEA320700599185 /* arclatvedas.xcdatamodel */,
 			);
-			currentVersion = E1D197971AE914E800616F1B /* arclatvedas.xcdatamodel */;
+			currentVersion = E1B09EB11AEA320700599185 /* arclatvedas.xcdatamodel */;
 			path = arclatvedas.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

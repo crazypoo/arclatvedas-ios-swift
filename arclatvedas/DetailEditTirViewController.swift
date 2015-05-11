@@ -57,7 +57,17 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
         self.collection.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: reuseIdentifier)
         
         
+       
+        
         self.configureView()
+        
+        
+        tableview.layer.borderColor = UIColor.darkGrayColor().CGColor
+        tableview.layer.borderWidth = 1.0;
+        tableview.layer.cornerRadius = 0;
+        tableview.clipsToBounds=true;
+
+        
         
     }
     
@@ -229,7 +239,7 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
        
         let vol: Volee =  detail.volees.objectAtIndex(indexPath.row) as! Volee
         
-        let rect = CGRect(x: 0 ,y: 9 ,width: 30, height:21)
+        let rect = CGRect(x: 5 ,y: 9 ,width: 30, height:21)
         
         let label:UILabel = UILabel(frame: rect)
         label.text = (indexPath.row + 1).description
@@ -255,7 +265,7 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
             let points:Int = vol.getAt(i)
             
             if points >= 0 {
-                let x = 60 + (30 * i)
+                let x = 65 + (30 * i)
                 
                 let rect = CGRect(x: x ,y: 9 ,width: 30, height:21)
                 

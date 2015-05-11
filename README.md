@@ -13,4 +13,6 @@ Simplement on peut :
 - ajouter les scores
 
 
+voir aussi la version android, quasiment iso-fonctionnelle
+
 

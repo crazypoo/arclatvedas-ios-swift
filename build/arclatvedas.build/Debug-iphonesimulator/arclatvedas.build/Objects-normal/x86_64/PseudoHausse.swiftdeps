@@ -4,8 +4,8 @@ provides:
 nominals:
 - "C11arclatvedas12PseudoHausse"
 class-members:
-- "hausse"
 - "name"
+- "hausse"
 top-level:
 - "String"
 member-access:

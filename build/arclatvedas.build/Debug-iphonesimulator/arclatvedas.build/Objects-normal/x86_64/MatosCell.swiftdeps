@@ -5,20 +5,20 @@ nominals:
 - "C11arclatvedas9MatosCell"
 class-members:
 - "serialnumber"
-- "awakeFromNib"
 - "matos"
+- "awakeFromNib"
 - "setSelected"
 top-level:
 - "UITableViewCell"
-- "Bool"
 - "UILabel"
+- "Bool"
 member-access:
-- "CSo11UIResponder"
-- "C11arclatvedas9MatosCell"
 - "CSo8NSObject"
+- "CSo11UIResponder"
 - "CSo6UIView"
-- "PSs9AnyObject"
+- "C11arclatvedas9MatosCell"
 - "CSo15UITableViewCell"
+- "PSs9AnyObject"
 dynamic-lookup:
 cross-module:
 - "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/Swift.swiftmodule"

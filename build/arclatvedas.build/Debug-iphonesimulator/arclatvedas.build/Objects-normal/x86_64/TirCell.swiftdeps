@@ -4,22 +4,22 @@ provides:
 nominals:
 - "C11arclatvedas7TirCell"
 class-members:
-- "total"
+- "awakeFromNib"
+- "distance"
 - "setSelected"
 - "nom"
-- "distance"
-- "awakeFromNib"
+- "total"
 top-level:
-- "UITableViewCell"
 - "Bool"
 - "UILabel"
+- "UITableViewCell"
 member-access:
-- "C11arclatvedas7TirCell"
-- "CSo11UIResponder"
-- "PSs9AnyObject"
 - "CSo15UITableViewCell"
-- "CSo8NSObject"
+- "PSs9AnyObject"
+- "C11arclatvedas7TirCell"
 - "CSo6UIView"
+- "CSo8NSObject"
+- "CSo11UIResponder"
 dynamic-lookup:
 cross-module:
 - "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/Swift.swiftmodule"

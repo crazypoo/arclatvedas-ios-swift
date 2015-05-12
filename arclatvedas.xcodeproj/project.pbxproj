@@ -20,6 +20,7 @@
 		E16834CA1AEE6B06005E14B6 /* MatosCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16834C91AEE6B06005E14B6 /* MatosCell.swift */; };
 		E16834CC1AEE6CFB005E14B6 /* DistanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16834CB1AEE6CFB005E14B6 /* DistanceCell.swift */; };
 		E16834CE1AEE6D63005E14B6 /* TirCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16834CD1AEE6D63005E14B6 /* TirCell.swift */; };
+		E194A2281B024BDD001FC95B /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = E194A2271B024BDD001FC95B /* README.md */; };
 		E1B09EB21AEA320700599185 /* arclatvedas.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1B09EB01AEA320700599185 /* arclatvedas.xcdatamodeld */; };
 		E1C54D6B1AF1057100E7960C /* DistanceCellEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C54D6A1AF1057100E7960C /* DistanceCellEdit.swift */; };
 		E1C54D701AF1289E00E7960C /* Volee.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C54D6D1AF1289E00E7960C /* Volee.swift */; };
@@ -58,6 +59,7 @@
 		E16834C91AEE6B06005E14B6 /* MatosCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatosCell.swift; sourceTree = "<group>"; };
 		E16834CB1AEE6CFB005E14B6 /* DistanceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistanceCell.swift; sourceTree = "<group>"; };
 		E16834CD1AEE6D63005E14B6 /* TirCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TirCell.swift; sourceTree = "<group>"; };
+		E194A2271B024BDD001FC95B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E1B09EB11AEA320700599185 /* arclatvedas.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = arclatvedas.xcdatamodel; sourceTree = "<group>"; };
 		E1C54D6A1AF1057100E7960C /* DistanceCellEdit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistanceCellEdit.swift; sourceTree = "<group>"; };
 		E1C54D6D1AF1289E00E7960C /* Volee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Volee.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 		E1D197861AE914E800616F1B = {
 			isa = PBXGroup;
 			children = (
+				E194A2271B024BDD001FC95B /* README.md */,
 				E1D197911AE914E800616F1B /* arclatvedas */,
 				E1D197AC1AE914E800616F1B /* arclatvedasTests */,
 				E1D197901AE914E800616F1B /* Products */,
@@ -298,6 +301,7 @@
 				E152128E1AEF73370010AEAD /* DetailEditMaterielViewController.swift in Sources */,
 				E14431971AEA88D4006D8577 /* WebViewController.swift in Sources */,
 				E16834CE1AEE6D63005E14B6 /* TirCell.swift in Sources */,
+				E194A2281B024BDD001FC95B /* README.md in Sources */,
 				E1D1979C1AE914E800616F1B /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -4,21 +4,21 @@ provides:
 nominals:
 - "C11arclatvedas10FlecheCell"
 class-members:
-- "spin"
 - "awakeFromNib"
 - "nom"
 - "setSelected"
+- "spin"
 top-level:
 - "UILabel"
 - "Bool"
 - "UITableViewCell"
 member-access:
-- "C11arclatvedas10FlecheCell"
-- "CSo15UITableViewCell"
-- "CSo11UIResponder"
-- "PSs9AnyObject"
 - "CSo8NSObject"
+- "CSo11UIResponder"
 - "CSo6UIView"
+- "CSo15UITableViewCell"
+- "PSs9AnyObject"
+- "C11arclatvedas10FlecheCell"
 dynamic-lookup:
 cross-module:
 - "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/32/Swift.swiftmodule"

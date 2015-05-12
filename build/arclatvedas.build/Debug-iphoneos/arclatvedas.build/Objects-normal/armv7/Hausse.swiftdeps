@@ -4,16 +4,16 @@ provides:
 nominals:
 - "C11arclatvedas6Hausse"
 class-members:
-- "relationship"
 - "name"
+- "relationship"
 - "hausse"
 top-level:
-- "String"
 - "NSManagedObject"
+- "String"
 member-access:
+- "CSo15NSManagedObject"
 - "C11arclatvedas6Hausse"
 - "CSo8NSObject"
-- "CSo15NSManagedObject"
 - "PSs9AnyObject"
 dynamic-lookup:
 cross-module:

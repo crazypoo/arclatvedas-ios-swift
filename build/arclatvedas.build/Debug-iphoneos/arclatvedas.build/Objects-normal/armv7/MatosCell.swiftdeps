@@ -4,21 +4,21 @@ provides:
 nominals:
 - "C11arclatvedas9MatosCell"
 class-members:
-- "awakeFromNib"
 - "serialnumber"
 - "setSelected"
+- "awakeFromNib"
 - "matos"
 top-level:
-- "UILabel"
 - "Bool"
+- "UILabel"
 - "UITableViewCell"
 member-access:
-- "CSo11UIResponder"
-- "CSo15UITableViewCell"
-- "C11arclatvedas9MatosCell"
 - "CSo6UIView"
-- "CSo8NSObject"
+- "CSo11UIResponder"
 - "PSs9AnyObject"
+- "CSo15UITableViewCell"
+- "CSo8NSObject"
+- "C11arclatvedas9MatosCell"
 dynamic-lookup:
 cross-module:
 - "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/32/Swift.swiftmodule"

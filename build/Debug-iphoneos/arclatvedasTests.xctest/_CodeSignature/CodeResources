@@ -6,90 +6,94 @@
 	<dict>
 		<key>Frameworks/libswiftCore.dylib</key>
 		<data>
-		axUhJfBzlC8J0nMHF0iAy6Qqv88=
+		2JX7+vZr0xKnhWXzsdt+g+iKqUQ=
 		</data>
 		<key>Frameworks/libswiftCoreGraphics.dylib</key>
 		<data>
-		SACV/T30f3I6eTAKtcsbz40MEhc=
+		SR/0QK74vWCEy0EF2hJlX9I8I68=
 		</data>
 		<key>Frameworks/libswiftCoreImage.dylib</key>
 		<data>
-		8vUSzJfLF29WyZ0zht/Ck1CV3g8=
+		l+D2wTOliYSbh5W7+m2cGPWJ9kM=
 		</data>
 		<key>Frameworks/libswiftDarwin.dylib</key>
 		<data>
-		YnQz1BKQ+2HhRWYKL0RYu0QvYVM=
+		Nv8yu6rpyIb/kvgzb8wH38hlf+Q=
 		</data>
 		<key>Frameworks/libswiftDispatch.dylib</key>
 		<data>
-		B9rkHvHigwfexh/pxU366JO50Yg=
+		8fWLkx49hKPb7+gThR0pcIR0xgE=
 		</data>
 		<key>Frameworks/libswiftFoundation.dylib</key>
 		<data>
-		o5pxKsjH4AItIo7w53Wnl82/JE0=
+		X+kr+Hc1FYgtyC86wGMjBtdCgis=
 		</data>
 		<key>Frameworks/libswiftObjectiveC.dylib</key>
 		<data>
-		NZsP7XdtWXTRI6V4OaxLM2XH2Ds=
+		bU0kVD37IJbBKoe2VujVFXPFQl4=
 		</data>
 		<key>Frameworks/libswiftSecurity.dylib</key>
 		<data>
-		xbWrq9GczyyTEqLOUoIEloMz198=
+		EypWo711p9lT/kLnknWA+QJjt6g=
 		</data>
 		<key>Frameworks/libswiftUIKit.dylib</key>
 		<data>
-		qWX5fjktijMwetTT1S/xjg+KpIo=
+		Fhks/l0Q1SXY1wYpUbeR+XsCoRE=
 		</data>
 		<key>Frameworks/libswiftXCTest.dylib</key>
 		<data>
-		hCJ9JAvuar4gATbBpH8Xq3Ki0cQ=
+		pnfNbMzlPRX2sBzhsd2I/8JcOhA=
 		</data>
-		<key>Info.plist</key>
+		<key>arclatvedasTests</key>
 		<data>
-		6g3EO3AmnGBlSFGBoMCTwhQyqF4=
+		EOewcuqBP+kojRF7FNkXLZX+qzI=
 		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
 		<key>Frameworks/libswiftCore.dylib</key>
 		<data>
-		axUhJfBzlC8J0nMHF0iAy6Qqv88=
+		2JX7+vZr0xKnhWXzsdt+g+iKqUQ=
 		</data>
 		<key>Frameworks/libswiftCoreGraphics.dylib</key>
 		<data>
-		SACV/T30f3I6eTAKtcsbz40MEhc=
+		SR/0QK74vWCEy0EF2hJlX9I8I68=
 		</data>
 		<key>Frameworks/libswiftCoreImage.dylib</key>
 		<data>
-		8vUSzJfLF29WyZ0zht/Ck1CV3g8=
+		l+D2wTOliYSbh5W7+m2cGPWJ9kM=
 		</data>
 		<key>Frameworks/libswiftDarwin.dylib</key>
 		<data>
-		YnQz1BKQ+2HhRWYKL0RYu0QvYVM=
+		Nv8yu6rpyIb/kvgzb8wH38hlf+Q=
 		</data>
 		<key>Frameworks/libswiftDispatch.dylib</key>
 		<data>
-		B9rkHvHigwfexh/pxU366JO50Yg=
+		8fWLkx49hKPb7+gThR0pcIR0xgE=
 		</data>
 		<key>Frameworks/libswiftFoundation.dylib</key>
 		<data>
-		o5pxKsjH4AItIo7w53Wnl82/JE0=
+		X+kr+Hc1FYgtyC86wGMjBtdCgis=
 		</data>
 		<key>Frameworks/libswiftObjectiveC.dylib</key>
 		<data>
-		NZsP7XdtWXTRI6V4OaxLM2XH2Ds=
+		bU0kVD37IJbBKoe2VujVFXPFQl4=
 		</data>
 		<key>Frameworks/libswiftSecurity.dylib</key>
 		<data>
-		xbWrq9GczyyTEqLOUoIEloMz198=
+		EypWo711p9lT/kLnknWA+QJjt6g=
 		</data>
 		<key>Frameworks/libswiftUIKit.dylib</key>
 		<data>
-		qWX5fjktijMwetTT1S/xjg+KpIo=
+		Fhks/l0Q1SXY1wYpUbeR+XsCoRE=
 		</data>
 		<key>Frameworks/libswiftXCTest.dylib</key>
 		<data>
-		hCJ9JAvuar4gATbBpH8Xq3Ki0cQ=
+		pnfNbMzlPRX2sBzhsd2I/8JcOhA=
+		</data>
+		<key>arclatvedasTests</key>
+		<data>
+		EOewcuqBP+kojRF7FNkXLZX+qzI=
 		</data>
 	</dict>
 	<key>rules</key>

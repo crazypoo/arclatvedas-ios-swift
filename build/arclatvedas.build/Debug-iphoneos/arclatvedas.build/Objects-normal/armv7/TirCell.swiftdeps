@@ -4,21 +4,21 @@ provides:
 nominals:
 - "C11arclatvedas7TirCell"
 class-members:
+- "nom"
 - "distance"
 - "awakeFromNib"
 - "total"
 - "setSelected"
-- "nom"
 top-level:
 - "UILabel"
 - "Bool"
 - "UITableViewCell"
 member-access:
+- "CSo15UITableViewCell"
+- "C11arclatvedas7TirCell"
+- "CSo8NSObject"
 - "PSs9AnyObject"
 - "CSo6UIView"
-- "CSo8NSObject"
-- "C11arclatvedas7TirCell"
-- "CSo15UITableViewCell"
 - "CSo11UIResponder"
 dynamic-lookup:
 cross-module:

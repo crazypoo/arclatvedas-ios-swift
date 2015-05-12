@@ -557,14 +557,14 @@
                                     <constraint firstAttribute="width" constant="82" id="InW-7K-QcT"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" tag="1000" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RIl-xp-z1R">
                                 <rect key="frame" x="502" y="480" width="82" height="30"/>
                                 <color key="backgroundColor" red="0.23529413339999999" green="0.69411766529999996" blue="0.86666673419999996" alpha="1" colorSpace="deviceRGB"/>
                                 <state key="normal" title="-">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -575,7 +575,7 @@
                                 <rect key="frame" x="502" y="550" width="82" height="30"/>
                                 <color key="backgroundColor" red="0.23529413339999999" green="0.69411766529999996" blue="0.86666673419999996" alpha="1" colorSpace="deviceRGB"/>
                                 <state key="normal" title="OK">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -680,7 +680,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7IA-fu-Umv">
+                            <webView contentMode="scaleToFill" paginationMode="leftToRight" translatesAutoresizingMaskIntoConstraints="NO" id="7IA-fu-Umv">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>

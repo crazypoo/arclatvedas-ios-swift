@@ -7,108 +7,69 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="arclatvedas" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="kId-c2-rCX">
-                    <rect key="frame" x="56" y="49" width="208" height="43"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="arclatvedas" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="kId-c2-rCX">
+                    <rect key="frame" x="56" y="32" width="208" height="43"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="208" id="daB-AQ-akp"/>
+                        <constraint firstAttribute="width" constant="208" id="oUB-hI-r5Y"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="daB-AQ-akp"/>
-                        </mask>
-                    </variation>
-                    <variation key="heightClass=regular">
-                        <mask key="constraints">
-                            <include reference="daB-AQ-akp"/>
-                        </mask>
-                    </variation>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="icone" translatesAutoresizingMaskIntoConstraints="NO" id="NFt-Z1-j1Z">
-                    <rect key="frame" x="85" y="100" width="150" height="150"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icone" translatesAutoresizingMaskIntoConstraints="NO" id="NFt-Z1-j1Z">
+                    <rect key="frame" x="85" y="125" width="150" height="150"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="200" id="QoG-hn-Nzf"/>
-                        <constraint firstAttribute="height" constant="200" id="jVj-vE-2Oh"/>
+                        <constraint firstAttribute="width" constant="150" id="KuY-3J-EI1"/>
+                        <constraint firstAttribute="height" constant="150" id="zzj-gt-bHi"/>
                     </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="QoG-hn-Nzf"/>
-                            <exclude reference="jVj-vE-2Oh"/>
-                        </mask>
-                    </variation>
-                    <variation key="heightClass=regular">
-                        <mask key="constraints">
-                            <include reference="QoG-hn-Nzf"/>
-                            <include reference="jVj-vE-2Oh"/>
-                        </mask>
-                    </variation>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="labelor" translatesAutoresizingMaskIntoConstraints="NO" id="5bg-iF-mZb">
-                    <rect key="frame" x="20" y="20" width="80" height="80"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="labelor" translatesAutoresizingMaskIntoConstraints="NO" id="g4m-dW-1fQ">
+                    <rect key="frame" x="77" y="404" width="167" height="68"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0rf-Wo-PrP">
+                    <rect key="frame" x="17" y="263" width="287" height="122"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_lattes" translatesAutoresizingMaskIntoConstraints="NO" id="JCc-J9-8aW">
+                            <rect key="frame" x="12" y="20" width="68" height="82"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_saintjeandevedas" translatesAutoresizingMaskIntoConstraints="NO" id="3Il-O9-akU">
+                            <rect key="frame" x="88" y="20" width="179" height="82"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="176" id="dPH-QU-e8n"/>
-                        <constraint firstAttribute="height" constant="80" id="jDc-ku-g4E"/>
+                        <constraint firstItem="3Il-O9-akU" firstAttribute="top" secondItem="JCc-J9-8aW" secondAttribute="top" id="KFW-Ov-dNH"/>
+                        <constraint firstItem="JCc-J9-8aW" firstAttribute="leading" secondItem="0rf-Wo-PrP" secondAttribute="leading" constant="12" id="Or4-fE-fO4"/>
+                        <constraint firstAttribute="height" constant="122" id="VeJ-1k-lyn"/>
+                        <constraint firstItem="3Il-O9-akU" firstAttribute="leading" secondItem="JCc-J9-8aW" secondAttribute="trailing" constant="8" symbolic="YES" id="dyT-oQ-XBJ"/>
+                        <constraint firstItem="3Il-O9-akU" firstAttribute="centerY" secondItem="0rf-Wo-PrP" secondAttribute="centerY" id="jny-Le-bAj"/>
+                        <constraint firstAttribute="trailing" secondItem="3Il-O9-akU" secondAttribute="trailing" constant="20" id="xV2-bo-dHT"/>
                     </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="dPH-QU-e8n"/>
-                            <exclude reference="jDc-ku-g4E"/>
-                        </mask>
-                    </variation>
-                    <variation key="heightClass=regular">
-                        <mask key="constraints">
-                            <include reference="dPH-QU-e8n"/>
-                            <include reference="jDc-ku-g4E"/>
-                        </mask>
-                    </variation>
-                </imageView>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="kId-c2-rCX" firstAttribute="centerX" secondItem="5bg-iF-mZb" secondAttribute="centerX" id="Gsx-ds-php"/>
-                <constraint firstItem="5bg-iF-mZb" firstAttribute="top" secondItem="NFt-Z1-j1Z" secondAttribute="bottom" constant="8" symbolic="YES" id="RKQ-4p-HTA"/>
-                <constraint firstItem="5bg-iF-mZb" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="TIn-he-RZh"/>
-                <constraint firstItem="kId-c2-rCX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="59" id="azb-mV-8i3"/>
-                <constraint firstItem="NFt-Z1-j1Z" firstAttribute="top" secondItem="kId-c2-rCX" secondAttribute="bottom" constant="8" symbolic="YES" id="cgY-3b-Fz7"/>
-                <constraint firstItem="kId-c2-rCX" firstAttribute="centerX" secondItem="NFt-Z1-j1Z" secondAttribute="centerX" id="oFv-cE-TzC"/>
+                <constraint firstAttribute="centerX" secondItem="kId-c2-rCX" secondAttribute="centerX" id="33i-aH-RJf"/>
+                <constraint firstAttribute="bottom" secondItem="g4m-dW-1fQ" secondAttribute="bottom" constant="8" id="Aaa-IV-Xoi"/>
+                <constraint firstAttribute="centerX" secondItem="NFt-Z1-j1Z" secondAttribute="centerX" id="cy9-Xb-cHZ"/>
+                <constraint firstItem="g4m-dW-1fQ" firstAttribute="top" secondItem="0rf-Wo-PrP" secondAttribute="bottom" constant="19" id="hBb-YY-Idf"/>
+                <constraint firstAttribute="centerX" secondItem="g4m-dW-1fQ" secondAttribute="centerX" id="vp3-nx-qxd"/>
+                <constraint firstItem="NFt-Z1-j1Z" firstAttribute="top" secondItem="kId-c2-rCX" secondAttribute="bottom" constant="50" id="vuN-eW-0p4"/>
+                <constraint firstAttribute="centerX" secondItem="0rf-Wo-PrP" secondAttribute="centerX" id="yzv-XJ-aTL"/>
+                <constraint firstItem="kId-c2-rCX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="32" id="zoo-Mz-IwH"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
-            <variation key="default">
-                <mask key="subviews">
-                    <exclude reference="5bg-iF-mZb"/>
-                </mask>
-                <mask key="constraints">
-                    <exclude reference="RKQ-4p-HTA"/>
-                    <exclude reference="TIn-he-RZh"/>
-                    <exclude reference="Gsx-ds-php"/>
-                    <exclude reference="azb-mV-8i3"/>
-                    <exclude reference="oFv-cE-TzC"/>
-                    <exclude reference="cgY-3b-Fz7"/>
-                </mask>
-            </variation>
-            <variation key="heightClass=regular">
-                <mask key="subviews">
-                    <include reference="5bg-iF-mZb"/>
-                </mask>
-                <mask key="constraints">
-                    <include reference="RKQ-4p-HTA"/>
-                    <include reference="TIn-he-RZh"/>
-                    <include reference="Gsx-ds-php"/>
-                    <include reference="azb-mV-8i3"/>
-                    <include reference="oFv-cE-TzC"/>
-                    <include reference="cgY-3b-Fz7"/>
-                </mask>
-            </variation>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="548" y="554"/>
         </view>
     </objects>
     <resources>
         <image name="icone" width="66" height="66"/>
         <image name="labelor" width="167" height="68"/>
+        <image name="logo_lattes" width="68" height="82"/>
+        <image name="logo_saintjeandevedas" width="179" height="82"/>
     </resources>
 </document>

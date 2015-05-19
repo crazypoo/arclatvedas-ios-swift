@@ -10,13 +10,21 @@ import UIKit
 import CoreData
 
 class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,
-                                    UIPickerViewDataSource,UIPickerViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout
+                                    UIPickerViewDataSource,UIPickerViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,LineChartDelegate
     {
     
     @IBOutlet weak var tableview: UITableView!
     
     @IBOutlet weak var collection: UICollectionView!
     @IBOutlet weak var totalLabel : UILabel!
+    
+    
+    
+    var label = UILabel()
+    var lineChart: LineChart!
+
+     @IBOutlet weak var statview: UIView!
+    
     
     private let reuseIdentifier = "scoreButtons"
     private let sectionInsets = UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0)
@@ -67,6 +75,7 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
         tableview.layer.cornerRadius = 0;
         tableview.clipsToBounds=true;
 
+        
         
         
     }
@@ -315,6 +324,16 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
                 self.context!.deleteObject(detail.volees.objectAtIndex(indexPath.row) as! NSManagedObject)
                // detail.volees.removeObjectAtIndex(indexPath.row)
                 self.curCount--
+//                if self.curCount >= 0 {
+//                    self.curVolee = detail.volees.lastObject as! Volee
+//                } else {
+//                    self.curVolee = nil
+//                }
+                
+            }
+            saveObject(self)
+            if let detail: Tir = self.detailItem {
+                
                 if self.curCount >= 0 {
                     self.curVolee = detail.volees.lastObject as! Volee
                 } else {
@@ -322,8 +341,7 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
                 }
                 
             }
-            saveObject(self)
-            
+
 
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             
@@ -395,7 +413,6 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
         
             curVolee?.deleteLast();
             
-            
             saveObject(self)
             tableview.reloadData()
 
@@ -403,20 +420,22 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
         
        
         case 2000 :
-            if ((curVolee?.getTaille() == NOMBREMAX)  || (curVolee?.getTaille() == 3)) {
-                
-                 saveObject(self)
-                
-                curVolee = createEmptyVolee()
-                
-                 saveObject(self)
-                
-                 if let detail: Tir = self.detailItem {
-                
-                curCount =  detail.volees.count-1
+              if let vol: Volee = self.curVolee {
+                    if ((vol.getTaille() == NOMBREMAX)  || (vol.getTaille() == 3)) {
+                        
+                         saveObject(self)
+                        
+                        curVolee = createEmptyVolee()
+                        
+                         saveObject(self)
+                        
+                         if let detail: Tir = self.detailItem {
+                        
+                        curCount =  detail.volees.count-1
+                            }
+                        
                     }
-                
-            }
+              }
             if self.detailItem!.volees.count == 0 {
                 curVolee = createEmptyVolee()
                 
@@ -427,7 +446,26 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
             }
             tableview.reloadData()
 
-
+    case 3000 :
+        UIView.transitionWithView(self.statview, duration: 0.325, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+            if  self.statview.alpha == 0.0 {
+                if let detail: Tir = self.detailItem {
+                    
+                    if detail.volees.count > 1 {
+                        self.buildChart()
+                        self.statview.alpha=1.0
+                    }
+                
+                }
+            }else{
+                self.statview.alpha=0.0
+            }
+            
+        }, completion: { (Bool) -> Void in
+            
+        })
+        
+        
         default :
             curVolee?.addScore(sender.tag);
             saveObject(self)
@@ -474,5 +512,113 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
         
         return volee
     }
+    
+    
+    
+    
+    func buildChart() {
+        
+//        var lineChart: LineChart!
+
+        var views: [String: AnyObject] = [:]
+        self.statview!.backgroundColor = UIColor.whiteColor()
+        
+        
+        label.text = "..."
+        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.textAlignment = NSTextAlignment.Center
+        self.statview.addSubview(label)
+        views["label"] = label
+        self.statview.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[label]-|", options: nil, metrics: nil, views: views))
+        self.statview.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-80-[label]", options: nil, metrics: nil, views: views))
+        
+        // simple arrays
+        var data: [CGFloat] = []
+        var data2: [CGFloat] = []
+        
+        // simple line with custom x axis labels
+        var xLabels: [String] = []
+        
+        if let detail: Tir = self.detailItem {
+            for (var j = 0 ; j < detail.volees.count ; j++){
+                let vol: Volee =  detail.volees.objectAtIndex(j) as! Volee
+                let f:CGFloat = CGFloat(vol.getTotal())
+                data.append(CGFloat(vol.getTotal()))
+                var localtotal = 0
+                var localcount = 0
+
+                for (var i = 0 ; i < NOMBREMAX ; i++){
+                    
+                    let points:Int = vol.getAt(i)
+                    if points >= 0 {
+                        
+                        localcount++
+                        if points == 100 {
+                           localtotal += 10
+                        }else  if points == 0 {
+                            
+                        } else {
+
+                            localtotal += points
+                        }
+
+                    }
+                    
+                        
+                }
+                if localcount != 0 {
+                 data2.append( CGFloat(localtotal / localcount))
+                }else{
+                    data2.append(0)
+
+                }
+                xLabels.append("\(j+1)")
+            }
+        }
+        lineChart = LineChart()
+        lineChart!.backgroundColor = UIColor.whiteColor()
+        lineChart.animation.enabled = true
+        lineChart.area = true
+        lineChart.x.labels.visible = true
+        lineChart.x.grid.count = 5
+        lineChart.y.grid.count = 5
+        lineChart.x.labels.values = xLabels
+        lineChart.y.labels.visible = true
+        lineChart.addLine(data)
+        lineChart.addLine(data2)
+        
+        lineChart.setTranslatesAutoresizingMaskIntoConstraints(false)
+        lineChart.delegate = self
+        self.statview.addSubview(lineChart)
+        views["chart"] = lineChart
+        self.statview.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[chart]-0-|", options: nil, metrics: nil, views: views))
+        
+        self.statview.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[label]-[chart(==200)]", options: nil, metrics: nil, views: views))
+        
+        
+        
+        
+    }
+    
+    
+    /**
+    * Line chart delegate method.
+    */
+    func didSelectDataPoint(x: CGFloat, yValues: Array<CGFloat>) {
+        label.text = "Volée: \(Int(x+1))     (Score,Moy): \(yValues)"
+    }
+    
+    
+    
+    /**
+    * Redraw chart on device rotation.
+    */
+    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+        if let chart = lineChart {
+            chart.setNeedsDisplay()
+        }
+    }
+
+    
     
 }

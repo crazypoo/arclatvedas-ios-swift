@@ -177,7 +177,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             }else {
                 if segue.identifier == "matos" {
                     if let indexPath = self.tableView.indexPathForSelectedRow() {
-                        let object = self.fetchedResultsEventController.objectAtIndexPath(indexPath) as! NSManagedObject
+                        //let object = self.fetchedResultsEventController.objectAtIndexPath(indexPath) as! NSManagedObject
                         let controller = (segue.destinationViewController as! UINavigationController).topViewController as! ListeViewController
                         
                         controller.managedObjectContext=self.managedObjectContext;
@@ -204,6 +204,18 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                     }
                     
                     
+                } else {
+                    if segue.identifier == "statistique" {
+                        let controller = (segue.destinationViewController as! UINavigationController).topViewController as! StatistiqueViewController
+                        controller.managedObjectContext=self.managedObjectContext;
+                        
+                        controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                        
+                        controller.navigationItem.leftItemsSupplementBackButton = true
+                        
+                        controller.tablename="Tir"
+                        
+                    }
                 }
                 
             }
@@ -228,6 +240,26 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UITableViewCell
         self.configureCell(cell, atIndexPath: indexPath)
+        
+        
+        if indexPath.row ==  Table.Scores.rawValue {
+            let cframe: CGRect = CGRect(x: cell.contentView.frame.width-100 ,y: 0 ,width: 100, height:cell.contentView.frame.height)
+            
+            
+            //let b:UIButton = UIButton(frame:cframe)
+            let b:UIButton = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+            b.frame = CGRect(x: cell.contentView.frame.width-100 ,y: 0 ,width: 100, height:cell.contentView.frame.height)
+            b.backgroundColor = UIColor.whiteColor()
+            b.setTitle( "Graph", forState: .Normal)
+            b.setTitleColor(UIColor.blackColor(), forState: .Normal)
+            
+            b.addTarget(self, action: "pressedStat:", forControlEvents: .TouchUpInside)
+            
+            cell.contentView.addSubview(b)
+
+        }
+        
+        
         return cell
     }
     
@@ -268,6 +300,12 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         }
         
         
+    }
+    
+    func pressedStat(sender: UIButton!) {
+        
+        
+        performSegueWithIdentifier("statistique", sender: self)
     }
     //    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     //        if editingStyle == .Delete {

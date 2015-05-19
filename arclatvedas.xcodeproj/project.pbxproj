@@ -20,8 +20,10 @@
 		E16834CA1AEE6B06005E14B6 /* MatosCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16834C91AEE6B06005E14B6 /* MatosCell.swift */; };
 		E16834CC1AEE6CFB005E14B6 /* DistanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16834CB1AEE6CFB005E14B6 /* DistanceCell.swift */; };
 		E16834CE1AEE6D63005E14B6 /* TirCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16834CD1AEE6D63005E14B6 /* TirCell.swift */; };
+		E1741D801B0A30E7000CB132 /* StatistiqueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1741D7F1B0A30E7000CB132 /* StatistiqueViewController.swift */; };
 		E194A2281B024BDD001FC95B /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = E194A2271B024BDD001FC95B /* README.md */; };
 		E1B09EB21AEA320700599185 /* arclatvedas.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1B09EB01AEA320700599185 /* arclatvedas.xcdatamodeld */; };
+		E1B7B10D1B09DCE500AEF6EB /* LineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B7B10C1B09DCE500AEF6EB /* LineChart.swift */; };
 		E1C54D6B1AF1057100E7960C /* DistanceCellEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C54D6A1AF1057100E7960C /* DistanceCellEdit.swift */; };
 		E1C54D701AF1289E00E7960C /* Volee.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C54D6D1AF1289E00E7960C /* Volee.swift */; };
 		E1C54D711AF1289E00E7960C /* Tir.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C54D6E1AF1289E00E7960C /* Tir.swift */; };
@@ -59,8 +61,10 @@
 		E16834C91AEE6B06005E14B6 /* MatosCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatosCell.swift; sourceTree = "<group>"; };
 		E16834CB1AEE6CFB005E14B6 /* DistanceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistanceCell.swift; sourceTree = "<group>"; };
 		E16834CD1AEE6D63005E14B6 /* TirCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TirCell.swift; sourceTree = "<group>"; };
+		E1741D7F1B0A30E7000CB132 /* StatistiqueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatistiqueViewController.swift; sourceTree = "<group>"; };
 		E194A2271B024BDD001FC95B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E1B09EB11AEA320700599185 /* arclatvedas.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = arclatvedas.xcdatamodel; sourceTree = "<group>"; };
+		E1B7B10C1B09DCE500AEF6EB /* LineChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineChart.swift; sourceTree = "<group>"; };
 		E1C54D6A1AF1057100E7960C /* DistanceCellEdit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistanceCellEdit.swift; sourceTree = "<group>"; };
 		E1C54D6D1AF1289E00E7960C /* Volee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Volee.swift; sourceTree = "<group>"; };
 		E1C54D6E1AF1289E00E7960C /* Tir.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tir.swift; sourceTree = "<group>"; };
@@ -132,6 +136,7 @@
 		E1D197911AE914E800616F1B /* arclatvedas */ = {
 			isa = PBXGroup;
 			children = (
+				E1B7B10C1B09DCE500AEF6EB /* LineChart.swift */,
 				E1C54D721AF129BB00E7960C /* coredata */,
 				E1D197941AE914E800616F1B /* AppDelegate.swift */,
 				E16834C71AEE3AAE005E14B6 /* ListeViewController.swift */,
@@ -142,6 +147,7 @@
 				E152128F1AEF78B00010AEAD /* FlecheCell.swift */,
 				E1D197991AE914E800616F1B /* MasterViewController.swift */,
 				E1D1979B1AE914E800616F1B /* DetailViewController.swift */,
+				E1741D7F1B0A30E7000CB132 /* StatistiqueViewController.swift */,
 				E152128D1AEF73370010AEAD /* DetailEditMaterielViewController.swift */,
 				E15212911AEFC5C30010AEAD /* DetailEditFlecheViewController.swift */,
 				E15212931AEFC6C30010AEAD /* DetailEditDistanceViewController.swift */,
@@ -284,6 +290,7 @@
 				E1C54D701AF1289E00E7960C /* Volee.swift in Sources */,
 				E152129A1AF0C94C0010AEAD /* Hausse.swift in Sources */,
 				E16834CC1AEE6CFB005E14B6 /* DistanceCell.swift in Sources */,
+				E1B7B10D1B09DCE500AEF6EB /* LineChart.swift in Sources */,
 				E15212941AEFC6C30010AEAD /* DetailEditDistanceViewController.swift in Sources */,
 				E15212901AEF78B00010AEAD /* FlecheCell.swift in Sources */,
 				E1D197951AE914E800616F1B /* AppDelegate.swift in Sources */,
@@ -297,6 +304,7 @@
 				E1C54D741AF22E0B00E7960C /* PseudoHausse.swift in Sources */,
 				E15212991AF0C94C0010AEAD /* Distance.swift in Sources */,
 				E15212961AEFCA4A0010AEAD /* DetailEditTirViewController.swift in Sources */,
+				E1741D801B0A30E7000CB132 /* StatistiqueViewController.swift in Sources */,
 				E1C54D6B1AF1057100E7960C /* DistanceCellEdit.swift in Sources */,
 				E152128E1AEF73370010AEAD /* DetailEditMaterielViewController.swift in Sources */,
 				E14431971AEA88D4006D8577 /* WebViewController.swift in Sources */,

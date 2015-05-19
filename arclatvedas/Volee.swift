@@ -23,10 +23,10 @@ class Volee: NSManagedObject {
     var scores:NSMutableArray {
     
         get {
+                if self.volee.isEmpty {
+                    self.volee = "[]"
+                }
             
-            if  volee.isEmpty {
-                self.volee = "[]"
-            }
             var json:JSON = JSON(data:self.volee.dataUsingEncoding(NSUTF8StringEncoding)!);
     
             //

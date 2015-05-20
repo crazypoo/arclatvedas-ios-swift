@@ -14,7 +14,7 @@ class StatistiqueViewController: UIViewController, NSFetchedResultsControllerDel
 
     var label = UILabel()
     var lineChart: LineChart!
-    var scrollView: UIScrollView!
+    //var scrollView: UIScrollView!
     
     
     var managedObjectContext: NSManagedObjectContext? = nil
@@ -35,7 +35,7 @@ class StatistiqueViewController: UIViewController, NSFetchedResultsControllerDel
         fetchRequest.fetchBatchSize = 20
         
         // Edit the sort key as appropriate.
-        let sortDescriptor = NSSortDescriptor(key: "timeStamp", ascending: false)
+        let sortDescriptor = NSSortDescriptor(key: "timeStamp", ascending: true)
         let sortDescriptors = [sortDescriptor]
         
         fetchRequest.sortDescriptors = [sortDescriptor]
@@ -92,7 +92,10 @@ class StatistiqueViewController: UIViewController, NSFetchedResultsControllerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        let cframe: CGRect = CGRect(x: 0 ,y: 0 ,width: view.frame.width, height:view.frame.height)
+//
+//        scrollView = UIScrollView(frame: cframe)
+//        
         let results:[Tir] = fetchedResultsController.fetchedObjects as! [Tir]
         if results.count > 1 {
             var views: [String: AnyObject] = [:]

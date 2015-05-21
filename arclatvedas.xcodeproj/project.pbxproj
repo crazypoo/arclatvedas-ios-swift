@@ -22,6 +22,14 @@
 		E16834CE1AEE6D63005E14B6 /* TirCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16834CD1AEE6D63005E14B6 /* TirCell.swift */; };
 		E1741D801B0A30E7000CB132 /* StatistiqueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1741D7F1B0A30E7000CB132 /* StatistiqueViewController.swift */; };
 		E194A2281B024BDD001FC95B /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = E194A2271B024BDD001FC95B /* README.md */; };
+		E19886FB1B0DDE91003F07FC /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19886FA1B0DDE91003F07FC /* InterfaceController.swift */; };
+		E19886FD1B0DDE91003F07FC /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19886FC1B0DDE91003F07FC /* NotificationController.swift */; };
+		E19886FF1B0DDE91003F07FC /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19886FE1B0DDE91003F07FC /* GlanceController.swift */; };
+		E19887011B0DDE91003F07FC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E19887001B0DDE91003F07FC /* Images.xcassets */; };
+		E19887051B0DDE92003F07FC /* arcLatVedas WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = E19887041B0DDE92003F07FC /* arcLatVedas WatchKit App.app */; };
+		E198870D1B0DDE92003F07FC /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E198870B1B0DDE92003F07FC /* Interface.storyboard */; };
+		E198870F1B0DDE92003F07FC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E198870E1B0DDE92003F07FC /* Images.xcassets */; };
+		E19887121B0DDE92003F07FC /* arcLatVedas WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E19886F51B0DDE91003F07FC /* arcLatVedas WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E1B09EB21AEA320700599185 /* arclatvedas.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1B09EB01AEA320700599185 /* arclatvedas.xcdatamodeld */; };
 		E1B7B10D1B09DCE500AEF6EB /* LineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B7B10C1B09DCE500AEF6EB /* LineChart.swift */; };
 		E1C54D6B1AF1057100E7960C /* DistanceCellEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C54D6A1AF1057100E7960C /* DistanceCellEdit.swift */; };
@@ -38,6 +46,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E19887061B0DDE92003F07FC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E1D197871AE914E800616F1B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E19887031B0DDE92003F07FC;
+			remoteInfo = "arcLatVedas WatchKit App";
+		};
+		E19887101B0DDE92003F07FC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E1D197871AE914E800616F1B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E19886F41B0DDE91003F07FC;
+			remoteInfo = "arcLatVedas WatchKit Extension";
+		};
 		E1D197AA1AE914E800616F1B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E1D197871AE914E800616F1B /* Project object */;
@@ -46,6 +68,20 @@
 			remoteInfo = arclatvedas;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E19887191B0DDE92003F07FC /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				E19887121B0DDE92003F07FC /* arcLatVedas WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		E14431961AEA88D4006D8577 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +99,17 @@
 		E16834CD1AEE6D63005E14B6 /* TirCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TirCell.swift; sourceTree = "<group>"; };
 		E1741D7F1B0A30E7000CB132 /* StatistiqueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatistiqueViewController.swift; sourceTree = "<group>"; };
 		E194A2271B024BDD001FC95B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E19886F51B0DDE91003F07FC /* arcLatVedas WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "arcLatVedas WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E19886F81B0DDE91003F07FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E19886F91B0DDE91003F07FC /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		E19886FA1B0DDE91003F07FC /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		E19886FC1B0DDE91003F07FC /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		E19886FE1B0DDE91003F07FC /* GlanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
+		E19887001B0DDE91003F07FC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E19887041B0DDE92003F07FC /* arcLatVedas WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "arcLatVedas WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E198870A1B0DDE92003F07FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E198870C1B0DDE92003F07FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		E198870E1B0DDE92003F07FC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E1B09EB11AEA320700599185 /* arclatvedas.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = arclatvedas.xcdatamodel; sourceTree = "<group>"; };
 		E1B7B10C1B09DCE500AEF6EB /* LineChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineChart.swift; sourceTree = "<group>"; };
 		E1C54D6A1AF1057100E7960C /* DistanceCellEdit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistanceCellEdit.swift; sourceTree = "<group>"; };
@@ -83,6 +130,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E19886F21B0DDE91003F07FC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E1D1978C1AE914E800616F1B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -100,6 +154,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E19886F61B0DDE91003F07FC /* arcLatVedas WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				E19886FA1B0DDE91003F07FC /* InterfaceController.swift */,
+				E19886FC1B0DDE91003F07FC /* NotificationController.swift */,
+				E19886FE1B0DDE91003F07FC /* GlanceController.swift */,
+				E19887001B0DDE91003F07FC /* Images.xcassets */,
+				E19886F71B0DDE91003F07FC /* Supporting Files */,
+			);
+			path = "arcLatVedas WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		E19886F71B0DDE91003F07FC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E19886F81B0DDE91003F07FC /* Info.plist */,
+				E19886F91B0DDE91003F07FC /* PushNotificationPayload.apns */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E19887081B0DDE92003F07FC /* arcLatVedas WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				E198870B1B0DDE92003F07FC /* Interface.storyboard */,
+				E198870E1B0DDE92003F07FC /* Images.xcassets */,
+				E19887091B0DDE92003F07FC /* Supporting Files */,
+			);
+			path = "arcLatVedas WatchKit App";
+			sourceTree = "<group>";
+		};
+		E19887091B0DDE92003F07FC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E198870A1B0DDE92003F07FC /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		E1C54D721AF129BB00E7960C /* coredata */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +213,8 @@
 				E194A2271B024BDD001FC95B /* README.md */,
 				E1D197911AE914E800616F1B /* arclatvedas */,
 				E1D197AC1AE914E800616F1B /* arclatvedasTests */,
+				E19886F61B0DDE91003F07FC /* arcLatVedas WatchKit Extension */,
+				E19887081B0DDE92003F07FC /* arcLatVedas WatchKit App */,
 				E1D197901AE914E800616F1B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -129,6 +224,8 @@
 			children = (
 				E1D1978F1AE914E800616F1B /* arclatvedas.app */,
 				E1D197A91AE914E800616F1B /* arclatvedasTests.xctest */,
+				E19886F51B0DDE91003F07FC /* arcLatVedas WatchKit Extension.appex */,
+				E19887041B0DDE92003F07FC /* arcLatVedas WatchKit App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -189,6 +286,39 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		E19886F41B0DDE91003F07FC /* arcLatVedas WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E19887181B0DDE92003F07FC /* Build configuration list for PBXNativeTarget "arcLatVedas WatchKit Extension" */;
+			buildPhases = (
+				E19886F11B0DDE91003F07FC /* Sources */,
+				E19886F21B0DDE91003F07FC /* Frameworks */,
+				E19886F31B0DDE91003F07FC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E19887071B0DDE92003F07FC /* PBXTargetDependency */,
+			);
+			name = "arcLatVedas WatchKit Extension";
+			productName = "arcLatVedas WatchKit Extension";
+			productReference = E19886F51B0DDE91003F07FC /* arcLatVedas WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit-extension";
+		};
+		E19887031B0DDE92003F07FC /* arcLatVedas WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E19887171B0DDE92003F07FC /* Build configuration list for PBXNativeTarget "arcLatVedas WatchKit App" */;
+			buildPhases = (
+				E19887021B0DDE92003F07FC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "arcLatVedas WatchKit App";
+			productName = "arcLatVedas WatchKit App";
+			productReference = E19887041B0DDE92003F07FC /* arcLatVedas WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp";
+		};
 		E1D1978E1AE914E800616F1B /* arclatvedas */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E1D197B31AE914E800616F1B /* Build configuration list for PBXNativeTarget "arclatvedas" */;
@@ -196,10 +326,12 @@
 				E1D1978B1AE914E800616F1B /* Sources */,
 				E1D1978C1AE914E800616F1B /* Frameworks */,
 				E1D1978D1AE914E800616F1B /* Resources */,
+				E19887191B0DDE92003F07FC /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E19887111B0DDE92003F07FC /* PBXTargetDependency */,
 			);
 			name = arclatvedas;
 			productName = arclatvedas;
@@ -233,6 +365,14 @@
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = jack;
 				TargetAttributes = {
+					E19886F41B0DDE91003F07FC = {
+						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = FF9F6L695S;
+					};
+					E19887031B0DDE92003F07FC = {
+						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = FF9F6L695S;
+					};
 					E1D1978E1AE914E800616F1B = {
 						CreatedOnToolsVersion = 6.3.1;
 						DevelopmentTeam = FF9F6L695S;
@@ -258,11 +398,31 @@
 			targets = (
 				E1D1978E1AE914E800616F1B /* arclatvedas */,
 				E1D197A81AE914E800616F1B /* arclatvedasTests */,
+				E19886F41B0DDE91003F07FC /* arcLatVedas WatchKit Extension */,
+				E19887031B0DDE92003F07FC /* arcLatVedas WatchKit App */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E19886F31B0DDE91003F07FC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E19887011B0DDE91003F07FC /* Images.xcassets in Resources */,
+				E19887051B0DDE92003F07FC /* arcLatVedas WatchKit App.app in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E19887021B0DDE92003F07FC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E198870D1B0DDE92003F07FC /* Interface.storyboard in Resources */,
+				E198870F1B0DDE92003F07FC /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E1D1978D1AE914E800616F1B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -283,6 +443,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E19886F11B0DDE91003F07FC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E19886FD1B0DDE91003F07FC /* NotificationController.swift in Sources */,
+				E19886FB1B0DDE91003F07FC /* InterfaceController.swift in Sources */,
+				E19886FF1B0DDE91003F07FC /* GlanceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E1D1978B1AE914E800616F1B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -325,6 +495,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		E19887071B0DDE92003F07FC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E19887031B0DDE92003F07FC /* arcLatVedas WatchKit App */;
+			targetProxy = E19887061B0DDE92003F07FC /* PBXContainerItemProxy */;
+		};
+		E19887111B0DDE92003F07FC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E19886F41B0DDE91003F07FC /* arcLatVedas WatchKit Extension */;
+			targetProxy = E19887101B0DDE92003F07FC /* PBXContainerItemProxy */;
+		};
 		E1D197AB1AE914E800616F1B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E1D1978E1AE914E800616F1B /* arclatvedas */;
@@ -333,6 +513,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		E198870B1B0DDE92003F07FC /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E198870C1B0DDE92003F07FC /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
 		E1D1979D1AE914E800616F1B /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -352,6 +540,70 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		E19887131B0DDE92003F07FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "arcLatVedas WatchKit Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		E19887141B0DDE92003F07FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "arcLatVedas WatchKit Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		E19887151B0DDE92003F07FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IBSC_MODULE = arcLatVedas_WatchKit_Extension;
+				INFOPLIST_FILE = "arcLatVedas WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Debug;
+		};
+		E19887161B0DDE92003F07FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				IBSC_MODULE = arcLatVedas_WatchKit_Extension;
+				INFOPLIST_FILE = "arcLatVedas WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Release;
+		};
 		E1D197B11AE914E800616F1B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -498,6 +750,22 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E19887171B0DDE92003F07FC /* Build configuration list for PBXNativeTarget "arcLatVedas WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E19887151B0DDE92003F07FC /* Debug */,
+				E19887161B0DDE92003F07FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E19887181B0DDE92003F07FC /* Build configuration list for PBXNativeTarget "arcLatVedas WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E19887131B0DDE92003F07FC /* Debug */,
+				E19887141B0DDE92003F07FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		E1D1978A1AE914E800616F1B /* Build configuration list for PBXProject "arclatvedas" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

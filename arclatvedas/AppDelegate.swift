@@ -135,8 +135,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     
     
 
+    // MARK: - WatchKit communication point
     
     
+    func application(application: UIApplication,
+        handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]?,
+        reply: (([NSObject : AnyObject]!) -> Void)!) {
+            
+            // 1
+            if let userInfo = userInfo, request = userInfo["request"] as? String {
+                if request == "refreshData" {
+                    // 2
+                    let hello = "hello, back"
+                    
+                    // 3
+                    reply(["response": NSKeyedArchiver.archivedDataWithRootObject(hello)])
+                    return
+                }
+            }
+            
+            // 4
+            reply([:])
+    }
+    
+//    let wu:WatchUtils = WatchUtils()
+//    
+//    let tir = wu.getLastTir(managedObjectContext!,table:"Tir")
+//    
+//    NSLog("tir:\(tir.description)")
+//    // 3
+//    reply(["response": NSKeyedArchiver.archivedDataWithRootObject("etzerz")])
+//    return
+
 
 }
 

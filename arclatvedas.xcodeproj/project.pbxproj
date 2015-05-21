@@ -30,6 +30,7 @@
 		E198870D1B0DDE92003F07FC /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E198870B1B0DDE92003F07FC /* Interface.storyboard */; };
 		E198870F1B0DDE92003F07FC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E198870E1B0DDE92003F07FC /* Images.xcassets */; };
 		E19887121B0DDE92003F07FC /* arcLatVedas WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E19886F51B0DDE91003F07FC /* arcLatVedas WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E198871D1B0E22AF003F07FC /* WatchUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E198871C1B0E22AF003F07FC /* WatchUtils.swift */; };
 		E1B09EB21AEA320700599185 /* arclatvedas.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1B09EB01AEA320700599185 /* arclatvedas.xcdatamodeld */; };
 		E1B7B10D1B09DCE500AEF6EB /* LineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B7B10C1B09DCE500AEF6EB /* LineChart.swift */; };
 		E1C54D6B1AF1057100E7960C /* DistanceCellEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C54D6A1AF1057100E7960C /* DistanceCellEdit.swift */; };
@@ -110,6 +111,7 @@
 		E198870A1B0DDE92003F07FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E198870C1B0DDE92003F07FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		E198870E1B0DDE92003F07FC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E198871C1B0E22AF003F07FC /* WatchUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchUtils.swift; sourceTree = "<group>"; };
 		E1B09EB11AEA320700599185 /* arclatvedas.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = arclatvedas.xcdatamodel; sourceTree = "<group>"; };
 		E1B7B10C1B09DCE500AEF6EB /* LineChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineChart.swift; sourceTree = "<group>"; };
 		E1C54D6A1AF1057100E7960C /* DistanceCellEdit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistanceCellEdit.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				E1B7B10C1B09DCE500AEF6EB /* LineChart.swift */,
 				E1C54D721AF129BB00E7960C /* coredata */,
 				E1D197941AE914E800616F1B /* AppDelegate.swift */,
+				E198871C1B0E22AF003F07FC /* WatchUtils.swift */,
 				E16834C71AEE3AAE005E14B6 /* ListeViewController.swift */,
 				E16834C91AEE6B06005E14B6 /* MatosCell.swift */,
 				E16834CB1AEE6CFB005E14B6 /* DistanceCell.swift */,
@@ -466,6 +469,7 @@
 				E1D197951AE914E800616F1B /* AppDelegate.swift in Sources */,
 				E16834CA1AEE6B06005E14B6 /* MatosCell.swift in Sources */,
 				E1C54D711AF1289E00E7960C /* Tir.swift in Sources */,
+				E198871D1B0E22AF003F07FC /* WatchUtils.swift in Sources */,
 				E1D1979A1AE914E800616F1B /* MasterViewController.swift in Sources */,
 				E16834C81AEE3AAE005E14B6 /* ListeViewController.swift in Sources */,
 				E15212921AEFC5C30010AEAD /* DetailEditFlecheViewController.swift in Sources */,
@@ -550,7 +554,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "arcLatVedas WatchKit Extension/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SKIP_INSTALL = YES;
@@ -563,7 +567,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "arcLatVedas WatchKit Extension/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SKIP_INSTALL = YES;
@@ -581,7 +585,7 @@
 				);
 				IBSC_MODULE = arcLatVedas_WatchKit_Extension;
 				INFOPLIST_FILE = "arcLatVedas WatchKit App/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -596,7 +600,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				IBSC_MODULE = arcLatVedas_WatchKit_Extension;
 				INFOPLIST_FILE = "arcLatVedas WatchKit App/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;

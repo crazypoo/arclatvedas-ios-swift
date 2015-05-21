@@ -38,4 +38,24 @@ class Tir: NSManagedObject {
         }
         return totale
     }
+    
+//    func getJson()->String{
+//        
+//        
+//        let dateFormat:NSDateFormatter = NSDateFormatter()
+//        dateFormat.dateStyle = NSDateFormatterStyle.ShortStyle
+//        dateFormat.dateFormat="dd/MM/yy"
+//        let dateString:String = dateFormat.stringFromDate(timeStamp)
+//
+//        
+//        
+//        var dico:Dictionary<String,AnyObject> = ["location":location,"distance":distance,
+//            "timeStamp": dateString, "volees":volees]
+//        
+//        let data:NSData =  NSJSONSerialization.dataWithJSONObject(dico,options: NSJSONWritingOptions(0), error: nil)!
+//        
+//        return NSString(data: data, encoding: NSUTF8StringEncoding)!.description
+//
+//        
+//    }
 }

@@ -11,11 +11,31 @@ import Foundation
 
 
 class InterfaceController: WKInterfaceController {
+    @IBOutlet weak var imageicone: WKInterfaceImage!
 
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
         // Configure interface objects here.
+        
+//        var dico: Dictionary<String, String> = ["AAPL" : "Apple Inc", "GOOG" : "Google Inc", "AMZN" : "Amazon.com, Inc", "FB" : "Facebook Inc"]
+
+        
+        InterfaceController.openParentApplication(["request": "refreshData"],
+            reply: { (replyInfo, error) -> Void in
+                // TODO: process reply data
+                NSLog("Reply: \(replyInfo)")
+                
+                
+                if let response = replyInfo["response"] as? NSData {
+                    if let str = NSKeyedUnarchiver.unarchiveObjectWithData(response) as? String {
+                            NSLog("response: \(str)")
+                    }
+                }
+
+        })
+    
+    
     }
 
     override func willActivate() {

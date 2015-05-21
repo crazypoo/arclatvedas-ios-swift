@@ -12,6 +12,7 @@ Simplement on peut :
 - ajouter les reglages de viseur
 - ajouter les scores
 
+-test AppleWatch (branch specific)
 
 voir aussi la version android, quasiment iso-fonctionnelle
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-
+import CoreDataProxy
 
 protocol resultDelegateProtocol {
     func resultChange(therow : Int , name:String , hausse : String)

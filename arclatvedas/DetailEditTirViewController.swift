@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import CoreDataProxy
 
 class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,
                                     UIPickerViewDataSource,UIPickerViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,LineChartDelegate
@@ -36,7 +37,7 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
      let tags = [100,10,9,8,7,6,5,4,3,2,1,0]
     
 
-    var context : AnyObject?
+   // var context : AnyObject?
     
     
     let NOMBREMAX : Int = 6
@@ -175,16 +176,17 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
 //            let ladate :NSDate = dateFormat.dateFromString("")!
 //            
             
-            if let cont:AnyObject = self.context {
-                var error: NSError? = nil
-                if !cont.save(&error) {
-                    // Replace this implementation with code to handle the error appropriately.
-                    // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                    //println("Unresolved error \(error), \(error.userInfo)")
-                    abort()
-                }
-                
-            }
+            DataManager.saveManagedContext()
+//            if let cont:AnyObject = self.context {
+//                var error: NSError? = nil
+//                if !cont.save(&error) {
+//                    // Replace this implementation with code to handle the error appropriately.
+//                    // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+//                    //println("Unresolved error \(error), \(error.userInfo)")
+//                    abort()
+//                }
+//                
+//            }
             
             if let detail: Tir = self.detailItem {
                 totalLabel?.text = detail.getTotal().description
@@ -320,8 +322,8 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
      func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             if let detail: Tir = self.detailItem {
-                
-                self.context!.deleteObject(detail.volees.objectAtIndex(indexPath.row) as! NSManagedObject)
+                DataManager.deleteManagedObject(detail.volees.objectAtIndex(indexPath.row) as! NSManagedObject)
+//                self.context!.deleteObject(detail.volees.objectAtIndex(indexPath.row) as! NSManagedObject)
                // detail.volees.removeObjectAtIndex(indexPath.row)
                 self.curCount--
 //                if self.curCount >= 0 {
@@ -498,9 +500,9 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
         
  
         
-        let entityDescription = NSEntityDescription.entityForName("Volee", inManagedObjectContext: self.context as! NSManagedObjectContext)
+        let entityDescription = NSEntityDescription.entityForName("Volee", inManagedObjectContext: DataManager.getContext())
         
-        let volee = Volee(entity: entityDescription!, insertIntoManagedObjectContext: self.context as! NSManagedObjectContext)
+        let volee = Volee(entity: entityDescription!, insertIntoManagedObjectContext: DataManager.getContext())
         
         volee.setValue("[]", forKey: "volee")
         volee.setValue(detailItem!, forKey: "relationship")

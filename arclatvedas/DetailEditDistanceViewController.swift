@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreDataProxy
 
 class DetailEditDistanceViewController: UIViewController,UITableViewDataSource,UITableViewDelegate, resultDelegateProtocol,UITextFieldDelegate {
     
@@ -131,18 +132,18 @@ class DetailEditDistanceViewController: UIViewController,UITableViewDataSource,U
 
             
             
-            
+            DataManager.saveManagedContext()
            
-            if let cont:AnyObject = self.context {
-                var error: NSError? = nil
-                if !cont.save(&error) {
-                    // Replace this implementation with code to handle the error appropriately.
-                    // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                    //println("Unresolved error \(error), \(error.userInfo)")
-                    abort()
-                }
-                
-            }
+//            if let cont:AnyObject = self.context {
+//                var error: NSError? = nil
+//                if !cont.save(&error) {
+//                    // Replace this implementation with code to handle the error appropriately.
+//                    // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+//                    //println("Unresolved error \(error), \(error.userInfo)")
+//                    abort()
+//                }
+//                
+//            }
             
         }
     }

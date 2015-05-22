@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreDataProxy
 
 class DistanceCell: UITableViewCell ,UITableViewDataSource,UITableViewDelegate{
     

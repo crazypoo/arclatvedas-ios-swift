@@ -34,6 +34,20 @@
                ReferencedContainer = "container:arclatvedas.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E198872E1B0F22E2003F07FC"
+               BuildableName = "CoreDataProxyTests.xctest"
+               BlueprintName = "CoreDataProxyTests"
+               ReferencedContainer = "container:arclatvedas.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -49,6 +63,16 @@
                BlueprintIdentifier = "E1D197A81AE914E800616F1B"
                BuildableName = "arclatvedasTests.xctest"
                BlueprintName = "arclatvedasTests"
+               ReferencedContainer = "container:arclatvedas.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E198872E1B0F22E2003F07FC"
+               BuildableName = "CoreDataProxyTests.xctest"
+               BlueprintName = "CoreDataProxyTests"
                ReferencedContainer = "container:arclatvedas.xcodeproj">
             </BuildableReference>
          </TestableReference>

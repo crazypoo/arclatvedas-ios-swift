@@ -8,14 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		E14431971AEA88D4006D8577 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14431961AEA88D4006D8577 /* WebViewController.swift */; };
-		E1468FB81AF778C50085223D /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1468FB71AF778C50085223D /* SwiftyJSON.swift */; };
 		E152128E1AEF73370010AEAD /* DetailEditMaterielViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E152128D1AEF73370010AEAD /* DetailEditMaterielViewController.swift */; };
 		E15212901AEF78B00010AEAD /* FlecheCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E152128F1AEF78B00010AEAD /* FlecheCell.swift */; };
 		E15212921AEFC5C30010AEAD /* DetailEditFlecheViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15212911AEFC5C30010AEAD /* DetailEditFlecheViewController.swift */; };
 		E15212941AEFC6C30010AEAD /* DetailEditDistanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15212931AEFC6C30010AEAD /* DetailEditDistanceViewController.swift */; };
 		E15212961AEFCA4A0010AEAD /* DetailEditTirViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15212951AEFCA4A0010AEAD /* DetailEditTirViewController.swift */; };
-		E15212991AF0C94C0010AEAD /* Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15212971AF0C94C0010AEAD /* Distance.swift */; };
-		E152129A1AF0C94C0010AEAD /* Hausse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15212981AF0C94C0010AEAD /* Hausse.swift */; };
 		E16834C81AEE3AAE005E14B6 /* ListeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16834C71AEE3AAE005E14B6 /* ListeViewController.swift */; };
 		E16834CA1AEE6B06005E14B6 /* MatosCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16834C91AEE6B06005E14B6 /* MatosCell.swift */; };
 		E16834CC1AEE6CFB005E14B6 /* DistanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16834CB1AEE6CFB005E14B6 /* DistanceCell.swift */; };
@@ -30,13 +27,23 @@
 		E198870D1B0DDE92003F07FC /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E198870B1B0DDE92003F07FC /* Interface.storyboard */; };
 		E198870F1B0DDE92003F07FC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E198870E1B0DDE92003F07FC /* Images.xcassets */; };
 		E19887121B0DDE92003F07FC /* arcLatVedas WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E19886F51B0DDE91003F07FC /* arcLatVedas WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		E198871D1B0E22AF003F07FC /* WatchUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E198871C1B0E22AF003F07FC /* WatchUtils.swift */; };
-		E1B09EB21AEA320700599185 /* arclatvedas.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1B09EB01AEA320700599185 /* arclatvedas.xcdatamodeld */; };
+		E198872A1B0F22E2003F07FC /* CoreDataProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = E19887291B0F22E2003F07FC /* CoreDataProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E19887301B0F22E2003F07FC /* CoreDataProxy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E19887251B0F22E2003F07FC /* CoreDataProxy.framework */; };
+		E19887391B0F22E2003F07FC /* CoreDataProxyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19887381B0F22E2003F07FC /* CoreDataProxyTests.swift */; };
+		E198873C1B0F22E2003F07FC /* CoreDataProxy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E19887251B0F22E2003F07FC /* CoreDataProxy.framework */; };
+		E198873D1B0F22E2003F07FC /* CoreDataProxy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E19887251B0F22E2003F07FC /* CoreDataProxy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E19887451B0F2384003F07FC /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1468FB71AF778C50085223D /* SwiftyJSON.swift */; };
+		E19887461B0F2389003F07FC /* Volee.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C54D6D1AF1289E00E7960C /* Volee.swift */; };
+		E19887471B0F238C003F07FC /* Tir.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C54D6E1AF1289E00E7960C /* Tir.swift */; };
+		E19887481B0F2391003F07FC /* arclatvedas.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1B09EB01AEA320700599185 /* arclatvedas.xcdatamodeld */; };
+		E19887491B0F2397003F07FC /* Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15212971AF0C94C0010AEAD /* Distance.swift */; };
+		E198874A1B0F239A003F07FC /* Hausse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15212981AF0C94C0010AEAD /* Hausse.swift */; };
+		E198874B1B0F239D003F07FC /* PseudoHausse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C54D731AF22E0B00E7960C /* PseudoHausse.swift */; };
+		E198874D1B0F26A1003F07FC /* CoreDataProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E198874C1B0F26A1003F07FC /* CoreDataProxy.swift */; };
+		E198874F1B0F2D6C003F07FC /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E198874E1B0F2D6C003F07FC /* DataManager.swift */; };
+		E19887501B0F4C13003F07FC /* WatchUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E198871C1B0E22AF003F07FC /* WatchUtils.swift */; };
 		E1B7B10D1B09DCE500AEF6EB /* LineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B7B10C1B09DCE500AEF6EB /* LineChart.swift */; };
 		E1C54D6B1AF1057100E7960C /* DistanceCellEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C54D6A1AF1057100E7960C /* DistanceCellEdit.swift */; };
-		E1C54D701AF1289E00E7960C /* Volee.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C54D6D1AF1289E00E7960C /* Volee.swift */; };
-		E1C54D711AF1289E00E7960C /* Tir.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C54D6E1AF1289E00E7960C /* Tir.swift */; };
-		E1C54D741AF22E0B00E7960C /* PseudoHausse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C54D731AF22E0B00E7960C /* PseudoHausse.swift */; };
 		E1D197951AE914E800616F1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D197941AE914E800616F1B /* AppDelegate.swift */; };
 		E1D1979A1AE914E800616F1B /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D197991AE914E800616F1B /* MasterViewController.swift */; };
 		E1D1979C1AE914E800616F1B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1979B1AE914E800616F1B /* DetailViewController.swift */; };
@@ -61,6 +68,27 @@
 			remoteGlobalIDString = E19886F41B0DDE91003F07FC;
 			remoteInfo = "arcLatVedas WatchKit Extension";
 		};
+		E19887311B0F22E2003F07FC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E1D197871AE914E800616F1B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E19887241B0F22E2003F07FC;
+			remoteInfo = CoreDataProxy;
+		};
+		E19887331B0F22E2003F07FC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E1D197871AE914E800616F1B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E1D1978E1AE914E800616F1B;
+			remoteInfo = arclatvedas;
+		};
+		E198873A1B0F22E2003F07FC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E1D197871AE914E800616F1B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E19887241B0F22E2003F07FC;
+			remoteInfo = CoreDataProxy;
+		};
 		E1D197AA1AE914E800616F1B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E1D197871AE914E800616F1B /* Project object */;
@@ -80,6 +108,17 @@
 				E19887121B0DDE92003F07FC /* arcLatVedas WatchKit Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E19887411B0F22E2003F07FC /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E198873D1B0F22E2003F07FC /* CoreDataProxy.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -111,7 +150,17 @@
 		E198870A1B0DDE92003F07FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E198870C1B0DDE92003F07FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		E198870E1B0DDE92003F07FC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		E198871C1B0E22AF003F07FC /* WatchUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchUtils.swift; sourceTree = "<group>"; };
+		E198871C1B0E22AF003F07FC /* WatchUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WatchUtils.swift; path = ../arclatvedas/WatchUtils.swift; sourceTree = "<group>"; };
+		E198871E1B0F1CF6003F07FC /* arcLatVedas WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "arcLatVedas WatchKit Extension.entitlements"; sourceTree = "<group>"; };
+		E198871F1B0F1F70003F07FC /* arclatvedas.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = arclatvedas.entitlements; sourceTree = "<group>"; };
+		E19887251B0F22E2003F07FC /* CoreDataProxy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreDataProxy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E19887281B0F22E2003F07FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E19887291B0F22E2003F07FC /* CoreDataProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataProxy.h; sourceTree = "<group>"; };
+		E198872F1B0F22E2003F07FC /* CoreDataProxyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreDataProxyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E19887371B0F22E2003F07FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E19887381B0F22E2003F07FC /* CoreDataProxyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataProxyTests.swift; sourceTree = "<group>"; };
+		E198874C1B0F26A1003F07FC /* CoreDataProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataProxy.swift; sourceTree = "<group>"; };
+		E198874E1B0F2D6C003F07FC /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		E1B09EB11AEA320700599185 /* arclatvedas.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = arclatvedas.xcdatamodel; sourceTree = "<group>"; };
 		E1B7B10C1B09DCE500AEF6EB /* LineChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineChart.swift; sourceTree = "<group>"; };
 		E1C54D6A1AF1057100E7960C /* DistanceCellEdit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistanceCellEdit.swift; sourceTree = "<group>"; };
@@ -139,10 +188,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E19887211B0F22E2003F07FC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E198872C1B0F22E2003F07FC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E19887301B0F22E2003F07FC /* CoreDataProxy.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E1D1978C1AE914E800616F1B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E198873C1B0F22E2003F07FC /* CoreDataProxy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,6 +224,7 @@
 		E19886F61B0DDE91003F07FC /* arcLatVedas WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				E198871E1B0F1CF6003F07FC /* arcLatVedas WatchKit Extension.entitlements */,
 				E19886FA1B0DDE91003F07FC /* InterfaceController.swift */,
 				E19886FC1B0DDE91003F07FC /* NotificationController.swift */,
 				E19886FE1B0DDE91003F07FC /* GlanceController.swift */,
@@ -195,6 +261,44 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		E19887261B0F22E2003F07FC /* CoreDataProxy */ = {
+			isa = PBXGroup;
+			children = (
+				E1C54D721AF129BB00E7960C /* coredata */,
+				E198871C1B0E22AF003F07FC /* WatchUtils.swift */,
+				E198874E1B0F2D6C003F07FC /* DataManager.swift */,
+				E19887291B0F22E2003F07FC /* CoreDataProxy.h */,
+				E198874C1B0F26A1003F07FC /* CoreDataProxy.swift */,
+				E19887271B0F22E2003F07FC /* Supporting Files */,
+			);
+			path = CoreDataProxy;
+			sourceTree = "<group>";
+		};
+		E19887271B0F22E2003F07FC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E19887281B0F22E2003F07FC /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E19887351B0F22E2003F07FC /* CoreDataProxyTests */ = {
+			isa = PBXGroup;
+			children = (
+				E19887381B0F22E2003F07FC /* CoreDataProxyTests.swift */,
+				E19887361B0F22E2003F07FC /* Supporting Files */,
+			);
+			path = CoreDataProxyTests;
+			sourceTree = "<group>";
+		};
+		E19887361B0F22E2003F07FC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E19887371B0F22E2003F07FC /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		E1C54D721AF129BB00E7960C /* coredata */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,6 +311,7 @@
 				E1C54D731AF22E0B00E7960C /* PseudoHausse.swift */,
 			);
 			name = coredata;
+			path = ../arclatvedas;
 			sourceTree = "<group>";
 		};
 		E1D197861AE914E800616F1B = {
@@ -217,6 +322,8 @@
 				E1D197AC1AE914E800616F1B /* arclatvedasTests */,
 				E19886F61B0DDE91003F07FC /* arcLatVedas WatchKit Extension */,
 				E19887081B0DDE92003F07FC /* arcLatVedas WatchKit App */,
+				E19887261B0F22E2003F07FC /* CoreDataProxy */,
+				E19887351B0F22E2003F07FC /* CoreDataProxyTests */,
 				E1D197901AE914E800616F1B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -228,6 +335,8 @@
 				E1D197A91AE914E800616F1B /* arclatvedasTests.xctest */,
 				E19886F51B0DDE91003F07FC /* arcLatVedas WatchKit Extension.appex */,
 				E19887041B0DDE92003F07FC /* arcLatVedas WatchKit App.app */,
+				E19887251B0F22E2003F07FC /* CoreDataProxy.framework */,
+				E198872F1B0F22E2003F07FC /* CoreDataProxyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -235,10 +344,9 @@
 		E1D197911AE914E800616F1B /* arclatvedas */ = {
 			isa = PBXGroup;
 			children = (
+				E198871F1B0F1F70003F07FC /* arclatvedas.entitlements */,
 				E1B7B10C1B09DCE500AEF6EB /* LineChart.swift */,
-				E1C54D721AF129BB00E7960C /* coredata */,
 				E1D197941AE914E800616F1B /* AppDelegate.swift */,
-				E198871C1B0E22AF003F07FC /* WatchUtils.swift */,
 				E16834C71AEE3AAE005E14B6 /* ListeViewController.swift */,
 				E16834C91AEE6B06005E14B6 /* MatosCell.swift */,
 				E16834CB1AEE6CFB005E14B6 /* DistanceCell.swift */,
@@ -288,6 +396,17 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		E19887221B0F22E2003F07FC /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E198872A1B0F22E2003F07FC /* CoreDataProxy.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		E19886F41B0DDE91003F07FC /* arcLatVedas WatchKit Extension */ = {
 			isa = PBXNativeTarget;
@@ -322,6 +441,43 @@
 			productReference = E19887041B0DDE92003F07FC /* arcLatVedas WatchKit App.app */;
 			productType = "com.apple.product-type.application.watchapp";
 		};
+		E19887241B0F22E2003F07FC /* CoreDataProxy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E198873E1B0F22E2003F07FC /* Build configuration list for PBXNativeTarget "CoreDataProxy" */;
+			buildPhases = (
+				E19887201B0F22E2003F07FC /* Sources */,
+				E19887211B0F22E2003F07FC /* Frameworks */,
+				E19887221B0F22E2003F07FC /* Headers */,
+				E19887231B0F22E2003F07FC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CoreDataProxy;
+			productName = CoreDataProxy;
+			productReference = E19887251B0F22E2003F07FC /* CoreDataProxy.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		E198872E1B0F22E2003F07FC /* CoreDataProxyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E19887421B0F22E2003F07FC /* Build configuration list for PBXNativeTarget "CoreDataProxyTests" */;
+			buildPhases = (
+				E198872B1B0F22E2003F07FC /* Sources */,
+				E198872C1B0F22E2003F07FC /* Frameworks */,
+				E198872D1B0F22E2003F07FC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E19887321B0F22E2003F07FC /* PBXTargetDependency */,
+				E19887341B0F22E2003F07FC /* PBXTargetDependency */,
+			);
+			name = CoreDataProxyTests;
+			productName = CoreDataProxyTests;
+			productReference = E198872F1B0F22E2003F07FC /* CoreDataProxyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		E1D1978E1AE914E800616F1B /* arclatvedas */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E1D197B31AE914E800616F1B /* Build configuration list for PBXNativeTarget "arclatvedas" */;
@@ -330,11 +486,13 @@
 				E1D1978C1AE914E800616F1B /* Frameworks */,
 				E1D1978D1AE914E800616F1B /* Resources */,
 				E19887191B0DDE92003F07FC /* Embed App Extensions */,
+				E19887411B0F22E2003F07FC /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				E19887111B0DDE92003F07FC /* PBXTargetDependency */,
+				E198873B1B0F22E2003F07FC /* PBXTargetDependency */,
 			);
 			name = arclatvedas;
 			productName = arclatvedas;
@@ -371,14 +529,32 @@
 					E19886F41B0DDE91003F07FC = {
 						CreatedOnToolsVersion = 6.3.2;
 						DevelopmentTeam = FF9F6L695S;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					E19887031B0DDE92003F07FC = {
 						CreatedOnToolsVersion = 6.3.2;
 						DevelopmentTeam = FF9F6L695S;
 					};
+					E19887241B0F22E2003F07FC = {
+						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = FF9F6L695S;
+					};
+					E198872E1B0F22E2003F07FC = {
+						CreatedOnToolsVersion = 6.3.2;
+						TestTargetID = E1D1978E1AE914E800616F1B;
+					};
 					E1D1978E1AE914E800616F1B = {
 						CreatedOnToolsVersion = 6.3.1;
 						DevelopmentTeam = FF9F6L695S;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					E1D197A81AE914E800616F1B = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -403,6 +579,8 @@
 				E1D197A81AE914E800616F1B /* arclatvedasTests */,
 				E19886F41B0DDE91003F07FC /* arcLatVedas WatchKit Extension */,
 				E19887031B0DDE92003F07FC /* arcLatVedas WatchKit App */,
+				E19887241B0F22E2003F07FC /* CoreDataProxy */,
+				E198872E1B0F22E2003F07FC /* CoreDataProxyTests */,
 			);
 		};
 /* End PBXProject section */
@@ -423,6 +601,20 @@
 			files = (
 				E198870D1B0DDE92003F07FC /* Interface.storyboard in Resources */,
 				E198870F1B0DDE92003F07FC /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E19887231B0F22E2003F07FC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E198872D1B0F22E2003F07FC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,27 +648,44 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E19887201B0F22E2003F07FC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E198874A1B0F239A003F07FC /* Hausse.swift in Sources */,
+				E19887471B0F238C003F07FC /* Tir.swift in Sources */,
+				E19887451B0F2384003F07FC /* SwiftyJSON.swift in Sources */,
+				E198874D1B0F26A1003F07FC /* CoreDataProxy.swift in Sources */,
+				E19887481B0F2391003F07FC /* arclatvedas.xcdatamodeld in Sources */,
+				E19887461B0F2389003F07FC /* Volee.swift in Sources */,
+				E198874B1B0F239D003F07FC /* PseudoHausse.swift in Sources */,
+				E198874F1B0F2D6C003F07FC /* DataManager.swift in Sources */,
+				E19887491B0F2397003F07FC /* Distance.swift in Sources */,
+				E19887501B0F4C13003F07FC /* WatchUtils.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E198872B1B0F22E2003F07FC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E19887391B0F22E2003F07FC /* CoreDataProxyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E1D1978B1AE914E800616F1B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1C54D701AF1289E00E7960C /* Volee.swift in Sources */,
-				E152129A1AF0C94C0010AEAD /* Hausse.swift in Sources */,
 				E16834CC1AEE6CFB005E14B6 /* DistanceCell.swift in Sources */,
 				E1B7B10D1B09DCE500AEF6EB /* LineChart.swift in Sources */,
 				E15212941AEFC6C30010AEAD /* DetailEditDistanceViewController.swift in Sources */,
 				E15212901AEF78B00010AEAD /* FlecheCell.swift in Sources */,
 				E1D197951AE914E800616F1B /* AppDelegate.swift in Sources */,
 				E16834CA1AEE6B06005E14B6 /* MatosCell.swift in Sources */,
-				E1C54D711AF1289E00E7960C /* Tir.swift in Sources */,
-				E198871D1B0E22AF003F07FC /* WatchUtils.swift in Sources */,
 				E1D1979A1AE914E800616F1B /* MasterViewController.swift in Sources */,
 				E16834C81AEE3AAE005E14B6 /* ListeViewController.swift in Sources */,
 				E15212921AEFC5C30010AEAD /* DetailEditFlecheViewController.swift in Sources */,
-				E1B09EB21AEA320700599185 /* arclatvedas.xcdatamodeld in Sources */,
-				E1468FB81AF778C50085223D /* SwiftyJSON.swift in Sources */,
-				E1C54D741AF22E0B00E7960C /* PseudoHausse.swift in Sources */,
-				E15212991AF0C94C0010AEAD /* Distance.swift in Sources */,
 				E15212961AEFCA4A0010AEAD /* DetailEditTirViewController.swift in Sources */,
 				E1741D801B0A30E7000CB132 /* StatistiqueViewController.swift in Sources */,
 				E1C54D6B1AF1057100E7960C /* DistanceCellEdit.swift in Sources */,
@@ -508,6 +717,21 @@
 			isa = PBXTargetDependency;
 			target = E19886F41B0DDE91003F07FC /* arcLatVedas WatchKit Extension */;
 			targetProxy = E19887101B0DDE92003F07FC /* PBXContainerItemProxy */;
+		};
+		E19887321B0F22E2003F07FC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E19887241B0F22E2003F07FC /* CoreDataProxy */;
+			targetProxy = E19887311B0F22E2003F07FC /* PBXContainerItemProxy */;
+		};
+		E19887341B0F22E2003F07FC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E1D1978E1AE914E800616F1B /* arclatvedas */;
+			targetProxy = E19887331B0F22E2003F07FC /* PBXContainerItemProxy */;
+		};
+		E198873B1B0F22E2003F07FC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E19887241B0F22E2003F07FC /* CoreDataProxy */;
+			targetProxy = E198873A1B0F22E2003F07FC /* PBXContainerItemProxy */;
 		};
 		E1D197AB1AE914E800616F1B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -547,6 +771,7 @@
 		E19887131B0DDE92003F07FC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "arcLatVedas WatchKit Extension/arcLatVedas WatchKit Extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -557,6 +782,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -564,12 +790,14 @@
 		E19887141B0DDE92003F07FC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "arcLatVedas WatchKit Extension/arcLatVedas WatchKit Extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "arcLatVedas WatchKit Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -605,6 +833,87 @@
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
 				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Release;
+		};
+		E198873F1B0F22E2003F07FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = CoreDataProxy/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E19887401B0F22E2003F07FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = CoreDataProxy/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		E19887431B0F22E2003F07FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = CoreDataProxyTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/arclatvedas.app/arclatvedas";
+			};
+			name = Debug;
+		};
+		E19887441B0F22E2003F07FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = CoreDataProxyTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/arclatvedas.app/arclatvedas";
 			};
 			name = Release;
 		};
@@ -695,9 +1004,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = arclatvedas/arclatvedas.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = arclatvedas/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -708,9 +1019,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = arclatvedas/arclatvedas.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = arclatvedas/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -767,6 +1080,22 @@
 			buildConfigurations = (
 				E19887131B0DDE92003F07FC /* Debug */,
 				E19887141B0DDE92003F07FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E198873E1B0F22E2003F07FC /* Build configuration list for PBXNativeTarget "CoreDataProxy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E198873F1B0F22E2003F07FC /* Debug */,
+				E19887401B0F22E2003F07FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E19887421B0F22E2003F07FC /* Build configuration list for PBXNativeTarget "CoreDataProxyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E19887431B0F22E2003F07FC /* Debug */,
+				E19887441B0F22E2003F07FC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

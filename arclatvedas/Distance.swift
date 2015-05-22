@@ -13,17 +13,17 @@ import CoreData
 
 @objc(Distance)
 
-class Distance: NSManagedObject {
+public class Distance: NSManagedObject {
 
-    @NSManaged var comment: String
-    @NSManaged var name: String
-    @NSManaged var timeStamp: NSDate
-    @NSManaged var unit: String
-    @NSManaged var relationship: NSMutableSet
+    @NSManaged public var comment: String
+    @NSManaged public var name: String
+    @NSManaged public var timeStamp: NSDate
+    @NSManaged public var unit: String
+    @NSManaged public var relationship: NSMutableSet
     
     
     
-    func allHaussesDescription ()->String {
+  public  func allHaussesDescription ()->String {
         
         var result = ""
 
@@ -41,7 +41,7 @@ class Distance: NSManagedObject {
         }
         return result
     }
-    func getAllHaussesSorted () -> NSArray {
+  public  func getAllHaussesSorted () -> NSArray {
         
         var nsarray:[Hausse] = self.relationship.allObjects as! [Hausse]
         

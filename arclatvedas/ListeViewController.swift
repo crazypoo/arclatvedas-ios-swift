@@ -11,9 +11,10 @@ import Foundation
 
 import UIKit
 import CoreData
+import CoreDataProxy
 
 class ListeViewController : UITableViewController, NSFetchedResultsControllerDelegate{
-    var managedObjectContext: NSManagedObjectContext? = nil
+   // var managedObjectContext: NSManagedObjectContext? = nil
     
     // MARK: - Fetched results controller
     
@@ -24,7 +25,7 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
         
         let fetchRequest = NSFetchRequest()
         // Edit the entity name as appropriate.
-        let entity = NSEntityDescription.entityForName(self.tablename, inManagedObjectContext: self.managedObjectContext!)
+        let entity = NSEntityDescription.entityForName(self.tablename, inManagedObjectContext: DataManager.getContext())
         fetchRequest.entity = entity
         
         // Set the batch size to a suitable number.
@@ -38,7 +39,7 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
         
         // Edit the section name key path and cache name if appropriate.
         // nil for section name key path means "no sections".
-        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext!, sectionNameKeyPath: nil, cacheName: "Master")
+        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: DataManager.getContext(), sectionNameKeyPath: nil, cacheName: "Master")
         aFetchedResultsController.delegate = self
         _fetchedResultsController = aFetchedResultsController
         
@@ -122,14 +123,14 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
         newManagedObject.setValue("", forKey: "comment")
         newManagedObject.setValue("m", forKey: "unit")
         
-        let entityDescription = NSEntityDescription.entityForName("Hausse", inManagedObjectContext: managedObjectContext!)
+        let entityDescription = NSEntityDescription.entityForName("Hausse", inManagedObjectContext:DataManager.getContext())
 
          let c = ["5","10","15","18","20","30","40","50","60","70"]
         
         for distance in c {
             
         
-            let hausse = Hausse(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext!)
+            let hausse = Hausse(entity: entityDescription!, insertIntoManagedObjectContext: DataManager.getContext())
         
             hausse.name = distance
             hausse.hausse = "0"
@@ -151,9 +152,9 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
         newManagedObject.setValue("", forKey: "comment")
         
         // test
-        let entityDescription = NSEntityDescription.entityForName("Volee", inManagedObjectContext: managedObjectContext!)
+        let entityDescription = NSEntityDescription.entityForName("Volee", inManagedObjectContext: DataManager.getContext())
 
-        let volee = Volee(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext!)
+        let volee = Volee(entity: entityDescription!, insertIntoManagedObjectContext: DataManager.getContext())
         
         volee.volee = "[]"
         volee.rang = 1
@@ -262,7 +263,6 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
             if let indexPath = self.tableView.indexPathForSelectedRow() {
                 let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Tir
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailEditTirViewController
-                controller.context  =  self.fetchedResultsController.managedObjectContext
                 // controller.context  = self.managedObjectContext
                 controller.detailItem = object
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()

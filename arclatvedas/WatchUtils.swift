@@ -8,10 +8,11 @@
 
 import Foundation
 import CoreData
+import CoreDataProxy
 
-class WatchUtils :NSFetchedResultsControllerDelegate{
+public class WatchUtils :NSFetchedResultsControllerDelegate{
 
-var managedObjectContext: NSManagedObjectContext? = nil
+//var managedObjectContext: NSManagedObjectContext? = nil
 
 // MARK: - Fetched results controller
 
@@ -22,7 +23,7 @@ var fetchedResultsController: NSFetchedResultsController {
     
     let fetchRequest = NSFetchRequest()
     // Edit the entity name as appropriate.
-    let entity = NSEntityDescription.entityForName(self.tablename, inManagedObjectContext: self.managedObjectContext!)
+    let entity = NSEntityDescription.entityForName(self.tablename, inManagedObjectContext: DataManager.getContext())
     fetchRequest.entity = entity
     
     // Set the batch size to a suitable number.
@@ -36,7 +37,7 @@ var fetchedResultsController: NSFetchedResultsController {
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext!, sectionNameKeyPath: nil, cacheName: "Master")
+    let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: DataManager.getContext(), sectionNameKeyPath: nil, cacheName: "Master")
     aFetchedResultsController.delegate = self
     _fetchedResultsController = aFetchedResultsController
     
@@ -61,14 +62,16 @@ var _fetchedResultsController: NSFetchedResultsController? = nil
     }
 
     
-    func getLastTir(managedObjectContext: NSManagedObjectContext, table:String) ->Tir{
+ public  func getLastTir( table:String) ->Tir{
+        
+        
         
         var indexPath:NSIndexPath = NSIndexPath(forRow: 0, inSection: 0)
         _fetchedResultsController=nil
 
         tablename = table;
         let object:Tir = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Tir
-        NSLog(Tir.description())
+       
         return object
 
     }

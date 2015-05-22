@@ -11,16 +11,16 @@ import CoreData
 
 @objc(Volee)
 
-class Volee: NSManagedObject {
+public class Volee: NSManagedObject {
 
     
-   @NSManaged var volee: String
-   @NSManaged var rang: NSNumber
-   @NSManaged var relationship: Tir
+   @NSManaged public var volee: String
+   @NSManaged public var rang: NSNumber
+   @NSManaged public var relationship: Tir
 
     let NOMBREMAX : Int = 6
     
-    var scores:NSMutableArray {
+public    var scores:NSMutableArray {
     
         get {
                 if self.volee.isEmpty {
@@ -41,7 +41,7 @@ class Volee: NSManagedObject {
     
     
     
-    func getTotal() -> Int {
+public    func getTotal() -> Int {
         var res:Int = 0
         let copyscore = scores
             
@@ -58,7 +58,7 @@ class Volee: NSManagedObject {
         return res
     }
     
-    func addScore (points : Int) {
+public    func addScore (points : Int) {
         
         let copyscore = self.scores
 
@@ -73,7 +73,7 @@ class Volee: NSManagedObject {
         
     }
     
-    func deleteLast(){
+ public   func deleteLast(){
         
         let copyscore = scores
 
@@ -87,7 +87,7 @@ class Volee: NSManagedObject {
 
     }
     
-    func getAt(fleche : Int) -> Int{
+  public  func getAt(fleche : Int) -> Int{
         var res:Int = -1
         let copyscore = scores
         
@@ -98,7 +98,7 @@ class Volee: NSManagedObject {
         
         return res
     }
-    func getTaille()->Int{
+ public   func getTaille()->Int{
          let copyscore = self.scores
         return copyscore.count
     }

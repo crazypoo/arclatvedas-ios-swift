@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import QuartzCore
+import CoreDataProxy
 
 class StatistiqueViewController: UIViewController, NSFetchedResultsControllerDelegate,LineChartDelegate, UIScrollViewDelegate {
 
@@ -17,7 +18,7 @@ class StatistiqueViewController: UIViewController, NSFetchedResultsControllerDel
     //var scrollView: UIScrollView!
     
     
-    var managedObjectContext: NSManagedObjectContext? = nil
+    //var managedObjectContext: NSManagedObjectContext? = nil
     
     // MARK: - Fetched results controller
     
@@ -28,7 +29,7 @@ class StatistiqueViewController: UIViewController, NSFetchedResultsControllerDel
         
         let fetchRequest = NSFetchRequest()
         // Edit the entity name as appropriate.
-        let entity = NSEntityDescription.entityForName(self.tablename, inManagedObjectContext: self.managedObjectContext!)
+        let entity = NSEntityDescription.entityForName(self.tablename, inManagedObjectContext: DataManager.getContext())
         fetchRequest.entity = entity
         
         // Set the batch size to a suitable number.
@@ -42,7 +43,7 @@ class StatistiqueViewController: UIViewController, NSFetchedResultsControllerDel
         
         // Edit the section name key path and cache name if appropriate.
         // nil for section name key path means "no sections".
-        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext!, sectionNameKeyPath: nil, cacheName: "Master")
+        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: DataManager.getContext(), sectionNameKeyPath: nil, cacheName: "Master")
         aFetchedResultsController.delegate = self
         _fetchedResultsController = aFetchedResultsController
         

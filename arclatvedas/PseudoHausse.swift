@@ -13,9 +13,9 @@ import Foundation
 
 @objc(PseudoHausse)
 
-class PseudoHausse {
+public class PseudoHausse {
     
-     var hausse: String?
-     var name: String?
+     public var  hausse: String?
+     public var  name: String?
     
 }

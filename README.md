@@ -13,6 +13,7 @@ Simplement on peut :
 - ajouter les scores
 
 -test AppleWatch (branch specific)
+--ajout d'un coredataproxy sous forme de framework pour partager les données entre la montre et l'application
 
 voir aussi la version android, quasiment iso-fonctionnelle
 

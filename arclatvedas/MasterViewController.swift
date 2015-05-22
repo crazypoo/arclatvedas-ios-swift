@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 
+import CoreDataProxy
+
 class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
     enum Table: Int {
@@ -17,7 +19,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     
     
     var detailViewController: DetailViewController? = nil
-    var managedObjectContext: NSManagedObjectContext? = nil
+   // var managedObjectContext: NSManagedObjectContext? = nil
     
     // MARK: - Fetched results controller
     
@@ -28,7 +30,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         
         let fetchRequest = NSFetchRequest()
         // Edit the entity name as appropriate.
-        let entity = NSEntityDescription.entityForName("Event", inManagedObjectContext: self.managedObjectContext!)
+        let entity = NSEntityDescription.entityForName("Event", inManagedObjectContext: DataManager.getContext())
         fetchRequest.entity = entity
         
         // Set the batch size to a suitable number.
@@ -42,7 +44,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         
         // Edit the section name key path and cache name if appropriate.
         // nil for section name key path means "no sections".
-        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext!, sectionNameKeyPath: nil, cacheName: "Master")
+        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: DataManager.getContext(), sectionNameKeyPath: nil, cacheName: "Master")
         aFetchedResultsController.delegate = self
         _fetchedResultsForEventController = aFetchedResultsController
         
@@ -180,7 +182,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                         //let object = self.fetchedResultsEventController.objectAtIndexPath(indexPath) as! NSManagedObject
                         let controller = (segue.destinationViewController as! UINavigationController).topViewController as! ListeViewController
                         
-                        controller.managedObjectContext=self.managedObjectContext;
+//                        controller.managedObjectContext=self.managedObjectContext;
                         
                         controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                         
@@ -207,7 +209,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                 } else {
                     if segue.identifier == "statistique" {
                         let controller = (segue.destinationViewController as! UINavigationController).topViewController as! StatistiqueViewController
-                        controller.managedObjectContext=self.managedObjectContext;
+//                        controller.managedObjectContext=self.managedObjectContext;
                         
                         controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                         

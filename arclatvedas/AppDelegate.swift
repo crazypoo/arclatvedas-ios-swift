@@ -157,7 +157,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
                     
 //                    let wutils:WatchUtils = WatchUtils()
 //                    
-//                    let titi = wutils.getLastTir(self.managedObjectContext!, table:"Tir")
+//                    let titi = wutils.getLastTir()
 //                    NSLog("\(titi.getTotal())")
 //
 //                    

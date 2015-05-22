@@ -42,6 +42,7 @@
 		E198874D1B0F26A1003F07FC /* CoreDataProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E198874C1B0F26A1003F07FC /* CoreDataProxy.swift */; };
 		E198874F1B0F2D6C003F07FC /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E198874E1B0F2D6C003F07FC /* DataManager.swift */; };
 		E19887501B0F4C13003F07FC /* WatchUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E198871C1B0E22AF003F07FC /* WatchUtils.swift */; };
+		E1B432D81B0F76180081EB35 /* TirInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B432D71B0F76180081EB35 /* TirInterfaceController.swift */; };
 		E1B7B10D1B09DCE500AEF6EB /* LineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B7B10C1B09DCE500AEF6EB /* LineChart.swift */; };
 		E1C54D6B1AF1057100E7960C /* DistanceCellEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C54D6A1AF1057100E7960C /* DistanceCellEdit.swift */; };
 		E1D197951AE914E800616F1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D197941AE914E800616F1B /* AppDelegate.swift */; };
@@ -162,6 +163,7 @@
 		E198874C1B0F26A1003F07FC /* CoreDataProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataProxy.swift; sourceTree = "<group>"; };
 		E198874E1B0F2D6C003F07FC /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		E1B09EB11AEA320700599185 /* arclatvedas.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = arclatvedas.xcdatamodel; sourceTree = "<group>"; };
+		E1B432D71B0F76180081EB35 /* TirInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TirInterfaceController.swift; sourceTree = "<group>"; };
 		E1B7B10C1B09DCE500AEF6EB /* LineChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineChart.swift; sourceTree = "<group>"; };
 		E1C54D6A1AF1057100E7960C /* DistanceCellEdit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistanceCellEdit.swift; sourceTree = "<group>"; };
 		E1C54D6D1AF1289E00E7960C /* Volee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Volee.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 			children = (
 				E198871E1B0F1CF6003F07FC /* arcLatVedas WatchKit Extension.entitlements */,
 				E19886FA1B0DDE91003F07FC /* InterfaceController.swift */,
+				E1B432D71B0F76180081EB35 /* TirInterfaceController.swift */,
 				E19886FC1B0DDE91003F07FC /* NotificationController.swift */,
 				E19886FE1B0DDE91003F07FC /* GlanceController.swift */,
 				E19887001B0DDE91003F07FC /* Images.xcassets */,
@@ -645,6 +648,7 @@
 				E19886FD1B0DDE91003F07FC /* NotificationController.swift in Sources */,
 				E19886FB1B0DDE91003F07FC /* InterfaceController.swift in Sources */,
 				E19886FF1B0DDE91003F07FC /* GlanceController.swift in Sources */,
+				E1B432D81B0F76180081EB35 /* TirInterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -779,7 +783,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "arcLatVedas WatchKit Extension/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE = "";
@@ -794,7 +798,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "arcLatVedas WatchKit Extension/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE = "";
@@ -1043,6 +1047,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = arclatvedasTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/arclatvedas.app/arclatvedas";
@@ -1058,6 +1063,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = arclatvedasTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/arclatvedas.app/arclatvedas";
@@ -1074,6 +1080,7 @@
 				E19887161B0DDE92003F07FC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E19887181B0DDE92003F07FC /* Build configuration list for PBXNativeTarget "arcLatVedas WatchKit Extension" */ = {
 			isa = XCConfigurationList;
@@ -1082,6 +1089,7 @@
 				E19887141B0DDE92003F07FC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E198873E1B0F22E2003F07FC /* Build configuration list for PBXNativeTarget "CoreDataProxy" */ = {
 			isa = XCConfigurationList;
@@ -1090,6 +1098,7 @@
 				E19887401B0F22E2003F07FC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E19887421B0F22E2003F07FC /* Build configuration list for PBXNativeTarget "CoreDataProxyTests" */ = {
 			isa = XCConfigurationList;
@@ -1098,6 +1107,7 @@
 				E19887441B0F22E2003F07FC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E1D1978A1AE914E800616F1B /* Build configuration list for PBXProject "arclatvedas" */ = {
 			isa = XCConfigurationList;

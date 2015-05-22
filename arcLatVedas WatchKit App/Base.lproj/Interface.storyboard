@@ -10,10 +10,13 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="arcLatVedas_WatchKit_App" customModuleProvider="target">
                     <items>
-                        <imageView width="40" height="40" alignment="center" image="icone29-1" id="58z-T0-NXi"/>
+                        <imageView width="40" height="40" alignment="left" image="icone29-1" id="58z-T0-NXi"/>
+                        <label alignment="left" text="ou" textAlignment="left" id="K18-IH-sTf"/>
+                        <label alignment="center" text="date" textAlignment="center" id="Ank-wy-UHJ"/>
                         <group width="1" alignment="left" id="AL1-iE-SdA">
                             <items>
-                                <label width="136" alignment="left" text="720" textAlignment="center" id="plU-nx-5zV"/>
+                                <label alignment="left" text="distance" textAlignment="left" id="KpS-Dq-C9I"/>
+                                <label width="0.50000000000000011" alignment="right" text="720" textAlignment="right" id="plU-nx-5zV"/>
                             </items>
                         </group>
                         <separator alignment="left" verticalAlignment="bottom" id="PKp-2G-DZb"/>
@@ -24,17 +27,21 @@
                         </group>
                     </items>
                     <connections>
+                        <outlet property="date" destination="Ank-wy-UHJ" id="XlY-EB-Nph"/>
+                        <outlet property="distance" destination="KpS-Dq-C9I" id="NhP-Q2-T86"/>
                         <outlet property="imageicone" destination="58z-T0-NXi" id="XbD-jD-hGf"/>
+                        <outlet property="location" destination="K18-IH-sTf" id="OtR-1W-ypc"/>
+                        <outlet property="total" destination="plU-nx-5zV" id="eEo-ff-Om4"/>
                         <segue destination="wqB-3a-xeT" kind="relationship" relationship="nextPage" id="OSg-vB-3v5"/>
                     </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="260" y="320"/>
         </scene>
-        <!--Interface Controller-->
+        <!--Tir Interface Controller-->
         <scene sceneID="pm8-2d-GmO">
             <objects>
-                <controller id="wqB-3a-xeT">
+                <controller id="wqB-3a-xeT" customClass="TirInterfaceController" customModule="arcLatVedas_WatchKit_Extension">
                     <items>
                         <group width="1" alignment="left" id="3TN-RE-haZ">
                             <items>
@@ -47,7 +54,6 @@
                                 </table>
                             </items>
                         </group>
-                        <group width="1" alignment="left" verticalAlignment="bottom" id="ipQ-47-rb8"/>
                     </items>
                     <menu key="menu" id="y8j-Sv-b3g">
                         <items>
@@ -55,9 +61,56 @@
                             <menuItem title="Menu Item" icon="trash" id="lvc-fQ-jeM"/>
                         </items>
                     </menu>
+                    <connections>
+                        <segue destination="viW-5v-82r" kind="relationship" relationship="nextPage" id="cz2-UN-WTj"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="517" y="320"/>
+        </scene>
+        <!--Interface Controller-->
+        <scene sceneID="aCD-bZ-c25">
+            <objects>
+                <controller id="viW-5v-82r">
+                    <items>
+                        <group width="1" alignment="left" id="l2V-Mh-68v">
+                            <items>
+                                <label width="0.60000000000000009" height="1" alignment="left" text="Label" id="mzD-ks-iY1"/>
+                                <button width="0.30000000000000016" alignment="left" title="OK" id="U9K-GQ-wBo"/>
+                            </items>
+                        </group>
+                        <group width="1" alignment="left" id="dIW-Mz-v8J">
+                            <items>
+                                <button width="0.30000000000000016" alignment="left" title="9" id="7BZ-jR-INa"/>
+                                <button width="0.30000000000000016" alignment="left" title="10" id="7lq-13-A2G"/>
+                                <button width="0.30000000000000016" alignment="left" title="X" id="ain-pX-2kT"/>
+                            </items>
+                        </group>
+                        <group width="1" alignment="left" id="SBO-01-ocV">
+                            <items>
+                                <button width="0.30000000000000016" alignment="left" title="6" id="2fF-sQ-ftW"/>
+                                <button width="0.30000000000000016" alignment="left" title="7" id="wT4-qy-FQu"/>
+                                <button width="0.30000000000000016" alignment="left" title="8" id="j8j-Nd-adx"/>
+                            </items>
+                        </group>
+                        <group width="1" alignment="left" id="s2j-CL-PIR">
+                            <items>
+                                <button width="0.30000000000000016" alignment="left" title="3" id="dlk-B6-ite"/>
+                                <button width="0.30000000000000016" alignment="left" title="4" id="WLv-9M-JsE"/>
+                                <button width="0.30000000000000016" alignment="left" title="5" id="dsG-tT-kI5"/>
+                            </items>
+                        </group>
+                        <group width="1" alignment="left" id="W4n-ku-nw8">
+                            <items>
+                                <button width="0.30000000000000016" alignment="left" title="M" id="tdc-lA-oh2"/>
+                                <button width="0.30000000000000016" alignment="left" title="1" id="oFd-3L-BHS"/>
+                                <button width="0.30000000000000016" alignment="left" title="2" id="4nc-ku-QWA"/>
+                            </items>
+                        </group>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="769" y="319.25"/>
         </scene>
         <!--Glance Interface Controller-->
         <scene sceneID="BOz-TT-tkC">

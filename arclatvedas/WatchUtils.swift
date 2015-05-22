@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import CoreDataProxy
 
-public class WatchUtils :NSFetchedResultsControllerDelegate{
+public class WatchUtils : NSObject,NSFetchedResultsControllerDelegate{
 
 //var managedObjectContext: NSManagedObjectContext? = nil
 
@@ -62,14 +62,14 @@ var _fetchedResultsController: NSFetchedResultsController? = nil
     }
 
     
- public  func getLastTir( table:String) ->Tir{
+ public  func getLastTir( ) ->AnyObject!{
         
         
         
         var indexPath:NSIndexPath = NSIndexPath(forRow: 0, inSection: 0)
         _fetchedResultsController=nil
 
-        tablename = table;
+        tablename = "Tir";
         let object:Tir = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Tir
        
         return object

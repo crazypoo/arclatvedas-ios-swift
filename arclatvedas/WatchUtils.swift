@@ -75,7 +75,32 @@ var _fetchedResultsController: NSFetchedResultsController? = nil
         return object
 
     }
+    
+    
+    public func createEmptyVolee(tir:Tir){
+        
+        
+        
+        
+        let entityDescription = NSEntityDescription.entityForName("Volee", inManagedObjectContext: DataManager.getContext())
+        
+        let volee = Volee(entity: entityDescription!, insertIntoManagedObjectContext: DataManager.getContext())
+        
+        volee.setValue("[]", forKey: "volee")
+        volee.setValue(tir, forKey: "relationship")
+        volee.setValue(0 ,forKey: "rang")
+        
+        
+        
+        tir.volees.addObject(volee)
+        
+    }
+
 }
+
+
+
+
 
 
 

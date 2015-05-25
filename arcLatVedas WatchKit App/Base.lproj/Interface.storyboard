@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="7701"/>
     </dependencies>
     <scenes>
-        <!--Interface Controller-->
+        <!--main-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="arcLatVedas_WatchKit_App" customModuleProvider="target">
+                <controller identifier="main" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="arcLatVedas_WatchKit_App" customModuleProvider="target">
                     <items>
                         <imageView width="40" height="40" alignment="left" image="icone29-1" id="58z-T0-NXi"/>
                         <label alignment="left" text="ou" textAlignment="left" id="K18-IH-sTf"/>
@@ -38,10 +38,10 @@
             </objects>
             <point key="canvasLocation" x="260" y="320"/>
         </scene>
-        <!--Tir Interface Controller-->
+        <!--calcul-->
         <scene sceneID="aCD-bZ-c25">
             <objects>
-                <controller id="viW-5v-82r" customClass="TirInterfaceController" customModule="arcLatVedas_WatchKit_Extension">
+                <controller identifier="calcul" id="viW-5v-82r" customClass="TirInterfaceController" customModule="arcLatVedas_WatchKit_Extension">
                     <items>
                         <group width="1" alignment="left" id="l2V-Mh-68v">
                             <items>
@@ -58,38 +58,104 @@
                                         </label>
                                     </items>
                                 </group>
-                                <button width="0.33000000000000002" alignment="left" title="OK" id="U9K-GQ-wBo"/>
+                                <button width="0.33000000000000002" alignment="left" title="-" id="U9K-GQ-wBo">
+                                    <connections>
+                                        <action selector="doButtonMoins" destination="viW-5v-82r" id="KLh-ZU-WMR"/>
+                                    </connections>
+                                </button>
                             </items>
                         </group>
                         <group width="1" alignment="left" id="dIW-Mz-v8J">
                             <items>
-                                <button width="0.33000000000000002" alignment="left" title="9" id="7BZ-jR-INa"/>
-                                <button width="0.33000000000000002" alignment="left" title="10" id="7lq-13-A2G"/>
-                                <button width="0.33000000000000002" alignment="left" title="X" id="ain-pX-2kT"/>
+                                <button width="0.33000000000000002" alignment="left" title="9" id="7BZ-jR-INa">
+                                    <connections>
+                                        <action selector="doButton9" destination="viW-5v-82r" id="qV8-p9-MVP"/>
+                                    </connections>
+                                </button>
+                                <button width="0.33000000000000002" alignment="left" title="10" id="7lq-13-A2G">
+                                    <connections>
+                                        <action selector="doButton10" destination="viW-5v-82r" id="J81-59-ffQ"/>
+                                    </connections>
+                                </button>
+                                <button width="0.33000000000000002" alignment="left" title="X" id="ain-pX-2kT">
+                                    <connections>
+                                        <action selector="doButtonX" destination="viW-5v-82r" id="GFx-Il-1ww"/>
+                                    </connections>
+                                </button>
                             </items>
                         </group>
                         <group width="1" alignment="left" id="SBO-01-ocV">
                             <items>
-                                <button width="0.33000000000000002" alignment="left" title="6" id="2fF-sQ-ftW"/>
-                                <button width="0.33000000000000002" alignment="left" title="7" id="wT4-qy-FQu"/>
-                                <button width="0.33000000000000002" alignment="left" title="8" id="j8j-Nd-adx"/>
+                                <button width="0.33000000000000002" alignment="left" title="6" id="2fF-sQ-ftW">
+                                    <connections>
+                                        <action selector="doButton6" destination="viW-5v-82r" id="h5p-8u-swF"/>
+                                    </connections>
+                                </button>
+                                <button width="0.33000000000000002" alignment="left" title="7" id="wT4-qy-FQu">
+                                    <connections>
+                                        <action selector="doButton7" destination="viW-5v-82r" id="wVV-FJ-Wxl"/>
+                                    </connections>
+                                </button>
+                                <button width="0.33000000000000002" alignment="left" title="8" id="j8j-Nd-adx">
+                                    <connections>
+                                        <action selector="doButton8" destination="viW-5v-82r" id="zhC-gY-h1F"/>
+                                    </connections>
+                                </button>
                             </items>
                         </group>
                         <group width="1" alignment="left" id="s2j-CL-PIR">
                             <items>
-                                <button width="0.33000000000000002" alignment="left" title="3" id="dlk-B6-ite"/>
-                                <button width="0.33000000000000002" alignment="left" title="4" id="WLv-9M-JsE"/>
-                                <button width="0.33000000000000002" alignment="left" title="5" id="dsG-tT-kI5"/>
+                                <button width="0.33000000000000002" alignment="left" title="3" id="dlk-B6-ite">
+                                    <connections>
+                                        <action selector="doButton3" destination="viW-5v-82r" id="8Gt-Xq-1xq"/>
+                                    </connections>
+                                </button>
+                                <button width="0.33000000000000002" alignment="left" title="4" id="WLv-9M-JsE">
+                                    <connections>
+                                        <action selector="doButton4" destination="viW-5v-82r" id="fek-72-9OD"/>
+                                    </connections>
+                                </button>
+                                <button width="0.33000000000000002" alignment="left" title="5" id="dsG-tT-kI5">
+                                    <connections>
+                                        <action selector="doButton5" destination="viW-5v-82r" id="E1v-PS-zmy"/>
+                                    </connections>
+                                </button>
                             </items>
                         </group>
                         <group width="1" alignment="left" id="W4n-ku-nw8">
                             <items>
-                                <button width="0.33000000000000002" alignment="left" title="M" id="tdc-lA-oh2"/>
-                                <button width="0.33000000000000002" alignment="left" title="1" id="oFd-3L-BHS"/>
-                                <button width="0.33000000000000002" alignment="left" title="2" id="4nc-ku-QWA"/>
+                                <button width="0.33000000000000002" alignment="left" title="M" id="tdc-lA-oh2">
+                                    <connections>
+                                        <action selector="doButton0" destination="viW-5v-82r" id="qXg-H2-gIn"/>
+                                    </connections>
+                                </button>
+                                <button width="0.33000000000000002" alignment="left" title="1" id="oFd-3L-BHS">
+                                    <connections>
+                                        <action selector="doButton1" destination="viW-5v-82r" id="4me-ao-NB9"/>
+                                    </connections>
+                                </button>
+                                <button width="0.33000000000000002" alignment="left" title="2" id="4nc-ku-QWA">
+                                    <connections>
+                                        <action selector="doButton2" destination="viW-5v-82r" id="El4-ZI-yXo"/>
+                                    </connections>
+                                </button>
                             </items>
                         </group>
                     </items>
+                    <menu key="menu" id="cJi-6p-y5m">
+                        <items>
+                            <menuItem title="Volée Suivante" icon="add" id="Emf-AY-koi">
+                                <connections>
+                                    <action selector="doMenuActionVoleeSuivante" destination="viW-5v-82r" id="7i8-yS-3E9"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                    <connections>
+                        <outlet property="scorevolee" destination="mzD-ks-iY1" id="fQM-Wf-nhL"/>
+                        <outlet property="total" destination="5MF-hQ-Ho9" id="9jX-td-Af0"/>
+                        <outlet property="voleeNumero" destination="iZP-dq-mRr" id="3PF-c5-ajA"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="538" y="319.25"/>

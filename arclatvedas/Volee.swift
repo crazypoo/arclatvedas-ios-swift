@@ -39,7 +39,34 @@ public    var scores:NSMutableArray {
         }
     }
     
-    
+    public  override var description:String{
+        get {
+            var result = ""
+            if self.volee.isEmpty {
+                return "-"
+            }else{
+                let copyscore = scores
+                var chunk = ""
+                for var i = 0 ; i < copyscore.count ; i++ {
+                    let num:NSNumber = copyscore.objectAtIndex(i) as! NSNumber
+                    if  num.integerValue == 100 {
+                        chunk = "X"
+                    }else if  num.integerValue == 0 {
+                         chunk = "M"
+                    }else {
+                        chunk = "\(num.integerValue)"
+                    }
+                    
+                    result += chunk
+                    if i < copyscore.count-1 {
+                        result += "-"
+                    }
+                }
+                return result
+            }
+        }
+    }
+   
     
 public    func getTotal() -> Int {
         var res:Int = 0
@@ -102,4 +129,5 @@ public    func addScore (points : Int) {
          let copyscore = self.scores
         return copyscore.count
     }
+    
 }

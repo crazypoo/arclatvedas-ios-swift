@@ -34,6 +34,17 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
     
     let distances = ["5","10","15","18","20","25","30","40","50","60","70"]
     let valeurs = ["X","10","9","8","7","6","5","4","3","2","1","M"]
+    let colors = [UIColor.yellowColor(),UIColor.yellowColor(),UIColor.yellowColor(),UIColor.redColor(),UIColor.redColor(),UIColor.blueColor(),UIColor.blueColor(),UIColor.blackColor(),UIColor.blackColor(),UIColor.whiteColor(),UIColor.whiteColor(),UIColor.whiteColor()]
+    
+    
+     let textcolors = [UIColor.blackColor(),UIColor.blackColor(),UIColor.blackColor(),
+                UIColor.blackColor(),UIColor.blackColor(),
+                UIColor.whiteColor(),UIColor.whiteColor(),
+                UIColor.whiteColor(),UIColor.whiteColor(),
+                UIColor.blackColor(),UIColor.blackColor(),UIColor.blackColor()]
+    
+    
+    
      let tags = [100,10,9,8,7,6,5,4,3,2,1,0]
     
 
@@ -397,10 +408,14 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
         
         let b:UIButton = UIButton(frame:cframe)
         
-            b.backgroundColor = UIColor.whiteColor()
+           // b.backgroundColor = UIColor.whiteColor()
+        let c : UIColor = colors[indexPath.item]
+             b.backgroundColor = c
+        
             b.tag = tags[indexPath.item]
             b.setTitle( valeurs[indexPath.item], forState: .Normal)
-            b.setTitleColor(UIColor.blackColor(), forState: .Normal)
+//            b.setTitleColor(UIColor.blackColor(), forState: .Normal)
+            b.setTitleColor(textcolors[indexPath.item], forState: .Normal)
 
             b.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
         

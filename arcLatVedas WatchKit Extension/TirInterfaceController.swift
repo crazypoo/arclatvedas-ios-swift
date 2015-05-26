@@ -13,17 +13,16 @@ import WatchKit
 import Foundation
 import CoreDataProxy
 
+//class TirInterfaceController: WKInterfaceController,NSUserActivityDelegate {
 class TirInterfaceController: WKInterfaceController {
     @IBOutlet weak var voleeNumero: WKInterfaceLabel!
     @IBOutlet weak var total: WKInterfaceLabel!
     @IBOutlet weak var scorevolee: WKInterfaceLabel!
     
     var curTir:Tir?
-    
 
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
-        
         
         
         let wutils:WatchUtils = WatchUtils()
@@ -37,18 +36,32 @@ class TirInterfaceController: WKInterfaceController {
              doRefresh()
             
         }
+
+    }
+    
+    
+    
+    override   func handleUserActivity(userInfo: [NSObject : AnyObject]?){
+        super.handleUserActivity(userInfo)
+        
+        
+        
+        
+        // Assume the app delegate has a text field to display the activity information
+        NSLog("handleUserActivity %@", userInfo!);
+        
+    }
+    
     
 
     
     
     
-    }
-    
-    
     func doRefresh(){
         
         if let tir = curTir {
-            
+            self.updateUserActivity("com.jack.arclatvedas.update", userInfo: ["key1": ["yo":"dawg"]], webpageURL: nil)
+
             dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)) { // 1
                 dispatch_async(dispatch_get_main_queue()) { // 2
                     
@@ -130,8 +143,14 @@ class TirInterfaceController: WKInterfaceController {
 
         doRefresh()
          DataManager.saveManagedContext()
+        
+
     }
 
+    
+
+    
+    
     
     @IBAction func doButtonMoins()
     {

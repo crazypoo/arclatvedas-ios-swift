@@ -58,6 +58,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
          CoreDataProxy.sharedInstance.saveContext()
     }
 
+    
+    func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]!) -> Void) -> Bool{
+        
+        
+        let type =   userActivity.activityType
+        let userInfo = userActivity.userInfo
+        
+        
+        // Assume the app delegate has a text field to display the activity information
+        NSLog("iphone User activity is of type %@, and user info %@", type, userInfo!);
+
+        if let win = window {
+            let navController = win.rootViewController as! UINavigationController
+            let viewController = navController.topViewController as UIViewController
+            navController.popToRootViewControllerAnimated(true)
+            viewController.restoreUserActivityState(userActivity)
+        }
+        
+        return true
+
+
+    }
+    
+    
     // MARK: - Split view
 
     func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController:UIViewController!, ontoPrimaryViewController primaryViewController:UIViewController!) -> Bool {

@@ -23,7 +23,6 @@ class InterfaceController: WKInterfaceController {
         
        
         super.awakeWithContext(context)
-        
 
         
         
@@ -41,9 +40,19 @@ class InterfaceController: WKInterfaceController {
             curTir=titi
             
         }
+        
+
     }
 
+ override   func handleUserActivity(userInfo: [NSObject : AnyObject]?){
+
     
+    
+    
+    // Assume the app delegate has a text field to display the activity information
+    NSLog("watch user info %@", userInfo!);
+
+    }
     
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user

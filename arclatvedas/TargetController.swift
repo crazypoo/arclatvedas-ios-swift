@@ -27,7 +27,7 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate {
     
     @IBOutlet weak var totalLabel : UILabel!
     @IBOutlet weak var voleeLabel : UILabel!
-
+    @IBOutlet weak var voleecompte : UILabel!
 
     
     var detailItem: Tir? {
@@ -173,6 +173,9 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate {
                 curCount=0
                 
             }
+            if let detail: Tir = self.detailItem {
+             voleecompte?.text = "\(detail.volees.count)"
+            }
             refreshVoleeLabel()
 //        case 3000 :
 //            UIView.transitionWithView(self.statview, duration: 0.325, options: .TransitionFlipFromLeft | .CurveEaseInOut, animations: { () -> Void in
@@ -281,7 +284,7 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate {
                     saveObject(self)
                     curCount = 0
                 }
-
+                 voleecompte?.text = "\(detail.volees.count)"
                 refreshVoleeLabel()
                 
             }
@@ -421,7 +424,7 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate {
                     
                 }
             }
-        
+           
         }
 
         

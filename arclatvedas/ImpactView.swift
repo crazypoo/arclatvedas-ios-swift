@@ -13,8 +13,8 @@ class ImpactView: UIView {
     /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
-
-*/
+    
+    */
     
     //MARK: Constructors
     convenience init(){
@@ -30,11 +30,11 @@ class ImpactView: UIView {
         super.init(coder: aDecoder)
         self.backgroundColor = UIColor.clearColor()
     }
-
+    
     override func layoutSubviews() {
         super.layoutSubviews()
- }
-
+    }
+    
     
     func addPoint(pt :CGPoint){
         
@@ -42,14 +42,31 @@ class ImpactView: UIView {
         let unipoint:CGPoint = CGPointApplyAffineTransform(pt, t);
         //we add normalized point here
         self.impacts.append(unipoint)
-
-                dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INTERACTIVE.value), 0)) { // 1
-                    dispatch_async(dispatch_get_main_queue()) { // 2
         
-                        //this is needed otherwise ....
-                        self.setNeedsDisplay()
-                    }
-                }
+        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INTERACTIVE.value), 0)) { // 1
+            dispatch_async(dispatch_get_main_queue()) { // 2
+                
+                //this is needed otherwise ....
+                self.setNeedsDisplay()
+            }
+        }
+        
+        
+    }
+    
+    
+
+    func removePoint(){
+        
+        self.impacts.removeLast()
+        
+        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INTERACTIVE.value), 0)) { // 1
+            dispatch_async(dispatch_get_main_queue()) { // 2
+                
+                //this is needed otherwise ....
+                self.setNeedsDisplay()
+            }
+        }
 
         
     }
@@ -72,15 +89,15 @@ class ImpactView: UIView {
             
             path.fill()
             
-           UIColor.whiteColor().setStroke()
+            UIColor.whiteColor().setStroke()
             path.lineWidth = 1.0
             path.stroke()
-
-
+            
+            
         }
-
+        
         super.drawRect(rect)
     }
-
-
+    
+    
 }

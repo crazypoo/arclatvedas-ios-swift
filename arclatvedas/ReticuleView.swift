@@ -9,7 +9,7 @@
 import UIKit
 
 class ReticuleView: UIView {
-
+    
     
     
     //MARK: Constructors
@@ -26,7 +26,7 @@ class ReticuleView: UIView {
         super.init(coder: aDecoder)
         self.backgroundColor = UIColor.clearColor()
     }
-
+    
     
     
     func drawPlus(){
@@ -73,24 +73,24 @@ class ReticuleView: UIView {
         plusPath.stroke()
         
     }
-
+    
     
     
     /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
-
-  */
+    
+    */
     override func drawRect(rect: CGRect) {
         // Drawing code
         
-       // super.drawRect(rect)
-//        var pathck = UIBezierPath(rect: rect)
-//        UIColor.whiteColor().setFill()
-//        pathck.fill()
-
+        // super.drawRect(rect)
+        //        var pathck = UIBezierPath(rect: rect)
+        //        UIColor.whiteColor().setFill()
+        //        pathck.fill()
+        
         drawPlus()
     }
-
-
+    
+    
 }

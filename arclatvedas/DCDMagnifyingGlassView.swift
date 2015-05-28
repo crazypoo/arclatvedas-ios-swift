@@ -26,8 +26,8 @@ class DCDMagnifyingGlassView: UIView {
     }
     
     //MARK: Properties
-     let plusView: ReticuleView = ReticuleView()
-     let glassView: UIView = UIView()
+    let plusView: ReticuleView = ReticuleView()
+    let glassView: UIView = UIView()
     let magnifyingImageView: UIImageView = UIImageView()
     let indicatorView: UIView = UIView()
     let shadowLayer: CAShapeLayer = CAShapeLayer()
@@ -46,7 +46,7 @@ class DCDMagnifyingGlassView: UIView {
         super.init(frame: frame)
         setupViews()
     }
-
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupViews()
@@ -67,8 +67,8 @@ class DCDMagnifyingGlassView: UIView {
         self.addSubview(glassView)
         
         
-       
-
+        
+        
         //Add shadow layer
         shadowLayer.shadowColor = UIColor.blackColor().CGColor
         shadowLayer.shadowOpacity = 0.7
@@ -273,7 +273,7 @@ class DCDMagnifyingGlassView: UIView {
     class func setShadowColor(color: UIColor) {
         DCDMagnifyingGlassView.sharedInstance.shadowLayer.shadowColor = color.CGColor
     }
-
+    
     //MARK: Show/Dismiss
     class func show(animated: Bool) {
         DCDMagnifyingGlassView.sharedInstance.layoutSubviews(false)
@@ -285,7 +285,7 @@ class DCDMagnifyingGlassView: UIView {
                 options: UIViewAnimationOptions.CurveEaseInOut,
                 animations: { () -> Void in
                     DCDMagnifyingGlassView.sharedInstance.alpha = 1
-            }, completion: nil)
+                }, completion: nil)
         }
     }
     
@@ -295,8 +295,8 @@ class DCDMagnifyingGlassView: UIView {
             options: UIViewAnimationOptions.CurveEaseInOut,
             animations: { () -> Void in
                 DCDMagnifyingGlassView.sharedInstance.alpha = 0
-        }) { (completed) -> Void in
-            DCDMagnifyingGlassView.sharedInstance.removeFromSuperview()
+            }) { (completed) -> Void in
+                DCDMagnifyingGlassView.sharedInstance.removeFromSuperview()
         }
     }
 }

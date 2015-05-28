@@ -102,7 +102,9 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
                 self.navigationItem.rightBarButtonItem = addButton
     }
 
-    
+ override   func viewWillAppear(animated: Bool){
+          self.tableView.reloadData()
+    }
     func insertNewMatosObject(newManagedObject: AnyObject) {
         
         newManagedObject.setValue(NSDate(), forKey: "timeStamp")
@@ -268,7 +270,16 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
+        }else if (segue.identifier == "blason" ){
+            if let indexPath = self.tableView.indexPathForSelectedRow() {
+                let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Tir
+                let controller = (segue.destinationViewController as! UINavigationController).topViewController as! TargetController
+                controller.detailItem = object
+                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                controller.navigationItem.leftItemsSupplementBackButton = true
+            }
         }
+
         
         
         
@@ -407,6 +418,24 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
         cell.nom!.text=object.valueForKey("location")!.description
         cell.distance!.text=object.valueForKey("distance")!.description
         cell.total!.text = object.getTotal().description
+        
+        
+        let cframe: CGRect = CGRect(x: cell.contentView.frame.width-100 ,y: 0 ,width: 100, height:cell.contentView.frame.height)
+        
+        
+        //let b:UIButton = UIButton(frame:cframe)
+        let b:UIButton = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        b.frame = CGRect(x: cell.contentView.frame.width-100 ,y: 0 ,width: 100, height:cell.contentView.frame.height)
+        b.backgroundColor = UIColor.whiteColor()
+        b.setTitle( "Blason", forState: .Normal)
+        b.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        
+        b.addTarget(self, action: "pressedBlason:", forControlEvents: .TouchUpInside)
+        b.tag = indexPath.row
+        cell.contentView.addSubview(b)
+
+        
+        
     }
 
     func configureFlecheCell(cell: FlecheCell, atIndexPath indexPath: NSIndexPath) {
@@ -416,6 +445,17 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
 
     }
 
+    
+    
+    func pressedBlason(sender: UIButton!) {
+        
+       let idx =  NSIndexPath(forRow: sender.tag, inSection: 0)
+        self.tableView.selectRowAtIndexPath(idx, animated: false, scrollPosition: UITableViewScrollPosition.None)
+        
+        
+       performSegueWithIdentifier("blason", sender: self)
+    }
+    
     
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
         self.tableView.beginUpdates()
@@ -475,13 +515,13 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
     
     /*
     // Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed.
-    
+
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
     // In the simplest, most efficient, case, reload the table view.
     self.tableView.reloadData()
     }
+
     */
-    
     
     
 

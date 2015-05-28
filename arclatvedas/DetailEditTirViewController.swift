@@ -464,18 +464,20 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
             tableview.reloadData()
 
     case 3000 :
-        UIView.transitionWithView(self.statview, duration: 0.325, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+        UIView.transitionWithView(self.statview, duration: 0.325, options: .TransitionFlipFromLeft | .CurveEaseInOut, animations: { () -> Void in
             if  self.statview.alpha == 0.0 {
                 if let detail: Tir = self.detailItem {
                     
                     if detail.volees.count > 1 {
                         self.buildChart()
                         self.statview.alpha=1.0
+                        self.tableview.alpha=0.0
                     }
                 
                 }
             }else{
                 self.statview.alpha=0.0
+                self.tableview.alpha=1.0
             }
             
         }, completion: { (Bool) -> Void in
@@ -484,7 +486,7 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
         
         
         default :
-            curVolee?.addScore(sender.tag);
+            curVolee?.addScore(sender.tag, impact:CGPointMake(0,0));
             saveObject(self)
             tableview.reloadData()
     }

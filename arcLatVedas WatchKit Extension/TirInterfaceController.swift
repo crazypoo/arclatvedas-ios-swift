@@ -137,7 +137,7 @@ class TirInterfaceController: WKInterfaceController {
         if let tir = curTir {
             if let vol:Volee = tir.volees.objectAtIndex(tir.volees.count-1) as? Volee {
                 
-                vol.addScore(what)
+                vol.addScore(what, impact:CGPointMake(0,0))
             }
         }
 

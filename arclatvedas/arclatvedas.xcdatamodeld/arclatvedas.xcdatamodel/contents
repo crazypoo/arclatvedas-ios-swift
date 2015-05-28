@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D136" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14D136" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Distance" representedClassName="Distance" syncable="YES">
         <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -44,6 +44,7 @@
         <relationship name="volees" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Volee" inverseName="relationship" inverseEntity="Volee" syncable="YES"/>
     </entity>
     <entity name="Volee" representedClassName="Volee" syncable="YES">
+        <attribute name="impactes" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="rang" optional="YES" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="volee" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tir" inverseName="volees" inverseEntity="Tir" syncable="YES"/>
@@ -55,6 +56,6 @@
         <element name="Hausse" positionX="367" positionY="-99" width="128" height="88"/>
         <element name="Materiel" positionX="99" positionY="-270" width="128" height="120"/>
         <element name="Tir" positionX="-216" positionY="-45" width="128" height="120"/>
-        <element name="Volee" positionX="-18" positionY="-0" width="128" height="90"/>
+        <element name="Volee" positionX="-18" positionY="-0" width="128" height="105"/>
     </elements>
 </model>

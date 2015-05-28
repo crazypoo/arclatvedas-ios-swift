@@ -16,6 +16,7 @@ public class Volee: NSManagedObject {
     
    @NSManaged public var volee: String
    @NSManaged public var rang: NSNumber
+   @NSManaged var impactes: NSData
    @NSManaged public var relationship: Tir
 
     let NOMBREMAX : Int = 6
@@ -37,6 +38,23 @@ public    var scores:NSMutableArray {
              
 
         }
+    }
+
+    public var impacteArray:NSMutableArray{
+        get {
+            if self.impactes.length == 0 {
+                let copyimpacteArray = NSMutableArray(capacity:0)
+                self.impactes = NSKeyedArchiver.archivedDataWithRootObject(copyimpacteArray)
+            }
+            //NSData* myData = [NSKeyedArchiver archivedDataWithRootObject:myMutableArray];
+            let k:NSMutableArray =  (NSKeyedUnarchiver.unarchiveObjectWithData(self.impactes) as? NSMutableArray)!
+            
+
+            return k
+            
+            
+        }
+
     }
     
     public  override var description:String{
@@ -85,10 +103,11 @@ public    func getTotal() -> Int {
         return res
     }
     
-public    func addScore (points : Int) {
+    public func addScore (points : Int, impact:CGPoint)->Bool {
         
         let copyscore = self.scores
-
+        var done=false
+        
         if copyscore.count < NOMBREMAX {
             copyscore.addObject(NSNumber(integer: points))
         }
@@ -98,10 +117,23 @@ public    func addScore (points : Int) {
         
         self.volee = NSString(data: data, encoding: NSUTF8StringEncoding)!.description
         
+        
+
+      //  NSString *pointToSavae = NSStringFromCGPoint(point); // Will store string {20,20}
+
+        
+        let copyimpacteArray = self.impacteArray
+        if copyscore.count < NOMBREMAX {
+            copyimpacteArray.addObject(NSValue(CGPoint:impact))
+            done=true
+        }
+        
+        self.impactes = NSKeyedArchiver.archivedDataWithRootObject(copyimpacteArray)
+        return done
     }
     
- public   func deleteLast(){
-        
+ public   func deleteLast()->Bool{
+        var done=false
         let copyscore = scores
 
         if copyscore.count != 0 {
@@ -111,7 +143,15 @@ public    func addScore (points : Int) {
         let data:NSData =  NSJSONSerialization.dataWithJSONObject(copyscore,options: NSJSONWritingOptions(0), error: nil)!
         
         self.volee = NSString(data: data, encoding: NSUTF8StringEncoding)!.description
-
+    
+        let copyimpacteArray = self.impacteArray
+        if copyimpacteArray.count != 0 {
+            copyimpacteArray.removeLastObject()
+            done=true
+        }
+    
+        self.impactes = NSKeyedArchiver.archivedDataWithRootObject(copyimpacteArray)
+        return done
     }
     
   public  func getAt(fleche : Int) -> Int{
@@ -125,6 +165,18 @@ public    func addScore (points : Int) {
         
         return res
     }
+    
+    public func getImpactAt(fleche:Int) ->CGPoint{
+        
+        let copyimpacteArray = self.impacteArray
+        var point = CGPointMake(0,0)
+        if fleche < copyimpacteArray.count {
+          point = copyimpacteArray.objectAtIndex(fleche).CGPointValue()
+        }
+        
+        return point
+    }
+    
  public   func getTaille()->Int{
          let copyscore = self.scores
         return copyscore.count

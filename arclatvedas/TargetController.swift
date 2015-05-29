@@ -41,7 +41,7 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate {
         super.loadView()
         let r = self.view.frame
         let cote = min(self.view.frame.size.width,self.view.frame.size.height)
-        let rect = CGRect(x: 0 ,y: 100 ,width: cote, height:cote)
+        let rect = CGRect(x: 25/2 ,y: 0 ,width: cote-25, height:cote-25)
         cv = CircleView(frame: rect)
         magnifyingViewVisible=false
         
@@ -61,7 +61,7 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate {
         
         
         DCDMagnifyingGlassView.setTargetView(self.view)
-        DCDMagnifyingGlassView.setScale(5)
+        DCDMagnifyingGlassView.setScale(2)
         DCDMagnifyingGlassView.setContentFrame(CGRect(x: 115,y: 90,width: 100,height: 100))
         DCDMagnifyingGlassView.setIndicatorColor(UIColor.greenColor())
         DCDMagnifyingGlassView.setShadowColor(UIColor.redColor())
@@ -101,7 +101,7 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate {
         let pt2 = DCDMagnifyingGlassView.sharedInstance.indicatorView.center
         
         let pt3 = self.iv?.convertPoint(pt2, fromView: DCDMagnifyingGlassView.sharedInstance.indicatorView)
-        let point = CGPointMake(pt3!.x-40,pt3!.y-40)
+        let point = CGPointMake(pt3!.x-25,pt3!.y-25)
        
         
         
@@ -144,6 +144,10 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate {
             }
             
             saveObject(self)
+            
+            DCDMagnifyingGlassView.dismiss(true)
+            magnifyingViewVisible=false
+
             refreshVoleeLabel()
             break
             
@@ -386,6 +390,13 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        var v = self.splitViewController
+        var b = self.splitViewController?.collapsed
+        
+        
+        self.navigationController!.navigationBar.translucent = false;
+        //self.edgesForExtendedLayout = UIRectEdgeNone;
         configureView()
         
         let editButton = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: "editObject:")

@@ -118,6 +118,10 @@ class DCDMagnifyingGlassView: UIView {
         //Update the frame of the glass
         if(panGestureRecognizer.enabled) {
             var glassY = indicatorView.frame.origin.y - 10 - self.frame.size.height
+            if indicatorView.center.y > self.center.y-50 {
+                glassY = indicatorView.frame.origin.y + 10 + self.frame.size.height/2
+            }
+            
             if(animated) {
                 UIView.animateWithDuration(0.25,
                     delay: 0,

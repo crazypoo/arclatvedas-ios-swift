@@ -8,6 +8,7 @@
 
 import WatchKit
 import Foundation
+import CoreData
 import CoreDataProxy
 
 class InterfaceController: WKInterfaceController {
@@ -25,7 +26,8 @@ class InterfaceController: WKInterfaceController {
         super.awakeWithContext(context)
 
         
-        
+        NSFetchedResultsController.deleteCacheWithName("Master")
+
         location.setText("")
         distance.setText("")
         total.setText("")
@@ -44,6 +46,26 @@ class InterfaceController: WKInterfaceController {
 
     }
 
+    
+    
+    @IBAction func doButtonNouveauTir()
+    {
+        let wutils:WatchUtils = WatchUtils()
+
+       wutils.insertNewTir()
+        
+        if let ti:AnyObject = wutils.getLastTir() {
+            
+            let titi:Tir  = ti as! Tir
+            
+            curTir=titi
+            
+        }
+
+        updateScreen()
+    }
+    
+    
  override   func handleUserActivity(userInfo: [NSObject : AnyObject]?){
 
     
@@ -58,27 +80,35 @@ class InterfaceController: WKInterfaceController {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
         
+        updateScreen()
+        
+        
+    }
+
+    
+    func updateScreen(){
+        
         dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)) { // 1
             dispatch_async(dispatch_get_main_queue()) { // 2
                 
                 let dateFormat:NSDateFormatter = NSDateFormatter()
                 dateFormat.dateStyle = NSDateFormatterStyle.ShortStyle
                 dateFormat.dateFormat="dd/MM/yy"
-                let dateString:String = dateFormat.stringFromDate(self.curTir.timeStamp)
+                
+                 if let ti:AnyObject = self.curTir {
+                    let dateString:String = dateFormat.stringFromDate(ti.timeStamp)
                 
                 
-                self.location.setText(self.curTir.location)
-                self.distance.setText(self.curTir.distance)
-                self.total.setText("\(self.curTir.getTotal())")
-                self.date.setText(dateString)
-
+                    self.location.setText(ti.location)
+                    self.distance.setText(ti.distance)
+                    self.total.setText("\(ti.getTotal())")
+                    self.date.setText(dateString)
+                }
+                
             }
         }
 
-        
-        
     }
-
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()

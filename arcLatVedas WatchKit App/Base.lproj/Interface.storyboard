@@ -22,7 +22,11 @@
                         <separator alignment="left" verticalAlignment="bottom" id="PKp-2G-DZb"/>
                         <group width="1" alignment="left" verticalAlignment="bottom" id="z0g-B2-4Ey">
                             <items>
-                                <button width="1" alignment="left" title="Nouveau Tir" id="zNr-aP-XOX" userLabel="Nouv."/>
+                                <button width="1" alignment="left" title="Nouveau Tir" id="zNr-aP-XOX" userLabel="Nouv.">
+                                    <connections>
+                                        <action selector="doButtonNouveauTir" destination="AgC-eL-Hgc" id="D5e-3r-Y21"/>
+                                    </connections>
+                                </button>
                             </items>
                         </group>
                     </items>

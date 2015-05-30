@@ -20,6 +20,7 @@ public class CoreDataProxy:NSObject{
         struct Static {
             static let instance : CoreDataProxy = CoreDataProxy()
         }
+        
         return Static.instance
     }
 

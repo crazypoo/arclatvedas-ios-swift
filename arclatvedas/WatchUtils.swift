@@ -65,14 +65,22 @@ var _fetchedResultsController: NSFetchedResultsController? = nil
  public  func getLastTir( ) ->AnyObject!{
         
         
-        
+         NSFetchedResultsController.deleteCacheWithName("Master")
         var indexPath:NSIndexPath = NSIndexPath(forRow: 0, inSection: 0)
-        _fetchedResultsController=nil
-
+    _fetchedResultsController=nil
+       var object:Tir?
         tablename = "Tir";
-        let object:Tir = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Tir
-       
+        if  self.fetchedResultsController.fetchedObjects?.count > 0 {
+             object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Tir
+        }
+//        else{
+//            insertNewTir()
+//            return getLastTir( )
+//            
+//        }
+    
         return object
+    
 
     }
     
@@ -95,6 +103,63 @@ var _fetchedResultsController: NSFetchedResultsController? = nil
         tir.volees.addObject(volee)
         
     }
+    
+    
+    
+    
+    func insertNewTirObject(newManagedObject: Tir) {
+        
+        newManagedObject.setValue(NSDate(), forKey: "timeStamp")
+        newManagedObject.setValue("Au club", forKey: "location")
+        newManagedObject.setValue("70", forKey: "distance")
+        newManagedObject.setValue("", forKey: "comment")
+        
+        // test
+        let entityDescription = NSEntityDescription.entityForName("Volee", inManagedObjectContext: DataManager.getContext())
+        
+        let volee = Volee(entity: entityDescription!, insertIntoManagedObjectContext: DataManager.getContext())
+        
+        volee.volee = "[]"
+        volee.rang = 1
+        
+        volee.relationship = newManagedObject
+        
+        
+        
+        newManagedObject.volees.addObject(volee)
+        
+        
+    }
+
+    
+    
+    
+   public func insertNewTir() {
+        let context = DataManager.getContext()
+        let entityDescription = NSEntityDescription.entityForName("Tir", inManagedObjectContext: context)
+        
+        let tir = Tir(entity: entityDescription!, insertIntoManagedObjectContext: DataManager.getContext())
+
+         insertNewTirObject(tir)
+        
+        
+        
+        
+        // If appropriate, configure the new managed object.
+        // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
+        // Save the context.
+        var error: NSError? = nil
+        if !context.save(&error) {
+            // Replace this implementation with code to handle the error appropriately.
+            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            //println("Unresolved error \(error), \(error.userInfo)")
+            abort()
+        }
+        
+    }
+
+    
+    
 
 }
 

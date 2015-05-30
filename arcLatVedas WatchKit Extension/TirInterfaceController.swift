@@ -11,6 +11,7 @@ import Foundation
 
 import WatchKit
 import Foundation
+import CoreData
 import CoreDataProxy
 
 //class TirInterfaceController: WKInterfaceController,NSUserActivityDelegate {
@@ -23,7 +24,6 @@ class TirInterfaceController: WKInterfaceController {
 
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
-        
         
         let wutils:WatchUtils = WatchUtils()
         
@@ -54,8 +54,25 @@ class TirInterfaceController: WKInterfaceController {
     
     
 
-    
-    
+    override func willActivate() {
+        // This method is called when watch view controller is about to be visible to user
+        super.willActivate()
+        
+        let wutils:WatchUtils = WatchUtils()
+        
+        if let ti:AnyObject = wutils.getLastTir() {
+            
+            let titi:Tir  = ti as! Tir
+            
+            curTir=titi
+            
+            doRefresh()
+            
+        }
+        
+        
+    }
+
     
     func doRefresh(){
         
@@ -179,10 +196,6 @@ class TirInterfaceController: WKInterfaceController {
     
 
     
-    override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
-        super.willActivate()
-    }
     
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible

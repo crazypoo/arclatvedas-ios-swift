@@ -27,6 +27,9 @@
 		E16834CE1AEE6D63005E14B6 /* TirCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16834CD1AEE6D63005E14B6 /* TirCell.swift */; };
 		E1741D801B0A30E7000CB132 /* StatistiqueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1741D7F1B0A30E7000CB132 /* StatistiqueViewController.swift */; };
 		E194A2281B024BDD001FC95B /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = E194A2271B024BDD001FC95B /* README.md */; };
+		E1987FAE1B2AE3E000F652A9 /* ce charte.csv in Resources */ = {isa = PBXBuildFile; fileRef = E1987FAB1B2AE3E000F652A9 /* ce charte.csv */; };
+		E1987FAF1B2AE3E000F652A9 /* ce fleche.csv in Resources */ = {isa = PBXBuildFile; fileRef = E1987FAC1B2AE3E000F652A9 /* ce fleche.csv */; };
+		E1987FB01B2AE3E000F652A9 /* ce groupe.csv in Resources */ = {isa = PBXBuildFile; fileRef = E1987FAD1B2AE3E000F652A9 /* ce groupe.csv */; };
 		E19886FB1B0DDE91003F07FC /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19886FA1B0DDE91003F07FC /* InterfaceController.swift */; };
 		E19886FD1B0DDE91003F07FC /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19886FC1B0DDE91003F07FC /* NotificationController.swift */; };
 		E19886FF1B0DDE91003F07FC /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19886FE1B0DDE91003F07FC /* GlanceController.swift */; };
@@ -156,6 +159,9 @@
 		E16834CD1AEE6D63005E14B6 /* TirCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TirCell.swift; sourceTree = "<group>"; };
 		E1741D7F1B0A30E7000CB132 /* StatistiqueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatistiqueViewController.swift; sourceTree = "<group>"; };
 		E194A2271B024BDD001FC95B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E1987FAB1B2AE3E000F652A9 /* ce charte.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ce charte.csv"; sourceTree = "<group>"; };
+		E1987FAC1B2AE3E000F652A9 /* ce fleche.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ce fleche.csv"; sourceTree = "<group>"; };
+		E1987FAD1B2AE3E000F652A9 /* ce groupe.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ce groupe.csv"; sourceTree = "<group>"; };
 		E19886F51B0DDE91003F07FC /* arcLatVedas WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "arcLatVedas WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E19886F81B0DDE91003F07FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E19886F91B0DDE91003F07FC /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
@@ -254,6 +260,7 @@
 		E13B62931B288944004870DA /* charts */ = {
 			isa = PBXGroup;
 			children = (
+				E1987FAA1B2AE3AE00F652A9 /* CarbonExpress20150610 */,
 				E13B62941B28895B004870DA /* easton20150610 */,
 			);
 			name = charts;
@@ -267,6 +274,16 @@
 				E13B62971B288ABC004870DA /* easton groupe.csv */,
 			);
 			name = easton20150610;
+			sourceTree = "<group>";
+		};
+		E1987FAA1B2AE3AE00F652A9 /* CarbonExpress20150610 */ = {
+			isa = PBXGroup;
+			children = (
+				E1987FAB1B2AE3E000F652A9 /* ce charte.csv */,
+				E1987FAC1B2AE3E000F652A9 /* ce fleche.csv */,
+				E1987FAD1B2AE3E000F652A9 /* ce groupe.csv */,
+			);
+			name = CarbonExpress20150610;
 			sourceTree = "<group>";
 		};
 		E19886F61B0DDE91003F07FC /* arcLatVedas WatchKit Extension */ = {
@@ -681,7 +698,10 @@
 				E13B62991B288ABC004870DA /* easton fleche.csv in Resources */,
 				E1D197A41AE914E800616F1B /* LaunchScreen.xib in Resources */,
 				E1D197A11AE914E800616F1B /* Images.xcassets in Resources */,
+				E1987FB01B2AE3E000F652A9 /* ce groupe.csv in Resources */,
 				E13B629A1B288ABC004870DA /* easton groupe.csv in Resources */,
+				E1987FAF1B2AE3E000F652A9 /* ce fleche.csv in Resources */,
+				E1987FAE1B2AE3E000F652A9 /* ce charte.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

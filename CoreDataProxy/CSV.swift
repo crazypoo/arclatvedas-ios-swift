@@ -11,6 +11,8 @@ import Foundation
 public class CSV {
     public var headers: [String] = []
     public var rows: [Dictionary<String, String>] = []
+    public var rowsarray: [Dictionary<String, [String]>] = []   // colonnes dans un array, permet de recuperer des colonnes homonymes
+    
     public var columns = Dictionary<String, [String]>()
     var delimiter = NSCharacterSet(charactersInString: ";")
     
@@ -25,6 +27,7 @@ public class CSV {
             
             self.headers = self.parseHeaders(fromLines: lines)
             self.rows = self.parseRows(fromLines: lines)
+            self.rowsarray = self.parseRowsArray(fromLines: lines)
             self.columns = self.parseColumns(fromLines: lines)
         }
     }
@@ -65,6 +68,35 @@ public class CSV {
         
         return rows
     }
+    
+    func parseRowsArray(fromLines lines: [String]) -> [Dictionary<String, [String]>] {
+        var rows: [Dictionary<String, [String]>] = []
+        
+        for (lineNumber, line) in enumerate(lines) {
+            if lineNumber == 0 {
+                continue
+            }
+            
+            var row = Dictionary<String, [String]>()
+            let values = line.componentsSeparatedByCharactersInSet(self.delimiter)
+            for (index, header) in enumerate(self.headers) {
+                if index < values.count {
+                    let val = values[index]
+                    if (row[header] == nil)  {
+                        row[header] = []
+                    }
+                    row[header]?.append(values[index])
+                    
+                } else {
+                    row[header]?.append("")
+                }
+            }
+            rows.append(row)
+        }
+        
+        return rows
+    }
+
     
     func parseColumns(fromLines lines: [String]) -> Dictionary<String, [String]> {
         var columns = Dictionary<String, [String]>()

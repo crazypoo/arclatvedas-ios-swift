@@ -9,6 +9,8 @@
 import Foundation
 import CoreData
 
+@objc(SpinCharte)
+
 class SpinCharte: NSManagedObject {
 
     @NSManaged var length: NSNumber

@@ -9,6 +9,8 @@
 import Foundation
 import CoreData
 
+
+@objc(SpinFleche)
 class SpinFleche: NSManagedObject {
 
     @NSManaged var modele: String

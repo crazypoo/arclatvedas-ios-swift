@@ -9,6 +9,8 @@
 import Foundation
 import CoreData
 
+
+@objc(SpinGroupe)
 class SpinGroupe: NSManagedObject {
 
     @NSManaged var name: String

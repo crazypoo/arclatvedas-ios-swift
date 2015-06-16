@@ -12,9 +12,6 @@
 		E1116C8C1B16194D0013D2AE /* ImpactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1116C871B16194D0013D2AE /* ImpactView.swift */; };
 		E1116C8D1B16194D0013D2AE /* ReticuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1116C881B16194D0013D2AE /* ReticuleView.swift */; };
 		E1116C8E1B16194D0013D2AE /* TargetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1116C891B16194D0013D2AE /* TargetController.swift */; };
-		E13B62981B288ABC004870DA /* easton charte.csv in Resources */ = {isa = PBXBuildFile; fileRef = E13B62951B288ABC004870DA /* easton charte.csv */; };
-		E13B62991B288ABC004870DA /* easton fleche.csv in Resources */ = {isa = PBXBuildFile; fileRef = E13B62961B288ABC004870DA /* easton fleche.csv */; };
-		E13B629A1B288ABC004870DA /* easton groupe.csv in Resources */ = {isa = PBXBuildFile; fileRef = E13B62971B288ABC004870DA /* easton groupe.csv */; };
 		E14431971AEA88D4006D8577 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14431961AEA88D4006D8577 /* WebViewController.swift */; };
 		E152128E1AEF73370010AEAD /* DetailEditMaterielViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E152128D1AEF73370010AEAD /* DetailEditMaterielViewController.swift */; };
 		E15212901AEF78B00010AEAD /* FlecheCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E152128F1AEF78B00010AEAD /* FlecheCell.swift */; };
@@ -27,9 +24,12 @@
 		E16834CE1AEE6D63005E14B6 /* TirCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16834CD1AEE6D63005E14B6 /* TirCell.swift */; };
 		E1741D801B0A30E7000CB132 /* StatistiqueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1741D7F1B0A30E7000CB132 /* StatistiqueViewController.swift */; };
 		E194A2281B024BDD001FC95B /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = E194A2271B024BDD001FC95B /* README.md */; };
-		E1987FAE1B2AE3E000F652A9 /* ce charte.csv in Resources */ = {isa = PBXBuildFile; fileRef = E1987FAB1B2AE3E000F652A9 /* ce charte.csv */; };
-		E1987FAF1B2AE3E000F652A9 /* ce fleche.csv in Resources */ = {isa = PBXBuildFile; fileRef = E1987FAC1B2AE3E000F652A9 /* ce fleche.csv */; };
-		E1987FB01B2AE3E000F652A9 /* ce groupe.csv in Resources */ = {isa = PBXBuildFile; fileRef = E1987FAD1B2AE3E000F652A9 /* ce groupe.csv */; };
+		E1987FB81B2EC24D00F652A9 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1987FB71B2EC24D00F652A9 /* CSV.swift */; };
+		E1987FBA1B2EC4E600F652A9 /* SpinCharteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1987FB91B2EC4E600F652A9 /* SpinCharteLoader.swift */; };
+		E1987FBC1B2ECDCE00F652A9 /* charts in Resources */ = {isa = PBXBuildFile; fileRef = E1987FBB1B2ECDCE00F652A9 /* charts */; };
+		E1987FC01B2F001A00F652A9 /* SpinCharte.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1987FBD1B2F001A00F652A9 /* SpinCharte.swift */; };
+		E1987FC11B2F001A00F652A9 /* SpinFleche.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1987FBE1B2F001A00F652A9 /* SpinFleche.swift */; };
+		E1987FC21B2F001A00F652A9 /* SpinGroupe.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1987FBF1B2F001A00F652A9 /* SpinGroupe.swift */; };
 		E19886FB1B0DDE91003F07FC /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19886FA1B0DDE91003F07FC /* InterfaceController.swift */; };
 		E19886FD1B0DDE91003F07FC /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19886FC1B0DDE91003F07FC /* NotificationController.swift */; };
 		E19886FF1B0DDE91003F07FC /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19886FE1B0DDE91003F07FC /* GlanceController.swift */; };
@@ -141,9 +141,6 @@
 		E1116C871B16194D0013D2AE /* ImpactView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImpactView.swift; sourceTree = "<group>"; };
 		E1116C881B16194D0013D2AE /* ReticuleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReticuleView.swift; sourceTree = "<group>"; };
 		E1116C891B16194D0013D2AE /* TargetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetController.swift; sourceTree = "<group>"; };
-		E13B62951B288ABC004870DA /* easton charte.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "easton charte.csv"; sourceTree = "<group>"; };
-		E13B62961B288ABC004870DA /* easton fleche.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "easton fleche.csv"; sourceTree = "<group>"; };
-		E13B62971B288ABC004870DA /* easton groupe.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "easton groupe.csv"; sourceTree = "<group>"; };
 		E14431961AEA88D4006D8577 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		E1468FB71AF778C50085223D /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		E152128D1AEF73370010AEAD /* DetailEditMaterielViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailEditMaterielViewController.swift; sourceTree = "<group>"; };
@@ -159,9 +156,12 @@
 		E16834CD1AEE6D63005E14B6 /* TirCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TirCell.swift; sourceTree = "<group>"; };
 		E1741D7F1B0A30E7000CB132 /* StatistiqueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatistiqueViewController.swift; sourceTree = "<group>"; };
 		E194A2271B024BDD001FC95B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		E1987FAB1B2AE3E000F652A9 /* ce charte.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ce charte.csv"; sourceTree = "<group>"; };
-		E1987FAC1B2AE3E000F652A9 /* ce fleche.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ce fleche.csv"; sourceTree = "<group>"; };
-		E1987FAD1B2AE3E000F652A9 /* ce groupe.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ce groupe.csv"; sourceTree = "<group>"; };
+		E1987FB71B2EC24D00F652A9 /* CSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
+		E1987FB91B2EC4E600F652A9 /* SpinCharteLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpinCharteLoader.swift; path = ../arclatvedas/SpinCharteLoader.swift; sourceTree = "<group>"; };
+		E1987FBB1B2ECDCE00F652A9 /* charts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = charts; sourceTree = "<group>"; };
+		E1987FBD1B2F001A00F652A9 /* SpinCharte.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinCharte.swift; sourceTree = "<group>"; };
+		E1987FBE1B2F001A00F652A9 /* SpinFleche.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinFleche.swift; sourceTree = "<group>"; };
+		E1987FBF1B2F001A00F652A9 /* SpinGroupe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinGroupe.swift; sourceTree = "<group>"; };
 		E19886F51B0DDE91003F07FC /* arcLatVedas WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "arcLatVedas WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E19886F81B0DDE91003F07FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E19886F91B0DDE91003F07FC /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
@@ -257,35 +257,6 @@
 			name = cropcircle;
 			sourceTree = "<group>";
 		};
-		E13B62931B288944004870DA /* charts */ = {
-			isa = PBXGroup;
-			children = (
-				E1987FAA1B2AE3AE00F652A9 /* CarbonExpress20150610 */,
-				E13B62941B28895B004870DA /* easton20150610 */,
-			);
-			name = charts;
-			sourceTree = "<group>";
-		};
-		E13B62941B28895B004870DA /* easton20150610 */ = {
-			isa = PBXGroup;
-			children = (
-				E13B62951B288ABC004870DA /* easton charte.csv */,
-				E13B62961B288ABC004870DA /* easton fleche.csv */,
-				E13B62971B288ABC004870DA /* easton groupe.csv */,
-			);
-			name = easton20150610;
-			sourceTree = "<group>";
-		};
-		E1987FAA1B2AE3AE00F652A9 /* CarbonExpress20150610 */ = {
-			isa = PBXGroup;
-			children = (
-				E1987FAB1B2AE3E000F652A9 /* ce charte.csv */,
-				E1987FAC1B2AE3E000F652A9 /* ce fleche.csv */,
-				E1987FAD1B2AE3E000F652A9 /* ce groupe.csv */,
-			);
-			name = CarbonExpress20150610;
-			sourceTree = "<group>";
-		};
 		E19886F61B0DDE91003F07FC /* arcLatVedas WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -330,8 +301,11 @@
 		E19887261B0F22E2003F07FC /* CoreDataProxy */ = {
 			isa = PBXGroup;
 			children = (
+				E1987FBB1B2ECDCE00F652A9 /* charts */,
 				E1C54D721AF129BB00E7960C /* coredata */,
+				E1987FB91B2EC4E600F652A9 /* SpinCharteLoader.swift */,
 				E198871C1B0E22AF003F07FC /* WatchUtils.swift */,
+				E1987FB71B2EC24D00F652A9 /* CSV.swift */,
 				E198874E1B0F2D6C003F07FC /* DataManager.swift */,
 				E19887291B0F22E2003F07FC /* CoreDataProxy.h */,
 				E198874C1B0F26A1003F07FC /* CoreDataProxy.swift */,
@@ -368,6 +342,9 @@
 		E1C54D721AF129BB00E7960C /* coredata */ = {
 			isa = PBXGroup;
 			children = (
+				E1987FBD1B2F001A00F652A9 /* SpinCharte.swift */,
+				E1987FBE1B2F001A00F652A9 /* SpinFleche.swift */,
+				E1987FBF1B2F001A00F652A9 /* SpinGroupe.swift */,
 				E1468FB71AF778C50085223D /* SwiftyJSON.swift */,
 				E1C54D6D1AF1289E00E7960C /* Volee.swift */,
 				E1C54D6E1AF1289E00E7960C /* Tir.swift */,
@@ -410,7 +387,6 @@
 		E1D197911AE914E800616F1B /* arclatvedas */ = {
 			isa = PBXGroup;
 			children = (
-				E13B62931B288944004870DA /* charts */,
 				E1116C841B16192A0013D2AE /* cropcircle */,
 				E198871F1B0F1F70003F07FC /* arclatvedas.entitlements */,
 				E1B7B10C1B09DCE500AEF6EB /* LineChart.swift */,
@@ -679,6 +655,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1987FBC1B2ECDCE00F652A9 /* charts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -693,15 +670,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E13B62981B288ABC004870DA /* easton charte.csv in Resources */,
 				E1D1979F1AE914E800616F1B /* Main.storyboard in Resources */,
-				E13B62991B288ABC004870DA /* easton fleche.csv in Resources */,
 				E1D197A41AE914E800616F1B /* LaunchScreen.xib in Resources */,
 				E1D197A11AE914E800616F1B /* Images.xcassets in Resources */,
-				E1987FB01B2AE3E000F652A9 /* ce groupe.csv in Resources */,
-				E13B629A1B288ABC004870DA /* easton groupe.csv in Resources */,
-				E1987FAF1B2AE3E000F652A9 /* ce fleche.csv in Resources */,
-				E1987FAE1B2AE3E000F652A9 /* ce charte.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -732,14 +703,19 @@
 			files = (
 				E198874A1B0F239A003F07FC /* Hausse.swift in Sources */,
 				E19887471B0F238C003F07FC /* Tir.swift in Sources */,
+				E1987FC11B2F001A00F652A9 /* SpinFleche.swift in Sources */,
 				E19887451B0F2384003F07FC /* SwiftyJSON.swift in Sources */,
+				E1987FC01B2F001A00F652A9 /* SpinCharte.swift in Sources */,
 				E198874D1B0F26A1003F07FC /* CoreDataProxy.swift in Sources */,
 				E19887481B0F2391003F07FC /* arclatvedas.xcdatamodeld in Sources */,
+				E1987FC21B2F001A00F652A9 /* SpinGroupe.swift in Sources */,
 				E19887461B0F2389003F07FC /* Volee.swift in Sources */,
 				E198874B1B0F239D003F07FC /* PseudoHausse.swift in Sources */,
+				E1987FBA1B2EC4E600F652A9 /* SpinCharteLoader.swift in Sources */,
 				E198874F1B0F2D6C003F07FC /* DataManager.swift in Sources */,
 				E19887491B0F2397003F07FC /* Distance.swift in Sources */,
 				E19887501B0F4C13003F07FC /* WatchUtils.swift in Sources */,
+				E1987FB81B2EC24D00F652A9 /* CSV.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

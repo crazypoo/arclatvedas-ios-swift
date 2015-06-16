@@ -36,6 +36,28 @@
         <attribute name="serialnumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="timeStamp" optional="YES" attributeType="Date" syncable="YES"/>
     </entity>
+    <entity name="SpinCharte" representedClassName="PRODUCT_MODULE_NAME.SpinCharte" syncable="YES">
+        <attribute name="hight" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="length" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="low" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="group" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="SpinGroupe" inverseName="chart" inverseEntity="SpinGroupe" syncable="YES"/>
+    </entity>
+    <entity name="SpinFleche" representedClassName="PRODUCT_MODULE_NAME.SpinFleche" syncable="YES">
+        <attribute name="diametreoutside" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="fabricant" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="grain" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="modele" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="spin" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="surname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="taille" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="groupe" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="SpinGroupe" inverseName="arrow" inverseEntity="SpinGroupe" syncable="YES"/>
+    </entity>
+    <entity name="SpinGroupe" representedClassName="PRODUCT_MODULE_NAME.SpinGroupe" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="arrow" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="SpinFleche" inverseName="groupe" inverseEntity="SpinFleche" syncable="YES"/>
+        <relationship name="chart" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="SpinCharte" inverseName="group" inverseEntity="SpinCharte" syncable="YES"/>
+    </entity>
     <entity name="Tir" representedClassName="Tir" syncable="YES">
         <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="distance" optional="YES" attributeType="String" syncable="YES"/>
@@ -57,5 +79,8 @@
         <element name="Materiel" positionX="99" positionY="-270" width="128" height="120"/>
         <element name="Tir" positionX="-216" positionY="-45" width="128" height="120"/>
         <element name="Volee" positionX="-18" positionY="-0" width="128" height="105"/>
+        <element name="SpinCharte" positionX="52" positionY="-522" width="128" height="103"/>
+        <element name="SpinFleche" positionX="369" positionY="-340" width="128" height="178"/>
+        <element name="SpinGroupe" positionX="295" positionY="-513" width="128" height="88"/>
     </elements>
 </model>

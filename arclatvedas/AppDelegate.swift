@@ -29,6 +29,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         
         
         
+        let spinloader = SpinCharteLoader()
+        spinloader.bootCharte()
+        
+        
         return true
     }
 

@@ -30,6 +30,7 @@
 		E1987FC01B2F001A00F652A9 /* SpinCharte.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1987FBD1B2F001A00F652A9 /* SpinCharte.swift */; };
 		E1987FC11B2F001A00F652A9 /* SpinFleche.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1987FBE1B2F001A00F652A9 /* SpinFleche.swift */; };
 		E1987FC21B2F001A00F652A9 /* SpinGroupe.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1987FBF1B2F001A00F652A9 /* SpinGroupe.swift */; };
+		E1987FC41B315B0300F652A9 /* CharteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1987FC31B315B0300F652A9 /* CharteViewController.swift */; };
 		E19886FB1B0DDE91003F07FC /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19886FA1B0DDE91003F07FC /* InterfaceController.swift */; };
 		E19886FD1B0DDE91003F07FC /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19886FC1B0DDE91003F07FC /* NotificationController.swift */; };
 		E19886FF1B0DDE91003F07FC /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19886FE1B0DDE91003F07FC /* GlanceController.swift */; };
@@ -53,6 +54,7 @@
 		E198874D1B0F26A1003F07FC /* CoreDataProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E198874C1B0F26A1003F07FC /* CoreDataProxy.swift */; };
 		E198874F1B0F2D6C003F07FC /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E198874E1B0F2D6C003F07FC /* DataManager.swift */; };
 		E19887501B0F4C13003F07FC /* WatchUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E198871C1B0E22AF003F07FC /* WatchUtils.swift */; };
+		E19A261A1B32EE3700326C59 /* ArrowChooserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19A26191B32EE3700326C59 /* ArrowChooserCell.swift */; };
 		E1B432D81B0F76180081EB35 /* TirInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B432D71B0F76180081EB35 /* TirInterfaceController.swift */; };
 		E1B7B10D1B09DCE500AEF6EB /* LineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B7B10C1B09DCE500AEF6EB /* LineChart.swift */; };
 		E1C54D6B1AF1057100E7960C /* DistanceCellEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C54D6A1AF1057100E7960C /* DistanceCellEdit.swift */; };
@@ -162,6 +164,7 @@
 		E1987FBD1B2F001A00F652A9 /* SpinCharte.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinCharte.swift; sourceTree = "<group>"; };
 		E1987FBE1B2F001A00F652A9 /* SpinFleche.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinFleche.swift; sourceTree = "<group>"; };
 		E1987FBF1B2F001A00F652A9 /* SpinGroupe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinGroupe.swift; sourceTree = "<group>"; };
+		E1987FC31B315B0300F652A9 /* CharteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharteViewController.swift; sourceTree = "<group>"; };
 		E19886F51B0DDE91003F07FC /* arcLatVedas WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "arcLatVedas WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E19886F81B0DDE91003F07FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E19886F91B0DDE91003F07FC /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
@@ -184,6 +187,7 @@
 		E19887381B0F22E2003F07FC /* CoreDataProxyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataProxyTests.swift; sourceTree = "<group>"; };
 		E198874C1B0F26A1003F07FC /* CoreDataProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataProxy.swift; sourceTree = "<group>"; };
 		E198874E1B0F2D6C003F07FC /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		E19A26191B32EE3700326C59 /* ArrowChooserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrowChooserCell.swift; sourceTree = "<group>"; };
 		E1B09EB11AEA320700599185 /* arclatvedas.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = arclatvedas.xcdatamodel; sourceTree = "<group>"; };
 		E1B432D71B0F76180081EB35 /* TirInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TirInterfaceController.swift; sourceTree = "<group>"; };
 		E1B7B10C1B09DCE500AEF6EB /* LineChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineChart.swift; sourceTree = "<group>"; };
@@ -406,6 +410,8 @@
 				E15212951AEFCA4A0010AEAD /* DetailEditTirViewController.swift */,
 				E14431961AEA88D4006D8577 /* WebViewController.swift */,
 				E1D1979D1AE914E800616F1B /* Main.storyboard */,
+				E1987FC31B315B0300F652A9 /* CharteViewController.swift */,
+				E19A26191B32EE3700326C59 /* ArrowChooserCell.swift */,
 				E1D197A01AE914E800616F1B /* Images.xcassets */,
 				E1D197A21AE914E800616F1B /* LaunchScreen.xib */,
 				E1D197921AE914E800616F1B /* Supporting Files */,
@@ -749,10 +755,12 @@
 				E1741D801B0A30E7000CB132 /* StatistiqueViewController.swift in Sources */,
 				E1C54D6B1AF1057100E7960C /* DistanceCellEdit.swift in Sources */,
 				E152128E1AEF73370010AEAD /* DetailEditMaterielViewController.swift in Sources */,
+				E1987FC41B315B0300F652A9 /* CharteViewController.swift in Sources */,
 				E14431971AEA88D4006D8577 /* WebViewController.swift in Sources */,
 				E16834CE1AEE6D63005E14B6 /* TirCell.swift in Sources */,
 				E194A2281B024BDD001FC95B /* README.md in Sources */,
 				E1D1979C1AE914E800616F1B /* DetailViewController.swift in Sources */,
+				E19A261A1B32EE3700326C59 /* ArrowChooserCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -841,7 +849,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_NAME = "${TARGET_NAME}";
-				PROVISIONING_PROFILE = "9030f51d-90c2-41b1-a4c4-b77f21f125fc";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -856,7 +864,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_NAME = "${TARGET_NAME}";
-				PROVISIONING_PROFILE = "9030f51d-90c2-41b1-a4c4-b77f21f125fc";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -875,7 +883,7 @@
 				INFOPLIST_FILE = "arcLatVedas WatchKit App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e23092f1-f978-437d-8524-338e0397b81d";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
 				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
@@ -892,7 +900,7 @@
 				INFOPLIST_FILE = "arcLatVedas WatchKit App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e23092f1-f978-437d-8524-338e0397b81d";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
 				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
@@ -918,7 +926,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "03c215c9-f91c-4425-b1f0-b75576d9829d";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -940,7 +948,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "03c215c9-f91c-4425-b1f0-b75576d9829d";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -999,6 +1007,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1077,7 +1086,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "721acc6f-2402-453d-a456-bf49f027dd75";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1092,7 +1101,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "721acc6f-2402-453d-a456-bf49f027dd75";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

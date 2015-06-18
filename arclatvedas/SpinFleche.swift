@@ -11,16 +11,28 @@ import CoreData
 
 
 @objc(SpinFleche)
-class SpinFleche: NSManagedObject {
+public class SpinFleche: NSManagedObject {
 
-    @NSManaged var modele: String
-    @NSManaged var name: String
-    @NSManaged var surname: String
-    @NSManaged var grain: NSNumber
-    @NSManaged var spin: NSNumber
-    @NSManaged var diametreoutside: NSNumber
-    @NSManaged var taille: NSNumber
-    @NSManaged var fabricant: String
-    @NSManaged var groupe: NSMutableOrderedSet
+    @NSManaged public var modele: String
+    @NSManaged public var name: String
+    @NSManaged public var surname: String
+    @NSManaged public var grain: NSNumber
+    @NSManaged public var spin: String
+    @NSManaged public var diametreoutside: NSNumber
+    @NSManaged public var taille: NSNumber
+    @NSManaged public var fabricant: String
+    @NSManaged public var groupsofarrow: NSMutableOrderedSet
+
+    
+    
+    override public var  description: String {
+        return modele
+        
+        
+    }
+    
+    override public var  debugDescription: String {
+        return description
+    }
 
 }

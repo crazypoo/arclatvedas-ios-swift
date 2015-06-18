@@ -48,14 +48,14 @@
         <attribute name="grain" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="modele" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="spin" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="spin" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="surname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="taille" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <relationship name="groupe" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="SpinGroupe" inverseName="arrow" inverseEntity="SpinGroupe" syncable="YES"/>
+        <relationship name="groupsofarrow" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="SpinGroupe" inverseName="arrowsofgroup" inverseEntity="SpinGroupe" syncable="YES"/>
     </entity>
     <entity name="SpinGroupe" representedClassName="SpinGroupe" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="arrow" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="SpinFleche" inverseName="groupe" inverseEntity="SpinFleche" syncable="YES"/>
+        <relationship name="arrowsofgroup" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="SpinFleche" inverseName="groupsofarrow" inverseEntity="SpinFleche" syncable="YES"/>
         <relationship name="chart" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="SpinCharte" inverseName="group" inverseEntity="SpinCharte" syncable="YES"/>
     </entity>
     <entity name="Tir" representedClassName="Tir" syncable="YES">

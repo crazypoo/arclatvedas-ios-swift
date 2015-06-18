@@ -22,15 +22,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "arclatvedas/SpinCharteLoader.swift"
-            timestampString = "456159814.741703"
+            timestampString = "456322412.928682"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "318"
-            endingLineNumber = "318"
+            startingLineNumber = "358"
+            endingLineNumber = "358"
             landmarkName = "testrequests()"
             landmarkType = "5">
          </BreakpointContent>

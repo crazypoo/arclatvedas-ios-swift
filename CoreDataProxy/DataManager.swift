@@ -20,6 +20,60 @@ public class DataManager: NSObject {
         saveManagedContext()
     }
     
+    
+    public class func getAll(tablename:String, predicate:NSPredicate?, delegate:NSFetchedResultsControllerDelegate?)->NSFetchedResultsController{
+        let fetchRequest = NSFetchRequest()
+        // Edit the entity name as appropriate.
+        let entity = NSEntityDescription.entityForName(tablename, inManagedObjectContext:  getContext())
+        fetchRequest.entity = entity
+        fetchRequest.predicate = predicate
+        // Set the batch size to a suitable number.
+        fetchRequest.fetchBatchSize = 20
+        
+        //        // Edit the sort key as appropriate.
+        //        let sortDescriptor = NSSortDescriptor(key: "timeStamp", ascending: false)
+        //        let sortDescriptors = [sortDescriptor]
+        //
+        fetchRequest.sortDescriptors = []
+        
+        // Edit the section name key path and cache name if appropriate.
+        // nil for section name key path means "no sections".
+        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: getContext(), sectionNameKeyPath: nil, cacheName: "Master")
+         aFetchedResultsController.delegate = delegate
+        // _fetchedResultsController = aFetchedResultsController
+        
+        var error: NSError? = nil
+        if !aFetchedResultsController.performFetch(&error) {
+            // Replace this implementation with code to handle the error appropriately.
+            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            //println("Unresolved error \(error), \(error.userInfo)")
+            abort()
+        }
+        return aFetchedResultsController
+    }
+
+    
+    
+    
+    public class func emptyManagedTable(tableName:String){
+        
+       let all = NSFetchRequest()
+        var error : NSError? = nil
+        let entity = NSEntityDescription.entityForName(tableName, inManagedObjectContext:  getContext())
+        all.entity = entity
+        all.includesPropertyValues = true //only fetch the managedObjectID
+        
+        
+        
+        if let data =  getContext().executeFetchRequest(all, error: &error) {
+
+            //error handling goes here
+            for result in data {
+                deleteManagedObject(result as! NSManagedObject)
+            }
+        }
+        saveManagedContext()
+    }
     public class func saveManagedContext() {
         var error : NSError? = nil
         if !getContext().save(&error) {

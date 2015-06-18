@@ -38,6 +38,11 @@ public class SpinCharteLoader: NSObject,NSFetchedResultsControllerDelegate {
     //[NSPredicate predicateWithFormat:@"title == %@ AND blockbuster IN %@", @"Transformers 2", setOfBlockbusters]
 
     public func getAll(tablename:String, predicate:NSPredicate?)->NSFetchedResultsController{
+        
+        
+        
+        
+        
         let fetchRequest = NSFetchRequest()
         // Edit the entity name as appropriate.
         let entity = NSEntityDescription.entityForName(tablename, inManagedObjectContext: DataManager.getContext())
@@ -54,7 +59,7 @@ public class SpinCharteLoader: NSObject,NSFetchedResultsControllerDelegate {
         
         // Edit the section name key path and cache name if appropriate.
         // nil for section name key path means "no sections".
-        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: DataManager.getContext(), sectionNameKeyPath: nil, cacheName: "Master")
+        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: DataManager.getContext(), sectionNameKeyPath: nil, cacheName: "MasterCharte")
         aFetchedResultsController.delegate = self
        // _fetchedResultsController = aFetchedResultsController
         
@@ -106,13 +111,11 @@ public class SpinCharteLoader: NSObject,NSFetchedResultsControllerDelegate {
             let row = charte.rows[j]
             insertSpinCharte(row)
         }
-        
         let fleche  = loadFiles(what, ofType:"alvfleche")
         for (var j = 0 ; j < fleche.rows.count ; j++){
             let row = fleche.rows[j]
             insertFlecheGroupe(row)
         }
-        
         let groupe  = loadFiles(what, ofType:"alvgroupe")
         
         for (var j = 0 ; j < groupe.rowsarray.count ; j++){
@@ -129,14 +132,7 @@ public class SpinCharteLoader: NSObject,NSFetchedResultsControllerDelegate {
             
         }
 
-        let context = DataManager.getContext()
-        var error: NSError? = nil
-        if !context.save(&error) {
-            // Replace this implementation with code to handle the error appropriately.
-            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            //println("Unresolved error \(error), \(error.userInfo)")
-            abort()
-        }
+       DataManager.saveManagedContext()
 
 
     }
@@ -151,42 +147,36 @@ public class SpinCharteLoader: NSObject,NSFetchedResultsControllerDelegate {
     
     
     func str2nsnumber(str:String)->NSNumber{
-        
+        let newString = str.stringByReplacingOccurrencesOfString(",", withString: ".")
+
         formatter.numberStyle = NSNumberFormatterStyle.DecimalStyle;
-        if let number = formatter.numberFromString(str) {
+        if let number = formatter.numberFromString(newString) {
             return number
         }
         return  NSNumber(float:0.0)
     }
     
+    
+    
     public func insertSpinCharte(entry:Dictionary<String, String>) {
         let context = DataManager.getContext()
         let entityDescription = NSEntityDescription.entityForName(spinCharteTable, inManagedObjectContext: context)
         
-        let spinCharte = SpinCharte(entity: entityDescription!, insertIntoManagedObjectContext: DataManager.getContext())
-       // length;low;hight;group;groupname
-        spinCharte.length =   str2nsnumber(entry["length"]!)
-        spinCharte.low = str2nsnumber(entry["low"]!)
-        spinCharte.hight = str2nsnumber(entry["hight"]!)
+        let spinCharte = SpinCharte(entity: entityDescription!, insertIntoManagedObjectContext: context)
+
+        
+        spinCharte.setValue(str2nsnumber(entry["length"]!), forKey: "length")
+        spinCharte.setValue(str2nsnumber(entry["low"]!), forKey: "low")
+        spinCharte.setValue(str2nsnumber(entry["hight"]!), forKey: "hight")
         
         let group = insertSpinGroupe(entry["groupname"]!)
-        spinCharte.group=[]
-        spinCharte.group.addObject(group)
 
         group.chart.addObject(spinCharte)
-
-        // spinCharte.group
         
-        // If appropriate, configure the new managed object.
-        // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-        // Save the context.
-        var error: NSError? = nil
-        if !context.save(&error) {
-            // Replace this implementation with code to handle the error appropriately.
-            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            //println("Unresolved error \(error), \(error.userInfo)")
-            abort()
-        }
+
+        spinCharte.group.addObject(group)
+
+        
         
     }
 
@@ -194,61 +184,34 @@ public class SpinCharteLoader: NSObject,NSFetchedResultsControllerDelegate {
         let context = DataManager.getContext()
         let entityDescription = NSEntityDescription.entityForName(spinGroupeTable, inManagedObjectContext: context)
         
-        let spinGroupe = SpinGroupe(entity: entityDescription!, insertIntoManagedObjectContext: DataManager.getContext())
-        // length;low;hight;group;groupname
+        let spinGroupe = SpinGroupe(entity: entityDescription!, insertIntoManagedObjectContext: context)
 
-//        @NSManaged var name: String
-//        @NSManaged var chart: NSMutableOrderedSet
-//        @NSManaged var arrow: NSMutableOrderedSet
+        spinGroupe.setValue(groupename, forKey: "name")
 
-        spinGroupe.name  = groupename
-        spinGroupe.chart=[]
-        spinGroupe.arrow=[]
         return spinGroupe;
     }
     
     
     func insertFlecheGroupe(entry:Dictionary<String, String>){
         
-//        @NSManaged var modele: String
-//        @NSManaged var name: String
-//        @NSManaged var surname: String
-//        @NSManaged var grain: NSNumber
-//        @NSManaged var spin: NSNumber
-//        @NSManaged var diametreoutside: NSNumber
-//        @NSManaged var taille: NSNumber
-//        @NSManaged var fabricant: String
-//        @NSManaged var groupe: NSMutableOrderedSet
-        // id;modele;name;surname;grain;spin;diametreoutside;taille;fabricant
 
         
         let context = DataManager.getContext()
         let entityDescription = NSEntityDescription.entityForName(spinFlecheTable, inManagedObjectContext: context)
         
-        let spinFleche = SpinFleche(entity: entityDescription!, insertIntoManagedObjectContext: DataManager.getContext())
+        let spinFleche = SpinFleche(entity: entityDescription!, insertIntoManagedObjectContext: context)
 
-        spinFleche.modele = entry["modele"]!
-        spinFleche.name = entry["name"]!
-        spinFleche.surname = entry["surname"]!
-        spinFleche.grain = str2nsnumber(entry["grain"]!)
-        spinFleche.spin = str2nsnumber(entry["spin"]!)
-        spinFleche.diametreoutside = str2nsnumber(entry["diametreoutside"]!)
-        spinFleche.taille = str2nsnumber(entry["taille"]!)
-        spinFleche.fabricant = entry["fabricant"]!
-        spinFleche.groupe=[]
-        // spinFleche.groupe
         
-        // If appropriate, configure the new managed object.
-        // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-        // Save the context.
-        var error: NSError? = nil
-        if !context.save(&error) {
-            // Replace this implementation with code to handle the error appropriately.
-            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            //println("Unresolved error \(error), \(error.userInfo)")
-            abort()
-        }
+        spinFleche.setValue(entry["modele"]!, forKey: "modele")
+        spinFleche.setValue(entry["name"]!, forKey: "name")
+        spinFleche.setValue(entry["surname"]!, forKey: "surname")
+        spinFleche.setValue(str2nsnumber(entry["grain"]!), forKey: "grain")
+        spinFleche.setValue(entry["spin"]!, forKey: "spin")
+        spinFleche.setValue(str2nsnumber(entry["diametreoutside"]!), forKey: "diametreoutside")
+        spinFleche.setValue(str2nsnumber(entry["taille"]!), forKey: "taille")
+        spinFleche.setValue(entry["fabricant"]!, forKey: "fabricant")
 
+        
     }
     
     func getGroupe(groupename:String)-> SpinGroupe{
@@ -256,9 +219,10 @@ public class SpinCharteLoader: NSObject,NSFetchedResultsControllerDelegate {
         let  predicate:NSPredicate =  NSPredicate(format: "name == %@",groupename)
 
         let result:NSFetchedResultsController = getAll(spinGroupeTable, predicate:predicate)
-        var indexPath:NSIndexPath = NSIndexPath(forRow: 0, inSection: 0)
+        
+          //NSLog( "getGroupe resultcount = \(result.fetchedObjects!.count)")
 
-        return result.objectAtIndexPath( indexPath) as! SpinGroupe
+        return result.fetchedObjects?.first as! SpinGroupe
         
     }
     
@@ -267,32 +231,34 @@ public class SpinCharteLoader: NSObject,NSFetchedResultsControllerDelegate {
         let  predicate:NSPredicate =  NSPredicate(format: "modele == %@",modelename)
         
         let result:NSFetchedResultsController = getAll(spinFlecheTable, predicate:predicate)
-        var indexPath:NSIndexPath = NSIndexPath(forRow: 0, inSection: 0)
+        //NSLog( "getFleche resultcount = \(result.fetchedObjects!.count)")
+
         
-        return result.objectAtIndexPath( indexPath) as! SpinFleche
+        return result.fetchedObjects?.first as! SpinFleche
         
     }
 
     
     
-    func associateGroupeAndFleche(groupename:String, modelefleche:String){
-        let group = getGroupe(groupename)
-        let fleche = getFleche(modelefleche)
+    func getGroupeR(groupename:String)-> NSFetchedResultsController{
         
-        group.arrow.addObject(fleche)
-        fleche.groupe.addObject(group)
+        let  predicate:NSPredicate =  NSPredicate(format: "name == %@",groupename)
+        
+        let result:NSFetchedResultsController = getAll(spinGroupeTable, predicate:predicate)
+        
+        //  NSLog( "getGroupe resultcount = \(result.fetchedObjects!.count)")
+        
+        return result
         
     }
     
-    
-    
-
-    func getGroupes(length:NSNumber,weight:NSNumber)-> NSFetchedResultsController{
+    func getFlecheR(modelename:String)-> NSFetchedResultsController{
         
-        let  predicate:NSPredicate =  NSPredicate(format: "length == %@ and low <= %@ and hight >=%@",length,weight,weight)
+        let  predicate:NSPredicate =  NSPredicate(format: "modele == %@",modelename)
         
-        let result:NSFetchedResultsController = getAll(spinCharteTable, predicate:predicate)
-
+        let result:NSFetchedResultsController = getAll(spinFlecheTable, predicate:predicate)
+        //  NSLog( "getFleche resultcount = \(result.fetchedObjects!.count)")
+        
         
         return result
         
@@ -300,11 +266,75 @@ public class SpinCharteLoader: NSObject,NSFetchedResultsControllerDelegate {
 
     
     
+    
+    
+    
+    func associateGroupeAndFleche(groupename:String, modelefleche:String){
+        
+        var fleche:SpinFleche = getFleche(modelefleche)
+
+        var groups = getGroupeR(groupename)
+        for group in groups.fetchedObjects as! [SpinGroupe] {
+            group.arrowsofgroup.addObject(fleche)
+            fleche.groupsofarrow.addObject(group)
+
+
+        }
+
+
+        
+        
+        
+    }
+    
+    
+    
+
+    public class func getGroupes(length:NSNumber,weight:NSNumber)-> NSFetchedResultsController{
+        var  predicate:NSPredicate?=nil
+
+        if (length == 0 ) &&  (weight == 0 ){
+            
+
+        }else{
+            if (weight == 0 ){
+                  predicate =  NSPredicate(format: "length == %@",length)
+
+            }else{
+                if (length == 0 ){
+                      predicate =  NSPredicate(format: "low <= %@ and hight >=%@",length,weight,weight)
+
+                }else{
+                      predicate =  NSPredicate(format: "length == %@ and low <= %@ and hight >=%@",length,weight,weight)
+
+                }
+
+            }
+        }
+        
+        let result:NSFetchedResultsController = DataManager.getAll("SpinCharte", predicate:predicate, delegate:nil)
+
+        
+        return result
+        
+    }
+
+     func getGroupesO(length:NSNumber,weight:NSNumber)-> NSFetchedResultsController{
+        
+        let  predicate:NSPredicate =  NSPredicate(format: "length == %@ and low <= %@ and hight >=%@",length,weight,weight)
+        
+        let result:NSFetchedResultsController = getAll(spinCharteTable, predicate:predicate)
+        
+        
+        return result
+        
+    }
+
+    
     public func testrequests(){
         
         
-       let result =  getGroupes(29,weight:21)
-        NSLog(result.description);
+       var result =   getGroupesO(29,weight:21)
         
         
         for (var i = 0 ; i<result.fetchedObjects!.count ; i++){
@@ -314,10 +344,10 @@ public class SpinCharteLoader: NSObject,NSFetchedResultsControllerDelegate {
            let spinGroupe = toto.group.objectAtIndex(0) as! SpinGroupe
             NSLog(spinGroupe.name);
             
-            NSLog( "count = \(spinGroupe.arrow.count)")
-            for (var j = 0 ; j < spinGroupe.arrow.count ; j++){
+            NSLog( "count = \(spinGroupe.arrowsofgroup.count)")
+            for (var j = 0 ; j < spinGroupe.arrowsofgroup.count ; j++){
                 
-                let arrow = spinGroupe.arrow.objectAtIndex(j) as! SpinFleche;
+                let arrow = spinGroupe.arrowsofgroup.objectAtIndex(j) as! SpinFleche;
                 NSLog(arrow.modele);
                 
             }
@@ -328,19 +358,21 @@ public class SpinCharteLoader: NSObject,NSFetchedResultsControllerDelegate {
     }
     
     
-    
-    
-    
-    
-    
-    
     public  func bootCharte(){
         
-        let result:NSFetchedResultsController? = getAll("SpinFleche", predicate:nil)
+        let resultSpinFleche:NSFetchedResultsController? = getAll("SpinFleche", predicate:nil)
+         NSLog( "count = \(resultSpinFleche!.fetchedObjects!.count)")
         
-        if (result!.fetchedObjects!.count == 0) {
+        let resultSpinCharte:NSFetchedResultsController? = getAll("SpinCharte", predicate:nil)
+        NSLog( "count = \(resultSpinCharte!.fetchedObjects!.count)")
+
+        let resultspinGroupeTable:NSFetchedResultsController? = getAll("SpinGroupe", predicate:nil)
+        NSLog( "count = \(resultspinGroupeTable!.fetchedObjects!.count)")
+
+        if (resultSpinFleche!.fetchedObjects!.count == 0) {
             bootEaston()
             bootCE()
+
         }
         
         testrequests()

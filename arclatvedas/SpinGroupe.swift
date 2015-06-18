@@ -11,10 +11,22 @@ import CoreData
 
 
 @objc(SpinGroupe)
-class SpinGroupe: NSManagedObject {
+public class SpinGroupe: NSManagedObject {
 
-    @NSManaged var name: String
-    @NSManaged var chart: NSMutableOrderedSet
-    @NSManaged var arrow: NSMutableOrderedSet
+    @NSManaged public var name: String
+    @NSManaged public var chart: NSMutableOrderedSet
+    @NSManaged public var arrowsofgroup: NSMutableOrderedSet
 
+    
+     override public var description: String {
+            return "\(name)"
+    
+    
+    }
+    
+    override public var debugDescription: String {
+        return description
+    }
+    
+    
 }

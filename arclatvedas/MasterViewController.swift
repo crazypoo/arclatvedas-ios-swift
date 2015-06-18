@@ -14,7 +14,7 @@ import CoreDataProxy
 class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
     enum Table: Int {
-        case Infos = 0, Mandats, Photos, Materiel,Fleches, Distances, Scores, Apropos
+        case Infos = 0, Mandats, Photos, Materiel,Fleches,Charte, Distances, Scores, Apropos
     }
     
     
@@ -77,12 +77,14 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         //
         //        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewEventObject:")
         //        self.navigationItem.rightBarButtonItem = addButton
+        
+        // DataManager.emptyManagedTable("Event") // RAZ
         if let split = self.splitViewController {
             let controllers = split.viewControllers
             self.detailViewController = controllers[controllers.count-1].topViewController as? DetailViewController
         }
     }
-    
+    //CharteViewController
     override func viewWillAppear(animated: Bool){
         let sectionInfo = self.fetchedResultsEventController.sections![0] as! NSFetchedResultsSectionInfo
         let compte = sectionInfo.numberOfObjects
@@ -95,10 +97,18 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             self.initNewEventObject("Photos",url:"https://www.flickr.com/photos/arclatvedas/",ordre:Table.Photos.rawValue + 1)
             self.initNewEventObject("Matériel",url:"",ordre:Table.Materiel.rawValue + 1)
             self.initNewEventObject("Flèches",url:"",ordre:Table.Fleches.rawValue + 1)
+            self.initNewEventObject("Sélecteur de flèche",url:"",ordre:Table.Charte.rawValue + 1)
+
             self.initNewEventObject("Distances",url:"",ordre:Table.Distances.rawValue + 1)
             self.initNewEventObject("Scores",url:"",ordre:Table.Scores.rawValue + 1)
             self.initNewEventObject("À propos d'Arc Lat'Védas",url:"http://arclatvedas.free.fr/index.php?option=com_content&view=article&id=20&tmpl=component",ordre:Table.Apropos.rawValue + 1)
             
+        }else{
+             if (compte == 8){
+                //ajout d'un calcul de spin
+                self.initNewEventObject("Sélecteur de flèche",url:"",ordre:Table.Charte.rawValue + 1)
+
+            }
         }
         
     }
@@ -217,6 +227,20 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                         
                         controller.tablename="Tir"
                         
+                    } else {
+                        
+                        if segue.identifier == "charteSegue" {
+                            let controller = (segue.destinationViewController as! UINavigationController).topViewController as! CharteViewController
+                            //                        controller.managedObjectContext=self.managedObjectContext;
+                            
+                            controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                            
+                            controller.navigationItem.leftItemsSupplementBackButton = true
+                            
+                            controller.tablename="SpinCharte"
+                            
+                        }
+                        
                     }
                 }
                 
@@ -287,12 +311,13 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             self.performSegueWithIdentifier("matos", sender: self)
         case .Fleches:
             self.performSegueWithIdentifier("matos", sender: self)
-            
+        case .Charte:
+            self.performSegueWithIdentifier("charteSegue", sender: self)
         case .Distances:
             self.performSegueWithIdentifier("matos", sender: self)
         case .Scores:
             self.performSegueWithIdentifier("matos", sender: self)
-            
+        
         default:
             let page :String = object.valueForKey("url")!.description
             if (!page.isEmpty){

@@ -368,12 +368,9 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         
         let ordre = object.valueForKey("ordre") as? NSNumber
         if  ordre ==  Table.Scores.rawValue {
-            let cframe: CGRect = CGRect(x: cell.contentView.frame.width-100 ,y: 0 ,width: 100, height:cell.contentView.frame.height)
             
-            
-            //let b:UIButton = UIButton(frame:cframe)
             let b:UIButton = UIButton.buttonWithType(UIButtonType.System) as! UIButton
-            b.frame = CGRect(x: cell.contentView.frame.width-100 ,y: 0 ,width: 100, height:cell.contentView.frame.height)
+            b.frame = CGRect(x: 200 ,y: 0 ,width: 100, height:cell.contentView.frame.height)
             b.backgroundColor = UIColor.whiteColor()
             b.setTitle( "Graph", forState: .Normal)
             b.setTitleColor(UIColor.blackColor(), forState: .Normal)

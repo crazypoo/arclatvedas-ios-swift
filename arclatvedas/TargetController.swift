@@ -90,7 +90,7 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate {
         
         if  magnifyingViewVisible  {
             if pt1.y <=  hauteur{
-              ///  on evite d'avoir la loupe sur les boutons
+              //  on evite d'avoir la loupe sur les boutons
                 DCDMagnifyingGlassView.show(true)
             }else{
                 magnifyingViewVisible = false

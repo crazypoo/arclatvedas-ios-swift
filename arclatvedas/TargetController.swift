@@ -78,15 +78,25 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate {
     func tapAction(sender: UITapGestureRecognizer) {
         
         magnifyingViewVisible = !magnifyingViewVisible
-        
+        var hauteur:CGFloat = 0.0
         let pt1:CGPoint = sender.locationOfTouch(0,inView: self.view)
         let pt2:CGPoint = sender.locationOfTouch(0,inView: self.iv)
         
+        if let myframe = self.iv?.frame {
+            hauteur = myframe.origin.y + myframe.size.height + 20
+        }
         //pour etre sous le doigt
         DCDMagnifyingGlassView.setContentFrame(CGRect(x: pt1.x-50,y: pt1.y-50,width: 100,height: 100))
         
         if  magnifyingViewVisible  {
-            DCDMagnifyingGlassView.show(true)
+            if pt1.y <=  hauteur{
+              ///  on evite d'avoir la loupe sur les boutons
+                DCDMagnifyingGlassView.show(true)
+            }else{
+                magnifyingViewVisible = false
+                DCDMagnifyingGlassView.dismiss(true)
+            }
+            
         } else {
             DCDMagnifyingGlassView.dismiss(true)
         }

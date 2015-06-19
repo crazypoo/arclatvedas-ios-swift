@@ -53,7 +53,7 @@ public class CoreDataProxy:NSObject{
         if let sharedContainerURL = sharedContainerURL {
         
             let storeURL = sharedContainerURL.URLByAppendingPathComponent("arclatvedas.sqlite")
-            NSLog(storeURL.description)
+             NSLog(storeURL.description)
             var coordinator: NSPersistentStoreCoordinator? = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
             
             var error: NSError? = nil

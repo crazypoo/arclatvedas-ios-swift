@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "arclatvedas/MasterViewController.swift"
-            timestampString = "456401556.721297"
+            timestampString = "456415932.746125"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "401"
-            endingLineNumber = "401"
+            startingLineNumber = "415"
+            endingLineNumber = "415"
             landmarkName = "controller(_:didChangeObject:atIndexPath:forChangeType:newIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>

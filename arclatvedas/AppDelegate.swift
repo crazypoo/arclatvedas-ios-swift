@@ -22,8 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         
         
         
-        splitViewController.presentsWithGesture = false; // SplitView won't recognize right swipe
-        
+//        splitViewController.presentsWithGesture = false // SplitView won't recognize right swipe
+//        splitViewController.preferredDisplayMode = .PrimaryHidden
+
         
         
         let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController

@@ -24,7 +24,7 @@ class ArrowChooserCell: UITableViewCell {
         if let fleche = arrow {
         
          if let detail = self.texte {
-            NSLog(fleche.grain.description)
+        //    NSLog(fleche.grain.description)
             detail.text = String(stringInterpolation: "Modele: ","\(fleche.modele)\n","nom: \(fleche.name)\n", "Grain: ","\(fleche.grain) ","Spin: ","\(fleche.spin) ","Taille: ","\(fleche.taille)\n","Fabricant: ","\(fleche.fabricant)\n")
         }
         }

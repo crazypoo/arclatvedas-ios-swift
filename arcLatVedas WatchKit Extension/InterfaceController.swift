@@ -72,7 +72,7 @@ class InterfaceController: WKInterfaceController {
     
     
     // Assume the app delegate has a text field to display the activity information
-    NSLog("watch user info %@", userInfo!);
+  //  NSLog("watch user info %@", userInfo!);
 
     }
     

@@ -365,13 +365,13 @@ public class SpinCharteLoader: NSObject,NSFetchedResultsControllerDelegate {
     public  func bootCharte(){
         
         let resultSpinFleche:NSFetchedResultsController? = getAll("SpinFleche", predicate:nil)
-         NSLog( "count = \(resultSpinFleche!.fetchedObjects!.count)")
+       //  NSLog( "count = \(resultSpinFleche!.fetchedObjects!.count)")
         
         let resultSpinCharte:NSFetchedResultsController? = getAll("SpinCharte", predicate:nil)
-        NSLog( "count = \(resultSpinCharte!.fetchedObjects!.count)")
+      //  NSLog( "count = \(resultSpinCharte!.fetchedObjects!.count)")
 
         let resultspinGroupeTable:NSFetchedResultsController? = getAll("SpinGroupe", predicate:nil)
-        NSLog( "count = \(resultspinGroupeTable!.fetchedObjects!.count)")
+       // NSLog( "count = \(resultspinGroupeTable!.fetchedObjects!.count)")
 
         if (resultSpinFleche!.fetchedObjects!.count == 0) {
             bootEaston()

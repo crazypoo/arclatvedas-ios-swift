@@ -89,7 +89,7 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate {
         DCDMagnifyingGlassView.setContentFrame(CGRect(x: pt1.x-50,y: pt1.y-50,width: 100,height: 100))
         
         if  magnifyingViewVisible  {
-            if pt1.y <=  hauteur{
+            if pt1.y <=  hauteur && pt1.x <=  hauteur{
               //  on evite d'avoir la loupe sur les boutons
                 DCDMagnifyingGlassView.show(true)
             }else{
@@ -400,10 +400,21 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate {
     
     
     
-    
-    override func viewDidLoad() {
+      override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        let app = UIApplication.sharedApplication()
+        
+        if  let mainwindow = app.delegate?.window {
+            let splitViewController = mainwindow!.rootViewController as! UISplitViewController
+        
+        
+        
+            splitViewController.presentsWithGesture = false // SplitView won't recognize right swipe
+            splitViewController.preferredDisplayMode = .PrimaryHidden
+        }
+        
         
         var v = self.splitViewController
         var b = self.splitViewController?.collapsed

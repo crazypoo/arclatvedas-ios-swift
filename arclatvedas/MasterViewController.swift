@@ -104,9 +104,9 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             self.initNewEventObject("À propos d'Arc Lat'Védas",url:"http://arclatvedas.free.fr/index.php?option=com_content&view=article&id=20&tmpl=component",ordre:Table.Apropos.rawValue + 1)
             
         }else{
-              //if (compte == 8){
+             if (compte == 8){
                 //ajout d'un calcul de spin
-               //  self.initNewEventObject("Sélecteur de flèche",url:"",ordre:Table.Charte.rawValue + 1)
+                 self.initNewEventObject("Sélecteur de flèche",url:"",ordre:Table.Charte.rawValue + 1)
                 
                 //mise a jour des indexs
                 var count = 0
@@ -127,7 +127,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                 }
 
                 
-            // }
+            }
         }
         
     }
@@ -283,26 +283,18 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! MenuViewCell
+        
+        
+        if let but = cell.but{
+            
+            but.removeFromSuperview()
+        }
+
+        
+        
         self.configureCell(cell, atIndexPath: indexPath)
         
-        
-        if indexPath.row ==  Table.Scores.rawValue {
-            let cframe: CGRect = CGRect(x: cell.contentView.frame.width-100 ,y: 0 ,width: 100, height:cell.contentView.frame.height)
-            
-            
-            //let b:UIButton = UIButton(frame:cframe)
-            let b:UIButton = UIButton.buttonWithType(UIButtonType.System) as! UIButton
-            b.frame = CGRect(x: cell.contentView.frame.width-100 ,y: 0 ,width: 100, height:cell.contentView.frame.height)
-            b.backgroundColor = UIColor.whiteColor()
-            b.setTitle( "Graph", forState: .Normal)
-            b.setTitleColor(UIColor.blackColor(), forState: .Normal)
-            
-            b.addTarget(self, action: "pressedStat:", forControlEvents: .TouchUpInside)
-            
-            cell.contentView.addSubview(b)
-
-        }
         
         
         return cell
@@ -368,9 +360,31 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     //        }
     //    }
     
-    func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
+    func configureCell(cell: MenuViewCell, atIndexPath indexPath: NSIndexPath) {
         let object = self.fetchedResultsEventController.objectAtIndexPath(indexPath) as! NSManagedObject
         cell.textLabel!.text = object.valueForKey("name")!.description
+        
+        cell.but = nil
+        
+        let ordre = object.valueForKey("ordre") as? NSNumber
+        if  ordre ==  Table.Scores.rawValue {
+            let cframe: CGRect = CGRect(x: cell.contentView.frame.width-100 ,y: 0 ,width: 100, height:cell.contentView.frame.height)
+            
+            
+            //let b:UIButton = UIButton(frame:cframe)
+            let b:UIButton = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+            b.frame = CGRect(x: cell.contentView.frame.width-100 ,y: 0 ,width: 100, height:cell.contentView.frame.height)
+            b.backgroundColor = UIColor.whiteColor()
+            b.setTitle( "Graph", forState: .Normal)
+            b.setTitleColor(UIColor.blackColor(), forState: .Normal)
+            b.tag = 666
+            b.addTarget(self, action: "pressedStat:", forControlEvents: .TouchUpInside)
+            
+            cell.contentView.addSubview(b)
+            cell.but = b
+            
+        }
+
     }
     
     

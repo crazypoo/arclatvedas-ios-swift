@@ -48,7 +48,7 @@ class TirInterfaceController: WKInterfaceController {
         
         
         // Assume the app delegate has a text field to display the activity information
-        NSLog("handleUserActivity %@", userInfo!);
+      //  NSLog("handleUserActivity %@", userInfo!);
         
     }
     

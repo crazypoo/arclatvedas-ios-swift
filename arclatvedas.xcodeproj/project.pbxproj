@@ -13,6 +13,7 @@
 		E1116C8D1B16194D0013D2AE /* ReticuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1116C881B16194D0013D2AE /* ReticuleView.swift */; };
 		E1116C8E1B16194D0013D2AE /* TargetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1116C891B16194D0013D2AE /* TargetController.swift */; };
 		E14431971AEA88D4006D8577 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14431961AEA88D4006D8577 /* WebViewController.swift */; };
+		E14FFC9C1B34595D003023C1 /* MenuViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14FFC9B1B34595D003023C1 /* MenuViewCell.swift */; };
 		E152128E1AEF73370010AEAD /* DetailEditMaterielViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E152128D1AEF73370010AEAD /* DetailEditMaterielViewController.swift */; };
 		E15212901AEF78B00010AEAD /* FlecheCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E152128F1AEF78B00010AEAD /* FlecheCell.swift */; };
 		E15212921AEFC5C30010AEAD /* DetailEditFlecheViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15212911AEFC5C30010AEAD /* DetailEditFlecheViewController.swift */; };
@@ -145,6 +146,7 @@
 		E1116C891B16194D0013D2AE /* TargetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetController.swift; sourceTree = "<group>"; };
 		E14431961AEA88D4006D8577 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		E1468FB71AF778C50085223D /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		E14FFC9B1B34595D003023C1 /* MenuViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewCell.swift; sourceTree = "<group>"; };
 		E152128D1AEF73370010AEAD /* DetailEditMaterielViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailEditMaterielViewController.swift; sourceTree = "<group>"; };
 		E152128F1AEF78B00010AEAD /* FlecheCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlecheCell.swift; sourceTree = "<group>"; };
 		E15212911AEFC5C30010AEAD /* DetailEditFlecheViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailEditFlecheViewController.swift; sourceTree = "<group>"; };
@@ -401,6 +403,7 @@
 				E1C54D6A1AF1057100E7960C /* DistanceCellEdit.swift */,
 				E16834CD1AEE6D63005E14B6 /* TirCell.swift */,
 				E152128F1AEF78B00010AEAD /* FlecheCell.swift */,
+				E14FFC9B1B34595D003023C1 /* MenuViewCell.swift */,
 				E1D197991AE914E800616F1B /* MasterViewController.swift */,
 				E1D1979B1AE914E800616F1B /* DetailViewController.swift */,
 				E1741D7F1B0A30E7000CB132 /* StatistiqueViewController.swift */,
@@ -738,6 +741,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1116C8C1B16194D0013D2AE /* ImpactView.swift in Sources */,
+				E14FFC9C1B34595D003023C1 /* MenuViewCell.swift in Sources */,
 				E1116C8D1B16194D0013D2AE /* ReticuleView.swift in Sources */,
 				E1116C8A1B16194D0013D2AE /* CircleView.swift in Sources */,
 				E16834CC1AEE6CFB005E14B6 /* DistanceCell.swift in Sources */,

@@ -78,7 +78,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         //        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewEventObject:")
         //        self.navigationItem.rightBarButtonItem = addButton
         
-        // DataManager.emptyManagedTable("Event") // RAZ
+        
         if let split = self.splitViewController {
             let controllers = split.viewControllers
             self.detailViewController = controllers[controllers.count-1].topViewController as? DetailViewController
@@ -104,11 +104,30 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             self.initNewEventObject("À propos d'Arc Lat'Védas",url:"http://arclatvedas.free.fr/index.php?option=com_content&view=article&id=20&tmpl=component",ordre:Table.Apropos.rawValue + 1)
             
         }else{
-             if (compte == 8){
+              //if (compte == 8){
                 //ajout d'un calcul de spin
-                self.initNewEventObject("Sélecteur de flèche",url:"",ordre:Table.Charte.rawValue + 1)
+               //  self.initNewEventObject("Sélecteur de flèche",url:"",ordre:Table.Charte.rawValue + 1)
+                
+                //mise a jour des indexs
+                var count = 0
+                for event in self.fetchedResultsEventController.fetchedObjects as! [NSManagedObject] {
 
-            }
+                    
+                    event.setValue(count, forKey: "ordre")
+                    count++
+                }
+                let context = self.fetchedResultsEventController.managedObjectContext
+
+                var error: NSError? = nil
+                if !context.save(&error) {
+                    // Replace this implementation with code to handle the error appropriately.
+                    // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                    //println("Unresolved error \(error), \(error.userInfo)")
+                    abort()
+                }
+
+                
+            // }
         }
         
     }
@@ -377,7 +396,9 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         case .Delete:
             tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
         case .Update:
-            self.configureCell(tableView.cellForRowAtIndexPath(indexPath!)!, atIndexPath: indexPath!)
+            tableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation:.Automatic)
+
+           // self.configureCell(tableView.cellForRowAtIndexPath(indexPath!)!, atIndexPath: indexPath!)
         case .Move:
             tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
             tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)

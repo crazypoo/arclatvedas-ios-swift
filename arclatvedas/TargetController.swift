@@ -41,8 +41,12 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate {
         super.loadView()
         let r = self.view.frame
         let cote = min(self.view.frame.size.width,self.view.frame.size.height)
-        let rect = CGRect(x: 25/2 ,y: 0 ,width: cote-25, height:cote-25)
+        let rect = CGRect(x: 25/2 ,y: 25/2 ,width: cote-25, height:cote-25)
         cv = CircleView(frame: rect)
+        
+        
+        
+        
         magnifyingViewVisible=false
         
         //Set up gesture recognizer

@@ -2,41 +2,46 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ALV1024_300" translatesAutoresizingMaskIntoConstraints="NO" id="NFt-Z1-j1Z">
-                    <rect key="frame" x="8" y="8" width="768" height="768"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="NFt-Z1-j1Z" secondAttribute="height" multiplier="1:1" id="XsK-je-5FM"/>
-                    </constraints>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ALVSplash" translatesAutoresizingMaskIntoConstraints="NO" id="NFt-Z1-j1Z">
+                    <rect key="frame" x="0.0" y="76" width="600" height="524"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="labelor" translatesAutoresizingMaskIntoConstraints="NO" id="8Px-FF-Hpg">
-                    <rect key="frame" x="8" y="8" width="110" height="50"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="labelor" translatesAutoresizingMaskIntoConstraints="NO" id="8Px-FF-Hpg">
+                    <rect key="frame" x="42" y="8" width="167" height="68"/>
                 </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chargement des données" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6n3-TU-VBK">
+                    <rect key="frame" x="0.0" y="566" width="198" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="NFt-Z1-j1Z" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="2C0-uY-w7e"/>
-                <constraint firstAttribute="trailing" secondItem="NFt-Z1-j1Z" secondAttribute="trailing" constant="8" id="3wc-Om-j1P"/>
-                <constraint firstItem="8Px-FF-Hpg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="4ao-cL-s8D"/>
-                <constraint firstItem="NFt-Z1-j1Z" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="Agj-n8-sb2"/>
-                <constraint firstItem="8Px-FF-Hpg" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="OPj-Jl-TLg"/>
+                <constraint firstItem="8Px-FF-Hpg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="42" id="8eY-O4-mOb"/>
+                <constraint firstItem="6n3-TU-VBK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="DaP-T8-YMv"/>
+                <constraint firstItem="8Px-FF-Hpg" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="Lpi-uk-QuR"/>
+                <constraint firstItem="NFt-Z1-j1Z" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="MN7-y8-ggU"/>
+                <constraint firstAttribute="trailing" secondItem="NFt-Z1-j1Z" secondAttribute="trailing" id="hTa-pV-qLd"/>
+                <constraint firstAttribute="bottom" secondItem="NFt-Z1-j1Z" secondAttribute="bottom" id="hda-0V-z9z"/>
+                <constraint firstAttribute="bottom" secondItem="6n3-TU-VBK" secondAttribute="bottom" constant="13.5" id="r32-Wm-ExV"/>
+                <constraint firstItem="NFt-Z1-j1Z" firstAttribute="top" secondItem="8Px-FF-Hpg" secondAttribute="bottom" id="yAN-W4-ShH"/>
+                <constraint firstItem="NFt-Z1-j1Z" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="76" id="zv9-gy-ZzA"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
             <point key="canvasLocation" x="512" y="516"/>
         </view>
     </objects>
     <resources>
-        <image name="ALV1024_300" width="1024" height="1024"/>
+        <image name="ALVSplash" width="320" height="320"/>
         <image name="labelor" width="167" height="68"/>
     </resources>
 </document>

@@ -147,11 +147,15 @@ public class SpinCharteLoader: NSObject,NSFetchedResultsControllerDelegate {
     
     
     func str2nsnumber(str:String)->NSNumber{
-        let newString = str.stringByReplacingOccurrencesOfString(",", withString: ".")
 
         formatter.numberStyle = NSNumberFormatterStyle.DecimalStyle;
-        if let number = formatter.numberFromString(newString) {
+        if let number = formatter.numberFromString(str) {
             return number
+        }else{
+            let newString = str.stringByReplacingOccurrencesOfString(",", withString: ".")
+            if let number = formatter.numberFromString(newString) {
+                return number
+            }
         }
         return  NSNumber(float:0.0)
     }
@@ -375,7 +379,7 @@ public class SpinCharteLoader: NSObject,NSFetchedResultsControllerDelegate {
 
         }
         
-        testrequests()
+       // testrequests()
     }
 
 }

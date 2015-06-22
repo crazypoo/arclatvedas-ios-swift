@@ -25,7 +25,16 @@ class ArrowChooserCell: UITableViewCell {
         
          if let detail = self.texte {
         //    NSLog(fleche.grain.description)
-            detail.text = String(stringInterpolation: "Modele: ","\(fleche.modele)\n","nom: \(fleche.name)\n", "Grain: ","\(fleche.grain) ","Spin: ","\(fleche.spin) ","Taille: ","\(fleche.taille)\n","Fabricant: ","\(fleche.fabricant)\n")
+            var lataille="-\n"
+            
+            if let t = fleche.taille as? NSNumber {
+                
+                if t != 0 {
+                    lataille = "\(fleche.taille)\n"
+                }
+            }
+            
+            detail.text = String(stringInterpolation: "Modele: ","\(fleche.modele)\n","nom: \(fleche.name)\n", "Grain: ","\(fleche.grain) ","Spin: ","\(fleche.spin) ","Taille: ",lataille,"Fabricant: ","\(fleche.fabricant)\n")
         }
         }
         

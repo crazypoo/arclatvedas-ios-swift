@@ -15,7 +15,9 @@ Simplement on peut :
 
 voir aussi la version android, quasiment iso-fonctionnelle
 
+sur l'App Store : https://itunes.apple.com/fr/app/arclatvedas/id994138042?mt=8
 
+sur mon club : http://arclatvedas.free.fr
 
 
 

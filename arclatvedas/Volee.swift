@@ -17,6 +17,7 @@ public class Volee: NSManagedObject {
    @NSManaged public var volee: String
    @NSManaged public var rang: NSNumber
    @NSManaged var impactes: NSData
+   @NSManaged var zones: NSData
    @NSManaged public var relationship: Tir
 
     let NOMBREMAX : Int = 6
@@ -56,6 +57,25 @@ public    var scores:NSMutableArray {
         }
 
     }
+    
+    public var zoneArray:NSMutableArray{
+        get {
+            if self.zones.length == 0 {
+                let copyzoneArray = NSMutableArray(capacity:0)
+                self.zones = NSKeyedArchiver.archivedDataWithRootObject(copyzoneArray)
+            }
+            let k:NSMutableArray =  (NSKeyedUnarchiver.unarchiveObjectWithData(self.zones) as? NSMutableArray)!
+            
+            
+            return k
+            
+            
+        }
+        
+    }
+
+    
+    
     
     public  override var description:String{
         get {
@@ -103,7 +123,7 @@ public    func getTotal() -> Int {
         return res
     }
     
-    public func addScore (points : Int, impact:CGPoint)->Bool {
+    public func addScore (points : Int, impact:CGPoint, zone:CGPoint)->Bool {
         
         let copyscore = self.scores
         var done=false
@@ -129,6 +149,17 @@ public    func getTotal() -> Int {
         }
         
         self.impactes = NSKeyedArchiver.archivedDataWithRootObject(copyimpacteArray)
+        
+        
+        let copyzoneArray = self.zoneArray
+        if copyscore.count < NOMBREMAX {
+            copyzoneArray.addObject(NSValue(CGPoint:zone))
+        }
+        
+        self.zones = NSKeyedArchiver.archivedDataWithRootObject(copyzoneArray)
+
+        
+        
         return done
     }
     
@@ -151,6 +182,16 @@ public    func getTotal() -> Int {
         }
     
         self.impactes = NSKeyedArchiver.archivedDataWithRootObject(copyimpacteArray)
+    
+        let copyzoneArray = self.zoneArray
+        if copyzoneArray.count != 0 {
+            copyzoneArray.removeLastObject()
+        }
+    
+        self.zones = NSKeyedArchiver.archivedDataWithRootObject(copyzoneArray)
+
+    
+    
         return done
     }
     
@@ -176,6 +217,19 @@ public    func getTotal() -> Int {
         
         return point
     }
+    
+    public func getZoneAt(fleche:Int) ->CGPoint{
+        
+        let copyzoneArray = self.zoneArray
+        var point = CGPointMake(0,0)
+        if fleche < copyzoneArray.count {
+            point = copyzoneArray.objectAtIndex(fleche).CGPointValue()
+        }
+        
+        return point
+    }
+
+    
     
  public   func getTaille()->Int{
          let copyscore = self.scores

@@ -120,11 +120,11 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate {
         
         
         
-        
         let score = cv!.getScoreForPoint(point)
+        let zone = CGPointMake(score.y,0)
+
         
-        
-        if   curVolee!.addScore(score, impact:point) {
+        if   curVolee!.addScore(Int(score.x), impact:point,zone:zone) {
             self.iv!.addPoint(point)
 
         }

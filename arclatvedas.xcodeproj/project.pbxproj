@@ -195,6 +195,7 @@
 		E198874C1B0F26A1003F07FC /* CoreDataProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataProxy.swift; sourceTree = "<group>"; };
 		E198874E1B0F2D6C003F07FC /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		E19A26191B32EE3700326C59 /* ArrowChooserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrowChooserCell.swift; sourceTree = "<group>"; };
+		E1A401D91B67D6A90096CE0F /* arclatvedas2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = arclatvedas2.xcdatamodel; sourceTree = "<group>"; };
 		E1B09EB11AEA320700599185 /* arclatvedas.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = arclatvedas.xcdatamodel; sourceTree = "<group>"; };
 		E1B432D71B0F76180081EB35 /* TirInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TirInterfaceController.swift; sourceTree = "<group>"; };
 		E1B7B10C1B09DCE500AEF6EB /* LineChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineChart.swift; sourceTree = "<group>"; };
@@ -1235,9 +1236,10 @@
 		E1B09EB01AEA320700599185 /* arclatvedas.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				E1A401D91B67D6A90096CE0F /* arclatvedas2.xcdatamodel */,
 				E1B09EB11AEA320700599185 /* arclatvedas.xcdatamodel */,
 			);
-			currentVersion = E1B09EB11AEA320700599185 /* arclatvedas.xcdatamodel */;
+			currentVersion = E1A401D91B67D6A90096CE0F /* arclatvedas2.xcdatamodel */;
 			path = arclatvedas.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -59,6 +59,7 @@
         <relationship name="chart" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="SpinCharte" inverseName="group" inverseEntity="SpinCharte" syncable="YES"/>
     </entity>
     <entity name="Tir" representedClassName="Tir" syncable="YES">
+        <attribute name="blasonType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="distance" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
@@ -69,6 +70,7 @@
         <attribute name="impactes" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="rang" optional="YES" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="volee" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="zones" optional="YES" attributeType="Binary" syncable="YES"/>
         <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tir" inverseName="volees" inverseEntity="Tir" syncable="YES"/>
     </entity>
     <elements>
@@ -80,7 +82,7 @@
         <element name="SpinCharte" positionX="52" positionY="-522" width="128" height="103"/>
         <element name="SpinFleche" positionX="369" positionY="-340" width="128" height="178"/>
         <element name="SpinGroupe" positionX="295" positionY="-513" width="128" height="88"/>
-        <element name="Tir" positionX="-216" positionY="-45" width="128" height="120"/>
-        <element name="Volee" positionX="-18" positionY="-0" width="128" height="105"/>
+        <element name="Tir" positionX="-216" positionY="-45" width="128" height="135"/>
+        <element name="Volee" positionX="-18" positionY="-0" width="128" height="120"/>
     </elements>
 </model>

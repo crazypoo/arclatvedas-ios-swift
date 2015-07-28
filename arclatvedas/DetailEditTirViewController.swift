@@ -486,7 +486,7 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
         
         
         default :
-            curVolee?.addScore(sender.tag, impact:CGPointMake(0,0));
+            curVolee?.addScore(sender.tag, impact:CGPointMake(0,0),zone:CGPointMake(0,0));
             saveObject(self)
             tableview.reloadData()
     }

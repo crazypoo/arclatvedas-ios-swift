@@ -12,7 +12,11 @@
 
 import UIKit
 
-class CircleView: UIView {
+protocol FaceViewDelegate:NSObjectProtocol {
+    func getScoreForPoint(point:CGPoint)->CGPoint;
+}
+
+class CircleView: UIView ,FaceViewDelegate {
     
     let scores = [100,10,9,8,7,6,5,4,3,2,1]
     
@@ -46,14 +50,14 @@ class CircleView: UIView {
     }
     
     
-    func getScoreForPoint(point:CGPoint)->Int{
-        var result:Int = 0
+    func getScoreForPoint(point:CGPoint)->CGPoint{
+        var result:CGPoint = CGPointMake(0,0)
         var x=10
         do {
             let circle = circles[x]
             
             if circle.containsPoint(point) {
-                result = scores[10-x]
+                result.x = CGFloat(scores[10-x])
                 return result
                 
             }

@@ -17,7 +17,7 @@ public class Tir: NSManagedObject {
     @NSManaged public var location: String
     @NSManaged public var timeStamp: NSDate
     @NSManaged public var volees: NSMutableOrderedSet
-
+    @NSManaged public var blasonType: NSNumber
     
     
     

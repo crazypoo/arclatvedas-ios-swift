@@ -10,26 +10,28 @@ import UIKit
 import CoreData
 import CoreDataProxy
 
-class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate {
+class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate ,UIPickerViewDataSource,UIPickerViewDelegate{
     var magnifyingView: DCDMagnifyingGlassView?
     var magnifyingViewVisible:Bool=false
     
     let tapGestureRecognizer = UITapGestureRecognizer()
-    var cv:CircleView?
+    var cv:BlasonView?
     var iv: ImpactView?
     
     
     let NOMBREMAX : Int = 6
+    let faces = ["FITA","fita","Trispot"]
+
     var curVolee:Volee?
     var curCount:Int = -1
-
     
     
     @IBOutlet weak var totalLabel : UILabel!
     @IBOutlet weak var voleeLabel : UILabel!
     @IBOutlet weak var voleecompte : UILabel!
+    @IBOutlet weak var facePicker : UIPickerView!
 
-    
+    var editPicker : UIPickerView!
     var detailItem: Tir? {
         didSet {
             // Update the view.
@@ -42,7 +44,7 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate {
         let r = self.view.frame
         let cote = min(self.view.frame.size.width,self.view.frame.size.height)
         let rect = CGRect(x: 25/2 ,y: 25/2 ,width: cote-25, height:cote-25)
-        cv = CircleView(frame: rect)
+        //cv = BlasonView(frame: rect)
         
         
         
@@ -55,7 +57,7 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate {
         tapGestureRecognizer.enabled = true
         self.view.addGestureRecognizer(tapGestureRecognizer)
         
-        self.view.addSubview(cv!)
+       // self.view.addSubview(cv!)
         
         self.iv = ImpactView(frame: rect)
         //        self.iv!.addPoint(CGPointMake(50,50))
@@ -121,10 +123,11 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate {
         
         
         let score = cv!.getScoreForPoint(point)
-        let zone = CGPointMake(score.y,0)
+        let azone = CGPointMake(score.y,0)
 
         
-        if   curVolee!.addScore(Int(score.x), impact:point,zone:zone) {
+        if   curVolee!.addScore(Int(score.x), impact:point,zone:azone) {
+            
             self.iv!.addPoint(point)
 
         }
@@ -291,6 +294,9 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate {
             
             
             
+            facePicker?.selectRow(detail.blasonType.integerValue, inComponent:0, animated:false)
+            changeFace(detail.blasonType.integerValue)
+            
             if let detail: Tir = self.detailItem {
                 if detail.volees.count > 0 {
                     
@@ -311,7 +317,7 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate {
     
     func editObject (sender: AnyObject) {
         if let detail: Tir = self.detailItem {
-            var alert = UIAlertController(title: "Edit", message: "Message", preferredStyle: UIAlertControllerStyle.Alert)
+            var alert = UIAlertController(title: "Description", message: "", preferredStyle: UIAlertControllerStyle.Alert)
             
             
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction!) in
@@ -357,8 +363,29 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate {
                 }
                 
             })
+
             
-            
+
+//              var pickerFrame: CGRect = CGRectMake(0, 0, alert.view.frame.size.width, 50);
+//            editPicker = UIPickerView(frame: pickerFrame)
+//            editPicker.setTranslatesAutoresizingMaskIntoConstraints(false)
+//
+//            editPicker.delegate = self
+//            editPicker.dataSource=self
+//            var views: [String: AnyObject] = [:]
+//
+//            
+//            
+//            alert.view.addSubview(editPicker)
+//            
+//            views["editPicker"] = editPicker
+//
+//            alert.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[editPicker]-|", options: nil, metrics: nil, views: views))
+//            
+//            
+//            alert.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[editPicker]-|", options: nil, metrics: nil, views: views))
+//
+//            editPicker.updateConstraintsIfNeeded()
             self.presentViewController(alert, animated: true, completion: nil)
         }
         
@@ -470,6 +497,105 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    // MARK: pickerView ds
+    
+    // returns the number of 'columns' to display.
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int{
+        return 1
+    }
+    
+    // returns the # of rows in each component..
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
+    {
+        return 3
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+        return faces[row]
+    }
+
+    
+    func changeFace(blasontype:Int){
+        
+        self.cv?.setNeedsDisplay()
+        self.cv?.setNeedsLayout()
+        self.cv?.layoutIfNeeded()
+
+        
+        
+        self.cv?.removeFromSuperview()
+        
+        switch (blasontype) {
+        case 0:
+            
+            let r = self.view.frame
+            let cote = min(self.view.frame.size.width,self.view.frame.size.height)
+            let rect = CGRect(x: 25/2 ,y: 25/2 ,width: cote-25, height:cote-25)
+            self.cv = BlasonView(frame: rect)
+            
+            
+            
+            break;
+        case 1:
+            let r = self.view.frame
+            let cote = min(self.view.frame.size.width,self.view.frame.size.height)
+            let rect = CGRect(x: 25/2 ,y: 25/2 ,width: cote-25, height:cote-25)
+            self.cv = FITAReduceView(frame: rect)
+            
+            break;
+        case 2:
+            let r = self.view.frame
+            let cote = min(self.view.frame.size.width,self.view.frame.size.height)
+            let rect = CGRect(x: 25/2 ,y: 25/2 ,width: cote-25, height:cote-25)
+            self.cv = TriSpotView(frame: rect)
+            
+            break;
+            
+        default:
+            break;
+            
+        }
+        self.view.insertSubview(self.cv!, belowSubview: self.iv!)
+        self.view.setNeedsDisplay()
+        self.view.setNeedsLayout()
+        self.view.layoutIfNeeded()
+
+    }
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
+        
+        changeFace(row)
+        
+        detailItem!.setValue(row, forKey: "blasonType")
+        
+        saveObject(self)
+
+        
+//
+//        
+//
+    }
+
+    
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        if let detail: Tir = self.detailItem {
+            changeFace(detail.blasonType.integerValue)
+        }
+        
+        
+//        if UIDevice.currentDevice().orientation.isLandscape.boolValue {
+//            println("landscape")
+//        } else {
+//            println("portraight")
+//        }
+
+        
+        self.view.setNeedsDisplay()
+        self.view.setNeedsLayout()
+        self.view.layoutIfNeeded()
+    }
+
     
     
 }

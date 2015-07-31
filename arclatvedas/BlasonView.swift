@@ -16,15 +16,22 @@ protocol FaceViewDelegate:NSObjectProtocol {
     func getScoreForPoint(point:CGPoint)->CGPoint;
 }
 
-class CircleView: UIView ,FaceViewDelegate {
+class BlasonView: UIView ,FaceViewDelegate {
+     var nombrezone:Int {
+        return 10
+    }
+
     
-    let scores = [100,10,9,8,7,6,5,4,3,2,1]
+    var scores:[Int] {
+        return [100,10,9,8,7,6,5,4,3,2,1]
+    }
     
-    let colors = [UIColor.yellowColor(),UIColor.yellowColor(),UIColor.yellowColor(),UIColor.redColor(),UIColor.redColor(),UIColor.blueColor(),UIColor.blueColor(),UIColor.blackColor(),UIColor.blackColor(),UIColor.whiteColor(),UIColor.whiteColor()]
+    var colors:[UIColor] { return [UIColor.yellowColor(),UIColor.yellowColor(),UIColor.yellowColor(),UIColor.redColor(),UIColor.redColor(),UIColor.blueColor(),UIColor.blueColor(),UIColor.blackColor(),UIColor.blackColor(),UIColor.whiteColor(),UIColor.whiteColor()]}
     
-    let colorslines = [UIColor.blackColor(),UIColor.blackColor(),UIColor.blackColor(),UIColor.blackColor(),UIColor.whiteColor(),UIColor.whiteColor(),UIColor.whiteColor(),UIColor.whiteColor(),UIColor.blackColor(),UIColor.blackColor(),UIColor.blackColor()]
+    var colorslines:[UIColor] { return [UIColor.blackColor(),UIColor.blackColor(),UIColor.blackColor(),UIColor.blackColor(),UIColor.whiteColor(),UIColor.whiteColor(),UIColor.whiteColor(),UIColor.whiteColor(),UIColor.blackColor(),UIColor.blackColor(),UIColor.blackColor()]}
     
-    var circles:[UIBezierPath]=[]
+    // 3 cercles pour les trispots
+    var circles:[[UIBezierPath]]=[[],[],[]]
     
     
     //containsPoint
@@ -52,12 +59,12 @@ class CircleView: UIView ,FaceViewDelegate {
     
     func getScoreForPoint(point:CGPoint)->CGPoint{
         var result:CGPoint = CGPointMake(0,0)
-        var x=10
+        var x=nombrezone
         do {
-            let circle = circles[x]
+            let circle = circles[0][x]
             
             if circle.containsPoint(point) {
-                result.x = CGFloat(scores[10-x])
+                result.x = CGFloat(scores[nombrezone-x])
                 return result
                 
             }
@@ -78,14 +85,15 @@ class CircleView: UIView ,FaceViewDelegate {
         UIColor.whiteColor().setFill()
         pathck.fill()
         
-        let delta = (rect.size.width/20)
+        let delta:CGFloat = (rect.size.width / CGFloat(2 * nombrezone))
         var inrect = rect
         var lastgoodrect = rect
-        var x=10
+        var x=nombrezone
         do {
             var path = UIBezierPath(ovalInRect: inrect)
+            
             if x !=  0{
-                circles.append(path)
+                circles[0].append(path)
             }
             colors[x].setFill()
             
@@ -101,6 +109,9 @@ class CircleView: UIView ,FaceViewDelegate {
             if x == 1{
                 lastgoodrect = inrect
             }
+            if CGRectIsEmpty(inrect){
+                break
+            }
         }while (x > -1)
         
         // and the X !
@@ -108,7 +119,7 @@ class CircleView: UIView ,FaceViewDelegate {
         inrect = CGRectInset(lastgoodrect,delta/2,delta/2)
         if !CGRectIsEmpty(inrect){
             var path = UIBezierPath(ovalInRect: inrect)
-            circles.append(path)
+            circles[0].append(path)
             
             colorslines[0].setStroke()
             path.lineWidth = 1.0

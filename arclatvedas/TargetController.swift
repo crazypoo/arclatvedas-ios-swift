@@ -347,8 +347,8 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate ,UIPicke
                 self.navigationItem.title = detail.location + ":" + detail.distance
                 
             }))
-            
-            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+             let locastr=NSLocalizedString("Cancel", comment:"data")
+            alert.addAction(UIAlertAction(title: locastr, style: UIAlertActionStyle.Cancel, handler: nil))
             alert.addTextFieldWithConfigurationHandler({(textField: UITextField!)  in
                 textField.placeholder = "Localication:"
                 textField.secureTextEntry = false

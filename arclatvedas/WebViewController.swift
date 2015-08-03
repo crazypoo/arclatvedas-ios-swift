@@ -24,7 +24,7 @@ class WebViewController: UIViewController {
         // Update the user interface for the detail item.
         if let detail: AnyObject = self.detailItem {
             
-            self.navigationItem.title = detail.valueForKey("name")!.description
+            self.navigationItem.title = NSLocalizedString(detail.valueForKey("name")!.description, comment:"data")
             
             if let web = self.web {
                 let page :String = detail.valueForKey("url")!.description

@@ -16,7 +16,7 @@ class CharteViewController: UIViewController,UITableViewDataSource,UITableViewDe
     @IBOutlet weak var taille: UITextField!
     @IBOutlet weak var puissance: UITextField!
     @IBOutlet weak var chercher: UIButton!
-    
+    @IBOutlet weak var utextview: UITextView!  // pour contourner un bug Apple de Localisation
     
     var results:NSFetchedResultsController {
         var realTaille = 0
@@ -50,10 +50,12 @@ class CharteViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     func configureView() {
         // Update the user interface for the detail item.
+        
+        utextview?.text =  NSLocalizedString("blabla", comment:"data")
         switch tablename{
             
         case "SpinCharte":
-            self.navigationItem.title = "Sélecteur de flèche"
+            self.navigationItem.title = NSLocalizedString("Sélecteur de flèche", comment:"data")
             
         default: break
             

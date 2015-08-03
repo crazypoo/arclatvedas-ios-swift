@@ -1,0 +1,144 @@
+
+/* Class = "UILabel"; text = "Bienvenue au club !"; ObjectID = "0XM-y9-sOw"; */
+"0XM-y9-sOw.text" = "Welcome to our club !";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."; ObjectID = "1F0-hw-Mgw"; */
+"1F0-hw-Mgw.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+
+/* Class = "UILabel"; text = "Nom : "; ObjectID = "32Q-MI-fNZ"; */
+"32Q-MI-fNZ.text" = "Name : ";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "32Y-JG-1y0"; */
+"32Y-JG-1y0.text" = "Label";
+
+/* Class = "UITextView"; text = "Attention, toutes les flèches du marché ne sont pas dans la base (CarbonExpress™ et Easton™). Uniquement pour le classique.  Demandez conseil avant de commander !"; ObjectID = "3kF-lY-j8A"; */
+"3kF-lY-j8A.text" = "WARNING, the database contains only a subset of arrow models (mainly Easton™ and CarbonExpress™ and  Only for recurve, sorry…) In any case, please ask advise before buying your arrows!";
+
+/* Class = "UITextField"; text = "0"; ObjectID = "4fX-by-yah"; */
+"4fX-by-yah.text" = "0";
+
+/* Class = "UILabel"; text = "total"; ObjectID = "5Kz-kZ-1cg"; */
+"5Kz-kZ-1cg.text" = "total";
+
+/* Class = "UITableViewController"; title = "Master"; ObjectID = "7bK-jq-Zjz"; */
+"7bK-jq-Zjz.title" = "Master";
+
+/* Class = "UILabel"; text = "Taille : "; ObjectID = "8wH-e3-BGN"; */
+"8wH-e3-BGN.text" = "Size : ";
+
+/* Class = "UIButton"; normalTitle = "Photo"; ObjectID = "91l-71-ZCL"; */
+"91l-71-ZCL.normalTitle" = "Photo";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "Arm-wq-HPj"; */
+"Arm-wq-HPj.text" = "Title";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "CHx-sY-DtM"; */
+"CHx-sY-DtM.text" = "1";
+
+/* Class = "UIButton"; normalTitle = "Chercher"; ObjectID = "EwI-Qu-xZM"; */
+"EwI-Qu-xZM.normalTitle" = "Find";
+
+/* Class = "UIViewController"; title = "Detail"; ObjectID = "JEX-9P-axG"; */
+"JEX-9P-axG.title" = "Detail";
+
+/* Class = "UISegmentedControl"; K1x-Xi-rFu.segmentTitles[0] = "mètre"; ObjectID = "K1x-Xi-rFu"; */
+"K1x-Xi-rFu.segmentTitles[0]" = "meter";
+
+/* Class = "UISegmentedControl"; K1x-Xi-rFu.segmentTitles[1] = "yard"; ObjectID = "K1x-Xi-rFu"; */
+"K1x-Xi-rFu.segmentTitles[1]" = "yard";
+
+/* Class = "UILabel"; text = "Commentaire : "; ObjectID = "LDy-Sx-Eq6"; */
+"LDy-Sx-Eq6.text" = "Comment : ";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "O4I-tq-HMn"; */
+"O4I-tq-HMn.text" = "Label";
+
+/* Class = "UILabel"; text = "Nom : "; ObjectID = "OUV-3a-rRP"; */
+"OUV-3a-rRP.text" = "Name : ";
+
+/* Class = "UILabel"; text = "Taille:"; ObjectID = "P0K-yY-Euw"; */
+"P0K-yY-Euw.text" = "Size:";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "PQt-pb-5qa"; */
+"PQt-pb-5qa.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "PVb-0w-bUu"; */
+"PVb-0w-bUu.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "QeL-2R-4jJ"; */
+"QeL-2R-4jJ.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "-"; ObjectID = "RIl-xp-z1R"; */
+"RIl-xp-z1R.normalTitle" = "-";
+
+/* Class = "UINavigationController"; title = "Retour"; ObjectID = "RMx-3f-FxP"; */
+"RMx-3f-FxP.title" = "Back";
+
+/* Class = "UILabel"; text = "S/N : "; ObjectID = "SjJ-xC-kDs"; */
+"SjJ-xC-kDs.text" = "S/N : ";
+
+/* Class = "UIButton"; normalTitle = "-"; ObjectID = "U0g-hA-0IU"; */
+"U0g-hA-0IU.normalTitle" = "-";
+
+/* Class = "UILabel"; text = "Date : "; ObjectID = "YV5-Mr-iUq"; */
+"YV5-Mr-iUq.text" = "Date : ";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "ZEf-kO-4LN"; */
+"ZEf-kO-4LN.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Arc Lat'Védas"; ObjectID = "Zdf-7t-Un8"; */
+"Zdf-7t-Un8.title" = "Arc Lat'Védas";
+
+/* Class = "UIButton"; normalTitle = "OK"; ObjectID = "aNJ-7c-oiu"; */
+"aNJ-7c-oiu.normalTitle" = "OK";
+
+/* Class = "UILabel"; text = "Nom : "; ObjectID = "cDD-5R-lHx"; */
+"cDD-5R-lHx.text" = "Name : ";
+
+/* Class = "UILabel"; text = "Commentaire : "; ObjectID = "eCI-na-Q2k"; */
+"eCI-na-Q2k.text" = "Comment : ";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "fyn-qZ-ncl"; */
+"fyn-qZ-ncl.text" = "Label";
+
+/* Class = "UILabel"; text = "Unité : "; ObjectID = "gm8-28-XAg"; */
+"gm8-28-XAg.text" = "Unité : ";
+
+/* Class = "UILabel"; text = "Spin : "; ObjectID = "gzi-NJ-3ID"; */
+"gzi-NJ-3ID.text" = "Spin : ";
+
+/* Class = "UITextField"; text = "0"; ObjectID = "hTG-rY-IsL"; */
+"hTG-rY-IsL.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "OK"; ObjectID = "hTW-0S-nCI"; */
+"hTW-0S-nCI.normalTitle" = "OK";
+
+/* Class = "UILabel"; text = "Plume : "; ObjectID = "mQJ-h5-acF"; */
+"mQJ-h5-acF.text" = "Feather : ";
+
+/* Class = "UILabel"; text = "total"; ObjectID = "qlj-hW-1CA"; */
+"qlj-hW-1CA.text" = "total";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "rDe-hH-tFN"; */
+"rDe-hH-tFN.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "ri7-hI-Yqz"; */
+"ri7-hI-Yqz.text" = "Label";
+
+/* Class = "UIViewController"; title = "WebView"; ObjectID = "s3F-OA-MOi"; */
+"s3F-OA-MOi.title" = "WebView";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."; ObjectID = "sRR-bO-A5c"; */
+"sRR-bO-A5c.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+
+/* Class = "UILabel"; text = "Pointe : "; ObjectID = "sSs-ua-G3g"; */
+"sSs-ua-G3g.text" = "Arrow head : ";
+
+/* Class = "UILabel"; text = "Date : "; ObjectID = "wGU-WI-Vba"; */
+"wGU-WI-Vba.text" = "Date : ";
+
+/* Class = "UILabel"; text = "Puissance:"; ObjectID = "zT6-tS-mKZ"; */
+"zT6-tS-mKZ.text" = "Strength:";
+
+/* Class = "UIButton"; normalTitle = "Stats"; ObjectID = "zg8-QA-6R6"; */
+"zg8-QA-6R6.normalTitle" = "Stats";

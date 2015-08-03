@@ -72,17 +72,17 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
         switch tablename{
             
         case "Materiel":
-            self.navigationItem.title = "Matériel"
+            self.navigationItem.title =  NSLocalizedString("Matériel", comment:"title")
             
         case "Distance":
-           self.navigationItem.title = "Distances"
+           self.navigationItem.title = NSLocalizedString("Distances", comment:"title")
             
             
         case "Tir":
-            self.navigationItem.title = "Scores"
+            self.navigationItem.title = NSLocalizedString("Scores", comment:"title")
         
         case "Fleche":
-            self.navigationItem.title = "Flèches"
+            self.navigationItem.title = NSLocalizedString("Flèches", comment:"title")
             
         default: break
             
@@ -107,8 +107,10 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
     }
     func insertNewMatosObject(newManagedObject: AnyObject) {
         
+        let locastr=NSLocalizedString("Matériel", comment:"data")
+        
         newManagedObject.setValue(NSDate(), forKey: "timeStamp")
-        newManagedObject.setValue("Matériel", forKey: "name")
+        newManagedObject.setValue(locastr, forKey: "name")
         newManagedObject.setValue("S/N 00000000000", forKey: "serialnumber")
         newManagedObject.setValue("", forKey: "comment")
         newManagedObject.setValue("", forKey: "imagepath")
@@ -120,8 +122,10 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
     
     func insertNewDistanceObject(newManagedObject: Distance) {
         
+        let locastr=NSLocalizedString("Distance", comment:"data")
+        
         newManagedObject.setValue(NSDate(), forKey: "timeStamp")
-        newManagedObject.setValue("Distance", forKey: "name")
+        newManagedObject.setValue(locastr, forKey: "name")
         newManagedObject.setValue("", forKey: "comment")
         newManagedObject.setValue("m", forKey: "unit")
         
@@ -147,9 +151,10 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
     }
 
     func insertNewTirObject(newManagedObject: Tir) {
+        let locastr=NSLocalizedString("Au club", comment:"data")
         
         newManagedObject.setValue(NSDate(), forKey: "timeStamp")
-        newManagedObject.setValue("Au club", forKey: "location")
+        newManagedObject.setValue(locastr, forKey: "location")
         newManagedObject.setValue("70", forKey: "distance")
         newManagedObject.setValue("", forKey: "comment")
         
@@ -172,8 +177,9 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
 
     func insertNewFlecheObject(newManagedObject: AnyObject) {
         
+        let locastr=NSLocalizedString("Lot de flêches", comment:"data")
         newManagedObject.setValue(NSDate(), forKey: "timeStamp")
-        newManagedObject.setValue("Lot de flêches", forKey: "name")
+        newManagedObject.setValue(locastr, forKey: "name")
         newManagedObject.setValue("", forKey: "feather")
         newManagedObject.setValue("", forKey: "comment")
         newManagedObject.setValue("", forKey: "point")
@@ -427,7 +433,9 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
         let b:UIButton = UIButton.buttonWithType(UIButtonType.System) as! UIButton
         b.frame = CGRect(x: cell.contentView.frame.width-100 ,y: 0 ,width: 100, height:cell.contentView.frame.height)
         b.backgroundColor = UIColor.whiteColor()
-        b.setTitle( "Blason", forState: .Normal)
+        let locastr=NSLocalizedString("Blason", comment:"data")
+        
+        b.setTitle( locastr, forState: .Normal)
         b.setTitleColor(UIColor.blackColor(), forState: .Normal)
         
         b.addTarget(self, action: "pressedBlason:", forControlEvents: .TouchUpInside)

@@ -1,0 +1,69 @@
+
+/* Class = "WKInterfaceButton"; title = "6"; ObjectID = "2fF-sQ-ftW"; */
+"2fF-sQ-ftW.title" = "6";
+
+/* Class = "WKInterfaceButton"; title = "2"; ObjectID = "4nc-ku-QWA"; */
+"4nc-ku-QWA.title" = "2";
+
+/* Class = "WKInterfaceLabel"; text = "720"; ObjectID = "5MF-hQ-Ho9"; */
+"5MF-hQ-Ho9.text" = "720";
+
+/* Class = "WKInterfaceButton"; title = "9"; ObjectID = "7BZ-jR-INa"; */
+"7BZ-jR-INa.title" = "9";
+
+/* Class = "WKInterfaceButton"; title = "10"; ObjectID = "7lq-13-A2G"; */
+"7lq-13-A2G.title" = "10";
+
+/* Class = "WKInterfaceLabel"; text = "date"; ObjectID = "Ank-wy-UHJ"; */
+"Ank-wy-UHJ.text" = "date";
+
+/* Class = "WKInterfaceMenuItem"; title = "Volée Suivante"; ObjectID = "Emf-AY-koi"; */
+"Emf-AY-koi.title" = "Volée Suivante";
+
+/* Class = "WKInterfaceLabel"; text = "ou"; ObjectID = "K18-IH-sTf"; */
+"K18-IH-sTf.text" = "ou";
+
+/* Class = "WKInterfaceLabel"; text = "distance"; ObjectID = "KpS-Dq-C9I"; */
+"KpS-Dq-C9I.text" = "distance";
+
+/* Class = "WKInterfaceButton"; title = "-"; ObjectID = "U9K-GQ-wBo"; */
+"U9K-GQ-wBo.title" = "-";
+
+/* Class = "WKInterfaceButton"; title = "4"; ObjectID = "WLv-9M-JsE"; */
+"WLv-9M-JsE.title" = "4";
+
+/* Class = "WKInterfaceLabel"; text = "Alert Label"; ObjectID = "XkS-y5-khE"; */
+"XkS-y5-khE.text" = "Alert Label";
+
+/* Class = "WKInterfaceButton"; title = "X"; ObjectID = "ain-pX-2kT"; */
+"ain-pX-2kT.title" = "X";
+
+/* Class = "WKInterfaceButton"; title = "3"; ObjectID = "dlk-B6-ite"; */
+"dlk-B6-ite.title" = "3";
+
+/* Class = "WKInterfaceButton"; title = "5"; ObjectID = "dsG-tT-kI5"; */
+"dsG-tT-kI5.title" = "5";
+
+/* Class = "WKInterfaceLabel"; text = "1"; ObjectID = "iZP-dq-mRr"; */
+"iZP-dq-mRr.text" = "1";
+
+/* Class = "WKInterfaceButton"; title = "8"; ObjectID = "j8j-Nd-adx"; */
+"j8j-Nd-adx.title" = "8";
+
+/* Class = "WKInterfaceLabel"; text = "10-10-10-10-10-10"; ObjectID = "mzD-ks-iY1"; */
+"mzD-ks-iY1.text" = "10-10-10-10-10-10";
+
+/* Class = "WKInterfaceButton"; title = "1"; ObjectID = "oFd-3L-BHS"; */
+"oFd-3L-BHS.title" = "1";
+
+/* Class = "WKInterfaceLabel"; text = "720"; ObjectID = "plU-nx-5zV"; */
+"plU-nx-5zV.text" = "720";
+
+/* Class = "WKInterfaceButton"; title = "M"; ObjectID = "tdc-lA-oh2"; */
+"tdc-lA-oh2.title" = "M";
+
+/* Class = "WKInterfaceButton"; title = "7"; ObjectID = "wT4-qy-FQu"; */
+"wT4-qy-FQu.title" = "7";
+
+/* Class = "WKInterfaceButton"; title = "Nouveau Tir"; ObjectID = "zNr-aP-XOX"; */
+"zNr-aP-XOX.title" = "Nouveau Tir";

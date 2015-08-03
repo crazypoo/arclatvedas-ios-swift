@@ -92,20 +92,28 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         
         
         if (compte == 0){
+            
             self.initNewEventObject("Les informations",url:"http://arclatvedas.free.fr/index.php?option=com_content&view=article&id=194&tmpl=component",ordre:Table.Infos.rawValue + 1)
+            
             self.initNewEventObject("Les mandats",url:"http://arclatvedas.free.fr/index.php?option=com_content&view=article&id=228&tmpl=component",ordre:Table.Mandats.rawValue + 1)
             self.initNewEventObject("Photos",url:"https://www.flickr.com/photos/arclatvedas/",ordre:Table.Photos.rawValue + 1)
+            
             self.initNewEventObject("Matériel",url:"",ordre:Table.Materiel.rawValue + 1)
+            
             self.initNewEventObject("Flèches",url:"",ordre:Table.Fleches.rawValue + 1)
+            
             self.initNewEventObject("Sélecteur de flèche",url:"",ordre:Table.Charte.rawValue + 1)
 
             self.initNewEventObject("Distances",url:"",ordre:Table.Distances.rawValue + 1)
+            
             self.initNewEventObject("Scores",url:"",ordre:Table.Scores.rawValue + 1)
+            
             self.initNewEventObject("À propos d'Arc Lat'Védas",url:"http://arclatvedas.free.fr/index.php?option=com_content&view=article&id=20&tmpl=component",ordre:Table.Apropos.rawValue + 1)
             
         }else{
              if (compte == 8){
                 //ajout d'un calcul de spin
+
                  self.initNewEventObject("Sélecteur de flèche",url:"",ordre:Table.Charte.rawValue + 1)
                 
 
@@ -367,7 +375,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     
     func configureCell(cell: MenuViewCell, atIndexPath indexPath: NSIndexPath) {
         let object = self.fetchedResultsEventController.objectAtIndexPath(indexPath) as! NSManagedObject
-        cell.textLabel!.text = object.valueForKey("name")!.description
+        cell.textLabel!.text = NSLocalizedString(object.valueForKey("name")!.description, comment:"data")
         
         cell.but = nil
         

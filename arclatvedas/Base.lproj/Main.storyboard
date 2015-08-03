@@ -869,7 +869,6 @@
                             <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3kF-lY-j8A">
                                 <rect key="frame" x="16" y="64" width="568" height="54"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Attention, toutes les flèches du marché ne sont pas dans la base (CarbonExpress™ et Easton™). Uniquement pour le classique.  Demandez conseil avant de commander !</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -966,6 +965,7 @@
                         <outlet property="puissance" destination="4fX-by-yah" id="qbl-7D-gBY"/>
                         <outlet property="tableview" destination="7or-NQ-3dT" id="emh-1Z-YKw"/>
                         <outlet property="taille" destination="hTG-rY-IsL" id="tx7-Jc-YbY"/>
+                        <outlet property="utextview" destination="3kF-lY-j8A" id="ARb-DC-bLd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CTQ-RH-4oe" userLabel="First Responder" sceneMemberID="firstResponder"/>

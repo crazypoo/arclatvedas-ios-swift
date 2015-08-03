@@ -28,7 +28,6 @@
 		E16834CC1AEE6CFB005E14B6 /* DistanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16834CB1AEE6CFB005E14B6 /* DistanceCell.swift */; };
 		E16834CE1AEE6D63005E14B6 /* TirCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16834CD1AEE6D63005E14B6 /* TirCell.swift */; };
 		E1741D801B0A30E7000CB132 /* StatistiqueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1741D7F1B0A30E7000CB132 /* StatistiqueViewController.swift */; };
-		E194A2281B024BDD001FC95B /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = E194A2271B024BDD001FC95B /* README.md */; };
 		E1987FB81B2EC24D00F652A9 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1987FB71B2EC24D00F652A9 /* CSV.swift */; };
 		E1987FBA1B2EC4E600F652A9 /* SpinCharteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1987FB91B2EC4E600F652A9 /* SpinCharteLoader.swift */; };
 		E1987FBC1B2ECDCE00F652A9 /* charts in Resources */ = {isa = PBXBuildFile; fileRef = E1987FBB1B2ECDCE00F652A9 /* charts */; };
@@ -63,6 +62,7 @@
 		E1B432D81B0F76180081EB35 /* TirInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B432D71B0F76180081EB35 /* TirInterfaceController.swift */; };
 		E1B7B10D1B09DCE500AEF6EB /* LineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B7B10C1B09DCE500AEF6EB /* LineChart.swift */; };
 		E1C54D6B1AF1057100E7960C /* DistanceCellEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C54D6A1AF1057100E7960C /* DistanceCellEdit.swift */; };
+		E1D0D6F11B6FA58900AC87D1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1D0D6F31B6FA58900AC87D1 /* Localizable.strings */; };
 		E1D197951AE914E800616F1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D197941AE914E800616F1B /* AppDelegate.swift */; };
 		E1D1979A1AE914E800616F1B /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D197991AE914E800616F1B /* MasterViewController.swift */; };
 		E1D1979C1AE914E800616F1B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1979B1AE914E800616F1B /* DetailViewController.swift */; };
@@ -207,6 +207,11 @@
 		E1C54D6D1AF1289E00E7960C /* Volee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Volee.swift; sourceTree = "<group>"; };
 		E1C54D6E1AF1289E00E7960C /* Tir.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tir.swift; sourceTree = "<group>"; };
 		E1C54D731AF22E0B00E7960C /* PseudoHausse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PseudoHausse.swift; sourceTree = "<group>"; };
+		E1D0D6EA1B6F69A500AC87D1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Interface.strings; sourceTree = "<group>"; };
+		E1D0D6EC1B6F6A2000AC87D1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		E1D0D6EE1B6F6A4500AC87D1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		E1D0D6F21B6FA58900AC87D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E1D0D6F41B6FA59400AC87D1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E1D1978F1AE914E800616F1B /* arclatvedas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = arclatvedas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1D197931AE914E800616F1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1D197941AE914E800616F1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -218,6 +223,10 @@
 		E1D197A91AE914E800616F1B /* arclatvedasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = arclatvedasTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1D197AE1AE914E800616F1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1D197AF1AE914E800616F1B /* arclatvedasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = arclatvedasTests.swift; sourceTree = "<group>"; };
+		E1E2458D1B6FAEF300825341 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
+		E1E2458E1B6FAEF400825341 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		E1E2458F1B6FAEF400825341 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Interface.strings; sourceTree = "<group>"; };
+		E1E245901B6FAEF400825341 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -441,6 +450,7 @@
 				E1D197A01AE914E800616F1B /* Images.xcassets */,
 				E1D197A21AE914E800616F1B /* LaunchScreen.xib */,
 				E1D197921AE914E800616F1B /* Supporting Files */,
+				E1D0D6F31B6FA58900AC87D1 /* Localizable.strings */,
 			);
 			path = arclatvedas;
 			sourceTree = "<group>";
@@ -648,6 +658,7 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = E1D197861AE914E800616F1B;
 			productRefGroup = E1D197901AE914E800616F1B /* Products */;
@@ -702,6 +713,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1D0D6F11B6FA58900AC87D1 /* Localizable.strings in Resources */,
 				E1D1979F1AE914E800616F1B /* Main.storyboard in Resources */,
 				E1D197A41AE914E800616F1B /* LaunchScreen.xib in Resources */,
 				E14FFCA11B37F553003023C1 /* iVersion.bundle in Resources */,
@@ -789,7 +801,6 @@
 				E1987FC41B315B0300F652A9 /* CharteViewController.swift in Sources */,
 				E14431971AEA88D4006D8577 /* WebViewController.swift in Sources */,
 				E16834CE1AEE6D63005E14B6 /* TirCell.swift in Sources */,
-				E194A2281B024BDD001FC95B /* README.md in Sources */,
 				E1D1979C1AE914E800616F1B /* DetailViewController.swift in Sources */,
 				E19A261A1B32EE3700326C59 /* ArrowChooserCell.swift in Sources */,
 			);
@@ -843,14 +854,28 @@
 			isa = PBXVariantGroup;
 			children = (
 				E198870C1B0DDE92003F07FC /* Base */,
+				E1D0D6EA1B6F69A500AC87D1 /* en */,
+				E1E2458F1B6FAEF400825341 /* fr */,
 			);
 			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+		E1D0D6F31B6FA58900AC87D1 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E1D0D6F21B6FA58900AC87D1 /* Base */,
+				E1D0D6F41B6FA59400AC87D1 /* en */,
+				E1E245901B6FAEF400825341 /* fr */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		E1D1979D1AE914E800616F1B /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				E1D1979E1AE914E800616F1B /* Base */,
+				E1D0D6EE1B6F6A4500AC87D1 /* en */,
+				E1E2458D1B6FAEF300825341 /* fr */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -859,6 +884,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				E1D197A31AE914E800616F1B /* Base */,
+				E1D0D6EC1B6F6A2000AC87D1 /* en */,
+				E1E2458E1B6FAEF400825341 /* fr */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";

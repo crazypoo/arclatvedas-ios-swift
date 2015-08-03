@@ -34,7 +34,14 @@ class ArrowChooserCell: UITableViewCell {
                 }
             }
             
-            detail.text = String(stringInterpolation: "Modele: ","\(fleche.modele)\n","nom: \(fleche.name)\n", "Grain: ","\(fleche.grain) ","Spin: ","\(fleche.spin) ","Taille: ",lataille,"Fabricant: ","\(fleche.fabricant)\n")
+            let modelstr=NSLocalizedString("Modele: ", comment:"data")
+            let nomstr=NSLocalizedString("nom: ", comment:"data")
+            let grainstr=NSLocalizedString("Grain: ", comment:"data")
+            let spinstr=NSLocalizedString("Spin: ", comment:"data")
+            let taillestr=NSLocalizedString("Taille: ", comment:"data")
+            let makerstr=NSLocalizedString("Fabricant: ", comment:"data")
+            
+            detail.text = String(stringInterpolation: modelstr,"\(fleche.modele)\n",nomstr,"\(fleche.name)\n", grainstr,"\(fleche.grain) ",spinstr,"\(fleche.spin) ",taillestr,lataille,makerstr,"\(fleche.fabricant)\n")
         }
         }
         

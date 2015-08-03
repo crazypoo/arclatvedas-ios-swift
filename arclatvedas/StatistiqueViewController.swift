@@ -74,9 +74,8 @@ class StatistiqueViewController: UIViewController, NSFetchedResultsControllerDel
         // Update the user interface for the detail item.
         self.fetchedResultsController
         switch tablename{
-            
         case "Tir":
-            self.navigationItem.title = "Graphique"
+            self.navigationItem.title = NSLocalizedString("Graphique", comment:"data")
             
         default: break
             

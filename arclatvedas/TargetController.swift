@@ -42,6 +42,10 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate ,UIPicke
     override func loadView() {
         super.loadView()
         let r = self.view.frame
+        
+       
+        
+        
         let cote = min(self.view.frame.size.width,self.view.frame.size.height)
         let rect = CGRect(x: 25/2 ,y: 25/2 ,width: cote-25, height:cote-25)
         //cv = BlasonView(frame: rect)
@@ -519,14 +523,12 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate ,UIPicke
     
     func changeFace(blasontype:Int){
         
-        self.cv?.setNeedsDisplay()
-        self.cv?.setNeedsLayout()
-        self.cv?.layoutIfNeeded()
-
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+       
         
-        
+        self.iv?.removeFromSuperview()
         self.cv?.removeFromSuperview()
-        
+        self.cv=nil
         switch (blasontype) {
         case 0:
             
@@ -557,10 +559,14 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate ,UIPicke
             break;
             
         }
-        self.view.insertSubview(self.cv!, belowSubview: self.iv!)
+        self.view.addSubview(self.cv!)
+        self.view.addSubview(self.iv!)
+        
         self.view.setNeedsDisplay()
         self.view.setNeedsLayout()
         self.view.layoutIfNeeded()
+            
+             })
 
     }
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
@@ -579,6 +585,26 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate ,UIPicke
 
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        
+        let r = CGRect(x: self.view.frame.origin.x ,y: self.view.frame.origin.y ,width: size.width, height:size.height)
+
+        self.view.frame = r
+        self.view.backgroundColor = UIColor.whiteColor()
+
+        
+        let cote = min(r.size.width,r.size.height)
+        let rect = CGRect(x: 25/2 ,y: 25/2 ,width: cote-25, height:cote-25)
+
+        
+        self.iv!.frame = rect
+        
+        
+        
+
+        
+        
+        
+        
         if let detail: Tir = self.detailItem {
             changeFace(detail.blasonType.integerValue)
         }
@@ -591,9 +617,6 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate ,UIPicke
 //        }
 
         
-        self.view.setNeedsDisplay()
-        self.view.setNeedsLayout()
-        self.view.layoutIfNeeded()
     }
 
     

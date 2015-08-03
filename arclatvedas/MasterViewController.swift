@@ -108,26 +108,31 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                 //ajout d'un calcul de spin
                  self.initNewEventObject("Sélecteur de flèche",url:"",ordre:Table.Charte.rawValue + 1)
                 
-                //mise a jour des indexs
-                var count = 0
-                for event in self.fetchedResultsEventController.fetchedObjects as! [NSManagedObject] {
-
-                    
-                    event.setValue(count, forKey: "ordre")
-                    count++
-                }
-                let context = self.fetchedResultsEventController.managedObjectContext
-
-                var error: NSError? = nil
-                if !context.save(&error) {
-                    // Replace this implementation with code to handle the error appropriately.
-                    // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                    //println("Unresolved error \(error), \(error.userInfo)")
-                    abort()
-                }
 
                 
             }
+            
+            //mise a jour des indexs
+            var count = 1
+            for event in self.fetchedResultsEventController.fetchedObjects as! [NSManagedObject] {
+                
+                
+                event.setValue(count, forKey: "ordre")
+                count++
+            }
+            let context = self.fetchedResultsEventController.managedObjectContext
+            
+            var error: NSError? = nil
+            if !context.save(&error) {
+                // Replace this implementation with code to handle the error appropriately.
+                // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                //println("Unresolved error \(error), \(error.userInfo)")
+                abort()
+            }
+
+            
+            
+            
         }
         
     }
@@ -367,7 +372,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         cell.but = nil
         
         let ordre = object.valueForKey("ordre") as? NSNumber
-        if  ordre ==  Table.Scores.rawValue {
+        if  ordre ==  Table.Scores.rawValue+1 {
             
             let b:UIButton = UIButton.buttonWithType(UIButtonType.System) as! UIButton
             b.frame = CGRect(x: 200 ,y: 0 ,width: 100, height:cell.contentView.frame.height)

@@ -37,7 +37,7 @@ class StatistiqueViewController: UIViewController, NSFetchedResultsControllerDel
         
         // Edit the sort key as appropriate.
         let sortDescriptor = NSSortDescriptor(key: "timeStamp", ascending: true)
-        let sortDescriptors = [sortDescriptor]
+       // let sortDescriptors = [sortDescriptor]
         
         fetchRequest.sortDescriptors = [sortDescriptor]
         
@@ -48,10 +48,13 @@ class StatistiqueViewController: UIViewController, NSFetchedResultsControllerDel
         _fetchedResultsController = aFetchedResultsController
         
         var error: NSError? = nil
-        if !_fetchedResultsController!.performFetch(&error) {
+        do {
+            try _fetchedResultsController!.performFetch()
+        } catch let error1 as NSError {
+            error = error1
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            //println("Unresolved error \(error), \(error.userInfo)")
+            print("Unresolved error \(error), \(error?.userInfo)")
             abort()
         }
         
@@ -101,12 +104,12 @@ class StatistiqueViewController: UIViewController, NSFetchedResultsControllerDel
             var views: [String: AnyObject] = [:]
             
             label.text = "..."
-            label.setTranslatesAutoresizingMaskIntoConstraints(false)
+            label.translatesAutoresizingMaskIntoConstraints = false
             label.textAlignment = NSTextAlignment.Center
             self.view.addSubview(label)
             views["label"] = label
-            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[label]-|", options: nil, metrics: nil, views: views))
-            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-80-[label]", options: nil, metrics: nil, views: views))
+            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[label]-|", options: [], metrics: nil, views: views))
+            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-80-[label]", options: [], metrics: nil, views: views))
             
             // simple arrays
             var data: [CGFloat] = []
@@ -116,7 +119,7 @@ class StatistiqueViewController: UIViewController, NSFetchedResultsControllerDel
             var xLabels: [String] = [""]
             
             
-            for (var j = 0 ; j < results.count ; j++){
+            for j in 0 ..< results.count{
                 
                 let tir:Tir = results[j]
                 
@@ -138,12 +141,12 @@ class StatistiqueViewController: UIViewController, NSFetchedResultsControllerDel
             lineChart.addLine(data)
            // lineChart.addLine(data2)
             
-            lineChart.setTranslatesAutoresizingMaskIntoConstraints(false)
+            lineChart.translatesAutoresizingMaskIntoConstraints = false
             lineChart.delegate = self
             self.view.addSubview(lineChart)
             views["chart"] = lineChart
-            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[chart]-|", options: nil, metrics: nil, views: views))
-            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[label]-[chart(==200)]", options: nil, metrics: nil, views: views))
+            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[chart]-|", options: [], metrics: nil, views: views))
+            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[label]-[chart(==200)]", options: [], metrics: nil, views: views))
 
         }
 

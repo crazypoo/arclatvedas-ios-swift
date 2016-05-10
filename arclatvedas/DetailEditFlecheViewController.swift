@@ -46,7 +46,7 @@ class DetailEditFlecheViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let saveButton = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "saveObject:")
+        let saveButton = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: #selector(DetailEditFlecheViewController.saveObject(_:)))
         self.navigationItem.rightBarButtonItem = saveButton
         // Do any additional setup after loading the view.
         self.configureView()
@@ -94,7 +94,7 @@ class DetailEditFlecheViewController: UIViewController {
             }
             
             if let textecommentaire = self.commentaire {
-                commentaire.text = detail.valueForKey("comment")!.description
+                textecommentaire.text = detail.valueForKey("comment")!.description
             }
 
         }
@@ -109,7 +109,7 @@ class DetailEditFlecheViewController: UIViewController {
             let dateFormat:NSDateFormatter = NSDateFormatter()
             dateFormat.dateFormat="dd/MM/yy"
             dateFormat.dateStyle = NSDateFormatterStyle.ShortStyle
-            let ladate :NSDate = dateFormat.dateFromString(self.date.text)!
+            let ladate :NSDate = dateFormat.dateFromString(self.date.text!)!
             
             detail.setValue(ladate, forKey: "timeStamp")
            
@@ -120,10 +120,10 @@ class DetailEditFlecheViewController: UIViewController {
             let formatter = NSNumberFormatter()
             formatter.numberStyle = NSNumberFormatterStyle.DecimalStyle;
             
-            if let number = formatter.numberFromString(self.taille.text) {
+            if let number = formatter.numberFromString(self.taille.text!) {
                 detail.setValue(number, forKey: "length")
             }
-            detail.setValue( NSNumber(integer: self.spin.text.toInt()!), forKey: "spin")
+            detail.setValue( NSNumber(integer: Int(self.spin.text!)!), forKey: "spin")
             
             detail.setValue(self.plume.text, forKey: "feather")
             detail.setValue(self.pointe.text, forKey: "point")

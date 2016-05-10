@@ -63,13 +63,16 @@ public class SpinCharteLoader: NSObject,NSFetchedResultsControllerDelegate {
         aFetchedResultsController.delegate = self
        // _fetchedResultsController = aFetchedResultsController
         
-        var error: NSError? = nil
-        if !aFetchedResultsController.performFetch(&error) {
-            // Replace this implementation with code to handle the error appropriately.
-            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            //println("Unresolved error \(error), \(error.userInfo)")
-            abort()
-        }
+       // var error: NSError? = nil
+       do {
+           try aFetchedResultsController.performFetch()
+       } catch  _ as NSError {
+          // error = error1
+           // Replace this implementation with code to handle the error appropriately.
+           // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+           //println("Unresolved error \(error), \(error.userInfo)")
+           abort()
+       }
         return aFetchedResultsController
     }
     
@@ -80,11 +83,17 @@ public class SpinCharteLoader: NSObject,NSFetchedResultsControllerDelegate {
         
 
         let grouppath = proxyBundle?.pathForResource(name, ofType: ofType, inDirectory:"charts")
-        let csvgroupurl:NSURL = NSURL.fileURLWithPath(grouppath!,isDirectory:false)!
+        let csvgroupurl:NSURL = NSURL.fileURLWithPath(grouppath!,isDirectory:false)
 
         
-        var error: NSErrorPointer = nil
-        let csv:CSV? = CSV(contentsOfURL: csvgroupurl, error: error)
+        let error: NSErrorPointer = nil
+        let csv:CSV?
+        do {
+            csv = try CSV(contentsOfURL: csvgroupurl)
+        } catch let error1 as NSError {
+            error.memory = error1
+            csv = nil
+        }
 
 //        // Rows
 //        let rows = csv?.rows
@@ -107,22 +116,22 @@ public class SpinCharteLoader: NSObject,NSFetchedResultsControllerDelegate {
     func boot(what:String){
         let charte  = loadFiles(what, ofType:"alvcharte")
         
-       for (var j = 0 ; j < charte.rows.count ; j++){
+       for j in 0  ..< charte.rows.count {
             let row = charte.rows[j]
             insertSpinCharte(row)
         }
         let fleche  = loadFiles(what, ofType:"alvfleche")
-        for (var j = 0 ; j < fleche.rows.count ; j++){
+        for j in 0  ..< fleche.rows.count {
             let row = fleche.rows[j]
             insertFlecheGroupe(row)
         }
         let groupe  = loadFiles(what, ofType:"alvgroupe")
         
-        for (var j = 0 ; j < groupe.rowsarray.count ; j++){
+        for j in 0  ..< groupe.rowsarray.count  {
             let row = groupe.rowsarray[j]
             let groupe:String = row["group"]!.first!
             let fleches:[String] = row["modele"]!
-             for (var i = 0 ; i < fleches.count ; i++){
+             for i in 0  ..< fleches.count{
                 
                 let modele = fleches[i] as String
                 if (modele != "" ){
@@ -275,9 +284,9 @@ public class SpinCharteLoader: NSObject,NSFetchedResultsControllerDelegate {
     
     func associateGroupeAndFleche(groupename:String, modelefleche:String){
         
-        var fleche:SpinFleche = getFleche(modelefleche)
+        let fleche:SpinFleche = getFleche(modelefleche)
 
-        var groups = getGroupeR(groupename)
+        let groups = getGroupeR(groupename)
         for group in groups.fetchedObjects as! [SpinGroupe] {
             group.arrowsofgroup.addObject(fleche)
             fleche.groupsofarrow.addObject(group)
@@ -338,18 +347,18 @@ public class SpinCharteLoader: NSObject,NSFetchedResultsControllerDelegate {
     public func testrequests(){
         
         
-       var result =   getGroupesO(29,weight:21)
+       let result =   getGroupesO(29,weight:21)
         
         
-        for (var i = 0 ; i<result.fetchedObjects!.count ; i++){
-            let indexPath:NSIndexPath = NSIndexPath(forRow: i, inSection: 0)
+        for i in 0 ..< result.fetchedObjects!.count{
+            let indexPath:NSIndexPath = NSIndexPath(index: i)
             
             let toto = result.objectAtIndexPath( indexPath) as! SpinCharte
            let spinGroupe = toto.group.objectAtIndex(0) as! SpinGroupe
             NSLog(spinGroupe.name);
             
             NSLog( "count = \(spinGroupe.arrowsofgroup.count)")
-            for (var j = 0 ; j < spinGroupe.arrowsofgroup.count ; j++){
+            for j in 0 ..< spinGroupe.arrowsofgroup.count {
                 
                 let arrow = spinGroupe.arrowsofgroup.objectAtIndex(j) as! SpinFleche;
                 NSLog(arrow.modele);

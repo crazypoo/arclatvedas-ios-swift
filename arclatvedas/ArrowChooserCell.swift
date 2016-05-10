@@ -27,7 +27,7 @@ class ArrowChooserCell: UITableViewCell {
         //    NSLog(fleche.grain.description)
             var lataille="-\n"
             
-            if let t = fleche.taille as? NSNumber {
+            if let t:NSNumber = fleche.taille {
                 
                 if t != 0 {
                     lataille = "\(fleche.taille)\n"

@@ -11,7 +11,7 @@ import Foundation
 
 import Foundation
 
-@objc(PseudoHausse)
+//(PseudoHausse)
 
 public class PseudoHausse {
     

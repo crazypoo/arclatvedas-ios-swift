@@ -38,7 +38,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         
         // Edit the sort key as appropriate.
         let sortDescriptor = NSSortDescriptor(key: "ordre", ascending: true)
-        let sortDescriptors = [sortDescriptor]
+        //let sortDescriptors = [sortDescriptor]
         
         fetchRequest.sortDescriptors = [sortDescriptor]
         
@@ -49,10 +49,13 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         _fetchedResultsForEventController = aFetchedResultsController
         
         var error: NSError? = nil
-        if !_fetchedResultsForEventController!.performFetch(&error) {
+        do {
+            try _fetchedResultsForEventController!.performFetch()
+        } catch let error1 as NSError {
+            error = error1
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            //println("Unresolved error \(error), \(error.userInfo)")
+            print("Unresolved error \(error), \(error?.userInfo)")
             abort()
         }
         
@@ -80,13 +83,17 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         
         
         if let split = self.splitViewController {
-            let controllers = split.viewControllers
-            self.detailViewController = controllers[controllers.count-1].topViewController as? DetailViewController
+           // let controllers = split.viewControllers
+            if split.viewControllers.count > 1 {
+                self.detailViewController = self.splitViewController?.viewControllers[1] as? DetailViewController
+            }
+
+           // self.detailViewController = controllers[controllers.count-1].topViewController as? DetailViewController
         }
     }
     //CharteViewController
     override func viewWillAppear(animated: Bool){
-        let sectionInfo = self.fetchedResultsEventController.sections![0] as! NSFetchedResultsSectionInfo
+        let sectionInfo = self.fetchedResultsEventController.sections![0] 
         let compte = sectionInfo.numberOfObjects
         
         
@@ -126,15 +133,18 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                 
                 
                 event.setValue(count, forKey: "ordre")
-                count++
+                count += 1
             }
             let context = self.fetchedResultsEventController.managedObjectContext
             
             var error: NSError? = nil
-            if !context.save(&error) {
+            do {
+                try context.save()
+            } catch let error1 as NSError {
+                error = error1
                 // Replace this implementation with code to handle the error appropriately.
                 // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                //println("Unresolved error \(error), \(error.userInfo)")
+                print("Unresolved error \(error), \(error?.userInfo)")
                 abort()
             }
 
@@ -154,7 +164,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     func initNewEventObject(name:String, url:String, ordre : Int) {
         let context = self.fetchedResultsEventController.managedObjectContext
         let entity = self.fetchedResultsEventController.fetchRequest.entity!
-        let newManagedObject = NSEntityDescription.insertNewObjectForEntityForName(entity.name!, inManagedObjectContext: context) as! NSManagedObject
+        let newManagedObject = NSEntityDescription.insertNewObjectForEntityForName(entity.name!, inManagedObjectContext: context) 
         
         // If appropriate, configure the new managed object.
         // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
@@ -164,10 +174,13 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         newManagedObject.setValue(ordre, forKey: "ordre")
         // Save the context.
         var error: NSError? = nil
-        if !context.save(&error) {
+        do {
+            try context.save()
+        } catch let error1 as NSError {
+            error = error1
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            //println("Unresolved error \(error), \(error.userInfo)")
+            print("Unresolved error \(error), \(error?.userInfo)")
             abort()
         }
     }
@@ -177,7 +190,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     func insertNewEventObject(sender: AnyObject) {
         let context = self.fetchedResultsEventController.managedObjectContext
         let entity = self.fetchedResultsEventController.fetchRequest.entity!
-        let newManagedObject = NSEntityDescription.insertNewObjectForEntityForName(entity.name!, inManagedObjectContext: context) as! NSManagedObject
+        let newManagedObject = NSEntityDescription.insertNewObjectForEntityForName(entity.name!, inManagedObjectContext: context) 
         
         // If appropriate, configure the new managed object.
         // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
@@ -186,10 +199,13 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         newManagedObject.setValue("", forKey: "url")
         // Save the context.
         var error: NSError? = nil
-        if !context.save(&error) {
+        do {
+            try context.save()
+        } catch let error1 as NSError {
+            error = error1
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            //println("Unresolved error \(error), \(error.userInfo)")
+            print("Unresolved error \(error), \(error?.userInfo)")
             abort()
         }
     }
@@ -202,7 +218,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         
         
         if segue.identifier == "showDetail" {
-            if let indexPath = self.tableView.indexPathForSelectedRow() {
+            if let indexPath = self.tableView.indexPathForSelectedRow {
                 let object = self.fetchedResultsEventController.objectAtIndexPath(indexPath) as! NSManagedObject
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
                 controller.detailItem = object
@@ -211,7 +227,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             }
         }else{
             if segue.identifier == "webview" {
-                if let indexPath = self.tableView.indexPathForSelectedRow() {
+                if let indexPath = self.tableView.indexPathForSelectedRow {
                     let object = self.fetchedResultsEventController.objectAtIndexPath(indexPath) as! NSManagedObject
                     let controller = (segue.destinationViewController as! UINavigationController).topViewController as! WebViewController
                     controller.detailItem = object
@@ -220,7 +236,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                 }
             }else {
                 if segue.identifier == "matos" {
-                    if let indexPath = self.tableView.indexPathForSelectedRow() {
+                    if let indexPath = self.tableView.indexPathForSelectedRow {
                         //let object = self.fetchedResultsEventController.objectAtIndexPath(indexPath) as! NSManagedObject
                         let controller = (segue.destinationViewController as! UINavigationController).topViewController as! ListeViewController
                         
@@ -285,13 +301,13 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     // MARK: - Table View
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        var  ii = self.fetchedResultsEventController.sections?.count
+       // var  ii = self.fetchedResultsEventController.sections?.count
         
         return self.fetchedResultsEventController.sections?.count ?? 0
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sectionInfo = self.fetchedResultsEventController.sections![section] as! NSFetchedResultsSectionInfo
+        let sectionInfo = self.fetchedResultsEventController.sections![section] 
         return sectionInfo.numberOfObjects
     }
     
@@ -320,7 +336,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         
-        let object = self.fetchedResultsEventController.objectAtIndexPath(indexPath) as! NSManagedObject
+       // let object = self.fetchedResultsEventController.objectAtIndexPath(indexPath) as! NSManagedObject
         
         let row:Table = Table(rawValue: indexPath.row)!
         //case Infos = 0, Mandats, Photos, Materiel,Fleches, Distances, Scores, Apropos
@@ -342,11 +358,11 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         case .Scores:
             self.performSegueWithIdentifier("matos", sender: self)
         
-        default:
-            let page :String = object.valueForKey("url")!.description
-            if (!page.isEmpty){
-                self.performSegueWithIdentifier("webview", sender: self)
-            }
+//        default:
+//            let page :String = object.valueForKey("url")!.description
+//            if (!page.isEmpty){
+//                self.performSegueWithIdentifier("webview", sender: self)
+//            }
             
         }
         
@@ -382,13 +398,13 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         let ordre = object.valueForKey("ordre") as? NSNumber
         if  ordre ==  Table.Scores.rawValue+1 {
             
-            let b:UIButton = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+            let b:UIButton = UIButton(type: UIButtonType.System)
             b.frame = CGRect(x: 200 ,y: 0 ,width: 100, height:cell.contentView.frame.height)
             b.backgroundColor = UIColor.whiteColor()
             b.setTitle( "Graph", forState: .Normal)
             b.setTitleColor(UIColor.blackColor(), forState: .Normal)
             b.tag = 666
-            b.addTarget(self, action: "pressedStat:", forControlEvents: .TouchUpInside)
+            b.addTarget(self, action: #selector(MasterViewController.pressedStat(_:)), forControlEvents: .TouchUpInside)
             
             cell.contentView.addSubview(b)
             cell.but = b
@@ -426,8 +442,8 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         case .Move:
             tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
             tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
-        default:
-            return
+//        default:
+//            return
         }
     }
     

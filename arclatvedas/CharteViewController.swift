@@ -28,11 +28,11 @@ class CharteViewController: UIViewController,UITableViewDataSource,UITableViewDe
         }
 
         
-        if let lataille =  taille.text.toInt(){
+        if let lataille =  Int(taille.text!){
             realTaille=lataille
         }
         
-        if let lapuissance =  puissance.text.toInt(){
+        if let lapuissance =  Int(puissance.text!){
             realweight=lapuissance
         }
         _fetched = SpinCharteLoader.getGroupes(realTaille,weight:realweight)

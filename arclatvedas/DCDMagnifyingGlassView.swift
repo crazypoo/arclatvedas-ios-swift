@@ -33,7 +33,7 @@ class DCDMagnifyingGlassView: UIView {
     let shadowLayer: CAShapeLayer = CAShapeLayer()
     let panGestureRecognizer = UIPanGestureRecognizer()
     
-    var targetView: UIView = UIApplication.sharedApplication().windows.first as! UIView
+    var targetView: UIView = UIApplication.sharedApplication().windows.first!
     var scale: CGFloat = 2
     var glassDelegate:DCDMagnifyingGlassViewDelegate?
     
@@ -47,7 +47,7 @@ class DCDMagnifyingGlassView: UIView {
         setupViews()
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupViews()
     }
@@ -62,7 +62,7 @@ class DCDMagnifyingGlassView: UIView {
         self.addSubview(indicatorView)
         
         //Set up the glass
-        var glassY = indicatorView.frame.origin.y - 10 - self.frame.size.height
+        let glassY = indicatorView.frame.origin.y - 10 - self.frame.size.height
         glassView.frame = CGRect(x: 0, y: glassY, width: self.frame.size.width, height: self.frame.size.height)
         self.addSubview(glassView)
         
@@ -78,19 +78,19 @@ class DCDMagnifyingGlassView: UIView {
         //Set up the image display
         magnifyingImageView.frame = CGRect(x: 0, y: 0, width: glassView.frame.size.width, height: glassView.frame.size.height)
         magnifyingImageView.contentMode = UIViewContentMode.ScaleToFill
-        magnifyingImageView.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
+        magnifyingImageView.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight]
         magnifyingImageView.clipsToBounds = true
         glassView.addSubview(magnifyingImageView)
         
         
         plusView.frame = CGRect(x: 0, y: 0, width: glassView.frame.size.width, height: glassView.frame.size.height)
         plusView.contentMode = UIViewContentMode.ScaleToFill
-        plusView.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
+        plusView.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight]
         plusView.clipsToBounds = true
         glassView.addSubview(plusView)
         
         //Set up gesture recognizer
-        panGestureRecognizer.addTarget(self, action: "panAction:")
+        panGestureRecognizer.addTarget(self, action: #selector(DCDMagnifyingGlassView.panAction(_:)))
         indicatorView.addGestureRecognizer(panGestureRecognizer)
         panGestureRecognizer.enabled = true
     }
@@ -110,7 +110,7 @@ class DCDMagnifyingGlassView: UIView {
         magnifyingImageView.layer.cornerRadius = CGFloat(cornerRadius)
         
         //Update the indicator frame
-        var indicatorSize = max(min(self.frame.size.width/scale, 50),10)
+        let indicatorSize = max(min(self.frame.size.width/scale, 50),10)
         indicatorView.frame = CGRect(x: 0, y: 0, width: indicatorSize, height: indicatorSize)
         indicatorView.center = CGPoint(x: self.frame.size.width/2, y: self.frame.size.height/2)
         indicatorView.layer.cornerRadius = indicatorView.frame.size.width/2
@@ -160,7 +160,7 @@ class DCDMagnifyingGlassView: UIView {
     private func moveView(translation: CGPoint) {
         self.frame = CGRectMake(self.frame.origin.x + translation.x, self.frame.origin.y + translation.y, self.frame.size.width, self.frame.size.height)
         
-        let toto = self.frame
+      //  let toto = self.frame
         self.layoutSubviews(false)
     }
     
@@ -168,13 +168,13 @@ class DCDMagnifyingGlassView: UIView {
         //Hide self
         self.hidden = true
         
-        var scale = UIScreen.mainScreen().scale
+        let scale = UIScreen.mainScreen().scale
         
         //Snapshot of view
         UIGraphicsBeginImageContextWithOptions(rect.size, false, scale)
         CGContextTranslateCTM(UIGraphicsGetCurrentContext(), -rect.origin.x, -rect.origin.y)
-        view.layer.renderInContext(UIGraphicsGetCurrentContext()) //Need this to stop screen flashing, but it's slower
-        var snapshotImage = UIGraphicsGetImageFromCurrentImageContext()
+        view.layer.renderInContext(UIGraphicsGetCurrentContext()!) //Need this to stop screen flashing, but it's slower
+        let snapshotImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
         //Show self
@@ -184,11 +184,11 @@ class DCDMagnifyingGlassView: UIView {
     }
     
     private func resizeImage(image: UIImage, toNewSize newSize:CGSize) -> UIImage {
-        var scale = UIScreen.mainScreen().scale
+        let scale = UIScreen.mainScreen().scale
         
         UIGraphicsBeginImageContextWithOptions(newSize, false, scale)
         image.drawInRect(CGRectMake(0, 0, newSize.width, newSize.height))
-        var newImage = UIGraphicsGetImageFromCurrentImageContext()
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
         return newImage
@@ -197,10 +197,10 @@ class DCDMagnifyingGlassView: UIView {
     //MARK: Refresh
     func refreshImage() {
         //Since we are scaling the image, we can take a snapshot of a smaller image instead, thus increasing performance
-        var newWidth = self.frame.size.width / scale
-        var newHeight = self.frame.size.height / scale
-        var newX = (self.frame.size.width - newWidth) / 2 + self.frame.origin.x
-        var newY = (self.frame.size.height - newHeight) / 2 + self.frame.origin.y
+        let newWidth = self.frame.size.width / scale
+        let newHeight = self.frame.size.height / scale
+        let newX = (self.frame.size.width - newWidth) / 2 + self.frame.origin.x
+        let newY = (self.frame.size.height - newHeight) / 2 + self.frame.origin.y
         var newImage = snapshotTargetView(targetView, inRect: CGRect(x: newX, y: newY, width: newWidth, height: newHeight))
         newImage = resizeImage(newImage, toNewSize: self.frame.size)
         magnifyingImageView.image = newImage
@@ -214,7 +214,7 @@ class DCDMagnifyingGlassView: UIView {
             
             break
         case UIGestureRecognizerState.Changed:
-            var translation = sender.translationInView(targetView)
+            let translation = sender.translationInView(targetView)
             moveView(translation)
             sender.setTranslation(CGPointZero, inView: targetView)
             break
@@ -229,17 +229,17 @@ class DCDMagnifyingGlassView: UIView {
     
     //MARK: Hit Test
     func distanceFromPoint(point1: CGPoint, toPoint point2: CGPoint) -> CGFloat {
-        var dx = point1.x - point2.x
-        var dy = point1.y - point2.y
+        let dx = point1.x - point2.x
+        let dy = point1.y - point2.y
         
         return sqrt(dx*dx + dy*dy)
     }
     //Convert touch space into a circle instead of a rectangle
     override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
-        var radius = self.bounds.size.width/2
-        var center = CGPoint(x: self.bounds.size.width/2, y: self.bounds.size.height/2)
+        let radius = self.bounds.size.width/2
+        let center = CGPoint(x: self.bounds.size.width/2, y: self.bounds.size.height/2)
         
-        var dist = distanceFromPoint(point, toPoint: center)
+        let dist = distanceFromPoint(point, toPoint: center)
         if(dist <= radius){
             return super.hitTest(point, withEvent: event)
         }

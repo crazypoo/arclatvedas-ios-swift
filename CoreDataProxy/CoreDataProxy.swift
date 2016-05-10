@@ -30,12 +30,18 @@ public class CoreDataProxy:NSObject{
     public lazy var applicationDocumentsDirectory: NSURL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "com.makeandbuild.ActivityBuilder" in the application's documents Application Support directory.
         let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-        return urls[urls.count-1] as! NSURL
+        return urls[urls.count-1] 
         }()
     
+    
+
+    
+    
     public lazy var managedObjectModel: NSManagedObjectModel = {
-        let proxyBundle = NSBundle(identifier: "com.jack.CoreDataProxy")
-        
+        var proxyBundle = NSBundle(identifier: "com.jack.CoreDataProxy")
+        if proxyBundle == nil {
+            proxyBundle = NSBundle.mainBundle()
+        }
         // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
         let modelURL = proxyBundle?.URLForResource("arclatvedas", withExtension: "momd")!
         
@@ -49,11 +55,16 @@ public class CoreDataProxy:NSObject{
         // Create the coordinator and store
         
         var sharedContainerURL: NSURL? = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier(self.sharedAppGroup)
-
-        if let sharedContainerURL = sharedContainerURL {
+    var storeURL: NSURL?
+    
+        if let lsharedContainerURL = sharedContainerURL {
         
-            let storeURL = sharedContainerURL.URLByAppendingPathComponent("arclatvedas.sqlite")
-             NSLog(storeURL.description)
+            storeURL = lsharedContainerURL.URLByAppendingPathComponent("arclatvedas.sqlite")
+             NSLog((storeURL?.description)!)
+        }else{
+            storeURL = self.applicationDocumentsDirectory.URLByAppendingPathComponent("arclatvedas.sqlite")
+
+        }
             var coordinator: NSPersistentStoreCoordinator? = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
             
             var error: NSError? = nil
@@ -62,7 +73,10 @@ public class CoreDataProxy:NSObject{
             let mOptions = [NSMigratePersistentStoresAutomaticallyOption: true,
                 NSInferMappingModelAutomaticallyOption: true]
             
-            if coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: mOptions, error: &error) == nil {
+            do {
+                try coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: mOptions)
+            } catch var error1 as NSError {
+                error = error1
                 coordinator = nil
                 // Report any error we got.
                 var dict = [String: AnyObject]()
@@ -74,11 +88,12 @@ public class CoreDataProxy:NSObject{
                 // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 NSLog("Unresolved error \(error), \(error!.userInfo)")
                 abort()
+            } catch {
+                fatalError()
             }
             
             return coordinator
-        }
-        return nil
+        
         }()
 
     
@@ -89,7 +104,7 @@ public class CoreDataProxy:NSObject{
         if coordinator == nil {
             return nil
         }
-        var managedObjectContext = NSManagedObjectContext()
+        var managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = coordinator
         return managedObjectContext
         }()
@@ -99,11 +114,16 @@ public class CoreDataProxy:NSObject{
     public func saveContext () {
         if let moc = self.managedObjectContext {
             var error: NSError? = nil
-            if moc.hasChanges && !moc.save(&error) {
-                // Replace this implementation with code to handle the error appropriately.
-                // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                NSLog("Unresolved error \(error), \(error!.userInfo)")
-                abort()
+            if moc.hasChanges {
+                do {
+                    try moc.save()
+                } catch let error1 as NSError {
+                    error = error1
+                    // Replace this implementation with code to handle the error appropriately.
+                    // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                    NSLog("Unresolved error \(error), \(error!.userInfo)")
+                    abort()
+                }
             }
         }
     }

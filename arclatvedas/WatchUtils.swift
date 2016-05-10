@@ -8,7 +8,6 @@
 
 import Foundation
 import CoreData
-import CoreDataProxy
 
 public class WatchUtils : NSObject,NSFetchedResultsControllerDelegate{
 
@@ -31,7 +30,7 @@ var fetchedResultsController: NSFetchedResultsController {
     
     // Edit the sort key as appropriate.
     let sortDescriptor = NSSortDescriptor(key: "timeStamp", ascending: false)
-    let sortDescriptors = [sortDescriptor]
+   // let sortDescriptors = [sortDescriptor]
     
     fetchRequest.sortDescriptors = [sortDescriptor]
     
@@ -42,10 +41,13 @@ var fetchedResultsController: NSFetchedResultsController {
     _fetchedResultsController = aFetchedResultsController
     
     var error: NSError? = nil
-    if !_fetchedResultsController!.performFetch(&error) {
+    do {
+        try _fetchedResultsController!.performFetch()
+    } catch let error1 as NSError {
+        error = error1
         // Replace this implementation with code to handle the error appropriately.
         // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-        //println("Unresolved error \(error), \(error.userInfo)")
+        print("Unresolved error \(error), \(error!.userInfo)")
         abort()
     }
     
@@ -66,19 +68,22 @@ var _fetchedResultsController: NSFetchedResultsController? = nil
         
         
          NSFetchedResultsController.deleteCacheWithName("Master")
-        var indexPath:NSIndexPath = NSIndexPath(forRow: 0, inSection: 0)
     _fetchedResultsController=nil
        var object:Tir?
         tablename = "Tir";
-        if  self.fetchedResultsController.fetchedObjects?.count > 0 {
-             object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Tir
+    if let ff:NSFetchedResultsController = self.fetchedResultsController{
+        let cocos: [Tir] = ff.fetchedObjects as! [Tir]
+        
+        if  cocos.count > 0 {
+            
+             object = cocos[0]
         }
 //        else{
 //            insertNewTir()
 //            return getLastTir( )
 //            
 //        }
-    
+    }
         return object
     
 
@@ -149,10 +154,13 @@ var _fetchedResultsController: NSFetchedResultsController? = nil
         // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
         // Save the context.
         var error: NSError? = nil
-        if !context.save(&error) {
+        do {
+            try context.save()
+        } catch let error1 as NSError {
+            error = error1
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            //println("Unresolved error \(error), \(error.userInfo)")
+            print("Unresolved error \(error), \(error?.userInfo)")
             abort()
         }
         

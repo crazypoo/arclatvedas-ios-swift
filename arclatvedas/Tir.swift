@@ -26,7 +26,7 @@ public class Tir: NSManagedObject {
         var totale = 0
         
         
-        var nsarr = self.volees.array as! [Volee]
+        let nsarr = self.volees.array as! [Volee]
         
         if self.volees.count > 0 {
             for  vol:Volee in nsarr{

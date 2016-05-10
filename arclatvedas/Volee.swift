@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import CoreGraphics
 
 @objc(Volee)
 
@@ -85,7 +86,7 @@ public    var scores:NSMutableArray {
             }else{
                 let copyscore = scores
                 var chunk = ""
-                for var i = 0 ; i < copyscore.count ; i++ {
+                for i in 0  ..< copyscore.count  {
                     let num:NSNumber = copyscore.objectAtIndex(i) as! NSNumber
                     if  num.integerValue == 100 {
                         chunk = "X"
@@ -110,7 +111,7 @@ public    func getTotal() -> Int {
         var res:Int = 0
         let copyscore = scores
             
-                 for var i = 0 ; i < copyscore.count ; i++ {
+                 for i in 0  ..< copyscore.count  {
                      let num:NSNumber = copyscore.objectAtIndex(i) as! NSNumber
                     if  num.integerValue == 100 {
                         res  = res + 10
@@ -133,7 +134,7 @@ public    func getTotal() -> Int {
         }
         
         
-        let data:NSData =  NSJSONSerialization.dataWithJSONObject(copyscore,options: NSJSONWritingOptions(0), error: nil)!
+        let data:NSData =  try! NSJSONSerialization.dataWithJSONObject(copyscore,options: NSJSONWritingOptions(rawValue: 0))
         
         self.volee = NSString(data: data, encoding: NSUTF8StringEncoding)!.description
         
@@ -171,7 +172,7 @@ public    func getTotal() -> Int {
             copyscore.removeLastObject()
         }
         
-        let data:NSData =  NSJSONSerialization.dataWithJSONObject(copyscore,options: NSJSONWritingOptions(0), error: nil)!
+        let data:NSData =  try! NSJSONSerialization.dataWithJSONObject(copyscore,options: NSJSONWritingOptions(rawValue: 0))
         
         self.volee = NSString(data: data, encoding: NSUTF8StringEncoding)!.description
     
@@ -212,7 +213,8 @@ public    func getTotal() -> Int {
         let copyimpacteArray = self.impacteArray
         var point = CGPointMake(0,0)
         if fleche < copyimpacteArray.count {
-          point = copyimpacteArray.objectAtIndex(fleche).CGPointValue()
+            let p:NSValue = copyimpacteArray.objectAtIndex(fleche) as! NSValue
+          point = p.CGPointValue()
         }
         
         return point
@@ -223,7 +225,8 @@ public    func getTotal() -> Int {
         let copyzoneArray = self.zoneArray
         var point = CGPointMake(0,0)
         if fleche < copyzoneArray.count {
-            point = copyzoneArray.objectAtIndex(fleche).CGPointValue()
+            let p : NSValue = copyzoneArray.objectAtIndex(fleche) as! NSValue
+            point = p.CGPointValue()
         }
         
         return point

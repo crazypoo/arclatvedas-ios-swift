@@ -42,13 +42,13 @@ class DistanceCellEdit: UITableViewCell, UITextFieldDelegate {
     
     func textFieldDidEndEditing(textField: UITextField) {
         if textField === distance {
-            datahausse.name = distance.text
+            datahausse.name = distance.text!
         } else {
             
             if textField === hausse {
-                datahausse.hausse = hausse.text
+                datahausse.hausse = hausse.text!
             }
         }
-        resultDelegate.resultChange(rowindice, name: distance.text, hausse: hausse.text)
+        resultDelegate.resultChange(rowindice, name: distance.text!, hausse: hausse.text!)
     }
 }

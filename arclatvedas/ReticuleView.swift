@@ -22,7 +22,7 @@ class ReticuleView: UIView {
         self.backgroundColor = UIColor.clearColor()
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.backgroundColor = UIColor.clearColor()
     }
@@ -39,7 +39,7 @@ class ReticuleView: UIView {
         let plusWidth: CGFloat = min(bounds.width, bounds.height) * 0.3
         
         //create the path
-        var plusPath = UIBezierPath()
+        let plusPath = UIBezierPath()
         
         //set the path's line width to the height of the stroke
         plusPath.lineWidth = plusHeight

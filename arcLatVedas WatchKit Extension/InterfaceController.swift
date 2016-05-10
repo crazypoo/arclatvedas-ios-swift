@@ -9,9 +9,9 @@
 import WatchKit
 import Foundation
 import CoreData
-import CoreDataProxy
+//import CoreDataProxy
 
-class InterfaceController: WKInterfaceController {
+class InterfaceController: WKInterfaceController,DataSourceChangedDelegate {
     @IBOutlet weak var imageicone: WKInterfaceImage!
     @IBOutlet weak var location: WKInterfaceLabel!
     @IBOutlet weak var distance: WKInterfaceLabel!
@@ -24,7 +24,7 @@ class InterfaceController: WKInterfaceController {
         
        
         super.awakeWithContext(context)
-
+        WatchSessionManager.sharedManager.addDataSourceChangedDelegate(self)
         
         NSFetchedResultsController.deleteCacheWithName("Master")
 
@@ -48,21 +48,30 @@ class InterfaceController: WKInterfaceController {
 
     
     
+    func updatenewtir(){
+        let wutils:WatchUtils = WatchUtils()
+        
+        
+        if let ti:AnyObject = wutils.getLastTir() {
+        
+            let titi:Tir  = ti as! Tir
+        
+            self.curTir=titi
+        
+        }
+        
+        updateScreen()
+    }
+    
     @IBAction func doButtonNouveauTir()
     {
         let wutils:WatchUtils = WatchUtils()
-
-       wutils.insertNewTir()
         
-        if let ti:AnyObject = wutils.getLastTir() {
-            
-            let titi:Tir  = ti as! Tir
-            
-            curTir=titi
-            
-        }
-
-        updateScreen()
+        wutils.insertNewTir()
+        
+        
+        updatenewtir()
+        WatchSessionManager.sharedManager.transferUserInfo(["insertNewTir" : 0.description])
     }
     
     
@@ -88,14 +97,14 @@ class InterfaceController: WKInterfaceController {
     
     func updateScreen(){
         
-        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)) { // 1
+        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) { // 1
             dispatch_async(dispatch_get_main_queue()) { // 2
                 
                 let dateFormat:NSDateFormatter = NSDateFormatter()
                 dateFormat.dateStyle = NSDateFormatterStyle.ShortStyle
                 dateFormat.dateFormat="dd/MM/yy"
                 
-                 if let ti:AnyObject = self.curTir {
+                 if let ti:Tir = self.curTir {
                     let dateString:String = dateFormat.stringFromDate(ti.timeStamp)
                 
                 
@@ -114,6 +123,15 @@ class InterfaceController: WKInterfaceController {
         super.didDeactivate()
     }
 
+    /// MARK:, // TODO: and // FIXME
+    
+    // MARK: - DataSourceChangedDelegate
+    //DataSourceChangedDelegate
+    func dataSourceDidUpdate(userInfo: [String : AnyObject]){
+        
+        updatenewtir()
+        
+    }
 }
 
 

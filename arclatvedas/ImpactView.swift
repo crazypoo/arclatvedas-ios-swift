@@ -26,7 +26,7 @@ class ImpactView: UIView {
         self.backgroundColor = UIColor.clearColor()
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.backgroundColor = UIColor.clearColor()
     }
@@ -43,7 +43,7 @@ class ImpactView: UIView {
         //we add normalized point here
         self.impacts.append(unipoint)
         
-        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INTERACTIVE.value), 0)) { // 1
+        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INTERACTIVE.rawValue), 0)) { // 1
             dispatch_async(dispatch_get_main_queue()) { // 2
                 
                 //this is needed otherwise ....
@@ -60,7 +60,7 @@ class ImpactView: UIView {
         
         self.impacts.removeLast()
         
-        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INTERACTIVE.value), 0)) { // 1
+        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INTERACTIVE.rawValue), 0)) { // 1
             dispatch_async(dispatch_get_main_queue()) { // 2
                 
                 //this is needed otherwise ....
@@ -73,7 +73,7 @@ class ImpactView: UIView {
     override func drawRect(rect: CGRect) {
         // Drawing code
         
-        for (var i = 0 ; i < impacts.count ; i++){
+        for i in 0 ..< impacts.count{
             let pt = impacts[i]
             
             //points are normalized
@@ -81,9 +81,9 @@ class ImpactView: UIView {
             let realpoint:CGPoint = CGPointApplyAffineTransform(pt, t);
             
             
-            var inrect = CGRectMake(realpoint.x-2,realpoint.y-2,4,4)
+            let inrect = CGRectMake(realpoint.x-2,realpoint.y-2,4,4)
             
-            var path = UIBezierPath(ovalInRect: inrect)
+            let path = UIBezierPath(ovalInRect: inrect)
             UIColor.blackColor().setFill()
             
             

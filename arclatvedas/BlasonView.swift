@@ -45,7 +45,7 @@ class BlasonView: UIView ,FaceViewDelegate {
         super.init(frame: frame)
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -60,7 +60,7 @@ class BlasonView: UIView ,FaceViewDelegate {
     func getScoreForPoint(point:CGPoint)->CGPoint{
         var result:CGPoint = CGPointMake(0,0)
         var x=nombrezone
-        do {
+        repeat {
             let circle = circles[0][x]
             
             if circle.containsPoint(point) {
@@ -68,7 +68,7 @@ class BlasonView: UIView ,FaceViewDelegate {
                 return result
                 
             }
-            x--
+            x -= 1
         }while (x > -1)
         
         return result
@@ -81,7 +81,7 @@ class BlasonView: UIView ,FaceViewDelegate {
     override func drawRect(rect: CGRect) {
         // Drawing code
         
-        var pathck = UIBezierPath(rect: rect)
+        let pathck = UIBezierPath(rect: rect)
         UIColor.whiteColor().setFill()
         pathck.fill()
         
@@ -89,8 +89,8 @@ class BlasonView: UIView ,FaceViewDelegate {
         var inrect = rect
         var lastgoodrect = rect
         var x=nombrezone
-        do {
-            var path = UIBezierPath(ovalInRect: inrect)
+        repeat {
+            let path = UIBezierPath(ovalInRect: inrect)
             
             if x !=  0{
                 circles[0].append(path)
@@ -104,7 +104,7 @@ class BlasonView: UIView ,FaceViewDelegate {
             path.lineWidth = 1.0
             path.stroke()
             
-            x--
+            x -= 1
             inrect = CGRectInset(inrect,delta,delta)
             if x == 1{
                 lastgoodrect = inrect
@@ -118,7 +118,7 @@ class BlasonView: UIView ,FaceViewDelegate {
         
         inrect = CGRectInset(lastgoodrect,delta/2,delta/2)
         if !CGRectIsEmpty(inrect){
-            var path = UIBezierPath(ovalInRect: inrect)
+            let path = UIBezierPath(ovalInRect: inrect)
             circles[0].append(path)
             
             colorslines[0].setStroke()

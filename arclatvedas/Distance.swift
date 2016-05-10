@@ -29,8 +29,8 @@ public class Distance: NSManagedObject {
 
         var nsarr = self.relationship.allObjects as! [Hausse]
         
-       sort(&nsarr,{ (s1: Hausse, s2: Hausse) -> Bool in
-            return s1.name.toInt() < s2.name.toInt()
+       nsarr.sortInPlace({ (s1: Hausse, s2: Hausse) -> Bool in
+            return Int(s1.name) < Int(s2.name)
         })
         
         
@@ -45,8 +45,8 @@ public class Distance: NSManagedObject {
         
         var nsarray:[Hausse] = self.relationship.allObjects as! [Hausse]
         
-        sort(&nsarray,{ (s1: Hausse, s2: Hausse) -> Bool in
-            return s1.name.toInt() < s2.name.toInt()
+        nsarray.sortInPlace({ (s1: Hausse, s2: Hausse) -> Bool in
+            return Int(s1.name) < Int(s2.name)
         })
         return NSArray(array: nsarray)
     }

@@ -43,10 +43,13 @@ public class DataManager: NSObject {
         // _fetchedResultsController = aFetchedResultsController
         
         var error: NSError? = nil
-        if !aFetchedResultsController.performFetch(&error) {
+        do {
+            try aFetchedResultsController.performFetch()
+        } catch let error1 as NSError {
+            error = error1
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            //println("Unresolved error \(error), \(error.userInfo)")
+            print("Unresolved error \(error), \(error?.userInfo)")
             abort()
         }
         return aFetchedResultsController
@@ -65,18 +68,25 @@ public class DataManager: NSObject {
         
         
         
-        if let data =  getContext().executeFetchRequest(all, error: &error) {
+        do {
+            let data =  try getContext().executeFetchRequest(all)
 
             //error handling goes here
             for result in data {
                 deleteManagedObject(result as! NSManagedObject)
             }
+        } catch let error1 as NSError {
+            error = error1
+            NSLog("Unresolved error saving context \(error), \(error!.userInfo)")
         }
         saveManagedContext()
     }
     public class func saveManagedContext() {
         var error : NSError? = nil
-        if !getContext().save(&error) {
+        do {
+            try getContext().save()
+        } catch let error1 as NSError {
+            error = error1
             NSLog("Unresolved error saving context \(error), \(error!.userInfo)")
             abort()
         }

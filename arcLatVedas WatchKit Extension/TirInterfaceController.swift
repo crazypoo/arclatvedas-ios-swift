@@ -10,12 +10,12 @@ import Foundation
 
 
 import WatchKit
-import Foundation
 import CoreData
-import CoreDataProxy
+
+//import CoreDataProxy
 
 //class TirInterfaceController: WKInterfaceController,NSUserActivityDelegate {
-class TirInterfaceController: WKInterfaceController {
+class TirInterfaceController: WKInterfaceController,DataSourceChangedDelegate {
     @IBOutlet weak var voleeNumero: WKInterfaceLabel!
     @IBOutlet weak var total: WKInterfaceLabel!
     @IBOutlet weak var scorevolee: WKInterfaceLabel!
@@ -24,7 +24,7 @@ class TirInterfaceController: WKInterfaceController {
 
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
-        
+        WatchSessionManager.sharedManager.addDataSourceChangedDelegate(self)
         let wutils:WatchUtils = WatchUtils()
         
         if let ti:AnyObject = wutils.getLastTir() {
@@ -79,7 +79,7 @@ class TirInterfaceController: WKInterfaceController {
         if let tir = curTir {
             self.updateUserActivity("com.jack.arclatvedas.update", userInfo: ["key1": ["yo":"dawg"]], webpageURL: nil)
 
-            dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)) { // 1
+            dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { // 1
                 dispatch_async(dispatch_get_main_queue()) { // 2
                     
                     self.voleeNumero.setText("\(tir.volees.count)")
@@ -161,7 +161,7 @@ class TirInterfaceController: WKInterfaceController {
         doRefresh()
          DataManager.saveManagedContext()
         
-
+         WatchSessionManager.sharedManager.transferUserInfo(["addScore" : what])
     }
 
     
@@ -180,6 +180,8 @@ class TirInterfaceController: WKInterfaceController {
         }
         doRefresh()
          DataManager.saveManagedContext()
+        
+         WatchSessionManager.sharedManager.transferUserInfo(["deleteScore" : 0])
     }
 
     
@@ -189,6 +191,7 @@ class TirInterfaceController: WKInterfaceController {
         let wutils:WatchUtils = WatchUtils()
         if let tir = curTir {
             wutils.createEmptyVolee(tir)
+            WatchSessionManager.sharedManager.transferUserInfo(["createEmptyVolee" : 0])
         }
         doRefresh()
          DataManager.saveManagedContext()
@@ -201,5 +204,32 @@ class TirInterfaceController: WKInterfaceController {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
     }
+    
+    
+    // MARK: - DataSourceChangedDelegate
+    //DataSourceChangedDelegate
+    func dataSourceDidUpdate(userInfo: [String : AnyObject]){
+        
+       // for (action, param) in userInfo {
+            
+           
+            let wutils:WatchUtils = WatchUtils()
+            
+            if let ti:AnyObject = wutils.getLastTir() {
+                
+                let titi:Tir  = ti as! Tir
+                
+                curTir=titi
+                
+                doRefresh()
+                
+            }
+
+            
+        //}
+        
+    }
+    
+    
     
 }

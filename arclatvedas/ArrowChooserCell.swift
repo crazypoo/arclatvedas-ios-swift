@@ -1,0 +1,72 @@
+//
+//  ArrowChooserCell.swift
+//  arclatvedas
+//
+//  Created by divol on 18/06/2015.
+//  Copyright (c) 2015 jack. All rights reserved.
+//
+
+import UIKit
+
+import CoreData
+import CoreDataProxy
+
+class ArrowChooserCell: UITableViewCell {
+    @IBOutlet weak var texte: UITextView!
+    
+    var arrow:SpinFleche?{
+        didSet {
+            // Update the view.
+            self.configureView()
+        }
+    }
+    func configureView() {
+        if let fleche = arrow {
+        
+         if let detail = self.texte {
+        //    NSLog(fleche.grain.description)
+            var lataille="-\n"
+            
+            if let t:NSNumber = fleche.taille {
+                
+                if t != 0 {
+                    lataille = "\(fleche.taille)\n"
+                }
+            }
+            
+            let modelstr=NSLocalizedString("Modele: ", comment:"data")
+            let nomstr=NSLocalizedString("nom: ", comment:"data")
+            let grainstr=NSLocalizedString("Grain: ", comment:"data")
+            let spinstr=NSLocalizedString("Spin: ", comment:"data")
+            let taillestr=NSLocalizedString("Taille: ", comment:"data")
+            let makerstr=NSLocalizedString("Fabricant: ", comment:"data")
+            
+            detail.text = String(stringInterpolation: modelstr,"\(fleche.modele)\n",nomstr,"\(fleche.name)\n", grainstr,"\(fleche.grain) ",spinstr,"\(fleche.spin) ",taillestr,lataille,makerstr,"\(fleche.fabricant)\n")
+        }
+        }
+        
+    }
+
+    
+//    @NSManaged public var modele: String
+//    @NSManaged public var name: String
+//    @NSManaged public var surname: String
+//    @NSManaged public var grain: NSNumber
+//    @NSManaged public var spin: String
+//    @NSManaged public var diametreoutside: NSNumber
+//    @NSManaged public var taille: NSNumber
+//    @NSManaged public var fabricant: String
+//    @NSManaged public var groupsofarrow: NSMutableOrderedSet
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+
+    override func setSelected(selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+
+}

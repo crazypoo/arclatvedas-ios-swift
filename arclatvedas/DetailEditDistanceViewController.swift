@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreDataProxy
 
 class DetailEditDistanceViewController: UIViewController,UITableViewDataSource,UITableViewDelegate, resultDelegateProtocol,UITextFieldDelegate {
     
@@ -35,7 +36,7 @@ class DetailEditDistanceViewController: UIViewController,UITableViewDataSource,U
 //        self.navigationItem.rightBarButtonItem = saveButton
         // Do any additional setup after loading the view.
         
-        unit.addTarget(self, action: "changeUnit:", forControlEvents: .ValueChanged)
+        unit.addTarget(self, action: #selector(DetailEditDistanceViewController.changeUnit(_:)), forControlEvents: .ValueChanged)
         
         name.delegate = self
         
@@ -59,9 +60,9 @@ class DetailEditDistanceViewController: UIViewController,UITableViewDataSource,U
                 let value:String = detail.valueForKey("unit") as! String
                 
                 if value == "yard" {
-                    self.unit.selectedSegmentIndex = 1;
+                    textetaille.selectedSegmentIndex = 1;
                 }else{
-                     self.unit.selectedSegmentIndex = 0;
+                     textetaille.selectedSegmentIndex = 0;
                 }
                 
             }
@@ -69,8 +70,8 @@ class DetailEditDistanceViewController: UIViewController,UITableViewDataSource,U
             
             var nsarray:[Hausse] = detail.relationship.allObjects as! [Hausse]
             
-            sort(&nsarray,{ (s1: Hausse, s2: Hausse) -> Bool in
-                return s1.name.toInt() < s2.name.toInt()
+            nsarray.sortInPlace({ (s1: Hausse, s2: Hausse) -> Bool in
+                return Int(s1.name) < Int(s2.name)
             })
 
 
@@ -117,7 +118,7 @@ class DetailEditDistanceViewController: UIViewController,UITableViewDataSource,U
             let ladate :NSDate = NSDate()
             
             detail.setValue(self.name.text, forKey: "name")
-            let toto = self.unit.selectedSegmentIndex
+           // let toto = self.unit.selectedSegmentIndex
             
             
             if self.unit.selectedSegmentIndex == 0 {
@@ -131,18 +132,18 @@ class DetailEditDistanceViewController: UIViewController,UITableViewDataSource,U
 
             
             
-            
+            DataManager.saveManagedContext()
            
-            if let cont:AnyObject = self.context {
-                var error: NSError? = nil
-                if !cont.save(&error) {
-                    // Replace this implementation with code to handle the error appropriately.
-                    // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                    //println("Unresolved error \(error), \(error.userInfo)")
-                    abort()
-                }
-                
-            }
+//            if let cont:AnyObject = self.context {
+//                var error: NSError? = nil
+//                if !cont.save(&error) {
+//                    // Replace this implementation with code to handle the error appropriately.
+//                    // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+//                    //println("Unresolved error \(error), \(error.userInfo)")
+//                    abort()
+//                }
+//                
+//            }
             
         }
     }

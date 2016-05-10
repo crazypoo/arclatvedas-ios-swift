@@ -11,11 +11,11 @@ import Foundation
 
 import Foundation
 
-@objc(PseudoHausse)
+//(PseudoHausse)
 
-class PseudoHausse {
+public class PseudoHausse {
     
-     var hausse: String?
-     var name: String?
+     public var  hausse: String?
+     public var  name: String?
     
 }

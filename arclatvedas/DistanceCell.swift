@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreDataProxy
 
 class DistanceCell: UITableViewCell ,UITableViewDataSource,UITableViewDelegate{
     
@@ -52,7 +53,7 @@ class DistanceCell: UITableViewCell ,UITableViewDataSource,UITableViewDelegate{
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("basicDistance", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("basicDistance", forIndexPath: indexPath) 
         
         
         let toto:NSArray
@@ -62,7 +63,7 @@ class DistanceCell: UITableViewCell ,UITableViewDataSource,UITableViewDelegate{
         
         
       // let h:Hausse = toto[indexPath.row] as! Hausse
-        for (var i = 0 ; i < toto.count ; i++){
+        for i in 0 ..< toto.count {
             let h:Hausse = toto[i] as! Hausse
             var texte:String=""
             

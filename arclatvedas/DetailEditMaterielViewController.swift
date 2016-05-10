@@ -9,6 +9,8 @@
 import MobileCoreServices
 import UIKit
 import AssetsLibrary
+import Photos
+import CoreDataProxy
 
 class DetailEditMaterielViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
@@ -24,6 +26,7 @@ class DetailEditMaterielViewController: UIViewController,UIImagePickerController
     
     var patha:String?=nil
     
+    var imageManager:PHImageManager = PHImageManager.defaultManager();
     
     
     override func viewDidLoad() {
@@ -31,7 +34,7 @@ class DetailEditMaterielViewController: UIViewController,UIImagePickerController
         
        
         
-        let saveButton = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "saveObject:")
+        let saveButton = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: #selector(DetailEditMaterielViewController.saveObject(_:)))
         self.navigationItem.rightBarButtonItem = saveButton
         // Do any additional setup after loading the view.
           self.configureView()
@@ -86,12 +89,33 @@ class DetailEditMaterielViewController: UIViewController,UIImagePickerController
             }
             
             if let textecommentaire = self.commentaire {
-                commentaire.text = detail.valueForKey("comment")!.description
+                textecommentaire.text = detail.valueForKey("comment")!.description
             }
             
             if let texteimage = self.viewimage {
                 let path = detail.valueForKey("imagepath")!.description
                 if !path.isEmpty {
+                    
+                    
+//                     let legacyAsset:PHAsset = PHAsset.fetchAssetsWithALAssetURLs([(NSURL(string: path)?)!],options:nil).firstObject
+//                    
+//                    let convertedIdentifier = legacyAsset.localIdentifier;
+//                    
+//                    
+//                    var targetSize:CGSize = CGSizeMake(UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height)
+//                    var itemOptions = PHImageRequestOptions()
+//                    itemOptions.networkAccessAllowed = true
+//                    itemOptions.deliveryMode = PHImageRequestOptionsDeliveryMode.PHImageRequestOptionsDeliveryModeHighQualityFormat;
+//
+//                    
+// 
+//                    imageManager.requestImageForAsset(legacyAsset, targetSize: targetSize, contentMode: PHImageContentMode.AspectFit, options: itemOptions, resultHandler: { (result:UIImage?, info:[NSObject : AnyObject]?) -> Void in
+//                        if result != nil  {
+//                                texteimage.image = result
+//                        }
+//                        }
+//                    )
+                    
                     
                      let library:ALAssetsLibrary = ALAssetsLibrary()
                     library.assetForURL( NSURL(string: path), resultBlock: { (asset:ALAsset!) -> Void in
@@ -120,7 +144,7 @@ class DetailEditMaterielViewController: UIViewController,UIImagePickerController
         let dateFormat:NSDateFormatter = NSDateFormatter()
         dateFormat.dateStyle = NSDateFormatterStyle.ShortStyle
         dateFormat.dateFormat="dd/MM/yy"
-        let ladate :NSDate = dateFormat.dateFromString(self.date.text)!
+        let ladate :NSDate = dateFormat.dateFromString(self.date.text!)!
         
         detail.setValue(ladate, forKey: "timeStamp")
         detail.setValue(self.matos.text, forKey: "name")
@@ -130,16 +154,19 @@ class DetailEditMaterielViewController: UIViewController,UIImagePickerController
             detail.setValue(self.patha, forKey: "imagepath")
         }
         
-        if let cont:AnyObject = self.context {
-            var error: NSError? = nil
-            if !cont.save(&error) {
-                // Replace this implementation with code to handle the error appropriately.
-                // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                //println("Unresolved error \(error), \(error.userInfo)")
-                abort()
-            }
-
-        }
+        
+        DataManager.saveManagedContext()
+        
+//        if let cont:AnyObject = self.context {
+//            var error: NSError? = nil
+//            if !cont.save(&error) {
+//                // Replace this implementation with code to handle the error appropriately.
+//                // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+//                //println("Unresolved error \(error), \(error.userInfo)")
+//                abort()
+//            }
+//
+//        }
         
         }
     }
@@ -156,7 +183,7 @@ class DetailEditMaterielViewController: UIViewController,UIImagePickerController
                 imagePicker.delegate = self
                 imagePicker.sourceType =
                     UIImagePickerControllerSourceType.Camera
-                imagePicker.mediaTypes = [kUTTypeImage as NSString]
+                imagePicker.mediaTypes = [kUTTypeImage as NSString as String]
                 imagePicker.allowsEditing = false
                 
                 self.presentViewController(imagePicker, animated: true, 
@@ -167,7 +194,7 @@ class DetailEditMaterielViewController: UIViewController,UIImagePickerController
     
     
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
         let mediaType = info[UIImagePickerControllerMediaType] as! String
         
@@ -175,7 +202,7 @@ class DetailEditMaterielViewController: UIViewController,UIImagePickerController
         
         
         
-        if mediaType == kUTTypeImage as! String {
+        if mediaType == kUTTypeImage as String {
             let image = info[UIImagePickerControllerOriginalImage]
                 as! UIImage
             
@@ -192,7 +219,7 @@ class DetailEditMaterielViewController: UIViewController,UIImagePickerController
 //                    "image:didFinishSavingWithError:contextInfo:", nil)
                 
                 
-            } else if mediaType == kUTTypeMovie as! String {
+            } else if mediaType == kUTTypeMovie as String {
                 // Code to support video here
             }
             

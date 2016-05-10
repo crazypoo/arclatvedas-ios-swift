@@ -1,0 +1,35 @@
+/* 
+  Localizable.strings
+  arclatvedas
+
+  Created by divol on 03/08/2015.
+  Copyright (c) 2015 jack. All rights reserved.
+*/
+
+"Les informations" = "News";
+"Les mandats" = "Competitions information";
+"Photos" = "Photos";
+"Matériel" = "Hardware";
+"Flèches" = "Arrows";
+"Sélecteur de flèche" = "Arrow selector";
+"Distances" = "Distances";
+"Scores" = "Scores";
+"À propos d'Arc Lat'Védas" = "About Arc Lat\'Védas sport club";
+
+
+"Au club" = "Club";
+"Lot de flêches" = "Arrows set";
+"Blason" = "Face";
+
+"Graphique" = "Graphic";
+
+"Modele: " = "Model: ";
+"nom: " = "name: ";
+"Grain: " = "Grain: ";
+"Spin: " = "Spin: ";
+"Taille: " = "Size: ";
+"Fabricant: " = "Maker: ";
+
+"Cancel" = "Cancel" ;
+
+"blabla" = "WARNING, the database contains only a subset of arrow models (mainly Easton™ and CarbonExpress™ and  Only for recurve, sorry…) In any case, please ask advise before buying your arrows!";

@@ -8,9 +8,10 @@
 
 import UIKit
 import CoreData
+import CoreDataProxy
 
 class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,
-                                    UIPickerViewDataSource,UIPickerViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,LineChartDelegate
+                                    UIPickerViewDataSource,UIPickerViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,LineChartDelegate,DataSourceChangedDelegate
     {
     
     @IBOutlet weak var tableview: UITableView!
@@ -33,10 +34,21 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
     
     let distances = ["5","10","15","18","20","25","30","40","50","60","70"]
     let valeurs = ["X","10","9","8","7","6","5","4","3","2","1","M"]
+    let colors = [UIColor.yellowColor(),UIColor.yellowColor(),UIColor.yellowColor(),UIColor.redColor(),UIColor.redColor(),UIColor.blueColor(),UIColor.blueColor(),UIColor.blackColor(),UIColor.blackColor(),UIColor.whiteColor(),UIColor.whiteColor(),UIColor.whiteColor()]
+    
+    
+     let textcolors = [UIColor.blackColor(),UIColor.blackColor(),UIColor.blackColor(),
+                UIColor.blackColor(),UIColor.blackColor(),
+                UIColor.whiteColor(),UIColor.whiteColor(),
+                UIColor.whiteColor(),UIColor.whiteColor(),
+                UIColor.blackColor(),UIColor.blackColor(),UIColor.blackColor()]
+    
+    
+    
      let tags = [100,10,9,8,7,6,5,4,3,2,1,0]
     
 
-    var context : AnyObject?
+   // var context : AnyObject?
     
     
     let NOMBREMAX : Int = 6
@@ -54,10 +66,12 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        WatchSessionManager.sharedManager.addDataSourceChangedDelegate(self)
+        
 //        let saveButton = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "saveObject:")
 //        self.navigationItem.rightBarButtonItem = saveButton
         
-        let editButton = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: "editObject:")
+        let editButton = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: #selector(DetailEditTirViewController.editObject(_:)))
         self.navigationItem.rightBarButtonItem = editButton
 
         
@@ -96,10 +110,11 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
                 if detail.volees.count > 0 {
                     
                     
-                    self.curVolee = detail.volees.lastObject as! Volee
+                    self.curVolee = detail.volees.lastObject as? Volee
                     curCount = detail.volees.count-1
                 }else{
                     curVolee = createEmptyVolee()
+                    WatchSessionManager.sharedManager.transferUserInfo(["createEmptyVolee" : 0])
                     saveObject(self)
                     curCount = 0
                 }
@@ -109,15 +124,15 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
     
     func editObject (sender: AnyObject) {
         if let detail: Tir = self.detailItem {
-            var alert = UIAlertController(title: "Edit", message: "Message", preferredStyle: UIAlertControllerStyle.Alert)
+            let alert = UIAlertController(title: "Edit", message: "Message", preferredStyle: UIAlertControllerStyle.Alert)
             
             
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction!) in
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction) in
                 
-                var texts = alert.textFields as! [UITextField]
-               for (var i = 0 ; i < texts.count ; i++){
+                var texts = alert.textFields
+               for i in 0 ..< texts!.count{
                 
-                    let textField: UITextField = texts[i]
+                    let textField: UITextField = texts![i]
                     if textField.placeholder == "Localication:" {
                     
                         if let detail: Tir = self.detailItem {
@@ -135,9 +150,9 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
                 self.navigationItem.title = detail.location + ":" + detail.distance
 
             }))
-
-            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-            alert.addTextFieldWithConfigurationHandler({(textField: UITextField!)  in
+            let locastr=NSLocalizedString("Cancel", comment:"data")
+            alert.addAction(UIAlertAction(title: locastr, style: UIAlertActionStyle.Cancel, handler: nil))
+            alert.addTextFieldWithConfigurationHandler({(textField: UITextField)  in
                 textField.placeholder = "Localication:"
                 textField.secureTextEntry = false
                 if let detail: Tir = self.detailItem {
@@ -145,7 +160,7 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
                      textField.text = detail.location
                 }
             })
-            alert.addTextFieldWithConfigurationHandler({(textField: UITextField!)  in
+            alert.addTextFieldWithConfigurationHandler({(textField: UITextField)  in
                 textField.placeholder = "Distance:"
                 textField.keyboardType = .DecimalPad
                 textField.secureTextEntry = false
@@ -164,7 +179,7 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
     }
     
     func saveObject(sender: AnyObject) {
-        if let detail: Tir = self.detailItem {
+        if let _: Tir = self.detailItem {
             
             
             self.view.resignFirstResponder()
@@ -175,16 +190,17 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
 //            let ladate :NSDate = dateFormat.dateFromString("")!
 //            
             
-            if let cont:AnyObject = self.context {
-                var error: NSError? = nil
-                if !cont.save(&error) {
-                    // Replace this implementation with code to handle the error appropriately.
-                    // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                    //println("Unresolved error \(error), \(error.userInfo)")
-                    abort()
-                }
-                
-            }
+            DataManager.saveManagedContext()
+//            if let cont:AnyObject = self.context {
+//                var error: NSError? = nil
+//                if !cont.save(&error) {
+//                    // Replace this implementation with code to handle the error appropriately.
+//                    // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+//                    //println("Unresolved error \(error), \(error.userInfo)")
+//                    abort()
+//                }
+//                
+//            }
             
             if let detail: Tir = self.detailItem {
                 totalLabel?.text = detail.getTotal().description
@@ -269,7 +285,7 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
         cell.contentView.addSubview(label)
         
         
-        for (var i = 0 ; i < NOMBREMAX ; i++){
+        for i in 0 ..< NOMBREMAX{
             //une constante pour le 6 !!
             let points:Int = vol.getAt(i)
             
@@ -320,10 +336,10 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
      func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             if let detail: Tir = self.detailItem {
-                
-                self.context!.deleteObject(detail.volees.objectAtIndex(indexPath.row) as! NSManagedObject)
+                DataManager.deleteManagedObject(detail.volees.objectAtIndex(indexPath.row) as! NSManagedObject)
+//                self.context!.deleteObject(detail.volees.objectAtIndex(indexPath.row) as! NSManagedObject)
                // detail.volees.removeObjectAtIndex(indexPath.row)
-                self.curCount--
+                self.curCount -= 1
 //                if self.curCount >= 0 {
 //                    self.curVolee = detail.volees.lastObject as! Volee
 //                } else {
@@ -335,7 +351,7 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
             if let detail: Tir = self.detailItem {
                 
                 if self.curCount >= 0 {
-                    self.curVolee = detail.volees.lastObject as! Volee
+                    self.curVolee = detail.volees.lastObject as? Volee
                 } else {
                     self.curVolee = nil
                 }
@@ -346,7 +362,7 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             
 
-            dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)) { // 1
+            dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) { // 1
                 dispatch_async(dispatch_get_main_queue()) { // 2
                     self.tableview.reloadData()
                 }
@@ -374,7 +390,7 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
         return distances.count
     }
 
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return distances[row]
     }
     
@@ -388,19 +404,23 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
     // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        var cell:UICollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier , forIndexPath:indexPath) as! UICollectionViewCell
+        let cell:UICollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier , forIndexPath:indexPath) 
         
          let cframe: CGRect = CGRect(x: 0 ,y: 0 ,width: cell.frame.width, height:cell.frame.height)
         
         
         let b:UIButton = UIButton(frame:cframe)
         
-            b.backgroundColor = UIColor.whiteColor()
+           // b.backgroundColor = UIColor.whiteColor()
+        let c : UIColor = colors[indexPath.item]
+             b.backgroundColor = c
+        
             b.tag = tags[indexPath.item]
             b.setTitle( valeurs[indexPath.item], forState: .Normal)
-            b.setTitleColor(UIColor.blackColor(), forState: .Normal)
+//            b.setTitleColor(UIColor.blackColor(), forState: .Normal)
+            b.setTitleColor(textcolors[indexPath.item], forState: .Normal)
 
-            b.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
+            b.addTarget(self, action: #selector(DetailEditTirViewController.pressed(_:)), forControlEvents: .TouchUpInside)
         
         cell.addSubview(b)
         return cell
@@ -414,6 +434,7 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
             curVolee?.deleteLast();
             
             saveObject(self)
+             WatchSessionManager.sharedManager.transferUserInfo(["deleteScore" : 0])
             tableview.reloadData()
 
         break
@@ -426,7 +447,7 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
                          saveObject(self)
                         
                         curVolee = createEmptyVolee()
-                        
+                        WatchSessionManager.sharedManager.transferUserInfo(["createEmptyVolee" : 0])
                          saveObject(self)
                         
                          if let detail: Tir = self.detailItem {
@@ -438,7 +459,7 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
               }
             if self.detailItem!.volees.count == 0 {
                 curVolee = createEmptyVolee()
-                
+                WatchSessionManager.sharedManager.transferUserInfo(["createEmptyVolee" : 0])
                 saveObject(self)
                 
                 curCount=0
@@ -447,18 +468,20 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
             tableview.reloadData()
 
     case 3000 :
-        UIView.transitionWithView(self.statview, duration: 0.325, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+        UIView.transitionWithView(self.statview, duration: 0.325, options: [.TransitionFlipFromLeft, .CurveEaseInOut], animations: { () -> Void in
             if  self.statview.alpha == 0.0 {
                 if let detail: Tir = self.detailItem {
                     
                     if detail.volees.count > 1 {
                         self.buildChart()
                         self.statview.alpha=1.0
+                        self.tableview.alpha=0.0
                     }
                 
                 }
             }else{
                 self.statview.alpha=0.0
+                self.tableview.alpha=1.0
             }
             
         }, completion: { (Bool) -> Void in
@@ -467,11 +490,12 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
         
         
         default :
-            curVolee?.addScore(sender.tag);
+            curVolee?.addScore(sender.tag, impact:CGPointMake(0,0),zone:CGPointMake(0,0));
             saveObject(self)
+            WatchSessionManager.sharedManager.transferUserInfo(["addScore" : sender.tag])
             tableview.reloadData()
     }
-    var index: NSIndexPath  = NSIndexPath(forRow: curCount, inSection: 0)
+    let index: NSIndexPath  = NSIndexPath(forRow: curCount, inSection: 0)
     tableview.scrollToRowAtIndexPath(index, atScrollPosition:.None, animated: true)
 
     }
@@ -498,9 +522,9 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
         
  
         
-        let entityDescription = NSEntityDescription.entityForName("Volee", inManagedObjectContext: self.context as! NSManagedObjectContext)
+        let entityDescription = NSEntityDescription.entityForName("Volee", inManagedObjectContext: DataManager.getContext())
         
-        let volee = Volee(entity: entityDescription!, insertIntoManagedObjectContext: self.context as! NSManagedObjectContext)
+        let volee = Volee(entity: entityDescription!, insertIntoManagedObjectContext: DataManager.getContext())
         
         volee.setValue("[]", forKey: "volee")
         volee.setValue(detailItem!, forKey: "relationship")
@@ -525,12 +549,12 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
         
         
         label.text = "..."
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = NSTextAlignment.Center
         self.statview.addSubview(label)
         views["label"] = label
-        self.statview.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[label]-|", options: nil, metrics: nil, views: views))
-        self.statview.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-80-[label]", options: nil, metrics: nil, views: views))
+        self.statview.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[label]-|", options: [], metrics: nil, views: views))
+        self.statview.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-80-[label]", options: [], metrics: nil, views: views))
         
         // simple arrays
         var data: [CGFloat] = []
@@ -540,19 +564,19 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
         var xLabels: [String] = []
         
         if let detail: Tir = self.detailItem {
-            for (var j = 0 ; j < detail.volees.count ; j++){
+            for j in 0 ..< detail.volees.count{
                 let vol: Volee =  detail.volees.objectAtIndex(j) as! Volee
-                let f:CGFloat = CGFloat(vol.getTotal())
+               // let f:CGFloat = CGFloat(vol.getTotal())
                 data.append(CGFloat(vol.getTotal()))
                 var localtotal = 0
                 var localcount = 0
 
-                for (var i = 0 ; i < NOMBREMAX ; i++){
+                for i in 0 ..< NOMBREMAX{
                     
                     let points:Int = vol.getAt(i)
                     if points >= 0 {
                         
-                        localcount++
+                        localcount += 1
                         if points == 100 {
                            localtotal += 10
                         }else  if points == 0 {
@@ -587,13 +611,13 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
         lineChart.addLine(data)
         lineChart.addLine(data2)
         
-        lineChart.setTranslatesAutoresizingMaskIntoConstraints(false)
+        lineChart.translatesAutoresizingMaskIntoConstraints = false
         lineChart.delegate = self
         self.statview.addSubview(lineChart)
         views["chart"] = lineChart
-        self.statview.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[chart]-0-|", options: nil, metrics: nil, views: views))
+        self.statview.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[chart]-0-|", options: [], metrics: nil, views: views))
         
-        self.statview.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[label]-[chart(==200)]", options: nil, metrics: nil, views: views))
+        self.statview.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[label]-[chart(==200)]", options: [], metrics: nil, views: views))
         
         
         
@@ -619,6 +643,20 @@ class DetailEditTirViewController: UIViewController,UITableViewDataSource,UITabl
         }
     }
 
-    
+    // MARK: - DataSourceChangedDelegate
+    //DataSourceChangedDelegate
+    func dataSourceDidUpdate(userInfo: [String : AnyObject]){
+        
+       // self.navigationController!.popViewControllerAnimated(true)
+        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) { // 1
+            dispatch_async(dispatch_get_main_queue()) { // 2
+                //self.tableview.reloadData()
+            }
+        }
+        
+        
+        //updatenewtir()
+        
+    }
     
 }

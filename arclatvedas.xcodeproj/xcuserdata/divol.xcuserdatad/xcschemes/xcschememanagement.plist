@@ -4,6 +4,26 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>CoreDataProxy.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+		<key>Glance - arcLatVedas WatchKit App.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>Notification - arcLatVedas WatchKit App.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>arcLatVedas WatchKit App.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>arclatvedas.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -12,6 +32,21 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>E19887031B0DDE92003F07FC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E19887241B0F22E2003F07FC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E198872E1B0F22E2003F07FC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>E1D1978E1AE914E800616F1B</key>
 		<dict>
 			<key>primary</key>

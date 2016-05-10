@@ -13,24 +13,24 @@ import CoreData
 
 @objc(Distance)
 
-class Distance: NSManagedObject {
+public class Distance: NSManagedObject {
 
-    @NSManaged var comment: String
-    @NSManaged var name: String
-    @NSManaged var timeStamp: NSDate
-    @NSManaged var unit: String
-    @NSManaged var relationship: NSMutableSet
+    @NSManaged public var comment: String
+    @NSManaged public var name: String
+    @NSManaged public var timeStamp: NSDate
+    @NSManaged public var unit: String
+    @NSManaged public var relationship: NSMutableSet
     
     
     
-    func allHaussesDescription ()->String {
+  public  func allHaussesDescription ()->String {
         
         var result = ""
 
         var nsarr = self.relationship.allObjects as! [Hausse]
         
-       sort(&nsarr,{ (s1: Hausse, s2: Hausse) -> Bool in
-            return s1.name.toInt() < s2.name.toInt()
+       nsarr.sortInPlace({ (s1: Hausse, s2: Hausse) -> Bool in
+            return Int(s1.name) < Int(s2.name)
         })
         
         
@@ -41,12 +41,12 @@ class Distance: NSManagedObject {
         }
         return result
     }
-    func getAllHaussesSorted () -> NSArray {
+  public  func getAllHaussesSorted () -> NSArray {
         
         var nsarray:[Hausse] = self.relationship.allObjects as! [Hausse]
         
-        sort(&nsarray,{ (s1: Hausse, s2: Hausse) -> Bool in
-            return s1.name.toInt() < s2.name.toInt()
+        nsarray.sortInPlace({ (s1: Hausse, s2: Hausse) -> Bool in
+            return Int(s1.name) < Int(s2.name)
         })
         return NSArray(array: nsarray)
     }

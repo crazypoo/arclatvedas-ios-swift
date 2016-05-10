@@ -1,0 +1,34 @@
+/* 
+  Localizable.strings
+  arclatvedas
+
+  Created by divol on 03/08/2015.
+  Copyright (c) 2015 jack. All rights reserved.
+*/
+
+"Les informations" = "Les informations";
+"Les mandats" = "Les mandats";
+"Photos" = "Photos";
+"Matériel" = "Matériel";
+"Flèches" = "Flèches";
+"Sélecteur de flèche" = "Sélecteur de flèche";
+"Distances" = "Distances";
+"Scores" = "Scores";
+"À propos d'Arc Lat'Védas" = "À propos d'Arc Lat'Védas";
+
+
+"Au club" = "Au club";
+"Lot de flêches" = "Lot de flêches";
+"Blason" = "Blason";
+
+"Graphique" = "Graphique";
+
+"Modele: " = "Modele: ";
+"nom: " = "nom: ";
+"Grain: " = "Grain: ";
+"Spin: " = "Spin: ";
+"Taille: " = "Taille: ";
+"Fabricant: " = "Fabricant: ";
+
+"Cancel" = "Annuler" ;
+"blabla" = "Attention, toutes les flèches du marché ne sont pas dans la base (CarbonExpress™ et Easton™). Uniquement pour le classique.  Demandez conseil avant de commander !";

@@ -11,9 +11,10 @@ import Foundation
 
 import UIKit
 import CoreData
+import CoreDataProxy
 
-class ListeViewController : UITableViewController, NSFetchedResultsControllerDelegate{
-    var managedObjectContext: NSManagedObjectContext? = nil
+class ListeViewController : UITableViewController, NSFetchedResultsControllerDelegate,DataSourceChangedDelegate{
+   // var managedObjectContext: NSManagedObjectContext? = nil
     
     // MARK: - Fetched results controller
     
@@ -24,7 +25,7 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
         
         let fetchRequest = NSFetchRequest()
         // Edit the entity name as appropriate.
-        let entity = NSEntityDescription.entityForName(self.tablename, inManagedObjectContext: self.managedObjectContext!)
+        let entity = NSEntityDescription.entityForName(self.tablename, inManagedObjectContext: DataManager.getContext())
         fetchRequest.entity = entity
         
         // Set the batch size to a suitable number.
@@ -32,21 +33,24 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
         
         // Edit the sort key as appropriate.
         let sortDescriptor = NSSortDescriptor(key: "timeStamp", ascending: false)
-        let sortDescriptors = [sortDescriptor]
+        //let sortDescriptors = [sortDescriptor]
         
         fetchRequest.sortDescriptors = [sortDescriptor]
         
         // Edit the section name key path and cache name if appropriate.
         // nil for section name key path means "no sections".
-        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext!, sectionNameKeyPath: nil, cacheName: "Master")
+        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: DataManager.getContext(), sectionNameKeyPath: nil, cacheName: "Master")
         aFetchedResultsController.delegate = self
         _fetchedResultsController = aFetchedResultsController
         
         var error: NSError? = nil
-        if !_fetchedResultsController!.performFetch(&error) {
+        do {
+            try _fetchedResultsController!.performFetch()
+        } catch let error1 as NSError {
+            error = error1
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            //println("Unresolved error \(error), \(error.userInfo)")
+            print("Unresolved error \(error), \(error?.userInfo)")
             abort()
         }
         
@@ -71,17 +75,17 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
         switch tablename{
             
         case "Materiel":
-            self.navigationItem.title = "Matériel"
+            self.navigationItem.title =  NSLocalizedString("Matériel", comment:"title")
             
         case "Distance":
-           self.navigationItem.title = "Distances"
+           self.navigationItem.title = NSLocalizedString("Distances", comment:"title")
             
             
         case "Tir":
-            self.navigationItem.title = "Scores"
+            self.navigationItem.title = NSLocalizedString("Scores", comment:"title")
         
         case "Fleche":
-            self.navigationItem.title = "Flèches"
+            self.navigationItem.title = NSLocalizedString("Flèches", comment:"title")
             
         default: break
             
@@ -94,18 +98,23 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        WatchSessionManager.sharedManager.addDataSourceChangedDelegate(self)
                 // Do any additional setup after loading the view, typically from a nib.
                 //self.navigationItem.leftBarButtonItem = self.editButtonItem()
         
-                let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
+                let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(ListeViewController.insertNewObject(_:)))
                 self.navigationItem.rightBarButtonItem = addButton
     }
 
-    
+ override   func viewWillAppear(animated: Bool){
+          self.tableView.reloadData()
+    }
     func insertNewMatosObject(newManagedObject: AnyObject) {
         
+        let locastr=NSLocalizedString("Matériel", comment:"data")
+        
         newManagedObject.setValue(NSDate(), forKey: "timeStamp")
-        newManagedObject.setValue("Matériel", forKey: "name")
+        newManagedObject.setValue(locastr, forKey: "name")
         newManagedObject.setValue("S/N 00000000000", forKey: "serialnumber")
         newManagedObject.setValue("", forKey: "comment")
         newManagedObject.setValue("", forKey: "imagepath")
@@ -117,19 +126,21 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
     
     func insertNewDistanceObject(newManagedObject: Distance) {
         
+        let locastr=NSLocalizedString("Distance", comment:"data")
+        
         newManagedObject.setValue(NSDate(), forKey: "timeStamp")
-        newManagedObject.setValue("Distance", forKey: "name")
+        newManagedObject.setValue(locastr, forKey: "name")
         newManagedObject.setValue("", forKey: "comment")
         newManagedObject.setValue("m", forKey: "unit")
         
-        let entityDescription = NSEntityDescription.entityForName("Hausse", inManagedObjectContext: managedObjectContext!)
+        let entityDescription = NSEntityDescription.entityForName("Hausse", inManagedObjectContext:DataManager.getContext())
 
          let c = ["5","10","15","18","20","30","40","50","60","70"]
         
         for distance in c {
             
         
-            let hausse = Hausse(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext!)
+            let hausse = Hausse(entity: entityDescription!, insertIntoManagedObjectContext: DataManager.getContext())
         
             hausse.name = distance
             hausse.hausse = "0"
@@ -144,16 +155,17 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
     }
 
     func insertNewTirObject(newManagedObject: Tir) {
+        let locastr=NSLocalizedString("Au club", comment:"data")
         
         newManagedObject.setValue(NSDate(), forKey: "timeStamp")
-        newManagedObject.setValue("Au club", forKey: "location")
+        newManagedObject.setValue(locastr, forKey: "location")
         newManagedObject.setValue("70", forKey: "distance")
         newManagedObject.setValue("", forKey: "comment")
         
         // test
-        let entityDescription = NSEntityDescription.entityForName("Volee", inManagedObjectContext: managedObjectContext!)
+        let entityDescription = NSEntityDescription.entityForName("Volee", inManagedObjectContext: DataManager.getContext())
 
-        let volee = Volee(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext!)
+        let volee = Volee(entity: entityDescription!, insertIntoManagedObjectContext: DataManager.getContext())
         
         volee.volee = "[]"
         volee.rang = 1
@@ -164,13 +176,16 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
         
         newManagedObject.volees.addObject(volee)
         
+         WatchSessionManager.sharedManager.transferUserInfo(["insertNewTir" : 0.description])
+        
 
     }
 
     func insertNewFlecheObject(newManagedObject: AnyObject) {
         
+        let locastr=NSLocalizedString("Lot de flêches", comment:"data")
         newManagedObject.setValue(NSDate(), forKey: "timeStamp")
-        newManagedObject.setValue("Lot de flêches", forKey: "name")
+        newManagedObject.setValue(locastr, forKey: "name")
         newManagedObject.setValue("", forKey: "feather")
         newManagedObject.setValue("", forKey: "comment")
         newManagedObject.setValue("", forKey: "point")
@@ -184,7 +199,7 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
     func insertNewObject(sender: AnyObject) {
         let context = self.fetchedResultsController.managedObjectContext
         let entity = self.fetchedResultsController.fetchRequest.entity!
-        let newManagedObject = NSEntityDescription.insertNewObjectForEntityForName(entity.name!, inManagedObjectContext: context) as! NSManagedObject
+        let newManagedObject = NSEntityDescription.insertNewObjectForEntityForName(entity.name!, inManagedObjectContext: context) 
         
         
         switch tablename{
@@ -214,10 +229,13 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
         // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
         // Save the context.
         var error: NSError? = nil
-        if !context.save(&error) {
+        do {
+            try context.save()
+        } catch let error1 as NSError {
+            error = error1
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            //println("Unresolved error \(error), \(error.userInfo)")
+            print("Unresolved error \(error), \(error?.userInfo)")
             abort()
         }
     }
@@ -229,7 +247,7 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
         
         
         if (segue.identifier == "materielSegue" ){
-            if let indexPath = self.tableView.indexPathForSelectedRow() {
+            if let indexPath = self.tableView.indexPathForSelectedRow {
                 let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! NSManagedObject
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailEditMaterielViewController
                 
@@ -239,7 +257,7 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
         } else if (segue.identifier == "flecheSegue" ){
-            if let indexPath = self.tableView.indexPathForSelectedRow() {
+            if let indexPath = self.tableView.indexPathForSelectedRow {
                 let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! NSManagedObject
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailEditFlecheViewController
                 
@@ -249,7 +267,7 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
         }else if (segue.identifier == "distanceSegue" ){
-            if let indexPath = self.tableView.indexPathForSelectedRow() {
+            if let indexPath = self.tableView.indexPathForSelectedRow {
                 let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Distance
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailEditDistanceViewController
                 
@@ -259,16 +277,26 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
         }else if (segue.identifier == "tirSegue" ){
-            if let indexPath = self.tableView.indexPathForSelectedRow() {
+            if let indexPath = self.tableView.indexPathForSelectedRow {
+                
+                
                 let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Tir
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailEditTirViewController
-                controller.context  =  self.fetchedResultsController.managedObjectContext
                 // controller.context  = self.managedObjectContext
                 controller.detailItem = object
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
+        }else if (segue.identifier == "blason" ){
+            if let indexPath = self.tableView.indexPathForSelectedRow {
+                let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Tir
+                let controller = (segue.destinationViewController as! UINavigationController).topViewController as! TargetController
+                controller.detailItem = object
+                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                controller.navigationItem.leftItemsSupplementBackButton = true
+            }
         }
+
         
         
         
@@ -317,13 +345,13 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
     
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        var  ii = self.fetchedResultsController.sections?.count
+      //  var  ii = self.fetchedResultsController.sections?.count
         
         return self.fetchedResultsController.sections?.count ?? 0
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sectionInfo = self.fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo
+        let sectionInfo = self.fetchedResultsController.sections![section] 
         return sectionInfo.numberOfObjects
     }
     
@@ -355,7 +383,7 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
             
             
         default:
-            let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) 
             return cell
         }
         
@@ -374,10 +402,13 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
                 context.deleteObject(self.fetchedResultsController.objectAtIndexPath(indexPath) as! NSManagedObject)
     
                 var error: NSError? = nil
-                if !context.save(&error) {
+                do {
+                    try context.save()
+                } catch let error1 as NSError {
+                    error = error1
                     // Replace this implementation with code to handle the error appropriately.
                     // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                    //println("Unresolved error \(error), \(error.userInfo)")
+                    print("Unresolved error \(error), \(error?.userInfo)")
                     abort()
                 }
             }
@@ -407,6 +438,26 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
         cell.nom!.text=object.valueForKey("location")!.description
         cell.distance!.text=object.valueForKey("distance")!.description
         cell.total!.text = object.getTotal().description
+        
+        
+       // let cframe: CGRect = CGRect(x: cell.contentView.frame.width-100 ,y: 0 ,width: 100, height:cell.contentView.frame.height)
+        
+        
+        //let b:UIButton = UIButton(frame:cframe)
+        let b:UIButton = UIButton(type: UIButtonType.System)
+        b.frame = CGRect(x: cell.contentView.frame.width-100 ,y: 0 ,width: 100, height:cell.contentView.frame.height)
+        b.backgroundColor = UIColor.whiteColor()
+        let locastr=NSLocalizedString("Blason", comment:"data")
+        
+        b.setTitle( locastr, forState: .Normal)
+        b.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        
+        b.addTarget(self, action: #selector(ListeViewController.pressedBlason(_:)), forControlEvents: .TouchUpInside)
+        b.tag = indexPath.row
+        cell.contentView.addSubview(b)
+
+        
+        
     }
 
     func configureFlecheCell(cell: FlecheCell, atIndexPath indexPath: NSIndexPath) {
@@ -416,6 +467,17 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
 
     }
 
+    
+    
+    func pressedBlason(sender: UIButton!) {
+        
+       let idx =  NSIndexPath(forRow: sender.tag, inSection: 0)
+        self.tableView.selectRowAtIndexPath(idx, animated: false, scrollPosition: UITableViewScrollPosition.None)
+        
+        
+       performSegueWithIdentifier("blason", sender: self)
+    }
+    
     
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
         self.tableView.beginUpdates()
@@ -432,6 +494,8 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
         }
     }
     
+  
+
     func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
         switch type {
         case .Insert:
@@ -464,8 +528,7 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
         case .Move:
             tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
             tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
-        default:
-            return
+        
         }
     }
     
@@ -473,15 +536,27 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
         self.tableView.endUpdates()
     }
     
+    
+    
+    // MARK: - DataSourceChangedDelegate
+    //DataSourceChangedDelegate
+    func dataSourceDidUpdate(userInfo: [String : AnyObject]){
+        
+        //updatenewtir()
+        
+    }
+
+    
+    
     /*
     // Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed.
-    
+
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
     // In the simplest, most efficient, case, reload the table view.
     self.tableView.reloadData()
     }
+
     */
-    
     
     
 

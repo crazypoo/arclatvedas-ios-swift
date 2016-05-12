@@ -14,7 +14,7 @@ import CoreDataProxy
 class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
     enum Table: Int {
-        case Infos = 0, Mandats, Photos, Materiel,Fleches,Charte, Distances, Scores, Apropos
+        case Infos = 0, Mandats, Photos, Materiel,Fleches,Charte, Distances, Scores, Lieux, Apropos
     }
     
     
@@ -115,6 +115,9 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             
             self.initNewEventObject("Scores",url:"",ordre:Table.Scores.rawValue + 1)
             
+            self.initNewEventObject("Lieux",url:"",ordre:Table.Lieux.rawValue + 1)
+
+            
             self.initNewEventObject("À propos d'Arc Lat'Védas",url:"http://arclatvedas.free.fr/index.php?option=com_content&view=article&id=20&tmpl=component",ordre:Table.Apropos.rawValue + 1)
             
         }else{
@@ -123,9 +126,16 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
                  self.initNewEventObject("Sélecteur de flèche",url:"",ordre:Table.Charte.rawValue + 1)
                 
-
+                 self.initNewEventObject("Lieux",url:"",ordre:Table.Lieux.rawValue + 1)
                 
             }
+            
+            if (compte == 9){
+                
+                self.initNewEventObject("Lieux",url:"",ordre:Table.Lieux.rawValue + 1)
+                
+            }
+            
             
             //mise a jour des indexs
             var count = 1
@@ -287,6 +297,16 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                             
                             controller.tablename="SpinCharte"
                             
+                        } else {
+                            if segue.identifier == "lieux" {
+                                let controller = (segue.destinationViewController as! UINavigationController).topViewController as! LieuViewController
+                                //                        controller.managedObjectContext=self.managedObjectContext;
+                                
+                                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                                
+                                controller.navigationItem.leftItemsSupplementBackButton = true
+                                
+                            }
                         }
                         
                     }
@@ -357,7 +377,8 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             self.performSegueWithIdentifier("matos", sender: self)
         case .Scores:
             self.performSegueWithIdentifier("matos", sender: self)
-        
+        case .Lieux:
+            self.performSegueWithIdentifier("lieux", sender: self)
 //        default:
 //            let page :String = object.valueForKey("url")!.description
 //            if (!page.isEmpty){

@@ -72,7 +72,8 @@
         <key>NSAllowsArbitraryLoads</key>
         <false/>
     </dict>
-
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Pour vous conduire aux lieux du club</string>
 
 </dict>
 </plist>

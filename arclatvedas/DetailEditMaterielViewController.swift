@@ -20,6 +20,8 @@ class DetailEditMaterielViewController: UIViewController,UIImagePickerController
     @IBOutlet weak var date: UITextField!
     @IBOutlet weak var commentaire:UITextView!
     @IBOutlet weak var viewimage:UIImageView!
+    
+    
     var newMedia: Bool?
     
     var context : AnyObject?
@@ -28,16 +30,63 @@ class DetailEditMaterielViewController: UIViewController,UIImagePickerController
     
     var imageManager:PHImageManager = PHImageManager.defaultManager();
     
+    var imageframe:CGRect?=nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
        
         
+        let singleTap = UITapGestureRecognizer(target: self, action:#selector(tapDetected))
+        singleTap.numberOfTapsRequired = 1
+        
+        imageframe = viewimage.frame;
+        viewimage.userInteractionEnabled = true
+        viewimage.addGestureRecognizer(singleTap)
+        
+        
+        
+        
+        
         let saveButton = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: #selector(DetailEditMaterielViewController.saveObject(_:)))
         self.navigationItem.rightBarButtonItem = saveButton
         // Do any additional setup after loading the view.
           self.configureView()
+    }
+
+    
+    func tapDetected() {
+        
+        let theframe:CGRect?
+        let small = (viewimage.frame == imageframe)
+        if (small){
+            
+            
+            let mtop = self.navigationController!.navigationBar.frame.size.height + UIApplication.sharedApplication().statusBarFrame.size.height
+
+            
+            
+            var taille: CGFloat = min(self.view.frame.size.width, self.view.frame.size.height)
+            if taille == self.view.frame.size.height {
+                taille -= mtop
+            }
+            
+            
+            theframe = CGRectMake(0,mtop, taille, taille)
+        }else{
+            theframe = imageframe!
+
+        }
+        
+        
+        UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveEaseOut, animations: {
+                  self.viewimage.frame = theframe!
+            
+            }, completion: { finished in
+                
+        })
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

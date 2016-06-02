@@ -10,7 +10,9 @@ Simplement on peut :
 - aller voir les pages principales du site
 - lister son materiel
 - ajouter les reglages de viseur
-- ajouter les scores
+- ajouter les scores,
+- voir les lieux principaux du club (mapkit)
+- utiliser un chronographe simple (utilisation d'une classe en Obj-C)
 
 -test AppleWatch (branch specific)
 --ajout d'un coredataproxy sous forme de framework (attention au partage app groups capabilities ) pour partager les données entre la montre et l'application

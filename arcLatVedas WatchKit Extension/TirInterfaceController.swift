@@ -22,8 +22,8 @@ class TirInterfaceController: WKInterfaceController,DataSourceChangedDelegate {
     
     var curTir:Tir?
 
-    override func awakeWithContext(context: AnyObject?) {
-        super.awakeWithContext(context)
+    override func awake(withContext context: Any?) {
+        super.awake(withContext: context)
         WatchSessionManager.sharedManager.addDataSourceChangedDelegate(self)
         let wutils:WatchUtils = WatchUtils()
         
@@ -41,7 +41,7 @@ class TirInterfaceController: WKInterfaceController,DataSourceChangedDelegate {
     
     
     
-    override   func handleUserActivity(userInfo: [NSObject : AnyObject]?){
+    override   func handleUserActivity(_ userInfo: [AnyHashable: Any]?){
         super.handleUserActivity(userInfo)
         
         
@@ -79,12 +79,12 @@ class TirInterfaceController: WKInterfaceController,DataSourceChangedDelegate {
         if let tir = curTir {
             self.updateUserActivity("com.jack.arclatvedas.update", userInfo: ["key1": ["yo":"dawg"]], webpageURL: nil)
 
-            dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { // 1
-                dispatch_async(dispatch_get_main_queue()) { // 2
+            DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async { // 1
+                DispatchQueue.main.async { // 2
                     
                     self.voleeNumero.setText("\(tir.volees.count)")
                     self.total.setText("\(tir.getTotal()) (0)")
-                    if let vol:Volee = tir.volees.objectAtIndex(tir.volees.count-1) as? Volee {
+                    if let vol:Volee = tir.volees.object(at: tir.volees.count-1) as? Volee {
                         self.scorevolee.setText(vol.description)
                         self.total.setText("\(tir.getTotal()) (\(vol.getTotal()))")
                     }
@@ -148,20 +148,20 @@ class TirInterfaceController: WKInterfaceController,DataSourceChangedDelegate {
     {
         doButton(0)
     }
-    func doButton(what:Int)
+    func doButton(_ what:Int)
     {
         
         if let tir = curTir {
-            if let vol:Volee = tir.volees.objectAtIndex(tir.volees.count-1) as? Volee {
+            if let vol:Volee = tir.volees.object(at: tir.volees.count-1) as? Volee {
                 
-                vol.addScore(what, impact:CGPointMake(0,0),zone:CGPointMake(0,0))
+                vol.addScore(what, impact:CGPoint(x: 0,y: 0),zone:CGPoint(x: 0,y: 0))
             }
         }
 
         doRefresh()
          DataManager.saveManagedContext()
         
-         WatchSessionManager.sharedManager.transferUserInfo(["addScore" : what])
+         WatchSessionManager.sharedManager.transferUserInfo(["addScore" : what as AnyObject])
     }
 
     
@@ -173,7 +173,7 @@ class TirInterfaceController: WKInterfaceController,DataSourceChangedDelegate {
     {
         
          if let tir = curTir {
-            if let vol:Volee = tir.volees.objectAtIndex(tir.volees.count-1) as? Volee {
+            if let vol:Volee = tir.volees.object(at: tir.volees.count-1) as? Volee {
                 
                 vol.deleteLast()
             }
@@ -181,7 +181,7 @@ class TirInterfaceController: WKInterfaceController,DataSourceChangedDelegate {
         doRefresh()
          DataManager.saveManagedContext()
         
-         WatchSessionManager.sharedManager.transferUserInfo(["deleteScore" : 0])
+         WatchSessionManager.sharedManager.transferUserInfo(["deleteScore" : 0 as AnyObject])
     }
 
     
@@ -191,7 +191,7 @@ class TirInterfaceController: WKInterfaceController,DataSourceChangedDelegate {
         let wutils:WatchUtils = WatchUtils()
         if let tir = curTir {
             wutils.createEmptyVolee(tir)
-            WatchSessionManager.sharedManager.transferUserInfo(["createEmptyVolee" : 0])
+            WatchSessionManager.sharedManager.transferUserInfo(["createEmptyVolee" : 0 as AnyObject])
         }
         doRefresh()
          DataManager.saveManagedContext()
@@ -208,7 +208,7 @@ class TirInterfaceController: WKInterfaceController,DataSourceChangedDelegate {
     
     // MARK: - DataSourceChangedDelegate
     //DataSourceChangedDelegate
-    func dataSourceDidUpdate(userInfo: [String : AnyObject]){
+    func dataSourceDidUpdate(_ userInfo: [String : AnyObject]){
         
        // for (action, param) in userInfo {
             

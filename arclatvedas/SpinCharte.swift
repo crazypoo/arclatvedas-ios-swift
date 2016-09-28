@@ -11,11 +11,11 @@ import CoreData
 
 @objc(SpinCharte)
 
-public class SpinCharte: NSManagedObject {
+open class SpinCharte: NSManagedObject {
 
-    @NSManaged public var length: NSNumber
-    @NSManaged public var low: NSNumber
-    @NSManaged public var hight: NSNumber
-    @NSManaged public var group: NSMutableOrderedSet
+    @NSManaged open var length: NSNumber
+    @NSManaged open var low: NSNumber
+    @NSManaged open var hight: NSNumber
+    @NSManaged open var group: NSMutableOrderedSet
 
 }

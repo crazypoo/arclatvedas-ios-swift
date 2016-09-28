@@ -13,9 +13,9 @@ import Foundation
 
 //(PseudoHausse)
 
-public class PseudoHausse {
+open class PseudoHausse {
     
-     public var  hausse: String?
-     public var  name: String?
+     open var  hausse: String?
+     open var  name: String?
     
 }

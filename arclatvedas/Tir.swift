@@ -10,18 +10,18 @@ import Foundation
 import CoreData
 
 @objc(Tir)
-public class Tir: NSManagedObject {
+open class Tir: NSManagedObject {
 
-    @NSManaged public var comment: String
-    @NSManaged public var distance: String
-    @NSManaged public var location: String
-    @NSManaged public var timeStamp: NSDate
-    @NSManaged public var volees: NSMutableOrderedSet
-    @NSManaged public var blasonType: NSNumber
+    @NSManaged open var comment: String
+    @NSManaged open var distance: String
+    @NSManaged open var location: String
+    @NSManaged open var timeStamp: Date
+    @NSManaged open var volees: NSMutableOrderedSet
+    @NSManaged open var blasonType: NSNumber
     
     
     
- public   func getTotal() -> Int {
+ open   func getTotal() -> Int {
         
         var totale = 0
         

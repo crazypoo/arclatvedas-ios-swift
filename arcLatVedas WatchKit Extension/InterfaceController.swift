@@ -20,13 +20,13 @@ class InterfaceController: WKInterfaceController,DataSourceChangedDelegate {
     var curTir:Tir!
     
     
-    override func awakeWithContext(context: AnyObject?) {
+    override func awake(withContext context: Any?) {
         
        
-        super.awakeWithContext(context)
+        super.awake(withContext: context)
         WatchSessionManager.sharedManager.addDataSourceChangedDelegate(self)
         
-        NSFetchedResultsController.deleteCacheWithName("Master")
+        NSFetchedResultsController<NSFetchRequestResult>.deleteCache(withName: nil)
 
         location.setText("")
         distance.setText("")
@@ -71,11 +71,11 @@ class InterfaceController: WKInterfaceController,DataSourceChangedDelegate {
         
         
         updatenewtir()
-        WatchSessionManager.sharedManager.transferUserInfo(["insertNewTir" : 0.description])
+        WatchSessionManager.sharedManager.transferUserInfo(["insertNewTir" : 0 as AnyObject])
     }
     
     
- override   func handleUserActivity(userInfo: [NSObject : AnyObject]?){
+ override   func handleUserActivity(_ userInfo: [AnyHashable: Any]?){
 
     
     
@@ -97,15 +97,15 @@ class InterfaceController: WKInterfaceController,DataSourceChangedDelegate {
     
     func updateScreen(){
         
-        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) { // 1
-            dispatch_async(dispatch_get_main_queue()) { // 2
+        DispatchQueue.global(qos:DispatchQoS.QoSClass.userInitiated).async { // 1
+            DispatchQueue.main.async { // 2
                 
-                let dateFormat:NSDateFormatter = NSDateFormatter()
-                dateFormat.dateStyle = NSDateFormatterStyle.ShortStyle
+                let dateFormat:DateFormatter = DateFormatter()
+                dateFormat.dateStyle = DateFormatter.Style.short
                 dateFormat.dateFormat="dd/MM/yy"
                 
                  if let ti:Tir = self.curTir {
-                    let dateString:String = dateFormat.stringFromDate(ti.timeStamp)
+                    let dateString:String = dateFormat.string(from: ti.timeStamp)
                 
                 
                     self.location.setText(ti.location)
@@ -127,7 +127,7 @@ class InterfaceController: WKInterfaceController,DataSourceChangedDelegate {
     
     // MARK: - DataSourceChangedDelegate
     //DataSourceChangedDelegate
-    func dataSourceDidUpdate(userInfo: [String : AnyObject]){
+    func dataSourceDidUpdate(_ userInfo: [String : AnyObject]){
         
         updatenewtir()
         

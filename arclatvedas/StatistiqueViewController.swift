@@ -22,14 +22,14 @@ class StatistiqueViewController: UIViewController, NSFetchedResultsControllerDel
     
     // MARK: - Fetched results controller
     
-    var fetchedResultsController: NSFetchedResultsController {
+    var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> {
         if _fetchedResultsController != nil {
             return _fetchedResultsController!
         }
         
-        let fetchRequest = NSFetchRequest()
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult> ()
         // Edit the entity name as appropriate.
-        let entity = NSEntityDescription.entityForName(self.tablename, inManagedObjectContext: DataManager.getContext())
+        let entity = NSEntityDescription.entity(forEntityName: self.tablename, in: DataManager.getContext())
         fetchRequest.entity = entity
         
         // Set the batch size to a suitable number.
@@ -43,7 +43,7 @@ class StatistiqueViewController: UIViewController, NSFetchedResultsControllerDel
         
         // Edit the section name key path and cache name if appropriate.
         // nil for section name key path means "no sections".
-        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: DataManager.getContext(), sectionNameKeyPath: nil, cacheName: "Master")
+        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: DataManager.getContext(), sectionNameKeyPath: nil, cacheName: nil) //"Master"
         aFetchedResultsController.delegate = self
         _fetchedResultsController = aFetchedResultsController
         
@@ -60,7 +60,7 @@ class StatistiqueViewController: UIViewController, NSFetchedResultsControllerDel
         
         return _fetchedResultsController!
     }
-    var _fetchedResultsController: NSFetchedResultsController? = nil
+    var _fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>? = nil
     
     
     
@@ -105,11 +105,11 @@ class StatistiqueViewController: UIViewController, NSFetchedResultsControllerDel
             
             label.text = "..."
             label.translatesAutoresizingMaskIntoConstraints = false
-            label.textAlignment = NSTextAlignment.Center
+            label.textAlignment = NSTextAlignment.center
             self.view.addSubview(label)
             views["label"] = label
-            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[label]-|", options: [], metrics: nil, views: views))
-            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-80-[label]", options: [], metrics: nil, views: views))
+            view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[label]-|", options: [], metrics: nil, views: views))
+            view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-80-[label]", options: [], metrics: nil, views: views))
             
             // simple arrays
             var data: [CGFloat] = []
@@ -145,8 +145,8 @@ class StatistiqueViewController: UIViewController, NSFetchedResultsControllerDel
             lineChart.delegate = self
             self.view.addSubview(lineChart)
             views["chart"] = lineChart
-            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[chart]-|", options: [], metrics: nil, views: views))
-            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[label]-[chart(==200)]", options: [], metrics: nil, views: views))
+            view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[chart]-|", options: [], metrics: nil, views: views))
+            view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[label]-[chart(==200)]", options: [], metrics: nil, views: views))
 
         }
 
@@ -171,7 +171,7 @@ class StatistiqueViewController: UIViewController, NSFetchedResultsControllerDel
     /**
     * Line chart delegate method.
     */
-    func didSelectDataPoint(x: CGFloat, yValues: Array<CGFloat>) {
+    func didSelectDataPoint(_ x: CGFloat, yValues: Array<CGFloat>) {
         label.text = "x: \(x)     y: \(yValues)"
     }
     
@@ -180,7 +180,7 @@ class StatistiqueViewController: UIViewController, NSFetchedResultsControllerDel
     /**
     * Redraw chart on device rotation.
     */
-    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
         if let chart = lineChart {
             chart.setNeedsDisplay()
         }

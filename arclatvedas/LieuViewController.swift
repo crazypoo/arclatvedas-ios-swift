@@ -23,21 +23,21 @@ class LieuViewController: UIViewController {
     
     func loadInitialData() {
         // 1
-        let fileName = NSBundle.mainBundle().pathForResource("lieux", ofType: "json");
+        let fileName = Bundle.main.path(forResource: "lieux", ofType: "json");
         //    var readError : NSError?
-        var data: NSData?
+        var data: Data?
         do {
-            data = try NSData(contentsOfFile: fileName!, options: NSDataReadingOptions(rawValue: 0))
+            data = try Data(contentsOf: URL(fileURLWithPath: fileName!), options: NSData.ReadingOptions(rawValue: 0))
         } catch _ {
             data = nil
         }
         
         // 2
         //    var error: NSError?
-        var jsonObject: AnyObject? = nil
+        var jsonObject: Any? = nil
         if let data = data {
             do {
-                jsonObject = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0))
+                jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0))
             } catch _ {
                 jsonObject = nil
             }
@@ -73,7 +73,7 @@ class LieuViewController: UIViewController {
     let initialLocation = CLLocation(latitude: 43.567051, longitude: 3.898359)
     
     let regionRadius: CLLocationDistance = 1000
-    func centerMapOnLocation(location: CLLocation) {
+    func centerMapOnLocation(_ location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
                                                                   regionRadius * 2.0, regionRadius * 2.0)
         map.setRegion(coordinateRegion, animated: true)
@@ -83,7 +83,7 @@ class LieuViewController: UIViewController {
     
     var locationManager = CLLocationManager()
     func checkLocationAuthorizationStatus() {
-        if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             map.showsUserLocation = true
         } else {
             locationManager.requestWhenInUseAuthorization()
@@ -102,14 +102,15 @@ class LieuViewController: UIViewController {
     func configureView() {
         // Update the user interface for the detail item.
         if let detail: AnyObject = self.detailItem {
+            let name = detail.value(forKey: "name") as AnyObject
             
-            self.navigationItem.title = NSLocalizedString(detail.valueForKey("name")!.description, comment:"data")
+            self.navigationItem.title = NSLocalizedString(name.description, comment:"data")
             
             
-                   }
+        }
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         checkLocationAuthorizationStatus()
     }
@@ -149,11 +150,11 @@ class LieuViewController: UIViewController {
 extension LieuViewController: MKMapViewDelegate {
     
 
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as? LieuAnnotation {
             let identifier = "pin"
             var view: MKPinAnnotationView
-            if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier)
+            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
                 as? MKPinAnnotationView { // 2
                 dequeuedView.annotation = annotation
                 view = dequeuedView
@@ -162,7 +163,7 @@ extension LieuViewController: MKMapViewDelegate {
                 view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.canShowCallout = true
                 view.calloutOffset = CGPoint(x: -5, y: 5)
-                view.rightCalloutAccessoryView = UIButton(type:.DetailDisclosure)
+                view.rightCalloutAccessoryView = UIButton(type:.detailDisclosure)
             }
             return view
         }
@@ -170,11 +171,11 @@ extension LieuViewController: MKMapViewDelegate {
     }
     
     
-    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView,
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView,
                  calloutAccessoryControlTapped control: UIControl) {
         let location = view.annotation as! LieuAnnotation
         let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
-        location.mapItem().openInMapsWithLaunchOptions(launchOptions)
+        location.mapItem().openInMaps(launchOptions: launchOptions)
     }
 
 }

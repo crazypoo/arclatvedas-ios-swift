@@ -14,17 +14,17 @@ class ReticuleView: UIView {
     
     //MARK: Constructors
     convenience init(){
-        self.init(frame:CGRectZero)
+        self.init(frame:CGRect.zero)
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.clear
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.clear
     }
     
     
@@ -46,28 +46,28 @@ class ReticuleView: UIView {
         
         //move the initial point of the path
         //to the start of the horizontal stroke
-        plusPath.moveToPoint(CGPoint(
+        plusPath.move(to: CGPoint(
             x:bounds.width/2 - plusWidth/2 + 0.5,
             y:bounds.height/2 + 0.5))
         
         //add a point to the path at the end of the stroke
-        plusPath.addLineToPoint(CGPoint(
+        plusPath.addLine(to: CGPoint(
             x:bounds.width/2 + plusWidth/2 + 0.5,
             y:bounds.height/2 + 0.5))
         
         //Vertical Line
         //move to the start of the vertical stroke
-        plusPath.moveToPoint(CGPoint(
+        plusPath.move(to: CGPoint(
             x:bounds.width/2 + 0.5,
             y:bounds.height/2 - plusWidth/2 + 0.5))
         
         //add the end point to the vertical stroke
-        plusPath.addLineToPoint(CGPoint(
+        plusPath.addLine(to: CGPoint(
             x:bounds.width/2 + 0.5,
             y:bounds.height/2 + plusWidth/2 + 0.5))
         
         //set the stroke color
-        UIColor.greenColor().setStroke()
+        UIColor.green.setStroke()
         
         //draw the stroke
         plusPath.stroke()
@@ -81,7 +81,7 @@ class ReticuleView: UIView {
     // An empty implementation adversely affects performance during animation.
     
     */
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         // Drawing code
         
         // super.drawRect(rect)

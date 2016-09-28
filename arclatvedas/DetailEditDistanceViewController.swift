@@ -8,6 +8,17 @@
 
 import UIKit
 import CoreDataProxy
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 class DetailEditDistanceViewController: UIViewController,UITableViewDataSource,UITableViewDelegate, resultDelegateProtocol,UITextFieldDelegate {
     
@@ -32,11 +43,15 @@ class DetailEditDistanceViewController: UIViewController,UITableViewDataSource,U
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(DetailEditDistanceViewController.saveObject(_:)))
+        self.navigationItem.rightBarButtonItem = saveButton
+
 //        let saveButton = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "saveObject:")
 //        self.navigationItem.rightBarButtonItem = saveButton
         // Do any additional setup after loading the view.
         
-        unit.addTarget(self, action: #selector(DetailEditDistanceViewController.changeUnit(_:)), forControlEvents: .ValueChanged)
+        unit.addTarget(self, action: #selector(DetailEditDistanceViewController.changeUnit(_:)), for: .valueChanged)
         
         name.delegate = self
         
@@ -52,12 +67,12 @@ class DetailEditDistanceViewController: UIViewController,UITableViewDataSource,U
             
             
             if let textename = self.name {
-                textename.text = detail.valueForKey("name")!.description
+                textename.text = (detail.value(forKey: "name")! as AnyObject).description
             }
             
             if let textetaille = self.unit {
               
-                let value:String = detail.valueForKey("unit") as! String
+                let value:String = detail.value(forKey: "unit") as! String
                 
                 if value == "yard" {
                     textetaille.selectedSegmentIndex = 1;
@@ -70,7 +85,7 @@ class DetailEditDistanceViewController: UIViewController,UITableViewDataSource,U
             
             var nsarray:[Hausse] = detail.relationship.allObjects as! [Hausse]
             
-            nsarray.sortInPlace({ (s1: Hausse, s2: Hausse) -> Bool in
+            nsarray.sort(by: { (s1: Hausse, s2: Hausse) -> Bool in
                 return Int(s1.name) < Int(s2.name)
             })
 
@@ -86,7 +101,7 @@ class DetailEditDistanceViewController: UIViewController,UITableViewDataSource,U
     
     
     
-    func changeUnit(sender: UISegmentedControl) {
+    func changeUnit(_ sender: UISegmentedControl) {
         if let detail: AnyObject = self.detailItem  {
         switch sender.selectedSegmentIndex {
         case 0:
@@ -102,7 +117,7 @@ class DetailEditDistanceViewController: UIViewController,UITableViewDataSource,U
     }
 
     
-     func textFieldDidEndEditing(textField: UITextField) {
+     func textFieldDidEndEditing(_ textField: UITextField) {
         
         if let detail: AnyObject = self.detailItem  {
             
@@ -112,10 +127,10 @@ class DetailEditDistanceViewController: UIViewController,UITableViewDataSource,U
         }
     }
     
-    func saveObject(sender: AnyObject) {
-        if let detail: AnyObject = self.detailItem  {
+    func saveObject(_ sender: AnyObject) {
+        if let detail: Distance = self.detailItem  {
             
-            let ladate :NSDate = NSDate()
+            let ladate :Date = Date()
             
             detail.setValue(self.name.text, forKey: "name")
            // let toto = self.unit.selectedSegmentIndex
@@ -173,37 +188,38 @@ class DetailEditDistanceViewController: UIViewController,UITableViewDataSource,U
     //MARK: tabledatasource
     
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return nsarrayhausses!.count
     }
     
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("innerDistance", forIndexPath: indexPath) as! DistanceCellEdit
+        let cell = tableView.dequeueReusableCell(withIdentifier: "innerDistance", for: indexPath) as! DistanceCellEdit
         
         
         let toto:NSArray
         
         toto = NSArray(array: nsarrayhausses!)
-        let h:Hausse = toto[indexPath.row] as! Hausse
+        let h:Hausse = toto[(indexPath as NSIndexPath).row] as! Hausse
 
         cell.datahausse = h
         cell.resultDelegate = self
         cell.distance.text = h.name
         cell.hausse.text =  h.hausse
-        cell.rowindice = indexPath.row
+        cell.rowindice = (indexPath as NSIndexPath).row
         return cell;
     }
 
     
-      func resultChange(therow : Int , name:String , hausse : String)
+      func resultChange(_ therow : Int , name:String , hausse : String)
       {
 //        let h:PseudoHausse =  jocker[therow] as! PseudoHausse
 //        h.name = name
 //        h.hausse = hausse
         
         saveObject(self)
+        
         
       }
     

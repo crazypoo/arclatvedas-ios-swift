@@ -17,19 +17,19 @@ class ChronoViewController: UIViewController,VPRangeSliderDelegate  {
     @IBOutlet weak var rangeSlider:VPRangeSlider!
     @IBOutlet weak var startstopButton:UIButton!
     
-    var timer = NSTimer()
+    var timer = Timer()
     var mincount = 10
     var maxcount = 30
     var count = 10
     var tapRecognizer: UITapGestureRecognizer!
-    let beep = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("bip", ofType: "wav")!)
-    let doubleBeep = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("bip2", ofType: "wav")!)
-    let tripleBeep = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("bip3", ofType: "wav")!)
+    let beep = URL(fileURLWithPath: Bundle.main.path(forResource: "bip", ofType: "wav")!)
+    let doubleBeep = URL(fileURLWithPath: Bundle.main.path(forResource: "bip2", ofType: "wav")!)
+    let tripleBeep = URL(fileURLWithPath: Bundle.main.path(forResource: "bip3", ofType: "wav")!)
     var audioPlayer =  AVAudioPlayer()
     
     
      func viewWillDisappear() {
-         UIApplication.sharedApplication().idleTimerDisabled = false
+         UIApplication.shared.isIdleTimerDisabled = false
         
     }
     override func viewDidLoad() {
@@ -37,7 +37,7 @@ class ChronoViewController: UIViewController,VPRangeSliderDelegate  {
         
         
         
-        let app = UIApplication.sharedApplication()
+        let app = UIApplication.shared
         
         if  let mainwindow = app.delegate?.window {
             let splitViewController = mainwindow!.rootViewController as! UISplitViewController
@@ -45,22 +45,22 @@ class ChronoViewController: UIViewController,VPRangeSliderDelegate  {
             
             
             splitViewController.presentsWithGesture = false // SplitView won't recognize right swipe
-            splitViewController.preferredDisplayMode = .PrimaryHidden
+            splitViewController.preferredDisplayMode = .primaryHidden
         }
 
         
         
         
-        UIApplication.sharedApplication().idleTimerDisabled = true
+        UIApplication.shared.isIdleTimerDisabled = true
         
         self.tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(ChronoViewController.manageTimer))
         self.view.addGestureRecognizer(tapRecognizer)
-        self.initViewWithValue(mincount, andColor: UIColor.redColor().colorWithAlphaComponent(0.70))
+        self.initViewWithValue(mincount, andColor: UIColor.red.withAlphaComponent(0.70))
         
         timeLabel.font = UIFont(name: "DBLCDTempBlack", size: 60.0)
         
-        timeLabel.textColor = UIColor.greenColor().colorWithAlphaComponent(0.70)
-        timeLabel.backgroundColor = UIColor.blackColor()
+        timeLabel.textColor = UIColor.green.withAlphaComponent(0.70)
+        timeLabel.backgroundColor = UIColor.black
         
         
         centerview.layer.cornerRadius = 10.0;
@@ -71,26 +71,26 @@ class ChronoViewController: UIViewController,VPRangeSliderDelegate  {
         
         
         
-        self.rangeSlider.rangeDisplayLabelColor = UIColor.blackColor()
+        self.rangeSlider.rangeDisplayLabelColor = UIColor.black
         
         self.rangeSlider.requireSegments = false
-        self.rangeSlider.sliderSize = CGSizeMake(10, 10)
-        self.rangeSlider.segmentSize = CGSizeMake(10, 10)
+        self.rangeSlider.sliderSize = CGSize(width: 10, height: 10)
+        self.rangeSlider.segmentSize = CGSize(width: 10, height: 10)
         
-        self.rangeSlider.rangeSliderForegroundColor = UIColor.blackColor()
+        self.rangeSlider.rangeSliderForegroundColor = UIColor.black
         self.rangeSlider.rangeSliderButtonImage = UIImage(named:"slider")
         self.rangeSlider.delegate=self
         
         
-        let amax:CGFloat = self.timePreference.on ? 240.0 : 120.0
+        let amax:CGFloat = self.timePreference.isOn ? 240.0 : 120.0
         
         
         
-        self.rangeSlider.scrollStartSliderToStartRange(CGFloat(mincount) * 100.0 / amax,andEndRange: (amax-CGFloat(maxcount)) * 100.0 / amax)
+        self.rangeSlider.scrollStart(toStartRange: CGFloat(mincount) * 100.0 / amax,andEndRange: (amax-CGFloat(maxcount)) * 100.0 / amax)
         
         
         
-        timePreference.addTarget(self, action: #selector(ChronoViewController.switchChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        timePreference.addTarget(self, action: #selector(ChronoViewController.switchChanged(_:)), for: UIControlEvents.valueChanged)
         
         
         
@@ -98,12 +98,12 @@ class ChronoViewController: UIViewController,VPRangeSliderDelegate  {
         startstopButton.titleLabel?.text="DÉBUT"
     }
     
-    func playSound(file: NSURL) {
+    func playSound(_ file: URL) {
         do {
-            try audioPlayer = AVAudioPlayer(contentsOfURL: file)
+            try audioPlayer = AVAudioPlayer(contentsOf: file)
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord)
             try AVAudioSession.sharedInstance().setActive(true)
-            try AVAudioSession.sharedInstance().overrideOutputAudioPort(AVAudioSessionPortOverride.Speaker)
+            try AVAudioSession.sharedInstance().overrideOutputAudioPort(AVAudioSessionPortOverride.speaker)
             audioPlayer.play()
         } catch {
             print(error)
@@ -114,7 +114,7 @@ class ChronoViewController: UIViewController,VPRangeSliderDelegate  {
         self.timeLabel.text = "\(self.count)"
     }
     
-    func initViewWithValue(value: Int, andColor color: UIColor) {
+    func initViewWithValue(_ value: Int, andColor color: UIColor) {
         count = value
         self.view.backgroundColor = color
     }
@@ -127,34 +127,34 @@ class ChronoViewController: UIViewController,VPRangeSliderDelegate  {
         if (count == 0) {
             // Play sound
             playSound(doubleBeep)
-            initViewWithValue(self.timePreference.on ? 240 : 120, andColor: UIColor.greenColor().colorWithAlphaComponent(0.70))
+            initViewWithValue(self.timePreference.isOn ? 240 : 120, andColor: UIColor.green.withAlphaComponent(0.70))
             updateLabel()
             timer.invalidate()
-            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ChronoViewController.timerAction), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ChronoViewController.timerAction), userInfo: nil, repeats: true)
         }
     }
     
     func manageTimer() {
         
-        if ("STOP".compare((self.startstopButton.titleLabel?.text)!)==NSComparisonResult.OrderedSame){
-            self.startstopButton.setTitle("DÉBUT", forState: UIControlState.Normal)
+        if ("STOP".compare((self.startstopButton.titleLabel?.text)!)==ComparisonResult.orderedSame){
+            self.startstopButton.setTitle("DÉBUT", for: UIControlState())
         }else{
-            self.startstopButton.setTitle("STOP", forState: UIControlState.Normal)
+            self.startstopButton.setTitle("STOP", for: UIControlState())
         }
         
-        if (timer.valid) {
+        if (timer.isValid) {
             timer.invalidate()
             playSound(tripleBeep)
-            initViewWithValue(mincount, andColor: UIColor.redColor().colorWithAlphaComponent(0.70))
+            initViewWithValue(mincount, andColor: UIColor.red.withAlphaComponent(0.70))
             updateLabel()
-            timePreference.enabled=true
+            timePreference.isEnabled=true
             rangeSlider.partialyHide(false)
             
         } else {
             // Play sound
             playSound(beep)
-            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ChronoViewController.firstTimer), userInfo: nil, repeats: true)
-            timePreference.enabled=false
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ChronoViewController.firstTimer), userInfo: nil, repeats: true)
+            timePreference.isEnabled=false
             rangeSlider.partialyHide(true)
 
         }
@@ -165,18 +165,18 @@ class ChronoViewController: UIViewController,VPRangeSliderDelegate  {
         if (count <= 0) {
             // Play sound
             playSound(tripleBeep)
-            self.view.backgroundColor = UIColor.redColor().colorWithAlphaComponent(0.70)
+            self.view.backgroundColor = UIColor.red.withAlphaComponent(0.70)
             timer.invalidate()
-            initViewWithValue(mincount, andColor: UIColor.redColor().colorWithAlphaComponent(0.70))
-            self.startstopButton.setTitle("DÉBUT", forState: UIControlState.Normal)
-            timePreference.enabled=true
+            initViewWithValue(mincount, andColor: UIColor.red.withAlphaComponent(0.70))
+            self.startstopButton.setTitle("DÉBUT", for: UIControlState())
+            timePreference.isEnabled=true
             rangeSlider.partialyHide(false)
 
 
         } else if (count <= maxcount) {
-            self.view.backgroundColor = UIColor.yellowColor().colorWithAlphaComponent(0.70)
+            self.view.backgroundColor = UIColor.yellow.withAlphaComponent(0.70)
         } else {
-            self.view.backgroundColor = UIColor.greenColor().colorWithAlphaComponent(0.70)
+            self.view.backgroundColor = UIColor.green.withAlphaComponent(0.70)
         }
         updateLabel()
     }
@@ -184,16 +184,16 @@ class ChronoViewController: UIViewController,VPRangeSliderDelegate  {
     
     //MARK: - VPRangeSliderDelegate
     // - (void)sliderScrolling:(VPRangeSlider *)slider withMinPercent:(CGFloat)minPercent andMaxPercent:(CGFloat)maxPercent
-    func sliderScrolling(slider : VPRangeSlider, withMinPercent:CGFloat , andMaxPercent:CGFloat)
+    func sliderScrolling(_ slider : VPRangeSlider, withMinPercent:CGFloat , andMaxPercent:CGFloat)
     {
-        let amax:CGFloat = self.timePreference.on ? 240.0 : 120.0
+        let amax:CGFloat = self.timePreference.isOn ? 240.0 : 120.0
         
         if ((withMinPercent * amax) / 100) < 1 {
             self.mincount=0
         }else {
             self.mincount = Int(round ((withMinPercent * amax) / 100) )
         }
-        self.initViewWithValue(self.mincount, andColor: UIColor.redColor().colorWithAlphaComponent(0.70))
+        self.initViewWithValue(self.mincount, andColor: UIColor.red.withAlphaComponent(0.70))
         updateLabel()
         
         self.maxcount = Int(round(amax - ((andMaxPercent * amax / 100))))
@@ -206,19 +206,19 @@ class ChronoViewController: UIViewController,VPRangeSliderDelegate  {
     
     
     //MARK: - switchChanged
-    func switchChanged(mySwitch: UISwitch) {
-        let amax:CGFloat = self.timePreference.on ? 240.0 : 120.0
+    func switchChanged(_ mySwitch: UISwitch) {
+        let amax:CGFloat = self.timePreference.isOn ? 240.0 : 120.0
         if amax-CGFloat(maxcount) < 0 {
             maxcount = 30
         }
-        self.rangeSlider.scrollStartSliderToStartRange(CGFloat(mincount) *  100.0 / amax,andEndRange: (amax-CGFloat(maxcount)) * 100.0 / amax)
+        self.rangeSlider.scrollStart(toStartRange: CGFloat(mincount) *  100.0 / amax,andEndRange: (amax-CGFloat(maxcount)) * 100.0 / amax)
         
         self.rangeSlider.slideRangeSliderButtonsIfNeeded();
     }
     
      //MARK: - startstop
     
-    @IBAction func startStoppressed(sender: UIButton!){
+    @IBAction func startStoppressed(_ sender: UIButton!){
        
 
         

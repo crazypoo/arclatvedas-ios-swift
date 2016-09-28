@@ -27,7 +27,7 @@ class DistanceCell: UITableViewCell ,UITableViewDataSource,UITableViewDelegate{
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
@@ -43,17 +43,17 @@ class DistanceCell: UITableViewCell ,UITableViewDataSource,UITableViewDelegate{
     
     //MARK: tabledatasource
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath)-> CGFloat{
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath)-> CGFloat{
         return 40
     }
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
     
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("basicDistance", forIndexPath: indexPath) 
+        let cell = tableView.dequeueReusableCell(withIdentifier: "basicDistance", for: indexPath) 
         
         
         let toto:NSArray
@@ -67,7 +67,7 @@ class DistanceCell: UITableViewCell ,UITableViewDataSource,UITableViewDelegate{
             let h:Hausse = toto[i] as! Hausse
             var texte:String=""
             
-            if indexPath.row == 0 {
+            if (indexPath as NSIndexPath).row == 0 {
                 texte = h.name
             } else {
                 texte =  h.hausse
@@ -79,15 +79,15 @@ class DistanceCell: UITableViewCell ,UITableViewDataSource,UITableViewDelegate{
             
             let label:UILabel = UILabel(frame: rect)
             label.text = texte
-            label.textAlignment = .Center
+            label.textAlignment = .center
             if i % 2 == 0 {
-                label.backgroundColor = UIColor.whiteColor()
+                label.backgroundColor = UIColor.white
 
             }else {
-                label.backgroundColor = UIColor.lightGrayColor()
+                label.backgroundColor = UIColor.lightGray
             }
-             if indexPath.row == 0 {
-                label.textColor = UIColor.redColor()
+             if (indexPath as NSIndexPath).row == 0 {
+                label.textColor = UIColor.red
             }
             
             cell.contentView.addSubview(label)

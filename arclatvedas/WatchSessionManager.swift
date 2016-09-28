@@ -20,21 +20,45 @@ import CoreDataProxy
 
 
 protocol DataSourceChangedDelegate {
-    func dataSourceDidUpdate(userInfo: [String : AnyObject])
+    func dataSourceDidUpdate(_ userInfo: [String : AnyObject])
 }
 
 
 //@available(iOS 9.0, *)
 class WatchSessionManager: NSObject, WCSessionDelegate {
+    /** Called when the session has completed activation. If session state is WCSessionActivationStateNotActivated there will be an error with more details. */
+    
+
+    
+    
+    
+    
+    /** Called when all delegate callbacks for the previously selected watch has occurred. The session can be re-activated for the now selected watch using activateSession. */
+    @available(iOS 9.3, *)
+    public func sessionDidDeactivate(_ session: WCSession)
+    
+    {
+        
+    }
+    
+    @available(iOS 9.3, *)
+    public func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        
+    }
+    
+    @available(iOS 9.3, *)
+    public func sessionDidBecomeInactive(_ session: WCSession){
+        
+    }
     
     static let sharedManager = WatchSessionManager()
-    private override init() {
+    fileprivate override init() {
         super.init()
     }
-    private var dataSourceChangedDelegates = [DataSourceChangedDelegate]()
-    private let session: WCSession? = WCSession.isSupported() ? WCSession.defaultSession() : nil
+    fileprivate var dataSourceChangedDelegates = [DataSourceChangedDelegate]()
+    fileprivate let session: WCSession? = WCSession.isSupported() ? WCSession.default() : nil
     
-    private var validSession: WCSession? {
+    fileprivate var validSession: WCSession? {
         
         // paired - the user has to have their device paired to the watch
         // watchAppInstalled - the user must have your watch app installed
@@ -42,7 +66,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
         // Note: if the device is paired, but your watch app is not installed
         // consider prompting the user to install it for a better experience
         
-        if let session = session where session.paired && session.watchAppInstalled {
+        if let session = session , session.isPaired && session.isWatchAppInstalled {
             return session
         }
         return nil
@@ -50,18 +74,18 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
     
     func startSession() {
         session?.delegate = self
-        session?.activateSession()
+        session?.activate()
     }
     
     
-    func addDataSourceChangedDelegate<T where T: DataSourceChangedDelegate, T: Equatable>(delegate: T) {
+    func addDataSourceChangedDelegate<T>(_ delegate: T) where T: DataSourceChangedDelegate, T: Equatable {
         dataSourceChangedDelegates.append(delegate)
     }
     
-    func removeDataSourceChangedDelegate<T where T: DataSourceChangedDelegate, T: Equatable>(delegate: T) {
-        for (index, dataSourceDelegate) in dataSourceChangedDelegates.enumerate() {
-            if let dataSourceDelegate = dataSourceDelegate as? T where dataSourceDelegate == delegate {
-                dataSourceChangedDelegates.removeAtIndex(index)
+    func removeDataSourceChangedDelegate<T>(_ delegate: T) where T: DataSourceChangedDelegate, T: Equatable {
+        for (index, dataSourceDelegate) in dataSourceChangedDelegates.enumerated() {
+            if let dataSourceDelegate = dataSourceDelegate as? T , dataSourceDelegate == delegate {
+                dataSourceChangedDelegates.remove(at: index)
                 break
             }
         }
@@ -78,16 +102,16 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
 extension WatchSessionManager {
     
     // Sender
-    func transferUserInfo(userInfo: [String : AnyObject]) -> WCSessionUserInfoTransfer? {
+    func transferUserInfo(_ userInfo: [String : AnyObject]) -> WCSessionUserInfoTransfer? {
         return validSession?.transferUserInfo(userInfo)
     }
     
     // Receiver
-    func session(session: WCSession, didReceiveUserInfo userInfo: [String : AnyObject])
+    func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any])
     {
         // handle receiving user info
         
-        dispatch_async(dispatch_get_main_queue()) { [weak self] in
+        DispatchQueue.main.async { [weak self] in
             let wutils:WatchUtils = WatchUtils()
             for (action, value) in userInfo {
                 
@@ -113,7 +137,7 @@ extension WatchSessionManager {
                     break
                 case "deleteScore":
                     if let tir:Tir = ti as? Tir {
-                        if let vol:Volee = tir.volees.objectAtIndex(tir.volees.count-1) as? Volee {
+                        if let vol:Volee = tir.volees.object(at: tir.volees.count-1) as? Volee {
                             
                             vol.deleteLast()
                         }
@@ -122,9 +146,9 @@ extension WatchSessionManager {
                     break
                 case "addScore":
                     if let tir:Tir = ti as? Tir {
-                        if let vol:Volee = tir.volees.objectAtIndex(tir.volees.count-1) as? Volee {
+                        if let vol:Volee = tir.volees.object(at: tir.volees.count-1) as? Volee {
                             
-                            vol.addScore(value as! Int , impact:CGPointMake(0,0),zone:CGPointMake(0,0))
+                            vol.addScore(value as! Int , impact:CGPoint(x: 0,y: 0),zone:CGPoint(x: 0,y: 0))
                         }
                     }
                     
@@ -140,7 +164,7 @@ extension WatchSessionManager {
             
             
             self?.dataSourceChangedDelegates.forEach {
-                $0.dataSourceDidUpdate(userInfo)
+                $0.dataSourceDidUpdate(userInfo as [String : AnyObject])
                 
             }
         }

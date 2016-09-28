@@ -11,7 +11,7 @@ import UIKit
 import CoreDataProxy
 
 protocol resultDelegateProtocol {
-    func resultChange(therow : Int , name:String , hausse : String)
+    func resultChange(_ therow : Int , name:String , hausse : String)
 }
 
 
@@ -33,14 +33,14 @@ class DistanceCellEdit: UITableViewCell, UITextFieldDelegate {
         
     }
     
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
     }
     
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         if textField === distance {
             datahausse.name = distance.text!
         } else {

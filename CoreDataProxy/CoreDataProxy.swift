@@ -11,12 +11,12 @@ import CoreData
 
 
 
-public class CoreDataProxy:NSObject{
+open class CoreDataProxy:NSObject{
     
     
     let sharedAppGroup:String = "group.com.jack.arclatvedas"
     
-    public class var sharedInstance : CoreDataProxy {
+    open class var sharedInstance : CoreDataProxy {
         struct Static {
             static let instance : CoreDataProxy = CoreDataProxy()
         }
@@ -27,9 +27,9 @@ public class CoreDataProxy:NSObject{
     
     // MARK: - Core Data stack
     
-    public lazy var applicationDocumentsDirectory: NSURL = {
+    open lazy var applicationDocumentsDirectory: URL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "com.makeandbuild.ActivityBuilder" in the application's documents Application Support directory.
-        let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return urls[urls.count-1] 
         }()
     
@@ -37,32 +37,32 @@ public class CoreDataProxy:NSObject{
 
     
     
-    public lazy var managedObjectModel: NSManagedObjectModel = {
-        var proxyBundle = NSBundle(identifier: "com.jack.CoreDataProxy")
+    open lazy var managedObjectModel: NSManagedObjectModel = {
+        var proxyBundle = Bundle(identifier: "com.jack.CoreDataProxy")
         if proxyBundle == nil {
-            proxyBundle = NSBundle.mainBundle()
+            proxyBundle = Bundle.main
         }
         // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
-        let modelURL = proxyBundle?.URLForResource("arclatvedas", withExtension: "momd")!
+        let modelURL = proxyBundle?.url(forResource: "arclatvedas", withExtension: "momd")!
         
-        return NSManagedObjectModel(contentsOfURL: modelURL!)!
+        return NSManagedObjectModel(contentsOf: modelURL!)!
         }()
     
     
     
-   public lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
+   open lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
         // The persistent store coordinator for the application. This implementation creates and return a coordinator, having added the store for the application to it. This property is optional since there are legitimate error conditions that could cause the creation of the store to fail.
         // Create the coordinator and store
         
-        var sharedContainerURL: NSURL? = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier(self.sharedAppGroup)
-    var storeURL: NSURL?
+        var sharedContainerURL: URL? = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: self.sharedAppGroup)
+    var storeURL: URL?
     
         if let lsharedContainerURL = sharedContainerURL {
         
-            storeURL = lsharedContainerURL.URLByAppendingPathComponent("arclatvedas.sqlite")
+            storeURL = lsharedContainerURL.appendingPathComponent("arclatvedas.sqlite")
              NSLog((storeURL?.description)!)
         }else{
-            storeURL = self.applicationDocumentsDirectory.URLByAppendingPathComponent("arclatvedas.sqlite")
+            storeURL = self.applicationDocumentsDirectory.appendingPathComponent("arclatvedas.sqlite")
 
         }
             var coordinator: NSPersistentStoreCoordinator? = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
@@ -74,14 +74,14 @@ public class CoreDataProxy:NSObject{
                 NSInferMappingModelAutomaticallyOption: true]
             
             do {
-                try coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: mOptions)
+                try coordinator!.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: mOptions)
             } catch var error1 as NSError {
                 error = error1
                 coordinator = nil
                 // Report any error we got.
                 var dict = [String: AnyObject]()
-                dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
-                dict[NSLocalizedFailureReasonErrorKey] = failureReason
+                dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data" as AnyObject?
+                dict[NSLocalizedFailureReasonErrorKey] = failureReason as AnyObject?
                 dict[NSUnderlyingErrorKey] = error
                 error = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
                 // Replace this with code to handle the error appropriately.
@@ -98,20 +98,20 @@ public class CoreDataProxy:NSObject{
 
     
     
-    public lazy var managedObjectContext: NSManagedObjectContext? = {
+    open lazy var managedObjectContext: NSManagedObjectContext? = {
         // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.) This property is optional since there are legitimate error conditions that could cause the creation of the context to fail.
         let coordinator = self.persistentStoreCoordinator
         if coordinator == nil {
             return nil
         }
-        var managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        var managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = coordinator
         return managedObjectContext
         }()
     
     // MARK: - Core Data Saving support
     
-    public func saveContext () {
+    open func saveContext () {
         if let moc = self.managedObjectContext {
             var error: NSError? = nil
             if moc.hasChanges {

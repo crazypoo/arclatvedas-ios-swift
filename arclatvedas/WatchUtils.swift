@@ -9,20 +9,20 @@
 import Foundation
 import CoreData
 
-public class WatchUtils : NSObject,NSFetchedResultsControllerDelegate{
+open class WatchUtils : NSObject,NSFetchedResultsControllerDelegate{
 
 //var managedObjectContext: NSManagedObjectContext? = nil
 
 // MARK: - Fetched results controller
 
-var fetchedResultsController: NSFetchedResultsController {
+var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> {
     if _fetchedResultsController != nil {
         return _fetchedResultsController!
     }
     
-    let fetchRequest = NSFetchRequest()
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
     // Edit the entity name as appropriate.
-    let entity = NSEntityDescription.entityForName(self.tablename, inManagedObjectContext: DataManager.getContext())
+    let entity = NSEntityDescription.entity(forEntityName: self.tablename, in: DataManager.getContext())
     fetchRequest.entity = entity
     
     // Set the batch size to a suitable number.
@@ -36,7 +36,7 @@ var fetchedResultsController: NSFetchedResultsController {
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: DataManager.getContext(), sectionNameKeyPath: nil, cacheName: "Master")
+    let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: DataManager.getContext(), sectionNameKeyPath: nil, cacheName: nil) //"Master"
     aFetchedResultsController.delegate = self
     _fetchedResultsController = aFetchedResultsController
     
@@ -53,7 +53,7 @@ var fetchedResultsController: NSFetchedResultsController {
     
     return _fetchedResultsController!
 }
-var _fetchedResultsController: NSFetchedResultsController? = nil
+var _fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>? = nil
 
     
     
@@ -64,15 +64,20 @@ var _fetchedResultsController: NSFetchedResultsController? = nil
     }
 
     
- public  func getLastTir( ) ->AnyObject!{
+    
+ open  func getLastTir( ) ->AnyObject!{
         
-        
-         NSFetchedResultsController.deleteCacheWithName("Master")
+    
+     NSFetchedResultsController<NSFetchRequestResult>.deleteCache(withName: nil)
+    
     _fetchedResultsController=nil
        var object:Tir?
         tablename = "Tir";
-    if let ff:NSFetchedResultsController = self.fetchedResultsController{
-        let cocos: [Tir] = ff.fetchedObjects as! [Tir]
+    guard let ff:NSFetchedResultsController<NSFetchRequestResult>  = self.fetchedResultsController else{
+        return nil;
+    }
+    
+    let cocos: [Tir] = ff.fetchedObjects as! [Tir]
         
         if  cocos.count > 0 {
             
@@ -83,21 +88,21 @@ var _fetchedResultsController: NSFetchedResultsController? = nil
 //            return getLastTir( )
 //            
 //        }
-    }
+    
         return object
     
 
     }
     
     
-    public func createEmptyVolee(tir:Tir){
+    open func createEmptyVolee(_ tir:Tir){
         
         
         
         
-        let entityDescription = NSEntityDescription.entityForName("Volee", inManagedObjectContext: DataManager.getContext())
+        let entityDescription = NSEntityDescription.entity(forEntityName: "Volee", in: DataManager.getContext())
         
-        let volee = Volee(entity: entityDescription!, insertIntoManagedObjectContext: DataManager.getContext())
+        let volee = Volee(entity: entityDescription!, insertInto: DataManager.getContext())
         
         volee.setValue("[]", forKey: "volee")
         volee.setValue(tir, forKey: "relationship")
@@ -105,24 +110,24 @@ var _fetchedResultsController: NSFetchedResultsController? = nil
         
         
         
-        tir.volees.addObject(volee)
+        tir.volees.add(volee)
         
     }
     
     
     
     
-    func insertNewTirObject(newManagedObject: Tir) {
+    func insertNewTirObject(_ newManagedObject: Tir) {
         
-        newManagedObject.setValue(NSDate(), forKey: "timeStamp")
+        newManagedObject.setValue(Date(), forKey: "timeStamp")
         newManagedObject.setValue("Au club", forKey: "location")
         newManagedObject.setValue("70", forKey: "distance")
         newManagedObject.setValue("", forKey: "comment")
         
         // test
-        let entityDescription = NSEntityDescription.entityForName("Volee", inManagedObjectContext: DataManager.getContext())
+        let entityDescription = NSEntityDescription.entity(forEntityName: "Volee", in: DataManager.getContext())
         
-        let volee = Volee(entity: entityDescription!, insertIntoManagedObjectContext: DataManager.getContext())
+        let volee = Volee(entity: entityDescription!, insertInto: DataManager.getContext())
         
         volee.volee = "[]"
         volee.rang = 1
@@ -131,7 +136,7 @@ var _fetchedResultsController: NSFetchedResultsController? = nil
         
         
         
-        newManagedObject.volees.addObject(volee)
+        newManagedObject.volees.add(volee)
         
         
     }
@@ -139,11 +144,11 @@ var _fetchedResultsController: NSFetchedResultsController? = nil
     
     
     
-   public func insertNewTir() {
+   open func insertNewTir() {
         let context = DataManager.getContext()
-        let entityDescription = NSEntityDescription.entityForName("Tir", inManagedObjectContext: context)
+        let entityDescription = NSEntityDescription.entity(forEntityName: "Tir", in: context)
         
-        let tir = Tir(entity: entityDescription!, insertIntoManagedObjectContext: DataManager.getContext())
+        let tir = Tir(entity: entityDescription!, insertInto: DataManager.getContext())
 
          insertNewTirObject(tir)
         

@@ -24,11 +24,13 @@ class WebViewController: UIViewController {
         // Update the user interface for the detail item.
         if let detail: AnyObject = self.detailItem {
             
-            self.navigationItem.title = NSLocalizedString(detail.valueForKey("name")!.description, comment:"data")
+            let value = detail.value(forKey: "name") as! String
+            self.navigationItem.title = NSLocalizedString(value, comment:"data")
             
             if let web = self.web {
-                let page :String = detail.valueForKey("url")!.description
-                let request: NSURLRequest = NSURLRequest(URL: NSURL(string: page)!)
+                 let page = detail.value(forKey: "url") as! String
+                //let page :String = value.description
+                let request: URLRequest = URLRequest(url: URL(string: page)!)
                 web.loadRequest(request)
             }
         }

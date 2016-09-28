@@ -18,17 +18,17 @@ class ImpactView: UIView {
     
     //MARK: Constructors
     convenience init(){
-        self.init(frame:CGRectZero)
+        self.init(frame:CGRect.zero)
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.clear
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.clear
     }
     
     override func layoutSubviews() {
@@ -36,15 +36,15 @@ class ImpactView: UIView {
     }
     
     
-    func addPoint(pt :CGPoint){
+    func addPoint(_ pt :CGPoint){
         
-        let t:CGAffineTransform = CGAffineTransformMakeScale(1.0 / self.frame.size.width, 1.0 / self.frame.size.height);
-        let unipoint:CGPoint = CGPointApplyAffineTransform(pt, t);
+        let t:CGAffineTransform = CGAffineTransform(scaleX: 1.0 / self.frame.size.width, y: 1.0 / self.frame.size.height);
+        let unipoint:CGPoint = pt.applying(t);
         //we add normalized point here
         self.impacts.append(unipoint)
         
-        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INTERACTIVE.rawValue), 0)) { // 1
-            dispatch_async(dispatch_get_main_queue()) { // 2
+        DispatchQueue.global(qos:DispatchQoS.QoSClass.userInteractive).async { // 1
+            DispatchQueue.main.async { // 2
                 
                 //this is needed otherwise ....
                 self.setNeedsDisplay()
@@ -60,8 +60,8 @@ class ImpactView: UIView {
         
         self.impacts.removeLast()
         
-        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INTERACTIVE.rawValue), 0)) { // 1
-            dispatch_async(dispatch_get_main_queue()) { // 2
+        DispatchQueue.global(qos:DispatchQoS.QoSClass.userInteractive).async { // 1
+            DispatchQueue.main.async { // 2
                 
                 //this is needed otherwise ....
                 self.setNeedsDisplay()
@@ -70,33 +70,33 @@ class ImpactView: UIView {
 
         
     }
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         // Drawing code
         
         for i in 0 ..< impacts.count{
             let pt = impacts[i]
             
             //points are normalized
-            let t:CGAffineTransform = CGAffineTransformMakeScale( rect.size.width,  rect.size.height);
-            let realpoint:CGPoint = CGPointApplyAffineTransform(pt, t);
+            let t:CGAffineTransform = CGAffineTransform( scaleX: rect.size.width,  y: rect.size.height);
+            let realpoint:CGPoint = pt.applying(t);
             
             
-            let inrect = CGRectMake(realpoint.x-2,realpoint.y-2,4,4)
+            let inrect = CGRect(x: realpoint.x-2,y: realpoint.y-2,width: 4,height: 4)
             
-            let path = UIBezierPath(ovalInRect: inrect)
-            UIColor.blackColor().setFill()
+            let path = UIBezierPath(ovalIn: inrect)
+            UIColor.black.setFill()
             
             
             path.fill()
             
-            UIColor.whiteColor().setStroke()
+            UIColor.white.setStroke()
             path.lineWidth = 1.0
             path.stroke()
             
             
         }
         
-        super.drawRect(rect)
+        super.draw(rect)
     }
     
     

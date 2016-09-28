@@ -13,7 +13,7 @@
 import UIKit
 
 protocol FaceViewDelegate:NSObjectProtocol {
-    func getScoreForPoint(point:CGPoint)->CGPoint;
+    func getScoreForPoint(_ point:CGPoint)->CGPoint;
 }
 
 class BlasonView: UIView ,FaceViewDelegate {
@@ -26,9 +26,9 @@ class BlasonView: UIView ,FaceViewDelegate {
         return [100,10,9,8,7,6,5,4,3,2,1]
     }
     
-    var colors:[UIColor] { return [UIColor.yellowColor(),UIColor.yellowColor(),UIColor.yellowColor(),UIColor.redColor(),UIColor.redColor(),UIColor.blueColor(),UIColor.blueColor(),UIColor.blackColor(),UIColor.blackColor(),UIColor.whiteColor(),UIColor.whiteColor()]}
+    var colors:[UIColor] { return [UIColor.yellow,UIColor.yellow,UIColor.yellow,UIColor.red,UIColor.red,UIColor.blue,UIColor.blue,UIColor.black,UIColor.black,UIColor.white,UIColor.white]}
     
-    var colorslines:[UIColor] { return [UIColor.blackColor(),UIColor.blackColor(),UIColor.blackColor(),UIColor.blackColor(),UIColor.whiteColor(),UIColor.whiteColor(),UIColor.whiteColor(),UIColor.whiteColor(),UIColor.blackColor(),UIColor.blackColor(),UIColor.blackColor()]}
+    var colorslines:[UIColor] { return [UIColor.black,UIColor.black,UIColor.black,UIColor.black,UIColor.white,UIColor.white,UIColor.white,UIColor.white,UIColor.black,UIColor.black,UIColor.black]}
     
     // 3 cercles pour les trispots
     var circles:[[UIBezierPath]]=[[],[],[]]
@@ -38,7 +38,7 @@ class BlasonView: UIView ,FaceViewDelegate {
     
     //MARK: Constructors
     convenience init(){
-        self.init(frame:CGRectZero)
+        self.init(frame:CGRect.zero)
     }
     
     override init(frame: CGRect) {
@@ -57,13 +57,13 @@ class BlasonView: UIView ,FaceViewDelegate {
     }
     
     
-    func getScoreForPoint(point:CGPoint)->CGPoint{
-        var result:CGPoint = CGPointMake(0,0)
+    func getScoreForPoint(_ point:CGPoint)->CGPoint{
+        var result:CGPoint = CGPoint(x: 0,y: 0)
         var x=nombrezone
         repeat {
             let circle = circles[0][x]
             
-            if circle.containsPoint(point) {
+            if circle.contains(point) {
                 result.x = CGFloat(scores[nombrezone-x])
                 return result
                 
@@ -78,11 +78,11 @@ class BlasonView: UIView ,FaceViewDelegate {
     // An empty implementation adversely affects performance during animation.
     
     */
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         // Drawing code
         
         let pathck = UIBezierPath(rect: rect)
-        UIColor.whiteColor().setFill()
+        UIColor.white.setFill()
         pathck.fill()
         
         let delta:CGFloat = (rect.size.width / CGFloat(2 * nombrezone))
@@ -90,7 +90,7 @@ class BlasonView: UIView ,FaceViewDelegate {
         var lastgoodrect = rect
         var x=nombrezone
         repeat {
-            let path = UIBezierPath(ovalInRect: inrect)
+            let path = UIBezierPath(ovalIn: inrect)
             
             if x !=  0{
                 circles[0].append(path)
@@ -105,20 +105,20 @@ class BlasonView: UIView ,FaceViewDelegate {
             path.stroke()
             
             x -= 1
-            inrect = CGRectInset(inrect,delta,delta)
+            inrect = inrect.insetBy(dx: delta,dy: delta)
             if x == 1{
                 lastgoodrect = inrect
             }
-            if CGRectIsEmpty(inrect){
+            if inrect.isEmpty{
                 break
             }
         }while (x > -1)
         
         // and the X !
         
-        inrect = CGRectInset(lastgoodrect,delta/2,delta/2)
-        if !CGRectIsEmpty(inrect){
-            let path = UIBezierPath(ovalInRect: inrect)
+        inrect = lastgoodrect.insetBy(dx: delta/2,dy: delta/2)
+        if !inrect.isEmpty{
+            let path = UIBezierPath(ovalIn: inrect)
             circles[0].append(path)
             
             colorslines[0].setStroke()

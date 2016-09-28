@@ -25,11 +25,12 @@ class DetailViewController: UIViewController {
     func configureView() {
         // Update the user interface for the detail item.
         if let detail: AnyObject = self.detailItem {
-            
-            self.navigationItem.title = detail.valueForKey("name")!.description
+             var value = detail.value(forKey: "name") as AnyObject
+            self.navigationItem.title = value.description
             
             if let label = self.detailDescriptionLabel {
-                label.text = detail.valueForKey("timeStamp")!.description
+                value = detail.value(forKey: "timeStamp") as AnyObject
+                label.text = value.description
             }
         }
     }

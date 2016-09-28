@@ -22,33 +22,39 @@ import WatchKit
 import CoreData
 
 protocol DataSourceChangedDelegate {
-    func dataSourceDidUpdate(userInfo: [String : AnyObject])
+    func dataSourceDidUpdate(_ userInfo: [String : AnyObject])
 }
 
 class WatchSessionManager: NSObject, WCSessionDelegate {
+    /** Called when the session has completed activation. If session state is WCSessionActivationStateNotActivated there will be an error with more details. */
+    @available(watchOS 2.2, *)
+    public func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+
+    }
+
     
     static let sharedManager = WatchSessionManager()
-    private override init() {
+    fileprivate override init() {
         super.init()
     }
     
-    private let session: WCSession = WCSession.defaultSession()
+    fileprivate let session: WCSession = WCSession.default()
     
-    private var dataSourceChangedDelegates = [DataSourceChangedDelegate]()
+    fileprivate var dataSourceChangedDelegates = [DataSourceChangedDelegate]()
     
     func startSession() {
         session.delegate = self
-        session.activateSession()
+        session.activate()
     }
     
-    func addDataSourceChangedDelegate<T where T: DataSourceChangedDelegate, T: Equatable>(delegate: T) {
+    func addDataSourceChangedDelegate<T>(_ delegate: T) where T: DataSourceChangedDelegate, T: Equatable {
         dataSourceChangedDelegates.append(delegate)
     }
     
-    func removeDataSourceChangedDelegate<T where T: DataSourceChangedDelegate, T: Equatable>(delegate: T) {
-        for (index, dataSourceDelegate) in dataSourceChangedDelegates.enumerate() {
-            if let dataSourceDelegate = dataSourceDelegate as? T where dataSourceDelegate == delegate {
-                dataSourceChangedDelegates.removeAtIndex(index)
+    func removeDataSourceChangedDelegate<T>(_ delegate: T) where T: DataSourceChangedDelegate, T: Equatable {
+        for (index, dataSourceDelegate) in dataSourceChangedDelegates.enumerated() {
+            if let dataSourceDelegate = dataSourceDelegate as? T , dataSourceDelegate == delegate {
+                dataSourceChangedDelegates.remove(at: index)
                 break
             }
         }
@@ -62,16 +68,16 @@ extension WatchSessionManager {
     
     
     // Sender
-    func transferUserInfo(userInfo: [String : AnyObject]) -> WCSessionUserInfoTransfer? {
+    func transferUserInfo(_ userInfo: [String : AnyObject]) -> WCSessionUserInfoTransfer? {
         return session.transferUserInfo(userInfo)
     }
     
     
     // Receiver
-    func session(session: WCSession, didReceiveUserInfo userInfo: [String : AnyObject]) {
+    func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any]) {
         // handle receiving user info
         
-        dispatch_async(dispatch_get_main_queue()) { [weak self] in
+        DispatchQueue.main.async { [weak self] in
                 let wutils:WatchUtils = WatchUtils()
                 for (action, value) in userInfo {
                     
@@ -97,7 +103,7 @@ extension WatchSessionManager {
                         break
                         case "deleteScore":
                              if let tir:Tir = ti as? Tir {
-                                if let vol:Volee = tir.volees.objectAtIndex(tir.volees.count-1) as? Volee {
+                                if let vol:Volee = tir.volees.object(at: tir.volees.count-1) as? Volee {
                                     
                                     vol.deleteLast()
                                 }
@@ -106,9 +112,9 @@ extension WatchSessionManager {
                         break
                         case "addScore":
                              if let tir:Tir = ti as? Tir {
-                                if let vol:Volee = tir.volees.objectAtIndex(tir.volees.count-1) as? Volee {
+                                if let vol:Volee = tir.volees.object(at: tir.volees.count-1) as? Volee {
                                     
-                                    vol.addScore(value as! Int , impact:CGPointMake(0,0),zone:CGPointMake(0,0))
+                                    vol.addScore(value as! Int , impact:CGPoint(x: 0,y: 0),zone:CGPoint(x: 0,y: 0))
                                 }
                             }
   
@@ -124,7 +130,7 @@ extension WatchSessionManager {
             
             
                 self?.dataSourceChangedDelegates.forEach {
-                    $0.dataSourceDidUpdate(userInfo)
+                    $0.dataSourceDidUpdate(userInfo as [String : AnyObject])
                 
             }
         }

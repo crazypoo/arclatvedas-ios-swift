@@ -21,9 +21,9 @@ class FITAReduceView: BlasonView {
 
     
     override var colors:[UIColor] {
-        return [UIColor.yellowColor(),UIColor.yellowColor(),UIColor.yellowColor(),UIColor.redColor(),UIColor.redColor(),UIColor.blueColor(),UIColor.blueColor()]
+        return [UIColor.yellow,UIColor.yellow,UIColor.yellow,UIColor.red,UIColor.red,UIColor.blue,UIColor.blue]
     }
     
-   override var colorslines:[UIColor] { return [UIColor.blackColor(),UIColor.blackColor(),UIColor.blackColor(),UIColor.blackColor(),UIColor.blackColor(),UIColor.blackColor(),UIColor.blackColor()]}
+   override var colorslines:[UIColor] { return [UIColor.black,UIColor.black,UIColor.black,UIColor.black,UIColor.black,UIColor.black,UIColor.black]}
 
 }

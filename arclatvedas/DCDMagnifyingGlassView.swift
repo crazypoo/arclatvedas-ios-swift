@@ -15,8 +15,8 @@ private let _DCDMagnifyingGlassViewInstance: DCDMagnifyingGlassView = DCDMagnify
 
 
 protocol DCDMagnifyingGlassViewDelegate : NSObjectProtocol {
-    func managePanBegin(sender: UIPanGestureRecognizer);
-    func managePanEnd(sender: UIPanGestureRecognizer);
+    func managePanBegin(_ sender: UIPanGestureRecognizer);
+    func managePanEnd(_ sender: UIPanGestureRecognizer);
 }
 class DCDMagnifyingGlassView: UIView {
     
@@ -33,13 +33,13 @@ class DCDMagnifyingGlassView: UIView {
     let shadowLayer: CAShapeLayer = CAShapeLayer()
     let panGestureRecognizer = UIPanGestureRecognizer()
     
-    var targetView: UIView = UIApplication.sharedApplication().windows.first!
+    var targetView: UIView = UIApplication.shared.windows.first!
     var scale: CGFloat = 2
     var glassDelegate:DCDMagnifyingGlassViewDelegate?
     
     //MARK: Constructors
     convenience init(){
-        self.init(frame:CGRectZero)
+        self.init(frame:CGRect.zero)
     }
     
     override init(frame: CGRect) {
@@ -55,7 +55,7 @@ class DCDMagnifyingGlassView: UIView {
     func setupViews() {
         //Set up the indicator
         indicatorView.frame = CGRect(x: 0, y: 0, width: self.frame.size.width/scale, height: self.frame.size.height/scale)
-        indicatorView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        indicatorView.layer.borderColor = UIColor.lightGray.cgColor
         indicatorView.layer.borderWidth = 2
         indicatorView.layer.cornerRadius = indicatorView.frame.size.width/2
         indicatorView.center = CGPoint(x: self.frame.size.width/2, y: self.frame.size.height/2)
@@ -70,29 +70,29 @@ class DCDMagnifyingGlassView: UIView {
         
         
         //Add shadow layer
-        shadowLayer.shadowColor = UIColor.blackColor().CGColor
+        shadowLayer.shadowColor = UIColor.black.cgColor
         shadowLayer.shadowOpacity = 0.7
         shadowLayer.shadowOffset = CGSize(width: 0, height: 3)
         glassView.layer.addSublayer(shadowLayer)
         
         //Set up the image display
         magnifyingImageView.frame = CGRect(x: 0, y: 0, width: glassView.frame.size.width, height: glassView.frame.size.height)
-        magnifyingImageView.contentMode = UIViewContentMode.ScaleToFill
-        magnifyingImageView.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight]
+        magnifyingImageView.contentMode = UIViewContentMode.scaleToFill
+        magnifyingImageView.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
         magnifyingImageView.clipsToBounds = true
         glassView.addSubview(magnifyingImageView)
         
         
         plusView.frame = CGRect(x: 0, y: 0, width: glassView.frame.size.width, height: glassView.frame.size.height)
-        plusView.contentMode = UIViewContentMode.ScaleToFill
-        plusView.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight]
+        plusView.contentMode = UIViewContentMode.scaleToFill
+        plusView.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
         plusView.clipsToBounds = true
         glassView.addSubview(plusView)
         
         //Set up gesture recognizer
         panGestureRecognizer.addTarget(self, action: #selector(DCDMagnifyingGlassView.panAction(_:)))
         indicatorView.addGestureRecognizer(panGestureRecognizer)
-        panGestureRecognizer.enabled = true
+        panGestureRecognizer.isEnabled = true
     }
     
     
@@ -104,9 +104,9 @@ class DCDMagnifyingGlassView: UIView {
         layoutSubviews(false)
     }
     
-    func layoutSubviews(animated: Bool) {
+    func layoutSubviews(_ animated: Bool) {
         let cornerRadius: CGFloat = CGFloat(max(frame.size.width, frame.size.height)/2)
-        magnifyingImageView.layer.borderColor = UIColor.grayColor().CGColor
+        magnifyingImageView.layer.borderColor = UIColor.gray.cgColor
         magnifyingImageView.layer.cornerRadius = CGFloat(cornerRadius)
         
         //Update the indicator frame
@@ -116,16 +116,16 @@ class DCDMagnifyingGlassView: UIView {
         indicatorView.layer.cornerRadius = indicatorView.frame.size.width/2
         
         //Update the frame of the glass
-        if(panGestureRecognizer.enabled) {
+        if(panGestureRecognizer.isEnabled) {
             var glassY = indicatorView.frame.origin.y - 10 - self.frame.size.height
             if indicatorView.center.y > self.center.y-50 {
                 glassY = indicatorView.frame.origin.y + 10 + self.frame.size.height/2
             }
             
             if(animated) {
-                UIView.animateWithDuration(0.25,
+                UIView.animate(withDuration: 0.25,
                     delay: 0,
-                    options: UIViewAnimationOptions.CurveEaseInOut,
+                    options: UIViewAnimationOptions(),
                     animations: { () -> Void in
                         self.glassView.frame = CGRect(x: 0, y: glassY, width: self.frame.size.width, height: self.frame.size.height)
                         self.indicatorView.alpha = 1
@@ -137,9 +137,9 @@ class DCDMagnifyingGlassView: UIView {
             refreshImage()
         }else {
             if(animated) {
-                UIView.animateWithDuration(0.25,
+                UIView.animate(withDuration: 0.25,
                     delay: 0,
-                    options: UIViewAnimationOptions.CurveEaseInOut,
+                    options: UIViewAnimationOptions(),
                     animations: { () -> Void in
                         self.glassView.center = CGPoint(x: self.frame.size.width/2, y: self.frame.size.height/2)
                         self.indicatorView.alpha = 0
@@ -153,45 +153,45 @@ class DCDMagnifyingGlassView: UIView {
         
         //Update the shadow of the view
         let shadowPath = UIBezierPath(roundedRect: magnifyingImageView.frame, cornerRadius: cornerRadius)
-        shadowLayer.shadowPath = shadowPath.CGPath
+        shadowLayer.shadowPath = shadowPath.cgPath
     }
     
     //MARK: Helper functions
-    private func moveView(translation: CGPoint) {
-        self.frame = CGRectMake(self.frame.origin.x + translation.x, self.frame.origin.y + translation.y, self.frame.size.width, self.frame.size.height)
+    fileprivate func moveView(_ translation: CGPoint) {
+        self.frame = CGRect(x: self.frame.origin.x + translation.x, y: self.frame.origin.y + translation.y, width: self.frame.size.width, height: self.frame.size.height)
         
       //  let toto = self.frame
         self.layoutSubviews(false)
     }
     
-    private func snapshotTargetView(view: UIView!, inRect rect: CGRect!) -> UIImage! {
+    fileprivate func snapshotTargetView(_ view: UIView!, inRect rect: CGRect!) -> UIImage! {
         //Hide self
-        self.hidden = true
+        self.isHidden = true
         
-        let scale = UIScreen.mainScreen().scale
+        let scale = UIScreen.main.scale
         
         //Snapshot of view
         UIGraphicsBeginImageContextWithOptions(rect.size, false, scale)
-        CGContextTranslateCTM(UIGraphicsGetCurrentContext(), -rect.origin.x, -rect.origin.y)
-        view.layer.renderInContext(UIGraphicsGetCurrentContext()!) //Need this to stop screen flashing, but it's slower
+        UIGraphicsGetCurrentContext()?.translateBy(x: -rect.origin.x, y: -rect.origin.y)
+        view.layer.render(in: UIGraphicsGetCurrentContext()!) //Need this to stop screen flashing, but it's slower
         let snapshotImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
         //Show self
-        self.hidden = false
+        self.isHidden = false
         
         return snapshotImage
     }
     
-    private func resizeImage(image: UIImage, toNewSize newSize:CGSize) -> UIImage {
-        let scale = UIScreen.mainScreen().scale
+    fileprivate func resizeImage(_ image: UIImage, toNewSize newSize:CGSize) -> UIImage {
+        let scale = UIScreen.main.scale
         
         UIGraphicsBeginImageContextWithOptions(newSize, false, scale)
-        image.drawInRect(CGRectMake(0, 0, newSize.width, newSize.height))
+        image.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        return newImage
+        return newImage!
     }
     
     //MARK: Refresh
@@ -202,24 +202,24 @@ class DCDMagnifyingGlassView: UIView {
         let newX = (self.frame.size.width - newWidth) / 2 + self.frame.origin.x
         let newY = (self.frame.size.height - newHeight) / 2 + self.frame.origin.y
         var newImage = snapshotTargetView(targetView, inRect: CGRect(x: newX, y: newY, width: newWidth, height: newHeight))
-        newImage = resizeImage(newImage, toNewSize: self.frame.size)
+        newImage = resizeImage(newImage!, toNewSize: self.frame.size)
         magnifyingImageView.image = newImage
     }
     
     //MARK: Gesture Actions
-    func panAction(sender: UIPanGestureRecognizer) {
+    func panAction(_ sender: UIPanGestureRecognizer) {
         switch (sender.state){
-        case UIGestureRecognizerState.Began:
+        case UIGestureRecognizerState.began:
             glassDelegate!.managePanBegin(sender)
             
             break
-        case UIGestureRecognizerState.Changed:
-            let translation = sender.translationInView(targetView)
+        case UIGestureRecognizerState.changed:
+            let translation = sender.translation(in: targetView)
             moveView(translation)
-            sender.setTranslation(CGPointZero, inView: targetView)
+            sender.setTranslation(CGPoint.zero, in: targetView)
             break
-        case UIGestureRecognizerState.Ended, UIGestureRecognizerState.Failed:
-            sender.setTranslation(CGPointZero, inView: targetView)
+        case UIGestureRecognizerState.ended, UIGestureRecognizerState.failed:
+            sender.setTranslation(CGPoint.zero, in: targetView)
             glassDelegate!.managePanEnd(sender)
             break
         default:
@@ -228,39 +228,39 @@ class DCDMagnifyingGlassView: UIView {
     }
     
     //MARK: Hit Test
-    func distanceFromPoint(point1: CGPoint, toPoint point2: CGPoint) -> CGFloat {
+    func distanceFromPoint(_ point1: CGPoint, toPoint point2: CGPoint) -> CGFloat {
         let dx = point1.x - point2.x
         let dy = point1.y - point2.y
         
         return sqrt(dx*dx + dy*dy)
     }
     //Convert touch space into a circle instead of a rectangle
-    override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         let radius = self.bounds.size.width/2
         let center = CGPoint(x: self.bounds.size.width/2, y: self.bounds.size.height/2)
         
         let dist = distanceFromPoint(point, toPoint: center)
         if(dist <= radius){
-            return super.hitTest(point, withEvent: event)
+            return super.hitTest(point, with: event)
         }
         
         return nil
     }
     
     //MARK: Set Properties
-    class func setTargetView(targetView: UIView){
+    class func setTargetView(_ targetView: UIView){
         DCDMagnifyingGlassView.sharedInstance.targetView = targetView
     }
     
-    class func setScale(scale: CGFloat){
+    class func setScale(_ scale: CGFloat){
         DCDMagnifyingGlassView.sharedInstance.scale = scale
     }
     
-    class func allowDragging(allowDragging: Bool, animated: Bool) {
-        DCDMagnifyingGlassView.sharedInstance.panGestureRecognizer.enabled = allowDragging
+    class func allowDragging(_ allowDragging: Bool, animated: Bool) {
+        DCDMagnifyingGlassView.sharedInstance.panGestureRecognizer.isEnabled = allowDragging
         DCDMagnifyingGlassView.sharedInstance.layoutSubviews(animated)
     }
-    class func setContentFrame(frame: CGRect) {
+    class func setContentFrame(_ frame: CGRect) {
         var correctedFrame = frame
         var width = frame.size.width
         var height = frame.size.height
@@ -271,32 +271,32 @@ class DCDMagnifyingGlassView: UIView {
         }
         DCDMagnifyingGlassView.sharedInstance.frame = correctedFrame
     }
-    class func setIndicatorColor(color: UIColor) {
-        DCDMagnifyingGlassView.sharedInstance.indicatorView.layer.borderColor = color.CGColor
+    class func setIndicatorColor(_ color: UIColor) {
+        DCDMagnifyingGlassView.sharedInstance.indicatorView.layer.borderColor = color.cgColor
     }
-    class func setShadowColor(color: UIColor) {
-        DCDMagnifyingGlassView.sharedInstance.shadowLayer.shadowColor = color.CGColor
+    class func setShadowColor(_ color: UIColor) {
+        DCDMagnifyingGlassView.sharedInstance.shadowLayer.shadowColor = color.cgColor
     }
     
     //MARK: Show/Dismiss
-    class func show(animated: Bool) {
+    class func show(_ animated: Bool) {
         DCDMagnifyingGlassView.sharedInstance.layoutSubviews(false)
         DCDMagnifyingGlassView.sharedInstance.targetView.addSubview(DCDMagnifyingGlassView.sharedInstance)
         if(animated) {
             DCDMagnifyingGlassView.sharedInstance.alpha = 0
-            UIView.animateWithDuration(0.25,
+            UIView.animate(withDuration: 0.25,
                 delay: 0,
-                options: UIViewAnimationOptions.CurveEaseInOut,
+                options: UIViewAnimationOptions(),
                 animations: { () -> Void in
                     DCDMagnifyingGlassView.sharedInstance.alpha = 1
                 }, completion: nil)
         }
     }
     
-    class func dismiss(animated: Bool) {
-        UIView.animateWithDuration(0.25,
+    class func dismiss(_ animated: Bool) {
+        UIView.animate(withDuration: 0.25,
             delay: 0,
-            options: UIViewAnimationOptions.CurveEaseInOut,
+            options: UIViewAnimationOptions(),
             animations: { () -> Void in
                 DCDMagnifyingGlassView.sharedInstance.alpha = 0
             }) { (completed) -> Void in

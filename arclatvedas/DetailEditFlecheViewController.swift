@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreDataProxy
-
+import CoreData
 
 class DetailEditFlecheViewController: UIViewController {
 
@@ -46,7 +46,7 @@ class DetailEditFlecheViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let saveButton = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: #selector(DetailEditFlecheViewController.saveObject(_:)))
+        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(DetailEditFlecheViewController.saveObject(_:)))
         self.navigationItem.rightBarButtonItem = saveButton
         // Do any additional setup after loading the view.
         self.configureView()
@@ -57,44 +57,52 @@ class DetailEditFlecheViewController: UIViewController {
     
     func configureView() {
         // Update the user interface for the detail item.
-        if let detail: AnyObject = self.detailItem {
+        if let detail: NSManagedObject = self.detailItem as? NSManagedObject{
+            
+            
             
             if let textename = self.nom {
-                textename.text = detail.valueForKey("name")!.description
+                let value = detail.value(forKey: "name") as! String
+                textename.text = value
             }
             
             if let textetaille = self.taille {
                  //double
-                textetaille.text = detail.valueForKey("length")!.description
+                let value = detail.value(forKey: "length") as! Double
+                textetaille.text = value.description
             }
             
             if let textespin = self.spin {
                //int16
-                textespin.text = detail.valueForKey("spin")!.description
+                let value = detail.value(forKey: "spin") as! NSNumber
+                textespin.text = value.description
             }
             if let texteplume = self.plume {
-                texteplume.text = detail.valueForKey("feather")!.description
+                let value = detail.value(forKey: "feather") as! String
+                texteplume.text = value
             }
             
             if let textepointe = self.pointe {
-                textepointe.text = detail.valueForKey("point")!.description
+                let value = detail.value(forKey: "point") as! String
+                textepointe.text = value
             }
             
             if let textedate = self.date {
                 
-                let dateFormat:NSDateFormatter = NSDateFormatter()
-                dateFormat.dateStyle = NSDateFormatterStyle.ShortStyle
+                let dateFormat:DateFormatter = DateFormatter()
+                dateFormat.dateStyle = DateFormatter.Style.short
                 dateFormat.dateFormat="dd/MM/yy"
-                let ladate:NSDate  = detail.valueForKey("timeStamp") as! NSDate
+                let ladate:Date  = detail.value(forKey: "timeStamp") as! Date
                 
                 
-                let dateString:String = dateFormat.stringFromDate(ladate)
+                let dateString:String = dateFormat.string(from: ladate)
                 
                 textedate.text = dateString
             }
             
             if let textecommentaire = self.commentaire {
-                textecommentaire.text = detail.valueForKey("comment")!.description
+                let value = detail.value(forKey: "comment") as! String
+                textecommentaire.text = value
             }
 
         }
@@ -102,28 +110,30 @@ class DetailEditFlecheViewController: UIViewController {
     
 
     
-    func saveObject(sender: AnyObject) {
-        if let detail: AnyObject = self.detailItem {
+    func saveObject(_ sender: AnyObject) {
+        if let detail: NSManagedObject = self.detailItem as? NSManagedObject{
             
             
-            let dateFormat:NSDateFormatter = NSDateFormatter()
+            let dateFormat:DateFormatter = DateFormatter()
             dateFormat.dateFormat="dd/MM/yy"
-            dateFormat.dateStyle = NSDateFormatterStyle.ShortStyle
-            let ladate :NSDate = dateFormat.dateFromString(self.date.text!)!
+           // dateFormat.dateStyle = DateFormatter.Style.short
             
-            detail.setValue(ladate, forKey: "timeStamp")
+                let ladate = dateFormat.date(from: (self.date.text)! )!
+                detail.setValue(ladate, forKey: "timeStamp")
+
+           
            
 
             
             detail.setValue(self.nom.text, forKey: "name")
             
-            let formatter = NSNumberFormatter()
-            formatter.numberStyle = NSNumberFormatterStyle.DecimalStyle;
+            let formatter = NumberFormatter()
+            formatter.numberStyle = NumberFormatter.Style.decimal;
             
-            if let number = formatter.numberFromString(self.taille.text!) {
+            if let number = formatter.number(from: self.taille.text!) {
                 detail.setValue(number, forKey: "length")
             }
-            detail.setValue( NSNumber(integer: Int(self.spin.text!)!), forKey: "spin")
+            detail.setValue( NSNumber(value: Int(self.spin.text!)! as Int), forKey: "spin")
             
             detail.setValue(self.plume.text, forKey: "feather")
             detail.setValue(self.pointe.text, forKey: "point")

@@ -12,10 +12,10 @@ import CoreData
 //http://stackoverflow.com/questions/26613971/swift-coredata-warning-unable-to-load-class-named
 @objc(Hausse)
 
-public class Hausse: NSManagedObject {
+open class Hausse: NSManagedObject {
 
-    @NSManaged public var hausse: String
-    @NSManaged public var name: String
-    @NSManaged public var relationship: NSManagedObject
+    @NSManaged open var hausse: String
+    @NSManaged open var name: String
+    @NSManaged open var relationship: NSManagedObject
 
 }

@@ -18,14 +18,14 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
     
     // MARK: - Fetched results controller
     
-    var fetchedResultsController: NSFetchedResultsController {
+    var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> {
         if _fetchedResultsController != nil {
             return _fetchedResultsController!
         }
         
-        let fetchRequest = NSFetchRequest()
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
         // Edit the entity name as appropriate.
-        let entity = NSEntityDescription.entityForName(self.tablename, inManagedObjectContext: DataManager.getContext())
+        let entity = NSEntityDescription.entity(forEntityName: self.tablename, in: DataManager.getContext())
         fetchRequest.entity = entity
         
         // Set the batch size to a suitable number.
@@ -39,7 +39,7 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
         
         // Edit the section name key path and cache name if appropriate.
         // nil for section name key path means "no sections".
-        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: DataManager.getContext(), sectionNameKeyPath: nil, cacheName: "Master")
+        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: DataManager.getContext(), sectionNameKeyPath: nil, cacheName: nil) //"Master"
         aFetchedResultsController.delegate = self
         _fetchedResultsController = aFetchedResultsController
         
@@ -56,7 +56,7 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
         
         return _fetchedResultsController!
     }
-    var _fetchedResultsController: NSFetchedResultsController? = nil
+    var _fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>? = nil
     
 
     
@@ -102,18 +102,18 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
                 // Do any additional setup after loading the view, typically from a nib.
                 //self.navigationItem.leftBarButtonItem = self.editButtonItem()
         
-                let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(ListeViewController.insertNewObject(_:)))
+                let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(ListeViewController.insertNewObject(_:)))
                 self.navigationItem.rightBarButtonItem = addButton
     }
 
- override   func viewWillAppear(animated: Bool){
+ override   func viewWillAppear(_ animated: Bool){
           self.tableView.reloadData()
     }
-    func insertNewMatosObject(newManagedObject: AnyObject) {
+    func insertNewMatosObject(_ newManagedObject: AnyObject) {
         
         let locastr=NSLocalizedString("Matériel", comment:"data")
         
-        newManagedObject.setValue(NSDate(), forKey: "timeStamp")
+        newManagedObject.setValue(Date(), forKey: "timeStamp")
         newManagedObject.setValue(locastr, forKey: "name")
         newManagedObject.setValue("S/N 00000000000", forKey: "serialnumber")
         newManagedObject.setValue("", forKey: "comment")
@@ -124,29 +124,29 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
         
     }
     
-    func insertNewDistanceObject(newManagedObject: Distance) {
+    func insertNewDistanceObject(_ newManagedObject: Distance) {
         
         let locastr=NSLocalizedString("Distance", comment:"data")
         
-        newManagedObject.setValue(NSDate(), forKey: "timeStamp")
+        newManagedObject.setValue(Date(), forKey: "timeStamp")
         newManagedObject.setValue(locastr, forKey: "name")
         newManagedObject.setValue("", forKey: "comment")
         newManagedObject.setValue("m", forKey: "unit")
         
-        let entityDescription = NSEntityDescription.entityForName("Hausse", inManagedObjectContext:DataManager.getContext())
+        let entityDescription = NSEntityDescription.entity(forEntityName: "Hausse", in:DataManager.getContext())
 
          let c = ["5","10","15","18","20","30","40","50","60","70"]
         
         for distance in c {
             
         
-            let hausse = Hausse(entity: entityDescription!, insertIntoManagedObjectContext: DataManager.getContext())
+            let hausse = Hausse(entity: entityDescription!, insertInto: DataManager.getContext())
         
             hausse.name = distance
             hausse.hausse = "0"
             hausse.relationship = newManagedObject
             
-            newManagedObject.relationship.addObject(hausse)
+            newManagedObject.relationship.add(hausse)
             
         }
 
@@ -154,18 +154,18 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
         // println(newManagedObject.allHaussesDescription())
     }
 
-    func insertNewTirObject(newManagedObject: Tir) {
+    func insertNewTirObject(_ newManagedObject: Tir) {
         let locastr=NSLocalizedString("Au club", comment:"data")
         
-        newManagedObject.setValue(NSDate(), forKey: "timeStamp")
+        newManagedObject.setValue(Date(), forKey: "timeStamp")
         newManagedObject.setValue(locastr, forKey: "location")
         newManagedObject.setValue("70", forKey: "distance")
         newManagedObject.setValue("", forKey: "comment")
         
         // test
-        let entityDescription = NSEntityDescription.entityForName("Volee", inManagedObjectContext: DataManager.getContext())
+        let entityDescription = NSEntityDescription.entity(forEntityName: "Volee", in: DataManager.getContext())
 
-        let volee = Volee(entity: entityDescription!, insertIntoManagedObjectContext: DataManager.getContext())
+        let volee = Volee(entity: entityDescription!, insertInto: DataManager.getContext())
         
         volee.volee = "[]"
         volee.rang = 1
@@ -174,17 +174,17 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
         
         
         
-        newManagedObject.volees.addObject(volee)
+        newManagedObject.volees.add(volee)
         
-         WatchSessionManager.sharedManager.transferUserInfo(["insertNewTir" : 0.description])
+         WatchSessionManager.sharedManager.transferUserInfo(["insertNewTir" : 0.description as AnyObject])
         
 
     }
 
-    func insertNewFlecheObject(newManagedObject: AnyObject) {
+    func insertNewFlecheObject(_ newManagedObject: AnyObject) {
         
         let locastr=NSLocalizedString("Lot de flêches", comment:"data")
-        newManagedObject.setValue(NSDate(), forKey: "timeStamp")
+        newManagedObject.setValue(Date(), forKey: "timeStamp")
         newManagedObject.setValue(locastr, forKey: "name")
         newManagedObject.setValue("", forKey: "feather")
         newManagedObject.setValue("", forKey: "comment")
@@ -196,10 +196,10 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
     }
 
     
-    func insertNewObject(sender: AnyObject) {
+    func insertNewObject(_ sender: AnyObject) {
         let context = self.fetchedResultsController.managedObjectContext
         let entity = self.fetchedResultsController.fetchRequest.entity!
-        let newManagedObject = NSEntityDescription.insertNewObjectForEntityForName(entity.name!, inManagedObjectContext: context) 
+        let newManagedObject = NSEntityDescription.insertNewObject(forEntityName: entity.name!, into: context) 
         
         
         switch tablename{
@@ -243,56 +243,56 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
     
     // MARK: - Segues
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         
         if (segue.identifier == "materielSegue" ){
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! NSManagedObject
-                let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailEditMaterielViewController
+                let object = self.fetchedResultsController.object(at: indexPath) as! NSManagedObject
+                let controller = (segue.destination as! UINavigationController).topViewController as! DetailEditMaterielViewController
                 
                 controller.context  =  self.fetchedResultsController.managedObjectContext
                 controller.detailItem = object
-                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
         } else if (segue.identifier == "flecheSegue" ){
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! NSManagedObject
-                let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailEditFlecheViewController
+                let object = self.fetchedResultsController.object(at: indexPath) as! NSManagedObject
+                let controller = (segue.destination as! UINavigationController).topViewController as! DetailEditFlecheViewController
                 
                 controller.context  =  self.fetchedResultsController.managedObjectContext
                 controller.detailItem = object
-                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
         }else if (segue.identifier == "distanceSegue" ){
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Distance
-                let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailEditDistanceViewController
+                let object = self.fetchedResultsController.object(at: indexPath) as! Distance
+                let controller = (segue.destination as! UINavigationController).topViewController as! DetailEditDistanceViewController
                 
                 controller.context  =  self.fetchedResultsController.managedObjectContext
                 controller.detailItem = object
-                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
         }else if (segue.identifier == "tirSegue" ){
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 
                 
-                let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Tir
-                let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailEditTirViewController
+                let object = self.fetchedResultsController.object(at: indexPath) as! Tir
+                let controller = (segue.destination as! UINavigationController).topViewController as! DetailEditTirViewController
                 // controller.context  = self.managedObjectContext
                 controller.detailItem = object
-                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
         }else if (segue.identifier == "blason" ){
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Tir
-                let controller = (segue.destinationViewController as! UINavigationController).topViewController as! TargetController
+                let object = self.fetchedResultsController.object(at: indexPath) as! Tir
+                let controller = (segue.destination as! UINavigationController).topViewController as! TargetController
                 controller.detailItem = object
-                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
         }
@@ -329,7 +329,7 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
     // MARK: - Table View
     
     
-   override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath)-> CGFloat{
+   override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath)-> CGFloat{
     
     
     switch tablename{
@@ -339,51 +339,51 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
         
         return 161
      default:
-        return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+        return super.tableView(tableView, heightForRowAt: indexPath)
     }
     }
     
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
       //  var  ii = self.fetchedResultsController.sections?.count
         
         return self.fetchedResultsController.sections?.count ?? 0
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionInfo = self.fetchedResultsController.sections![section] 
         return sectionInfo.numberOfObjects
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
         switch tablename{
             
             case "Materiel":
-                let cell = tableView.dequeueReusableCellWithIdentifier("matoscell", forIndexPath: indexPath) as! MatosCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: "matoscell", for: indexPath) as! MatosCell
                 self.configureMatosCell(cell, atIndexPath: indexPath)
                 return cell
             case "Distance":
             
-                let cell = tableView.dequeueReusableCellWithIdentifier("distancecell", forIndexPath: indexPath) as! DistanceCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: "distancecell", for: indexPath) as! DistanceCell
                     self.configureDistanceCell(cell, atIndexPath: indexPath)
                 return cell
 
             case "Tir":
-                let cell = tableView.dequeueReusableCellWithIdentifier("tircell", forIndexPath: indexPath) as! TirCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: "tircell", for: indexPath) as! TirCell
                 self.configureTirCell(cell, atIndexPath: indexPath)
                 return cell
             
             case "Fleche":
-            let cell = tableView.dequeueReusableCellWithIdentifier("flechecell", forIndexPath: indexPath) as! FlecheCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "flechecell", for: indexPath) as! FlecheCell
             self.configureFlecheCell(cell, atIndexPath: indexPath)
             return cell
             
             
             
         default:
-            let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) 
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) 
             return cell
         }
         
@@ -391,15 +391,15 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
         
     }
     
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
     
-        override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-            if editingStyle == .Delete {
+        override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+            if editingStyle == .delete {
                 let context = self.fetchedResultsController.managedObjectContext
-                context.deleteObject(self.fetchedResultsController.objectAtIndexPath(indexPath) as! NSManagedObject)
+                context.delete(self.fetchedResultsController.object(at: indexPath) as! NSManagedObject)
     
                 var error: NSError? = nil
                 do {
@@ -414,29 +414,29 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
             }
         }
     
-    func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
-        let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! NSManagedObject
-        cell.textLabel!.text = object.valueForKey("name")!.description
+    func configureCell(_ cell: UITableViewCell, atIndexPath indexPath: IndexPath) {
+        let object = self.fetchedResultsController.object(at: indexPath) as! NSManagedObject
+        cell.textLabel!.text = (object.value(forKey: "name")! as AnyObject).description
     }
-    func configureMatosCell(cell: MatosCell, atIndexPath indexPath: NSIndexPath) {
-        let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! NSManagedObject
-        cell.matos!.text = object.valueForKey("name")!.description
-        cell.serialnumber!.text = object.valueForKey("serialnumber")!.description
+    func configureMatosCell(_ cell: MatosCell, atIndexPath indexPath: IndexPath) {
+        let object = self.fetchedResultsController.object(at: indexPath) as! NSManagedObject
+        cell.matos!.text = (object.value(forKey: "name")! as AnyObject).description
+        cell.serialnumber!.text = (object.value(forKey: "serialnumber")! as AnyObject).description
     }
     
-    func configureDistanceCell(cell: DistanceCell, atIndexPath indexPath: NSIndexPath) {
-        let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Distance
+    func configureDistanceCell(_ cell: DistanceCell, atIndexPath indexPath: IndexPath) {
+        let object = self.fetchedResultsController.object(at: indexPath) as! Distance
 
-        cell.nom!.text = object.valueForKey("name")!.description
+        cell.nom!.text = (object.value(forKey: "name")! as AnyObject).description
         cell.detailItem = object.getAllHaussesSorted()
         
         
     }
     
-    func configureTirCell(cell: TirCell, atIndexPath indexPath: NSIndexPath) {
-        let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Tir
-        cell.nom!.text=object.valueForKey("location")!.description
-        cell.distance!.text=object.valueForKey("distance")!.description
+    func configureTirCell(_ cell: TirCell, atIndexPath indexPath: IndexPath) {
+        let object = self.fetchedResultsController.object(at: indexPath) as! Tir
+        cell.nom!.text=(object.value(forKey: "location")! as AnyObject).description
+        cell.distance!.text=(object.value(forKey: "distance")! as AnyObject).description
         cell.total!.text = object.getTotal().description
         
         
@@ -444,51 +444,51 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
         
         
         //let b:UIButton = UIButton(frame:cframe)
-        let b:UIButton = UIButton(type: UIButtonType.System)
+        let b:UIButton = UIButton(type: UIButtonType.system)
         b.frame = CGRect(x: cell.contentView.frame.width-100 ,y: 0 ,width: 100, height:cell.contentView.frame.height)
-        b.backgroundColor = UIColor.whiteColor()
+        b.backgroundColor = UIColor.white
         let locastr=NSLocalizedString("Blason", comment:"data")
         
-        b.setTitle( locastr, forState: .Normal)
-        b.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        b.setTitle( locastr, for: UIControlState())
+        b.setTitleColor(UIColor.black, for: UIControlState())
         
-        b.addTarget(self, action: #selector(ListeViewController.pressedBlason(_:)), forControlEvents: .TouchUpInside)
-        b.tag = indexPath.row
+        b.addTarget(self, action: #selector(ListeViewController.pressedBlason(_:)), for: .touchUpInside)
+        b.tag = (indexPath as NSIndexPath).row
         cell.contentView.addSubview(b)
 
         
         
     }
 
-    func configureFlecheCell(cell: FlecheCell, atIndexPath indexPath: NSIndexPath) {
-        let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! NSManagedObject
-        cell.nom!.text = object.valueForKey("name")!.description
-        cell.spin!.text = object.valueForKey("spin")!.description
+    func configureFlecheCell(_ cell: FlecheCell, atIndexPath indexPath: IndexPath) {
+        let object = self.fetchedResultsController.object(at: indexPath) as! NSManagedObject
+        cell.nom!.text = (object.value(forKey: "name")! as AnyObject).description
+        cell.spin!.text = (object.value(forKey: "spin")! as AnyObject).description
 
     }
 
     
     
-    func pressedBlason(sender: UIButton!) {
+    func pressedBlason(_ sender: UIButton!) {
         
-       let idx =  NSIndexPath(forRow: sender.tag, inSection: 0)
-        self.tableView.selectRowAtIndexPath(idx, animated: false, scrollPosition: UITableViewScrollPosition.None)
+       let idx =  IndexPath(row: sender.tag, section: 0)
+        self.tableView.selectRow(at: idx, animated: false, scrollPosition: UITableViewScrollPosition.none)
         
         
-       performSegueWithIdentifier("blason", sender: self)
+       performSegue(withIdentifier: "blason", sender: self)
     }
     
     
-    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         self.tableView.beginUpdates()
     }
     
-    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
         switch type {
-        case .Insert:
-            self.tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
-        case .Delete:
-            self.tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
+        case .insert:
+            self.tableView.insertSections(IndexSet(integer: sectionIndex), with: .fade)
+        case .delete:
+            self.tableView.deleteSections(IndexSet(integer: sectionIndex), with: .fade)
         default:
             return
         }
@@ -496,43 +496,46 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
     
   
 
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         switch type {
-        case .Insert:
-            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
-        case .Delete:
-            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
-        case .Update:
+        case .insert:
+            tableView.insertRows(at: [newIndexPath!], with: .fade)
+        case .delete:
+            tableView.deleteRows(at: [indexPath!], with: .fade)
+        case .update:
+             if let dcell = tableView.cellForRow(at: indexPath!) {
             switch tablename{
                 
             case "Materiel":
-                self.configureMatosCell(tableView.cellForRowAtIndexPath(indexPath!) as! MatosCell, atIndexPath: indexPath!)
+                    self.configureMatosCell(dcell as! MatosCell, atIndexPath: indexPath!)
+                
             case "Distance":
                 
-                self.configureDistanceCell(tableView.cellForRowAtIndexPath(indexPath!) as! DistanceCell, atIndexPath: indexPath!)
+                    self.configureDistanceCell(dcell as! DistanceCell, atIndexPath: indexPath!)
                 
             case "Tir":
-                self.configureTirCell(tableView.cellForRowAtIndexPath(indexPath!) as! TirCell, atIndexPath: indexPath!)
+                    self.configureTirCell(dcell as! TirCell, atIndexPath: indexPath!)
+                
                 
             case "Fleche":
-                self.configureFlecheCell(tableView.cellForRowAtIndexPath(indexPath!) as! FlecheCell, atIndexPath: indexPath!)
+                self.configureFlecheCell(dcell as! FlecheCell, atIndexPath: indexPath!)
                 
                 
             default:
-                self.configureCell(tableView.cellForRowAtIndexPath(indexPath!)!, atIndexPath: indexPath!)
+                self.configureCell(tableView.cellForRow(at: indexPath!)!, atIndexPath: indexPath!)
             }
 
+            }
             
             
-            
-        case .Move:
-            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
-            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
+        case .move:
+            tableView.deleteRows(at: [indexPath!], with: .fade)
+            tableView.insertRows(at: [newIndexPath!], with: .fade)
         
         }
     }
     
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         self.tableView.endUpdates()
     }
     
@@ -540,7 +543,7 @@ class ListeViewController : UITableViewController, NSFetchedResultsControllerDel
     
     // MARK: - DataSourceChangedDelegate
     //DataSourceChangedDelegate
-    func dataSourceDidUpdate(userInfo: [String : AnyObject]){
+    func dataSourceDidUpdate(_ userInfo: [String : AnyObject]){
         
         //updatenewtir()
         

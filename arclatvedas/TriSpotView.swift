@@ -21,15 +21,15 @@ class TriSpotView: BlasonView {
     
     
     override var colors:[UIColor] {
-        return [UIColor.yellowColor(),UIColor.yellowColor(),UIColor.yellowColor(),UIColor.redColor(),UIColor.redColor(),UIColor.blueColor()]
+        return [UIColor.yellow,UIColor.yellow,UIColor.yellow,UIColor.red,UIColor.red,UIColor.blue]
     }
     
-    override var colorslines:[UIColor] { return [UIColor.blackColor(),UIColor.blackColor(),UIColor.blackColor(),UIColor.blackColor(),UIColor.blackColor(),UIColor.blackColor()]}
+    override var colorslines:[UIColor] { return [UIColor.black,UIColor.black,UIColor.black,UIColor.black,UIColor.black,UIColor.black]}
     
     
     
-   override func getScoreForPoint(point:CGPoint)->CGPoint{
-        var result:CGPoint = CGPointMake(0,0)
+   override func getScoreForPoint(_ point:CGPoint)->CGPoint{
+        var result:CGPoint = CGPoint(x: 0,y: 0)
     
     for zone in 0 ..< 3{
         // trispot
@@ -38,7 +38,7 @@ class TriSpotView: BlasonView {
         repeat {
             let circle = circles[zone][x]
             
-            if circle.containsPoint(point) {
+            if circle.contains(point) {
                 result.x = CGFloat(scores[nombrezone-x])
                 result.y = CGFloat(zone);
                 
@@ -56,9 +56,9 @@ class TriSpotView: BlasonView {
     
     */
     
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         let pathck = UIBezierPath(rect: rect)
-        UIColor.whiteColor().setFill()
+        UIColor.white.setFill()
         pathck.fill()
         
         
@@ -74,7 +74,7 @@ class TriSpotView: BlasonView {
         }
         
     }
-    func drawZone(rect: CGRect, zone:Int) {
+    func drawZone(_ rect: CGRect, zone:Int) {
         // Drawing code
         
         
@@ -84,7 +84,7 @@ class TriSpotView: BlasonView {
         var lastgoodrect = rect
         var x=nombrezone
         repeat {
-            let path = UIBezierPath(ovalInRect: inrect)
+            let path = UIBezierPath(ovalIn: inrect)
             if x !=  0{
                 circles[zone].append(path)
             }
@@ -98,7 +98,7 @@ class TriSpotView: BlasonView {
             path.stroke()
             
             x -= 1
-            inrect = CGRectInset(inrect,delta,delta)
+            inrect = inrect.insetBy(dx: delta,dy: delta)
             if x == 1{
                 lastgoodrect = inrect
             }
@@ -106,9 +106,9 @@ class TriSpotView: BlasonView {
         
         // and the X !
         
-        inrect = CGRectInset(lastgoodrect,delta/2,delta/2)
-        if !CGRectIsEmpty(inrect){
-            let path = UIBezierPath(ovalInRect: inrect)
+        inrect = lastgoodrect.insetBy(dx: delta/2,dy: delta/2)
+        if !inrect.isEmpty{
+            let path = UIBezierPath(ovalIn: inrect)
             circles[zone].append(path)
             
             colorslines[0].setStroke()

@@ -12,25 +12,25 @@ import CoreGraphics
 
 @objc(Volee)
 
-public class Volee: NSManagedObject {
+open class Volee: NSManagedObject {
 
     
-   @NSManaged public var volee: String
-   @NSManaged public var rang: NSNumber
-   @NSManaged var impactes: NSData
+   @NSManaged open var volee: String
+   @NSManaged open var rang: NSNumber
+   @NSManaged var impactes:  NSData
    @NSManaged var zones: NSData
-   @NSManaged public var relationship: Tir
+   @NSManaged open var relationship: Tir
 
     let NOMBREMAX : Int = 6
     
-public    var scores:NSMutableArray {
+open    var scores:NSMutableArray {
     
         get {
                 if self.volee.isEmpty {
                     self.volee = "[]"
                 }
             
-            var json:JSON = JSON(data:self.volee.dataUsingEncoding(NSUTF8StringEncoding)!);
+            var json:JSON = JSON(data:self.volee.data(using: String.Encoding.utf8)!);
     
             //
             let toto = json.arrayObject
@@ -42,16 +42,16 @@ public    var scores:NSMutableArray {
         }
     }
 
-    public var impacteArray:NSMutableArray{
+    open var impacteArray:NSMutableArray{
         get {
             if self.impactes.length == 0 {
                 let copyimpacteArray = NSMutableArray(capacity:0)
-                self.impactes = NSKeyedArchiver.archivedDataWithRootObject(copyimpacteArray)
+                self.impactes = NSKeyedArchiver.archivedData(withRootObject:copyimpacteArray) as NSData
             }
             //NSData* myData = [NSKeyedArchiver archivedDataWithRootObject:myMutableArray];
-            let k:NSMutableArray =  (NSKeyedUnarchiver.unarchiveObjectWithData(self.impactes) as? NSMutableArray)!
+            let k:NSMutableArray =  (NSKeyedUnarchiver.unarchiveObject(with:self.impactes as Data) as? NSMutableArray)!
             
-
+            
             return k
             
             
@@ -59,13 +59,13 @@ public    var scores:NSMutableArray {
 
     }
     
-    public var zoneArray:NSMutableArray{
+    open var zoneArray:NSMutableArray{
         get {
             if self.zones.length == 0 {
                 let copyzoneArray = NSMutableArray(capacity:0)
-                self.zones = NSKeyedArchiver.archivedDataWithRootObject(copyzoneArray)
+                self.zones = NSKeyedArchiver.archivedData(withRootObject: copyzoneArray) as NSData
             }
-            let k:NSMutableArray =  (NSKeyedUnarchiver.unarchiveObjectWithData(self.zones) as? NSMutableArray)!
+            let k:NSMutableArray =  (NSKeyedUnarchiver.unarchiveObject(with: self.zones as Data) as? NSMutableArray)!
             
             
             return k
@@ -78,7 +78,7 @@ public    var scores:NSMutableArray {
     
     
     
-    public  override var description:String{
+    open  override var description:String{
         get {
             var result = ""
             if self.volee.isEmpty {
@@ -87,13 +87,13 @@ public    var scores:NSMutableArray {
                 let copyscore = scores
                 var chunk = ""
                 for i in 0  ..< copyscore.count  {
-                    let num:NSNumber = copyscore.objectAtIndex(i) as! NSNumber
-                    if  num.integerValue == 100 {
+                    let num:NSNumber = copyscore.object(at: i) as! NSNumber
+                    if  num.intValue == 100 {
                         chunk = "X"
-                    }else if  num.integerValue == 0 {
+                    }else if  num.intValue == 0 {
                          chunk = "M"
                     }else {
-                        chunk = "\(num.integerValue)"
+                        chunk = "\(num.intValue)"
                     }
                     
                     result += chunk
@@ -107,16 +107,16 @@ public    var scores:NSMutableArray {
     }
    
     
-public    func getTotal() -> Int {
+open    func getTotal() -> Int {
         var res:Int = 0
         let copyscore = scores
             
                  for i in 0  ..< copyscore.count  {
-                     let num:NSNumber = copyscore.objectAtIndex(i) as! NSNumber
-                    if  num.integerValue == 100 {
+                     let num:NSNumber = copyscore.object(at: i) as! NSNumber
+                    if  num.intValue == 100 {
                         res  = res + 10
                     }else {
-                        res  = res + num.integerValue
+                        res  = res + num.intValue
                     }
                  }
             
@@ -124,47 +124,49 @@ public    func getTotal() -> Int {
         return res
     }
     
-    public func addScore (points : Int, impact:CGPoint, zone:CGPoint)->Bool {
+    open func addScore (_ points : Int, impact:CGPoint, zone:CGPoint)->Bool {
         
         let copyscore = self.scores
         var done=false
         
         if copyscore.count < NOMBREMAX {
-            copyscore.addObject(NSNumber(integer: points))
+            copyscore.add(NSNumber(value: points as Int))
         }
         
         
-        let data:NSData =  try! NSJSONSerialization.dataWithJSONObject(copyscore,options: NSJSONWritingOptions(rawValue: 0))
+        let data:Data =  try! JSONSerialization.data(withJSONObject: copyscore,options: JSONSerialization.WritingOptions(rawValue: 0))
         
-        self.volee = NSString(data: data, encoding: NSUTF8StringEncoding)!.description
+        self.volee = NSString(data: data, encoding: String.Encoding.utf8.rawValue)!.description
         
         
 
       //  NSString *pointToSavae = NSStringFromCGPoint(point); // Will store string {20,20}
 
         
-        let copyimpacteArray = self.impacteArray
+        let copyimpacteArray = NSMutableArray(array:self.impacteArray);
+        
+        
         if copyscore.count < NOMBREMAX {
-            copyimpacteArray.addObject(NSValue(CGPoint:impact))
+            copyimpacteArray.add(NSValue(cgPoint:impact))
             done=true
         }
         
-        self.impactes = NSKeyedArchiver.archivedDataWithRootObject(copyimpacteArray)
+        self.impactes = NSKeyedArchiver.archivedData(withRootObject: copyimpacteArray) as NSData
         
         
         let copyzoneArray = self.zoneArray
         if copyscore.count < NOMBREMAX {
-            copyzoneArray.addObject(NSValue(CGPoint:zone))
+            copyzoneArray.add(NSValue(cgPoint:zone))
         }
         
-        self.zones = NSKeyedArchiver.archivedDataWithRootObject(copyzoneArray)
+        self.zones = NSKeyedArchiver.archivedData(withRootObject: copyzoneArray) as NSData
 
         
         
         return done
     }
     
- public   func deleteLast()->Bool{
+ open   func deleteLast()->Bool{
         var done=false
         let copyscore = scores
 
@@ -172,9 +174,9 @@ public    func getTotal() -> Int {
             copyscore.removeLastObject()
         }
         
-        let data:NSData =  try! NSJSONSerialization.dataWithJSONObject(copyscore,options: NSJSONWritingOptions(rawValue: 0))
+        let data:Data =  try! JSONSerialization.data(withJSONObject: copyscore,options: JSONSerialization.WritingOptions(rawValue: 0))
         
-        self.volee = NSString(data: data, encoding: NSUTF8StringEncoding)!.description
+        self.volee = NSString(data: data, encoding: String.Encoding.utf8.rawValue)!.description
     
         let copyimpacteArray = self.impacteArray
         if copyimpacteArray.count != 0 {
@@ -182,51 +184,51 @@ public    func getTotal() -> Int {
             done=true
         }
     
-        self.impactes = NSKeyedArchiver.archivedDataWithRootObject(copyimpacteArray)
+        self.impactes = NSKeyedArchiver.archivedData(withRootObject: copyimpacteArray) as NSData
     
         let copyzoneArray = self.zoneArray
         if copyzoneArray.count != 0 {
             copyzoneArray.removeLastObject()
         }
     
-        self.zones = NSKeyedArchiver.archivedDataWithRootObject(copyzoneArray)
+        self.zones = NSKeyedArchiver.archivedData(withRootObject: copyzoneArray) as NSData
 
     
     
         return done
     }
     
-  public  func getAt(fleche : Int) -> Int{
+  open  func getAt(_ fleche : Int) -> Int{
         var res:Int = -1
         let copyscore = scores
         
         if fleche < copyscore.count {
-            let num:NSNumber = copyscore.objectAtIndex(fleche) as! NSNumber
-            res = num.integerValue
+            let num:NSNumber = copyscore.object(at: fleche) as! NSNumber
+            res = num.intValue
         }
         
         return res
     }
     
-    public func getImpactAt(fleche:Int) ->CGPoint{
+    open func getImpactAt(_ fleche:Int) ->CGPoint{
         
         let copyimpacteArray = self.impacteArray
-        var point = CGPointMake(0,0)
+        var point = CGPoint(x: 0,y: 0)
         if fleche < copyimpacteArray.count {
-            let p:NSValue = copyimpacteArray.objectAtIndex(fleche) as! NSValue
-          point = p.CGPointValue()
+            let p:NSValue = copyimpacteArray.object(at: fleche) as! NSValue
+          point = p.cgPointValue
         }
         
         return point
     }
     
-    public func getZoneAt(fleche:Int) ->CGPoint{
+    open func getZoneAt(_ fleche:Int) ->CGPoint{
         
         let copyzoneArray = self.zoneArray
-        var point = CGPointMake(0,0)
+        var point = CGPoint(x: 0,y: 0)
         if fleche < copyzoneArray.count {
-            let p : NSValue = copyzoneArray.objectAtIndex(fleche) as! NSValue
-            point = p.CGPointValue()
+            let p : NSValue = copyzoneArray.object(at: fleche) as! NSValue
+            point = p.cgPointValue
         }
         
         return point
@@ -234,7 +236,7 @@ public    func getTotal() -> Int {
 
     
     
- public   func getTaille()->Int{
+ open   func getTaille()->Int{
          let copyscore = self.scores
         return copyscore.count
     }

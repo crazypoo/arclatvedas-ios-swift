@@ -8,28 +8,39 @@
 
 import Foundation
 import CoreData
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 //http://stackoverflow.com/questions/26613971/swift-coredata-warning-unable-to-load-class-named
 
 @objc(Distance)
 
-public class Distance: NSManagedObject {
+open class Distance: NSManagedObject {
 
-    @NSManaged public var comment: String
-    @NSManaged public var name: String
-    @NSManaged public var timeStamp: NSDate
-    @NSManaged public var unit: String
-    @NSManaged public var relationship: NSMutableSet
+    @NSManaged open var comment: String
+    @NSManaged open var name: String
+    @NSManaged open var timeStamp: Date
+    @NSManaged open var unit: String
+    @NSManaged open var relationship: NSMutableSet
     
     
     
-  public  func allHaussesDescription ()->String {
+  open  func allHaussesDescription ()->String {
         
         var result = ""
 
         var nsarr = self.relationship.allObjects as! [Hausse]
         
-       nsarr.sortInPlace({ (s1: Hausse, s2: Hausse) -> Bool in
+       nsarr.sort(by: { (s1: Hausse, s2: Hausse) -> Bool in
             return Int(s1.name) < Int(s2.name)
         })
         
@@ -41,11 +52,11 @@ public class Distance: NSManagedObject {
         }
         return result
     }
-  public  func getAllHaussesSorted () -> NSArray {
+  open  func getAllHaussesSorted () -> NSArray {
         
         var nsarray:[Hausse] = self.relationship.allObjects as! [Hausse]
         
-        nsarray.sortInPlace({ (s1: Hausse, s2: Hausse) -> Bool in
+        nsarray.sort(by: { (s1: Hausse, s2: Hausse) -> Bool in
             return Int(s1.name) < Int(s2.name)
         })
         return NSArray(array: nsarray)

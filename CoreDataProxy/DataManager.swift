@@ -9,22 +9,22 @@
 
 import CoreData
 
-public class DataManager: NSObject {
+open class DataManager: NSObject {
     
-    public class func getContext() -> NSManagedObjectContext {
+    open class func getContext() -> NSManagedObjectContext {
         return CoreDataProxy.sharedInstance.managedObjectContext!
     }
     
-    public class func deleteManagedObject(object:NSManagedObject) {
-        getContext().deleteObject(object)
+    open class func deleteManagedObject(_ object:NSManagedObject) {
+        getContext().delete(object)
         saveManagedContext()
     }
     
     
-    public class func getAll(tablename:String, predicate:NSPredicate?, delegate:NSFetchedResultsControllerDelegate?)->NSFetchedResultsController{
-        let fetchRequest = NSFetchRequest()
+    open class func getAll(_ tablename:String, predicate:NSPredicate?, delegate:NSFetchedResultsControllerDelegate?)->NSFetchedResultsController<NSFetchRequestResult>{
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: tablename)
         // Edit the entity name as appropriate.
-        let entity = NSEntityDescription.entityForName(tablename, inManagedObjectContext:  getContext())
+        let entity = NSEntityDescription.entity(forEntityName: tablename, in:  getContext())
         fetchRequest.entity = entity
         fetchRequest.predicate = predicate
         // Set the batch size to a suitable number.
@@ -38,7 +38,7 @@ public class DataManager: NSObject {
         
         // Edit the section name key path and cache name if appropriate.
         // nil for section name key path means "no sections".
-        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: getContext(), sectionNameKeyPath: nil, cacheName: "Master")
+        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: getContext(), sectionNameKeyPath: nil, cacheName: nil) //"Master"
          aFetchedResultsController.delegate = delegate
         // _fetchedResultsController = aFetchedResultsController
         
@@ -58,18 +58,18 @@ public class DataManager: NSObject {
     
     
     
-    public class func emptyManagedTable(tableName:String){
+    open class func emptyManagedTable(_ tableName:String){
         
-       let all = NSFetchRequest()
+       let all = NSFetchRequest<NSFetchRequestResult>(entityName: tableName)
         var error : NSError? = nil
-        let entity = NSEntityDescription.entityForName(tableName, inManagedObjectContext:  getContext())
+        let entity = NSEntityDescription.entity(forEntityName: tableName, in:  getContext())
         all.entity = entity
         all.includesPropertyValues = true //only fetch the managedObjectID
         
         
         
         do {
-            let data =  try getContext().executeFetchRequest(all)
+            let data =  try getContext().fetch(all)
 
             //error handling goes here
             for result in data {
@@ -81,7 +81,7 @@ public class DataManager: NSObject {
         }
         saveManagedContext()
     }
-    public class func saveManagedContext() {
+    open class func saveManagedContext() {
         var error : NSError? = nil
         do {
             try getContext().save()

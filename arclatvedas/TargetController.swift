@@ -58,7 +58,7 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate ,UIPicke
         //Set up gesture recognizer
         
         tapGestureRecognizer.addTarget(self, action: #selector(TargetController.tapAction(_:)))
-        tapGestureRecognizer.enabled = true
+        tapGestureRecognizer.isEnabled = true
         self.view.addGestureRecognizer(tapGestureRecognizer)
         
        // self.view.addSubview(cv!)
@@ -73,19 +73,19 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate ,UIPicke
         DCDMagnifyingGlassView.setTargetView(self.view)
         DCDMagnifyingGlassView.setScale(2)
         DCDMagnifyingGlassView.setContentFrame(CGRect(x: 115,y: 90,width: 100,height: 100))
-        DCDMagnifyingGlassView.setIndicatorColor(UIColor.greenColor())
-        DCDMagnifyingGlassView.setShadowColor(UIColor.redColor())
+        DCDMagnifyingGlassView.setIndicatorColor(UIColor.green)
+        DCDMagnifyingGlassView.setShadowColor(UIColor.red)
         DCDMagnifyingGlassView.sharedInstance.glassDelegate=self
         
         
         
     }
     
-    func tapAction(sender: UITapGestureRecognizer) {
+    func tapAction(_ sender: UITapGestureRecognizer) {
         
         magnifyingViewVisible = !magnifyingViewVisible
         var hauteur:CGFloat = 0.0
-        let pt1:CGPoint = sender.locationOfTouch(0,inView: self.view)
+        let pt1:CGPoint = sender.location(ofTouch: 0,in: self.view)
         //let pt2:CGPoint = sender.locationOfTouch(0,inView: self.iv)
         
         if let myframe = self.iv?.frame {
@@ -113,21 +113,21 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate ,UIPicke
         
     }
     
-    func managePanBegin(sender: UIPanGestureRecognizer){
+    func managePanBegin(_ sender: UIPanGestureRecognizer){
         
     }
-    func managePanEnd(sender: UIPanGestureRecognizer){
+    func managePanEnd(_ sender: UIPanGestureRecognizer){
         
         let pt2 = DCDMagnifyingGlassView.sharedInstance.indicatorView.center
         
-        let pt3 = self.iv?.convertPoint(pt2, fromView: DCDMagnifyingGlassView.sharedInstance.indicatorView)
-        let point = CGPointMake(pt3!.x-25,pt3!.y-25)
+        let pt3 = self.iv?.convert(pt2, from: DCDMagnifyingGlassView.sharedInstance.indicatorView)
+        let point = CGPoint(x: pt3!.x-25,y: pt3!.y-25)
        
         
         
         
         let score = cv!.getScoreForPoint(point)
-        let azone = CGPointMake(score.y,0)
+        let azone = CGPoint(x: score.y,y: 0)
 
         
         if   curVolee!.addScore(Int(score.x), impact:point,zone:azone) {
@@ -138,7 +138,7 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate ,UIPicke
         
         
         saveObject(self)
-        WatchSessionManager.sharedManager.transferUserInfo(["addScore" : Int(score.x)])
+        WatchSessionManager.sharedManager.transferUserInfo(["addScore" : Int(score.x) as AnyObject])
         refreshVoleeLabel()
         DCDMagnifyingGlassView.dismiss(true)
         magnifyingViewVisible=false
@@ -155,7 +155,7 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate ,UIPicke
     
     
     
-    @IBAction func pressed(sender: UIButton!) {
+    @IBAction func pressed(_ sender: UIButton!) {
         
         switch sender.tag {
         case 1000 :
@@ -165,7 +165,7 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate ,UIPicke
             }
             
             saveObject(self)
-             WatchSessionManager.sharedManager.transferUserInfo(["deleteScore" : 0])
+             WatchSessionManager.sharedManager.transferUserInfo(["deleteScore" : 0 as AnyObject])
             DCDMagnifyingGlassView.dismiss(true)
             magnifyingViewVisible=false
 
@@ -180,7 +180,7 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate ,UIPicke
                     saveObject(self)
                     
                     curVolee = createEmptyVolee()
-                    WatchSessionManager.sharedManager.transferUserInfo(["createEmptyVolee" : 0])
+                    WatchSessionManager.sharedManager.transferUserInfo(["createEmptyVolee" : 0 as AnyObject])
                     saveObject(self)
                     
                     if let detail: Tir = self.detailItem {
@@ -192,7 +192,7 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate ,UIPicke
             }
             if self.detailItem!.volees.count == 0 {
                 curVolee = createEmptyVolee()
-                WatchSessionManager.sharedManager.transferUserInfo(["createEmptyVolee" : 0])
+                WatchSessionManager.sharedManager.transferUserInfo(["createEmptyVolee" : 0 as AnyObject])
                 saveObject(self)
                 
                 curCount=0
@@ -238,9 +238,9 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate ,UIPicke
         
         
         
-        let entityDescription = NSEntityDescription.entityForName("Volee", inManagedObjectContext: DataManager.getContext())
+        let entityDescription = NSEntityDescription.entity(forEntityName: "Volee", in: DataManager.getContext())
         
-        let volee = Volee(entity: entityDescription!, insertIntoManagedObjectContext: DataManager.getContext())
+        let volee = Volee(entity: entityDescription!, insertInto: DataManager.getContext())
         
         volee.setValue("[]", forKey: "volee")
         volee.setValue(detailItem!, forKey: "relationship")
@@ -248,7 +248,7 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate ,UIPicke
         
         
         
-        detailItem!.volees.addObject(volee)
+        detailItem!.volees.add(volee)
         
         return volee
     }
@@ -298,8 +298,8 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate ,UIPicke
             
             
             
-            facePicker?.selectRow(detail.blasonType.integerValue, inComponent:0, animated:false)
-            changeFace(detail.blasonType.integerValue)
+            facePicker?.selectRow(detail.blasonType.intValue, inComponent:0, animated:false)
+            changeFace(detail.blasonType.intValue)
             
             if let detail: Tir = self.detailItem {
                 if detail.volees.count > 0 {
@@ -309,7 +309,7 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate ,UIPicke
                     curCount = detail.volees.count-1
                 }else{
                     curVolee = createEmptyVolee()
-                    WatchSessionManager.sharedManager.transferUserInfo(["createEmptyVolee" : 0])
+                    WatchSessionManager.sharedManager.transferUserInfo(["createEmptyVolee" : 0 as AnyObject])
                     saveObject(self)
                     curCount = 0
                 }
@@ -320,12 +320,12 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate ,UIPicke
         }
     }
     
-    func editObject (sender: AnyObject) {
+    func editObject (_ sender: AnyObject) {
         if let detail: Tir = self.detailItem {
-            let alert = UIAlertController(title: "Description", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+            let alert = UIAlertController(title: "Description", message: "", preferredStyle: UIAlertControllerStyle.alert)
             
             
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction) in
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action: UIAlertAction) in
                 
                 var texts = alert.textFields as [UITextField]?
                 for i in 0 ..< texts!.count{
@@ -349,19 +349,19 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate ,UIPicke
                 
             }))
              let locastr=NSLocalizedString("Cancel", comment:"data")
-            alert.addAction(UIAlertAction(title: locastr, style: UIAlertActionStyle.Cancel, handler: nil))
-            alert.addTextFieldWithConfigurationHandler({(textField: UITextField)  in
+            alert.addAction(UIAlertAction(title: locastr, style: UIAlertActionStyle.cancel, handler: nil))
+            alert.addTextField(configurationHandler: {(textField: UITextField)  in
                 textField.placeholder = "Localication:"
-                textField.secureTextEntry = false
+                textField.isSecureTextEntry = false
                 if let detail: Tir = self.detailItem {
                     
                     textField.text = detail.location
                 }
             })
-            alert.addTextFieldWithConfigurationHandler({(textField: UITextField)  in
+            alert.addTextField(configurationHandler: {(textField: UITextField)  in
                 textField.placeholder = "Distance:"
-                textField.keyboardType = .DecimalPad
-                textField.secureTextEntry = false
+                textField.keyboardType = .decimalPad
+                textField.isSecureTextEntry = false
                 if let detail: Tir = self.detailItem {
                     
                     textField.text = detail.distance
@@ -391,13 +391,13 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate ,UIPicke
 //            alert.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[editPicker]-|", options: nil, metrics: nil, views: views))
 //
 //            editPicker.updateConstraintsIfNeeded()
-            self.presentViewController(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
         }
         
         
     }
     
-    func saveObject(sender: AnyObject) {
+    func saveObject(_ sender: AnyObject) {
         if let _: Tir = self.detailItem {
             
             
@@ -436,7 +436,7 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate ,UIPicke
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         WatchSessionManager.sharedManager.addDataSourceChangedDelegate(self)
-        let app = UIApplication.sharedApplication()
+        let app = UIApplication.shared
         
         if  let mainwindow = app.delegate?.window {
             let splitViewController = mainwindow!.rootViewController as! UISplitViewController
@@ -444,7 +444,7 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate ,UIPicke
         
         
             splitViewController.presentsWithGesture = false // SplitView won't recognize right swipe
-            splitViewController.preferredDisplayMode = .PrimaryHidden
+            splitViewController.preferredDisplayMode = .primaryHidden
         }
         
         
@@ -452,11 +452,11 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate ,UIPicke
     //    var b = self.splitViewController?.collapsed
         
         
-        self.navigationController!.navigationBar.translucent = false;
+        self.navigationController!.navigationBar.isTranslucent = false;
         //self.edgesForExtendedLayout = UIRectEdgeNone;
         configureView()
         
-        let editButton = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: #selector(TargetController.editObject(_:)))
+        let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(TargetController.editObject(_:)))
         self.navigationItem.rightBarButtonItem = editButton
         
         
@@ -465,7 +465,7 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate ,UIPicke
             if detail.volees.count > 0 {
                 
                 for i in 0 ..<  detail.volees.count{
-                    let vol :Volee = detail.volees.objectAtIndex(i) as! Volee
+                    let vol :Volee = detail.volees.object(at: i) as! Volee
                     
                     for j in 0 ..< NOMBREMAX{
                         //une constante pour le 6 !!
@@ -507,24 +507,24 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate ,UIPicke
     // MARK: pickerView ds
     
     // returns the number of 'columns' to display.
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int{
+    func numberOfComponents(in pickerView: UIPickerView) -> Int{
         return 1
     }
     
     // returns the # of rows in each component..
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
     {
         return 3
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return faces[row]
     }
 
     
-    func changeFace(blasontype:Int){
+    func changeFace(_ blasontype:Int){
         
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+        DispatchQueue.main.async(execute: { () -> Void in
        
         
         self.iv?.removeFromSuperview()
@@ -570,7 +570,7 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate ,UIPicke
              })
 
     }
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
         
         changeFace(row)
         
@@ -585,12 +585,12 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate ,UIPicke
     }
 
     
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         
         let r = CGRect(x: self.view.frame.origin.x ,y: self.view.frame.origin.y ,width: size.width, height:size.height)
 
         self.view.frame = r
-        self.view.backgroundColor = UIColor.whiteColor()
+        self.view.backgroundColor = UIColor.white
 
         
         let cote = min(r.size.width,r.size.height)
@@ -607,7 +607,7 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate ,UIPicke
         
         
         if let detail: Tir = self.detailItem {
-            changeFace(detail.blasonType.integerValue)
+            changeFace(detail.blasonType.intValue)
         }
         
         
@@ -622,12 +622,12 @@ class TargetController: UIViewController,DCDMagnifyingGlassViewDelegate ,UIPicke
 
     
     
-    func dataSourceDidUpdate(userInfo: [String : AnyObject]){
+    func dataSourceDidUpdate(_ userInfo: [String : AnyObject]){
         
        // self.navigationController!.popViewControllerAnimated(true)
         
-        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) { // 1
-            dispatch_async(dispatch_get_main_queue()) { // 2
+        DispatchQueue.global(qos:DispatchQoS.QoSClass.userInitiated).async { // 1
+            DispatchQueue.main.async { // 2
 
                 
                 

@@ -11,7 +11,7 @@ import UIKit
 import AssetsLibrary
 import Photos
 import CoreDataProxy
-
+import CoreData
 class DetailEditMaterielViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
     
@@ -28,7 +28,7 @@ class DetailEditMaterielViewController: UIViewController,UIImagePickerController
     
     var patha:String?=nil
     
-    var imageManager:PHImageManager = PHImageManager.defaultManager();
+    var imageManager:PHImageManager = PHImageManager.default();
     
     var imageframe:CGRect?=nil
     
@@ -41,14 +41,14 @@ class DetailEditMaterielViewController: UIViewController,UIImagePickerController
         singleTap.numberOfTapsRequired = 1
         
         imageframe = viewimage.frame;
-        viewimage.userInteractionEnabled = true
+        viewimage.isUserInteractionEnabled = true
         viewimage.addGestureRecognizer(singleTap)
         
         
         
         
         
-        let saveButton = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: #selector(DetailEditMaterielViewController.saveObject(_:)))
+        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(DetailEditMaterielViewController.saveObject(_:)))
         self.navigationItem.rightBarButtonItem = saveButton
         // Do any additional setup after loading the view.
           self.configureView()
@@ -62,7 +62,7 @@ class DetailEditMaterielViewController: UIViewController,UIImagePickerController
         if (small){
             
             
-            let mtop = self.navigationController!.navigationBar.frame.size.height + UIApplication.sharedApplication().statusBarFrame.size.height
+            let mtop = self.navigationController!.navigationBar.frame.size.height + UIApplication.shared.statusBarFrame.size.height
 
             
             
@@ -72,14 +72,14 @@ class DetailEditMaterielViewController: UIViewController,UIImagePickerController
             }
             
             
-            theframe = CGRectMake(0,mtop, taille, taille)
+            theframe = CGRect(x: 0,y: mtop, width: taille, height: taille)
         }else{
             theframe = imageframe!
 
         }
         
         
-        UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveEaseOut, animations: {
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: {
                   self.viewimage.frame = theframe!
             
             }, completion: { finished in
@@ -112,38 +112,41 @@ class DetailEditMaterielViewController: UIViewController,UIImagePickerController
     
     func configureView() {
         // Update the user interface for the detail item.
-        if let detail: AnyObject = self.detailItem {
+        if let detail: NSManagedObject = self.detailItem  as? NSManagedObject{
             
            // self.navigationItem.title = ""
-            
+            var value : String
             if let textename = self.matos {
-                textename.text = detail.valueForKey("name")!.description
+                 value = detail.value(forKey: "name") as! String
+                textename.text = value
             }
             
             if let texteserialnumber = self.serialnumber {
-                texteserialnumber.text = detail.valueForKey("serialnumber")!.description
+                value = detail.value(forKey: "serialnumber") as! String
+                texteserialnumber.text = value
             }
             
             if let textedate = self.date {
                 
-                let dateFormat:NSDateFormatter = NSDateFormatter()
-                dateFormat.dateStyle = NSDateFormatterStyle.ShortStyle
+                let dateFormat:DateFormatter = DateFormatter()
+                dateFormat.dateStyle = DateFormatter.Style.short
                 dateFormat.dateFormat="dd/MM/yy"
-                let ladate:NSDate  = detail.valueForKey("timeStamp") as! NSDate
+                let ladate:Date  = detail.value(forKey: "timeStamp") as! Date
                 
                 
-                let dateString:String = dateFormat.stringFromDate(ladate)
+                let dateString:String = dateFormat.string(from: ladate)
                 
                 textedate.text = dateString
             }
             
             if let textecommentaire = self.commentaire {
-                textecommentaire.text = detail.valueForKey("comment")!.description
+                value = detail.value(forKey: "comment") as! String
+                textecommentaire.text = value
             }
             
             if let texteimage = self.viewimage {
-                let path = detail.valueForKey("imagepath")!.description
-                if !path.isEmpty {
+                let path = (detail.value(forKey: "imagepath")! as AnyObject).description
+                if !(path?.isEmpty)! {
                     
                     
 //                     let legacyAsset:PHAsset = PHAsset.fetchAssetsWithALAssetURLs([(NSURL(string: path)?)!],options:nil).firstObject
@@ -167,11 +170,19 @@ class DetailEditMaterielViewController: UIViewController,UIImagePickerController
                     
                     
                      let library:ALAssetsLibrary = ALAssetsLibrary()
-                    library.assetForURL( NSURL(string: path), resultBlock: { (asset:ALAsset!) -> Void in
-                        let representation = asset.defaultRepresentation()
-                        let imageRef = representation.fullResolutionImage().takeUnretainedValue()
+                    
+                    var aurl = URL(string:path!)
+                    
+                    
+                    
+                    
+                 //   ALAssetsLibraryAssetForURLResultBlock
+                    
+                    library.asset( for: aurl, resultBlock: {(asset) -> Void in
+                        let representation = asset?.defaultRepresentation()
+                        let imageRef = representation?.fullResolutionImage().takeUnretainedValue()
                         
-                            texteimage.image = UIImage(CGImage: imageRef)
+                            texteimage.image = UIImage(cgImage: imageRef!)
                         
                         
                     }, failureBlock:nil)
@@ -186,14 +197,14 @@ class DetailEditMaterielViewController: UIViewController,UIImagePickerController
     
     
     
-    func saveObject(sender: AnyObject) {
+    func saveObject(_ sender: AnyObject) {
     if let detail: AnyObject = self.detailItem {
         
 
-        let dateFormat:NSDateFormatter = NSDateFormatter()
-        dateFormat.dateStyle = NSDateFormatterStyle.ShortStyle
+        let dateFormat:DateFormatter = DateFormatter()
+        dateFormat.dateStyle = DateFormatter.Style.short
         dateFormat.dateFormat="dd/MM/yy"
-        let ladate :NSDate = dateFormat.dateFromString(self.date.text!)!
+        let ladate :Date = dateFormat.date(from: self.date.text!)!
         
         detail.setValue(ladate, forKey: "timeStamp")
         detail.setValue(self.matos.text, forKey: "name")
@@ -222,20 +233,20 @@ class DetailEditMaterielViewController: UIViewController,UIImagePickerController
     
     
     
-    @IBAction func useCamera(sender: AnyObject) {
+    @IBAction func useCamera(_ sender: AnyObject) {
         
-        if UIImagePickerController.isSourceTypeAvailable(
-            UIImagePickerControllerSourceType.Camera) {
+        if UIImagePickerController.isSourceTypeAvailable( UIImagePickerControllerSourceType.camera)
+            {
                 
                 let imagePicker = UIImagePickerController()
                 
                 imagePicker.delegate = self
                 imagePicker.sourceType =
-                    UIImagePickerControllerSourceType.Camera
+                    UIImagePickerControllerSourceType.camera
                 imagePicker.mediaTypes = [kUTTypeImage as NSString as String]
                 imagePicker.allowsEditing = false
                 
-                self.presentViewController(imagePicker, animated: true, 
+                self.present(imagePicker, animated: true, 
                     completion: nil)
                 newMedia = true
         }
@@ -243,11 +254,11 @@ class DetailEditMaterielViewController: UIViewController,UIImagePickerController
     
     
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         let mediaType = info[UIImagePickerControllerMediaType] as! String
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
         
         
         
@@ -260,8 +271,8 @@ class DetailEditMaterielViewController: UIViewController,UIImagePickerController
             if (newMedia == true) {
                 let library:ALAssetsLibrary = ALAssetsLibrary()
                
-                library.writeImageToSavedPhotosAlbum(image.CGImage, orientation: ALAssetOrientation(rawValue: image.imageOrientation.rawValue)!, completionBlock: { (path : NSURL!,err: NSError!) -> Void in
-                     self.patha = path.description
+                library.writeImage(toSavedPhotosAlbum: image.cgImage, orientation: ALAssetOrientation(rawValue: image.imageOrientation.rawValue)!, completionBlock: { (path,err) -> Void in
+                     self.patha = path?.description
                 })
                 
 //                UIImageWriteToSavedPhotosAlbum(image, self,
@@ -275,24 +286,24 @@ class DetailEditMaterielViewController: UIViewController,UIImagePickerController
         }
     }
     
-    func image(image: UIImage, didFinishSavingWithError error: NSErrorPointer, contextInfo:UnsafePointer<Void>) {
+    func image(_ image: UIImage, didFinishSavingWithError error: NSErrorPointer?, contextInfo:UnsafeRawPointer) {
         
         if error != nil {
             let alert = UIAlertController(title: "Save Failed",
                 message: "Failed to save image",
-                preferredStyle: UIAlertControllerStyle.Alert)
+                preferredStyle: UIAlertControllerStyle.alert)
             
             let cancelAction = UIAlertAction(title: "OK",
-                style: .Cancel, handler: nil)
+                style: .cancel, handler: nil)
             
             alert.addAction(cancelAction)
-            self.presentViewController(alert, animated: true,
+            self.present(alert, animated: true,
                 completion: nil)
         }
     }
     
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
     }
 
     

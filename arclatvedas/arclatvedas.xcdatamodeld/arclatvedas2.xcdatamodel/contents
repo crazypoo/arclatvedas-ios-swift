@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14E46" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="15G1004" minimumToolsVersion="Xcode 4.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="Distance" representedClassName="Distance" syncable="YES">
         <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="timeStamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="timeStamp" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="unit" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="relationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Hausse" inverseName="relationship" inverseEntity="Hausse" syncable="YES"/>
     </entity>
     <entity name="Event" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="ordre" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="timeStamp" optional="YES" attributeType="Date">
+        <attribute name="ordre" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="timeStamp" optional="YES" attributeType="Date" usesScalarValueType="NO">
             <userInfo/>
         </attribute>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
@@ -18,11 +18,11 @@
     <entity name="Fleche" syncable="YES">
         <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="feather" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="length" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="length" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="point" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="spin" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="timeStamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="spin" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="timeStamp" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
     </entity>
     <entity name="Hausse" representedClassName="Hausse" syncable="YES">
         <attribute name="hausse" optional="YES" attributeType="String" syncable="YES"/>
@@ -34,23 +34,23 @@
         <attribute name="imagepath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="serialnumber" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="timeStamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="timeStamp" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
     </entity>
     <entity name="SpinCharte" representedClassName="SpinCharte" syncable="YES">
-        <attribute name="hight" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="length" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="low" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="hight" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="length" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="low" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="group" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="SpinGroupe" inverseName="chart" inverseEntity="SpinGroupe" syncable="YES"/>
     </entity>
     <entity name="SpinFleche" representedClassName="SpinFleche" syncable="YES">
-        <attribute name="diametreoutside" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="diametreoutside" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="fabricant" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="grain" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="grain" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="modele" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="spin" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="surname" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="taille" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="taille" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="groupsofarrow" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="SpinGroupe" inverseName="arrowsofgroup" inverseEntity="SpinGroupe" syncable="YES"/>
     </entity>
     <entity name="SpinGroupe" representedClassName="SpinGroupe" syncable="YES">
@@ -59,16 +59,16 @@
         <relationship name="chart" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="SpinCharte" inverseName="group" inverseEntity="SpinCharte" syncable="YES"/>
     </entity>
     <entity name="Tir" representedClassName="Tir" syncable="YES">
-        <attribute name="blasonType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="blasonType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="distance" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="timeStamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="timeStamp" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="volees" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Volee" inverseName="relationship" inverseEntity="Volee" syncable="YES"/>
     </entity>
     <entity name="Volee" representedClassName="Volee" syncable="YES">
         <attribute name="impactes" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="rang" optional="YES" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="rang" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
         <attribute name="volee" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="zones" optional="YES" attributeType="Binary" syncable="YES"/>
         <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tir" inverseName="volees" inverseEntity="Tir" syncable="YES"/>

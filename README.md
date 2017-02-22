@@ -24,8 +24,11 @@ sur l'App Store : https://itunes.apple.com/fr/app/arclatvedas/id994138042?mt=8
 sur mon club : http://arclatvedas.free.fr
 
 
+# Règles de confidentialité:
+L'ensemble des informations receuillies (position, photo, données) sont à l'usage exclusif de son utlisateur.
+Aucune donnée n'est transmise pour des traitements ou un usage externe.
 
-The MIT License (MIT)
+# The MIT License (MIT)
 
 Copyright (c) 2015 Jacques Divol
 
